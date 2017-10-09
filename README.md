@@ -3,7 +3,7 @@
 --
 
 Team:
-@Dessahh
-@filipemarques33
-@paulofonsecah
-@rHilkner
+• Dessahh
+• filipemarques33
+• paulofonsecah
+• rHilkner
