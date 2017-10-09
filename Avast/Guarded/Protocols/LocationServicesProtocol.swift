@@ -10,7 +10,10 @@ import Foundation
 import CoreLocation
 
 protocol LocationServicesProtocol {
+    ///Gets user's location
     func getLocation() -> CLLocation
+    ///Sends user's location to another user
     func sendLocation(location: CLLocation, user: User)
+    ///Receives location from another user
     func receiveLocation(location: CLLocation, user: User)
 }

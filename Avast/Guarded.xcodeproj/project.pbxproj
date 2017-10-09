@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C634E1751F8C00E900F32F5D /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C634E1741F8C00E800F32F5D /* LocationServices.swift */; };
+		C634E1771F8C023C00F32F5D /* TimerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C634E1761F8C023C00F32F5D /* TimerServices.swift */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D3C1F87C58F006415CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D3B1F87C58F006415CF /* ViewController.swift */; };
 		C67B4D3F1F87C58F006415CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D3D1F87C58F006415CF /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C634E1741F8C00E800F32F5D /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
+		C634E1761F8C023C00F32F5D /* TimerServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServices.swift; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67B4D3B1F87C58F006415CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 		C67B4D4F1F87CB01006415CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C634E1741F8C00E800F32F5D /* LocationServices.swift */,
+				C634E1761F8C023C00F32F5D /* TimerServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -188,7 +194,9 @@
 				C67B4D4E1F87CAE7006415CF /* User.swift in Sources */,
 				C67B4D3C1F87C58F006415CF /* ViewController.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
+				C634E1771F8C023C00F32F5D /* TimerServices.swift in Sources */,
 				C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */,
+				C634E1751F8C00E900F32F5D /* LocationServices.swift in Sources */,
 				C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
