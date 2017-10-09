@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */; };
+		8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550C1F8C076B004B3AED /* TimerServices.swift */; };
+		8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550D1F8C076B004B3AED /* LocationServices.swift */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D3C1F87C58F006415CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D3B1F87C58F006415CF /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Guarded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8910550C1F8C076B004B3AED /* TimerServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerServices.swift; sourceTree = "<group>"; };
+		8910550D1F8C076B004B3AED /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,8 +106,8 @@
 		C67B4D4F1F87CB01006415CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C634E1741F8C00E800F32F5D /* LocationServices.swift */,
-				C634E1761F8C023C00F32F5D /* TimerServices.swift */,
+				8910550D1F8C076B004B3AED /* LocationServices.swift */,
+				8910550C1F8C076B004B3AED /* TimerServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -277,11 +281,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67B4D4E1F87CAE7006415CF /* User.swift in Sources */,
+				8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */,
+				8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */,
 				C67B4D3C1F87C58F006415CF /* ViewController.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
-				C634E1771F8C023C00F32F5D /* TimerServices.swift in Sources */,
 				C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */,
-				C634E1751F8C00E900F32F5D /* LocationServices.swift in Sources */,
 				C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
