@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>392625079105-ge0qpvt3nf9m5ga7n7gtdqrm8l50lfa9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.392625079105-ge0qpvt3nf9m5ga7n7gtdqrm8l50lfa9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBQlw7EReST7QsNHfy1PKmMd128moGAIH4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>392625079105</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>xpt.Avast</string>
+	<key>PROJECT_ID</key>
+	<string>guarded-de8ef</string>
+	<key>STORAGE_BUCKET</key>
+	<string>guarded-de8ef.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:392625079105:ios:9982842cfba4fa53</string>
+	<key>DATABASE_URL</key>
+	<string>https://guarded-de8ef.firebaseio.com</string>
+</dict>
+</plist>
