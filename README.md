@@ -1,6 +1,5 @@
 # Guarded
 
-teste
 --
 
 Team:
