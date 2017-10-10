@@ -11,6 +11,7 @@
 		8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550C1F8C076B004B3AED /* TimerServices.swift */; };
 		8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550D1F8C076B004B3AED /* LocationServices.swift */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
+		C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */ = {isa = PBXBuildFile; fileRef = C647A8031F8C29A9006E53FA /* infos admin.strings */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D3C1F87C58F006415CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D3B1F87C58F006415CF /* ViewController.swift */; };
 		C67B4D3F1F87C58F006415CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D3D1F87C58F006415CF /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		8910550D1F8C076B004B3AED /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
+		C647A8031F8C29A9006E53FA /* infos admin.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "infos admin.strings"; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67B4D3B1F87C58F006415CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C647A7FF1F8C28DA006E53FA /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				C647A8031F8C29A9006E53FA /* infos admin.strings */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		C67B4D2D1F87C58F006415CF = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 		C67B4D381F87C58F006415CF /* Guarded */ = {
 			isa = PBXGroup;
 			children = (
+				C647A7FF1F8C28DA006E53FA /* Info */,
 				89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */,
 				C67B4D391F87C58F006415CF /* AppDelegate.swift */,
 				C67B4D511F87CB26006415CF /* User */,
@@ -209,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67B4D441F87C58F006415CF /* LaunchScreen.storyboard in Resources */,
+				C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
 				C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
 				C67B4D3F1F87C58F006415CF /* Main.storyboard in Resources */,
@@ -425,7 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xpt.Avast;
@@ -441,7 +453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xpt.Avast;

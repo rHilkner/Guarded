@@ -9,10 +9,10 @@
 import Foundation
 import CoreLocation
 
-class LocationServices {
+class LocationServices: LocationServicesProtocol {
     
     ///Gets user's location
-    func getLocation() -> CLLocation {
+    static func getLocation() -> CLLocation {
         
     }
     

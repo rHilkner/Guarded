@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TimerServices {
+class TimerServices: TimerServicesProtocol {
     ///Sets timer to a given time interval
     func setTimer(time: TimeInterval) {
         

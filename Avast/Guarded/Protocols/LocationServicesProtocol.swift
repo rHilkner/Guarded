@@ -11,7 +11,7 @@ import CoreLocation
 
 protocol LocationServicesProtocol {
     ///Gets user's location
-    func getLocation() -> CLLocation
+    static func getLocation() -> CLLocation
     ///Sends user's location to another user
     func sendLocation(location: CLLocation, user: User)
     ///Receives location from another user
