@@ -8,14 +8,24 @@
 
 import Foundation
 import CoreLocation
+import FirebaseDatabase
+
+protocol locationUpdateProtocol {
+    func displayCurrentLocation (myLocation: CLLocationCoordinate2D)
+}
 
 class LocationServices: NSObject, CLLocationManagerDelegate {
 
     let manager = CLLocationManager()
-    var location: CLLocation?
+    private var location: CLLocation?
+    private var delegate: locationUpdateProtocol!
+
+    private var ref: DatabaseReference?
 
     override init() {
         super.init()
+
+        ref = Database.database().reference()
 
         manager.delegate = self
 
@@ -23,11 +33,30 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
         /// to do: check if affects the app performance
         manager.desiredAccuracy = kCLLocationAccuracyBest
 
-        manager.requestWhenInUseAuthorization()
-        manager.requestAlwaysAuthorization()
+        /// test the authorization status, so it doesn't asks permission more than one time
+        switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                // Request when-in-use authorization initially
+                manager.requestWhenInUseAuthorization()
+                break
 
-        /// to do (?): if user decline, ask permission to access location when in use
-        manager.startUpdatingLocation()
+            case .restricted, .denied:
+                // Disable location features
+                print("Error: permission denied or restricted")
+                manager.stopUpdatingLocation()
+                break
+
+            case .authorizedWhenInUse:
+                // Enable basic location features
+                manager.startUpdatingLocation()
+                break
+
+            case .authorizedAlways:
+                // Enable any of your app's location features
+                manager.startUpdatingLocation()
+                break
+        }
+
     }
 
     /// this function is called every time the user location is updated
@@ -41,10 +70,20 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
         let userLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude)
 
         /// display the location every time it`s updated
-        let mapView = MapViewController()
-        mapView.displayCurrentLocation(myLocation: userLocation)
-
+        self.delegate.displayCurrentLocation(myLocation: userLocation)
         
+    }
+
+    /// handle authorization status changes
+    private func locationManager(manager: CLLocationManager,
+                                 didChangeAuthorizationStatus status: CLAuthorizationStatus)
+    {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            manager.startUpdatingLocation()
+        }
+        else if status == .denied || status == .restricted{
+            manager.stopUpdatingLocation()
+        }
     }
 
     ///Gets user's location
@@ -52,26 +91,15 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
         return location!
     }
     
-    ///Sends user's location to another user
+    /// Sends user's location to server
+    /// Firebase scheme: user -> (latitude: valor x), (longitude: valor y)
     func sendLocation(location: CLLocation, user: User) {
-        
+        ref?.child(user.name!).child("latitude").setValue(location.coordinate.latitude)
+        ref?.child(user.name!).child("longitude").setValue(location.coordinate.longitude)
     }
     
-    ///Receives location from another user
-    func receiveLocation(location: CLLocation, user: User) {
-        
+    ///Receives location from server
+    func receiveLocation(user: User) {
+        ref?.child(user.name!).setValue(nil)
     }
-
-    /*func displayCurrentLocation (location: CLLocationCoordinate2D){
-
-        /// defining zoom scale
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-
-        /// show region around the location with the scale defined
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-
-        map.setRegion(region, animated: true)
-
-        self.map.showsUserLocation = true
-    }*/
 }
