@@ -9,12 +9,15 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, locationUpdateProtocol {
 
     @IBOutlet weak var map: MKMapView!
     let manager = CLLocationManager()
     var location: CLLocation?
+
+    private var ref: DatabaseReference?
 
     func displayCurrentLocation (myLocation: CLLocationCoordinate2D){
 
@@ -30,36 +33,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     }
 
-    /// this function is called every time the user location is updated
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        /// locations is an array with all the locations of the user
-        /// locations[0] is the most recent location
-        location = locations[0]
-
-        /// create location point
-        let userLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude)
-
-        /// display the location every time it`s updated
-        //    let mapView = MapViewController()
-        displayCurrentLocation(myLocation: userLocation)
-
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.requestAlwaysAuthorization()
-
-        manager.startUpdatingLocation()
-
-        //LocationServices.init()
+        ref = Database.database().reference()
 
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
