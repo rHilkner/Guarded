@@ -18,19 +18,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8SM-6l-X9k">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="337"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j46-Tk-KWy">
+                                <rect key="frame" x="138" y="345" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send Location"/>
+                                <connections>
+                                    <action selector="sendLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x5q-07-SrE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0At-3L-ygh">
+                                <rect key="frame" x="119" y="383" width="137" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Get current location"/>
+                                <connections>
+                                    <action selector="getCurrentLocationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jjy-rU-fvZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIP-0z-aM8">
+                                <rect key="frame" x="24" y="428" width="326" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTw-Tt-eAh">
+                                <rect key="frame" x="24" y="569" width="326" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wux-S7-SJc">
+                                <rect key="frame" x="118" y="511" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Address To Location"/>
+                                <connections>
+                                    <action selector="receiveUserLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hF1-A5-LXm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8SM-6l-X9k" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="T7i-Rn-5pQ"/>
                             <constraint firstItem="8SM-6l-X9k" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TX0-a2-Jqm"/>
-                            <constraint firstItem="8SM-6l-X9k" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="i0o-gf-DnR"/>
+                            <constraint firstItem="8SM-6l-X9k" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-330" id="i0o-gf-DnR"/>
                             <constraint firstItem="8SM-6l-X9k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="usr-kD-pga"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="currentLocationLabel" destination="iIP-0z-aM8" id="7bg-GJ-gJo"/>
                         <outlet property="map" destination="8SM-6l-X9k" id="hfG-il-aYX"/>
                     </connections>
                 </viewController>

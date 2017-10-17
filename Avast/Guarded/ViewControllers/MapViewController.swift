@@ -9,15 +9,18 @@
 import UIKit
 import MapKit
 import CoreLocation
-import FirebaseDatabase
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, locationUpdateProtocol {
+
+class MapViewController: UIViewController, locationUpdateProtocol {
 
     @IBOutlet weak var map: MKMapView!
-    let manager = CLLocationManager()
-    var location: CLLocation?
 
-    private var ref: DatabaseReference?
+    @IBOutlet weak var currentLocationLabel: UILabel!
+
+    var location: CLLocation?
+    let locationServices = LocationServices()
+    let geocoder = CLGeocoder()
+
 
     func displayCurrentLocation (myLocation: CLLocationCoordinate2D){
 
@@ -33,10 +36,42 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, locationUp
 
     }
 
+    @IBAction func sendLocation(_ sender: Any) {
+        let user = User.init(name: "2")
+        locationServices.sendLocation(user: user)
+    }
+
+    @IBAction func getCurrentLocationAction(_ sender: UIButton) {
+        let location = locationServices.getLocation()
+
+        self.currentLocationLabel.text = "latitude: \(location.coordinate.latitude) longitude: \(location.coordinate.longitude)"
+    }
+
+    @IBAction func receiveUserLocation(_ sender: UIButton) {
+
+        let address: String = "Rua Roxo Moreira, 600, Campinas, São Paulo, Brasil"
+
+        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
+            if((error) != nil){
+                print("Error", error ?? "")
+            }
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
+
+                let annotation = MKPlacemark(placemark: placemark)
+                self.map.addAnnotation(annotation)
+                self.displayCurrentLocation(myLocation: coordinates)
+
+            }
+        })
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ref = Database.database().reference()
+        locationServices.delegate = self
 
     }
 
