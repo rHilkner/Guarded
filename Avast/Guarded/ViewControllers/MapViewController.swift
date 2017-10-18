@@ -100,6 +100,21 @@ extension MapViewController: locationUpdateProtocol {
         self.map.showsUserLocation = true
     }
 
+    func displayOtherLocation(someLocation: CLLocationCoordinate2D){
+        /// defining zoom scale
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+
+        /// show region around the location with the scale defined
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(someLocation, span)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = someLocation
+        self.map.addAnnotation(annotation)
+
+        map.setRegion(region, animated: true)
+        self.map.showsUserLocation = true
+    }
+
 }
 
 

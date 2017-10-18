@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 protocol locationUpdateProtocol {
     func displayCurrentLocation (myLocation: CLLocationCoordinate2D)
+    func displayOtherLocation(someLocation: CLLocationCoordinate2D)
 }
 
 class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDelegate {
@@ -95,7 +96,7 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
 
                 //let annotation = MKPlacemark(placemark: placemark)
                 //self.map.addAnnotation(annotation)
-                self.delegate.displayCurrentLocation(myLocation: coordinates)
+                self.delegate.displayOtherLocation(someLocation: coordinates)
 
             }
         })
@@ -122,7 +123,11 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
 
         ref?.child(user.name!).observe(.value, with: { (snapshot) in
 
-            print(snapshot)
+            let latitude = snapshot.childSnapshot(forPath: "latitude").value! as! Double
+            let longitude = snapshot.childSnapshot(forPath: "longitude").value! as! Double
+
+            let userLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            self.delegate.displayOtherLocation(someLocation: userLocation)
 
         }, withCancel: { (error) in
 
