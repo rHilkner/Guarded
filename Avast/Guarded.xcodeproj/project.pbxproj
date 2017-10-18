@@ -10,28 +10,33 @@
 		0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */; };
 		8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550C1F8C076B004B3AED /* TimerServices.swift */; };
 		8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550D1F8C076B004B3AED /* LocationServices.swift */; };
+		891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891055101F8D01CD004B3AED /* CoreLocation.framework */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
 		C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */ = {isa = PBXBuildFile; fileRef = C647A8031F8C29A9006E53FA /* infos admin.strings */; };
+		C647A8061F8D4A67006E53FA /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C647A8051F8D4A67006E53FA /* TimerViewController.swift */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
-		C67B4D3C1F87C58F006415CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D3B1F87C58F006415CF /* ViewController.swift */; };
+		C67B4D3C1F87C58F006415CF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D3B1F87C58F006415CF /* MapViewController.swift */; };
 		C67B4D3F1F87C58F006415CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D3D1F87C58F006415CF /* Main.storyboard */; };
 		C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D401F87C58F006415CF /* Assets.xcassets */; };
 		C67B4D441F87C58F006415CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D421F87C58F006415CF /* LaunchScreen.storyboard */; };
 		C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D4B1F87C5B8006415CF /* LocationServicesProtocol.swift */; };
 		C67B4D4E1F87CAE7006415CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D4D1F87CAE7006415CF /* User.swift */; };
 		C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */; };
+		C6EFA0D61F96A37D00D4483F /* TimerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Guarded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8910550C1F8C076B004B3AED /* TimerServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerServices.swift; sourceTree = "<group>"; };
 		8910550D1F8C076B004B3AED /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
+		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
 		C647A8031F8C29A9006E53FA /* infos admin.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "infos admin.strings"; sourceTree = "<group>"; };
+		C647A8051F8D4A67006E53FA /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C67B4D3B1F87C58F006415CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C67B4D3B1F87C58F006415CF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C67B4D3E1F87C58F006415CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C67B4D401F87C58F006415CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C67B4D431F87C58F006415CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +44,7 @@
 		C67B4D4B1F87C5B8006415CF /* LocationServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicesProtocol.swift; sourceTree = "<group>"; };
 		C67B4D4D1F87CAE7006415CF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServicesProtocol.swift; sourceTree = "<group>"; };
+		C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailsViewController.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */,
 				0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +64,7 @@
 		305BA6679A38B6A71EB30FF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				891055101F8D01CD004B3AED /* CoreLocation.framework */,
 				6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */,
 			);
 			name = Frameworks;
@@ -106,8 +114,8 @@
 				C67B4D511F87CB26006415CF /* User */,
 				C67B4D501F87CB0F006415CF /* Protocols */,
 				C67B4D4F1F87CB01006415CF /* Services */,
-				C67B4D541F87CF8B006415CF /* Storyboards */,
 				C67B4D551F87CF93006415CF /* ViewControllers */,
+				C67B4D541F87CF8B006415CF /* Storyboards */,
 				C67B4D401F87C58F006415CF /* Assets.xcassets */,
 				C67B4D451F87C58F006415CF /* Info.plist */,
 			);
@@ -152,7 +160,9 @@
 		C67B4D551F87CF93006415CF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C67B4D3B1F87C58F006415CF /* ViewController.swift */,
+				C67B4D3B1F87C58F006415CF /* MapViewController.swift */,
+				C647A8051F8D4A67006E53FA /* TimerViewController.swift */,
+				C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -295,7 +305,9 @@
 				C67B4D4E1F87CAE7006415CF /* User.swift in Sources */,
 				8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */,
 				8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */,
-				C67B4D3C1F87C58F006415CF /* ViewController.swift in Sources */,
+				C67B4D3C1F87C58F006415CF /* MapViewController.swift in Sources */,
+				C6EFA0D61F96A37D00D4483F /* TimerDetailsViewController.swift in Sources */,
+				C647A8061F8D4A67006E53FA /* TimerViewController.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
 				C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */,
 				C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */,
@@ -439,6 +451,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xpt.Avast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,6 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xpt.Avast;
 				PRODUCT_NAME = "$(TARGET_NAME)";

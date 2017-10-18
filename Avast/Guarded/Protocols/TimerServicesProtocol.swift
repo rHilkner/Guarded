@@ -9,10 +9,16 @@
 import Foundation
 
 protocol TimerServicesProtocol {
-    ///Sets timer to a given time interval
-    func setTimer(time: TimeInterval)
+    ///Starts timer
+    func start()
+    ///Creates timer object
+    func set()
     ///Called every second to reduce timer's counting by 1 second
-    func updateTimer()
-    ///Adds time interval to timer
-    func addTime(time: TimeInterval)
+    func update()
+    ///Stops timer and sets timer object to nil
+    func stop()
+    ///Adds 5 more minutes to timer
+    func snooze()
+    ///Returns a string "mm:ss" given a number of seconds
+    static func timeToString(timeInSecs: Int) -> String
 }
