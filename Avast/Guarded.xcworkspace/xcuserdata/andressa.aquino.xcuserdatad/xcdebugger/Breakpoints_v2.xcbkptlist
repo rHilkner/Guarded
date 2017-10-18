@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guarded/Services/LocationServices.swift"
-            timestampString = "529962649.866152"
+            timestampString = "530045904.937993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "addressToLocation(address:)"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "getLocationFromServer(user:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

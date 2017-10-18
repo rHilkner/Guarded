@@ -10,38 +10,23 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, locationUpdateProtocol {
+class MapViewController: UIViewController  {
     
     var timerService: TimerServices?
     @IBOutlet weak var timerButton: UIButton!
     
     
     @IBOutlet weak var map: MKMapView!
-
     @IBOutlet weak var currentLocationLabel: UILabel!
+    @IBOutlet weak var anotherUserLocationLabel: UILabel!
 
     var location: CLLocation?
     let locationServices = LocationServices()
-    let geocoder = CLGeocoder()
 
-
-    func displayCurrentLocation (myLocation: CLLocationCoordinate2D){
-
-        /// defining zoom scale
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-
-        /// show region around the location with the scale defined
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-
-        map.setRegion(region, animated: true)
-
-        self.map.showsUserLocation = true
-
-    }
 
     @IBAction func sendLocation(_ sender: Any) {
         let user = User.init(name: "2")
-        locationServices.sendLocation(user: user)
+        locationServices.sendLocationToServer(user: user)
     }
 
     @IBAction func getCurrentLocationAction(_ sender: UIButton) {
@@ -52,23 +37,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, locationUp
 
     @IBAction func receiveUserLocation(_ sender: UIButton) {
 
-        let address: String = "Rua Roxo Moreira, 600, Campinas, São Paulo, Brasil"
+        /// o user vai ser algum protegido do atual usuario
+        let user = User(name: "1")
 
-        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
-            if((error) != nil){
-                print("Error", error ?? "")
-            }
-            if let placemark = placemarks?.first {
-                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
-                print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
+        locationServices.getLocationFromServer(user: user)
+    }
 
-                let annotation = MKPlacemark(placemark: placemark)
-                self.map.addAnnotation(annotation)
-                self.displayCurrentLocation(myLocation: coordinates)
-
-            }
-        })
-
+    @IBAction func addressToLocation(_ sender: Any) {
+        locationServices.addressToLocation(address: "")
     }
 
     override func viewDidLoad() {
@@ -110,12 +86,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, locationUp
     
 }
 
-extension MapViewController {
-    
-    
-    
-    
+extension MapViewController: locationUpdateProtocol {
+
+    func displayCurrentLocation(myLocation: CLLocationCoordinate2D) {
+        /// defining zoom scale
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+
+        /// show region around the location with the scale defined
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+
+        map.setRegion(region, animated: true)
+
+        self.map.showsUserLocation = true
+    }
+
 }
+
 
 extension MapViewController: TimerViewControllerDelegate {
     

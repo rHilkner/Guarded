@@ -14,13 +14,13 @@ protocol locationUpdateProtocol {
     func displayCurrentLocation (myLocation: CLLocationCoordinate2D)
 }
 
-class LocationServices: NSObject, CLLocationManagerDelegate {
+class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDelegate {
 
     let manager = CLLocationManager()
-    private var location: CLLocation?
+    let geocoder = CLGeocoder()
+    var location: CLLocation?
     var delegate: locationUpdateProtocol!
-
-    private var ref: DatabaseReference?
+    var ref: DatabaseReference?
 
     override init() {
         super.init()
@@ -80,10 +80,10 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func addressToLocation(address: String) -> CLLocation {
+    /// Receive address and display its location
+    func addressToLocation(address: String) {
 
-        let geocoder = CLGeocoder()
-        var addressLocation: CLLocation?
+        let address: String = "Rua Roxo Moreira, 600, Campinas, São Paulo, Brasil"
 
         geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
             if((error) != nil){
@@ -92,14 +92,16 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
             if let placemark = placemarks?.first {
                 let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
                 print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
-                addressLocation = placemark.location!
+
+                //let annotation = MKPlacemark(placemark: placemark)
+                //self.map.addAnnotation(annotation)
+                self.delegate.displayCurrentLocation(myLocation: coordinates)
+
             }
         })
-
-        return addressLocation!
     }
 
-    ///Gets user's location
+    ///Gets current user's location
     func getLocation() -> CLLocation {
         return location!
     }
@@ -107,7 +109,7 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
     /// Sends user's location to server
     /// Firebase scheme: user -> (latitude: valor x), (longitude: valor y)
     /// obs: maybe it doesn't need to send user, just catch current user
-    func sendLocation(user: User) {
+    func sendLocationToServer(user: User) {
 
         ref = Database.database().reference()
         ref?.child(user.name!).child("latitude").setValue(self.location?.coordinate.latitude)
@@ -115,11 +117,10 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
     }
     
     /// Receives location from server
-    /// to do:
-    func receiveLocation(user: User) -> CLLocation {
+    func getLocationFromServer(user: User){
         ref = Database.database().reference()
 
-        ref?.observe(.value, with: { (snapshot) in
+        ref?.child(user.name!).observe(.value, with: { (snapshot) in
 
             print(snapshot)
 
@@ -129,12 +130,5 @@ class LocationServices: NSObject, CLLocationManagerDelegate {
 
         })
 
-       /* ref!.child(user.name!).observe(.value, with: { (snapshot) in
-
-            let dic = snapshot.value as! NSDictionary
-            print(dic)
-        })*/
-
-        return location!
     }
 }

@@ -10,10 +10,14 @@ import Foundation
 import CoreLocation
 
 protocol LocationServicesProtocol {
-    ///Gets user's location
-    static func getLocation() -> CLLocation
-    ///Sends user's location to another user
-    func sendLocation(location: CLLocation, user: User)
-    ///Receives location from another user
-    func receiveLocation(location: CLLocation, user: User)
+    /// Receive address and display its location
+    func addressToLocation(address: String)
+    /// Gets current user's location
+    func getLocation() -> CLLocation
+    /// Sends user's location to server
+    /// Firebase scheme: user -> (latitude: valor x), (longitude: valor y)
+    func sendLocationToServer(user: User)
+    /// Receives location from server
+    func getLocationFromServer(user: User)
+
 }
