@@ -19,25 +19,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8SM-6l-X9k">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="337"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FBL-7A-BBd">
-                                <rect key="frame" x="150" y="568" width="76" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j46-Tk-KWy">
+                                <rect key="frame" x="138" y="345" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="SET TIMER"/>
+                                <state key="normal" title="Send Location"/>
                                 <connections>
-                                    <action selector="setTimer" destination="BYZ-38-t0r" eventType="touchUpInside" id="isy-Jb-v9v"/>
-                                    <segue destination="Jbu-Ow-a5e" kind="show" identifier="SetTimerViewController" id="4gL-9B-5YG"/>
+                                    <action selector="sendLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x5q-07-SrE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUm-Oc-lOS">
-                                <rect key="frame" x="287" y="26" width="61" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0At-3L-ygh">
+                                <rect key="frame" x="119" y="383" width="137" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="00:00"/>
+                                <state key="normal" title="Get current location"/>
                                 <connections>
-                                    <action selector="checkTimer" destination="BYZ-38-t0r" eventType="touchUpInside" id="z69-ua-wFU"/>
-                                    <segue destination="gXe-Ri-jvv" kind="show" identifier="TimerDetailsViewController" id="4rZ-dU-qpq"/>
+                                    <action selector="getCurrentLocationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jjy-rU-fvZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIP-0z-aM8">
+                                <rect key="frame" x="24" y="428" width="326" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTw-Tt-eAh">
+                                <rect key="frame" x="24" y="569" width="326" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wux-S7-SJc">
+                                <rect key="frame" x="118" y="511" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Address To Location"/>
+                                <connections>
+                                    <action selector="receiveUserLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hF1-A5-LXm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -45,14 +64,14 @@
                         <constraints>
                             <constraint firstItem="8SM-6l-X9k" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="T7i-Rn-5pQ"/>
                             <constraint firstItem="8SM-6l-X9k" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TX0-a2-Jqm"/>
-                            <constraint firstItem="8SM-6l-X9k" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="i0o-gf-DnR"/>
+                            <constraint firstItem="8SM-6l-X9k" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-330" id="i0o-gf-DnR"/>
                             <constraint firstItem="8SM-6l-X9k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="usr-kD-pga"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="currentLocationLabel" destination="iIP-0z-aM8" id="7bg-GJ-gJo"/>
                         <outlet property="map" destination="8SM-6l-X9k" id="hfG-il-aYX"/>
-                        <outlet property="timerButton" destination="UUm-Oc-lOS" id="FFh-9E-N4P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -10,15 +10,20 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, locationUpdateProtocol {
     
     var timerService: TimerServices?
     @IBOutlet weak var timerButton: UIButton!
     
     
     @IBOutlet weak var map: MKMapView!
-    let manager = CLLocationManager()
+
+    @IBOutlet weak var currentLocationLabel: UILabel!
+
     var location: CLLocation?
+    let locationServices = LocationServices()
+    let geocoder = CLGeocoder()
+
 
     func displayCurrentLocation (myLocation: CLLocationCoordinate2D){
 
@@ -34,35 +39,45 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     }
 
-    /// this function is called every time the user location is updated
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    @IBAction func sendLocation(_ sender: Any) {
+        let user = User.init(name: "2")
+        locationServices.sendLocation(user: user)
+    }
 
-        /// locations is an array with all the locations of the user
-        /// locations[0] is the most recent location
-        location = locations[0]
+    @IBAction func getCurrentLocationAction(_ sender: UIButton) {
+        let location = locationServices.getLocation()
 
-        /// create location point
-        let userLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude)
+        self.currentLocationLabel.text = "latitude: \(location.coordinate.latitude) longitude: \(location.coordinate.longitude)"
+    }
 
-        /// display the location every time it`s updated
-        //    let mapView = MapViewController()
-        displayCurrentLocation(myLocation: userLocation)
+    @IBAction func receiveUserLocation(_ sender: UIButton) {
+
+        let address: String = "Rua Roxo Moreira, 600, Campinas, São Paulo, Brasil"
+
+        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
+            if((error) != nil){
+                print("Error", error ?? "")
+            }
+            if let placemark = placemarks?.first {
+                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
+
+                let annotation = MKPlacemark(placemark: placemark)
+                self.map.addAnnotation(annotation)
+                self.displayCurrentLocation(myLocation: coordinates)
+
+            }
+        })
 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.requestAlwaysAuthorization()
-
-        manager.startUpdatingLocation()
+        locationServices.delegate = self
         
         self.timerButton.isHidden = true
 
-        //LocationServices.init()
 
     }
     

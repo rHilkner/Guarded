@@ -11,33 +11,38 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "Icon-Small@2x-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "Icon-Small@3x-1.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "Icon-Small-40@2x-1.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "iphone",
       "size" : "40x40",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "40x40",
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "Icon-60@2x-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "Icon-60@3x-1.png",
       "scale" : "3x"
     },
     {
@@ -71,24 +76,75 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "Icon-77.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "Icon-76@2x-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "Icon-83.5@2x-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "ios-marketing",
       "size" : "1024x1024",
       "scale" : "1x"
+    },
+    {
+      "filename" : "Icon-60@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-60@3x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-76.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-76@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-83.5@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-Small-40@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-Small-60.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-Small-60@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-Small-60@3x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-Small.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-Small@2x.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Icon-Small@3x.png",
+      "unassigned" : true
     }
   ],
   "info" : {
