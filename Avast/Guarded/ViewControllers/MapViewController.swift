@@ -25,7 +25,7 @@ class MapViewController: UIViewController  {
 
 
     @IBAction func sendLocation(_ sender: Any) {
-        let user = User.init(name: "2")
+        let user = User.init(name: "1")
         locationServices.sendLocationToServer(user: user)
     }
 
@@ -38,13 +38,21 @@ class MapViewController: UIViewController  {
     @IBAction func receiveUserLocation(_ sender: UIButton) {
 
         /// o user vai ser algum protegido do atual usuario
-        let user = User(name: "1")
+        let user = User(name: "2")
 
         locationServices.getLocationFromServer(user: user)
     }
 
     @IBAction func addressToLocation(_ sender: Any) {
-        locationServices.addressToLocation(address: "")
+        let user = User(name: "2")
+        let nomeLocal = "Casa"
+		let location = locationServices.getLocation()
+
+        let local = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+
+        //locationServices.addMeusLocais(user: user, nomeLocal: nomeLocal, local: local)
+		locationServices.getMeusLocais(user: user, nomeLocal: nomeLocal)
+
     }
 
     override func viewDidLoad() {
