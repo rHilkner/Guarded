@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreLocation
-import FirebaseDatabase
+
 
 protocol locationUpdateProtocol {
     func displayCurrentLocation (myLocation: CLLocationCoordinate2D)
@@ -22,7 +22,6 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
     let geocoder = CLGeocoder()
     var location: CLLocation?
     var delegate: locationUpdateProtocol!
-    var ref: DatabaseReference?
 
     override init() {
         super.init()
@@ -65,6 +64,8 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
         /// create location point
         let userLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude)
 
+		currentUser?.currentLocation = userLocation
+
         /// display the location every time it`s updated
         self.delegate.displayCurrentLocation(myLocation: userLocation)
         
@@ -80,42 +81,6 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
         else if status == .denied || status == .restricted{
             manager.stopUpdatingLocation()
         }
-    }
-
-    ///Gets current user's location
-    func getLocation() -> CLLocation {
-        return location!
-    }
-    
-    /// Sends user's location to server
-    /// Firebase scheme: user -> (latitude: valor x), (longitude: valor y)
-    /// obs: maybe it doesn't need to send user, just catch current user
-    func sendLocationToServer(user: User) {
-
-        ref = Database.database().reference()
-        ref?.child(user.name!).child("Localizacao Atual").child("latitude").setValue(self.location?.coordinate.latitude)
-        ref?.child(user.name!).child("Localizacao Atual").child("longitude").setValue(self.location?.coordinate.longitude)
-    }
-    
-    /// Receives location from server
-    /// obs: maybe it doesn't need to send user, just catch current user
-    func getLocationFromServer(user: User){
-        ref = Database.database().reference()
-
-        ref?.child(user.name!).child("Localizacao Atual").observe(.value, with: { (snapshot) in
-
-            let latitude = snapshot.childSnapshot(forPath: "latitude").value! as! Double
-            let longitude = snapshot.childSnapshot(forPath: "longitude").value! as! Double
-
-            let userLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            self.delegate.displayOtherLocation(someLocation: userLocation)
-
-        }, withCancel: { (error) in
-
-            print(error.localizedDescription)
-
-        })
-
     }
 
     /// Receive address and display its location
@@ -136,36 +101,6 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
                 self.delegate.displayOtherLocation(someLocation: coordinates)
 
             }
-        })
-    }
-
-    /// Add some location and its identifier to the server
-    /// Can be use to update some location, just use the name exactly equal
-    /// obs: maybe it doesn't need to send user, just catch current user
-    func addMeusLocais(user: User, nomeLocal: String, local: CLLocationCoordinate2D) {
-
-        ref = Database.database().reference()
-        ref?.child(user.name!).child("Meus Locais").child(nomeLocal).child("latitude").setValue(self.location?.coordinate.latitude)
-        ref?.child(user.name!).child("Meus Locais").child(nomeLocal).child("longitude").setValue(self.location?.coordinate.longitude)
-    }
-
-    /// Get the location with the identifier equal to nomeLocal
-    func getMeusLocais(user: User, nomeLocal: String) {
-
-        ref = Database.database().reference()
-
-        ref?.child(user.name!).child("Meus Locais").child(nomeLocal).observe(.value, with: { (snapshot) in
-
-            let latitude = snapshot.childSnapshot(forPath: "latitude").value! as! Double
-            let longitude = snapshot.childSnapshot(forPath: "longitude").value! as! Double
-
-            let userLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-            self.delegate.displayOtherLocation(someLocation: userLocation)
-
-        }, withCancel: { (error) in
-
-            print(error.localizedDescription)
-
         })
     }
 

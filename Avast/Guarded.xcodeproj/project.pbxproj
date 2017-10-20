@@ -12,6 +12,8 @@
 		8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550D1F8C076B004B3AED /* LocationServices.swift */; };
 		891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891055101F8D01CD004B3AED /* CoreLocation.framework */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
+		89C871501F9A2BFD002C3455 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C8714F1F9A2BFD002C3455 /* FirebaseServices.swift */; };
+		89C871541F9A2CB4002C3455 /* FirebaseServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C871531F9A2CB4002C3455 /* FirebaseServicesProtocol.swift */; };
 		C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */ = {isa = PBXBuildFile; fileRef = C647A8031F8C29A9006E53FA /* infos admin.strings */; };
 		C647A8061F8D4A67006E53FA /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C647A8051F8D4A67006E53FA /* TimerViewController.swift */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 		8910550D1F8C076B004B3AED /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		89C8714F1F9A2BFD002C3455 /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
+		89C871531F9A2CB4002C3455 /* FirebaseServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServicesProtocol.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
 		C647A8031F8C29A9006E53FA /* infos admin.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "infos admin.strings"; sourceTree = "<group>"; };
 		C647A8051F8D4A67006E53FA /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +115,7 @@
 				C647A7FF1F8C28DA006E53FA /* Info */,
 				89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */,
 				C67B4D391F87C58F006415CF /* AppDelegate.swift */,
-				C67B4D511F87CB26006415CF /* User */,
+				C67B4D511F87CB26006415CF /* Persistence */,
 				C67B4D501F87CB0F006415CF /* Protocols */,
 				C67B4D4F1F87CB01006415CF /* Services */,
 				C67B4D551F87CF93006415CF /* ViewControllers */,
@@ -125,6 +129,7 @@
 		C67B4D4F1F87CB01006415CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				89C8714F1F9A2BFD002C3455 /* FirebaseServices.swift */,
 				8910550D1F8C076B004B3AED /* LocationServices.swift */,
 				8910550C1F8C076B004B3AED /* TimerServices.swift */,
 			);
@@ -136,16 +141,17 @@
 			children = (
 				C67B4D4B1F87C5B8006415CF /* LocationServicesProtocol.swift */,
 				C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */,
+				89C871531F9A2CB4002C3455 /* FirebaseServicesProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		C67B4D511F87CB26006415CF /* User */ = {
+		C67B4D511F87CB26006415CF /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
 				C67B4D4D1F87CAE7006415CF /* User.swift */,
 			);
-			path = User;
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		C67B4D541F87CF8B006415CF /* Storyboards */ = {
@@ -302,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C871501F9A2BFD002C3455 /* FirebaseServices.swift in Sources */,
 				C67B4D4E1F87CAE7006415CF /* User.swift in Sources */,
 				8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */,
 				8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */,
@@ -311,6 +318,7 @@
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
 				C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */,
 				C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */,
+				89C871541F9A2CB4002C3455 /* FirebaseServicesProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
