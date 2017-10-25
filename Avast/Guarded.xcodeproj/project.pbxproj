@@ -25,6 +25,7 @@
 		C67B4D4E1F87CAE7006415CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D4D1F87CAE7006415CF /* User.swift */; };
 		C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */; };
 		C6EFA0D61F96A37D00D4483F /* TimerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */; };
+		D41626571FA13C7E005E48A6 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41626561FA13C7E005E48A6 /* CustomTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		C67B4D4D1F87CAE7006415CF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServicesProtocol.swift; sourceTree = "<group>"; };
 		C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailsViewController.swift; sourceTree = "<group>"; };
+		D41626561FA13C7E005E48A6 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 			children = (
 				C67B4D421F87C58F006415CF /* LaunchScreen.storyboard */,
 				C67B4D3D1F87C58F006415CF /* Main.storyboard */,
+				D41626561FA13C7E005E48A6 /* CustomTabBarController.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			files = (
 				89C871501F9A2BFD002C3455 /* FirebaseServices.swift in Sources */,
 				C67B4D4E1F87CAE7006415CF /* User.swift in Sources */,
+				D41626571FA13C7E005E48A6 /* CustomTabBarController.swift in Sources */,
 				8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */,
 				8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */,
 				C67B4D3C1F87C58F006415CF /* MapViewController.swift in Sources */,
