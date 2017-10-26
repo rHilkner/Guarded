@@ -53,8 +53,6 @@ class MapViewController: UIViewController  {
         locationServices.delegate = self
         
         self.timerButton.isHidden = true
-
-
     }
     
     

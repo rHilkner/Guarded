@@ -9,7 +9,14 @@
 import Foundation
 
 class User {
+    
+    var id: String?
     var name: String?
+    var email: String?
+    var phoneNumber: String?
+    var lastLocation: Location?
+    var protected: [User] = []
+    
 
     init(name: String) {
         self.name = name

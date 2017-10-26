@@ -12,8 +12,10 @@
 		8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8910550D1F8C076B004B3AED /* LocationServices.swift */; };
 		891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891055101F8D01CD004B3AED /* CoreLocation.framework */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
+		C6152DF41FA292DA00CC4F76 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF31FA292DA00CC4F76 /* Location.swift */; };
 		C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */ = {isa = PBXBuildFile; fileRef = C647A8031F8C29A9006E53FA /* infos admin.strings */; };
 		C647A8061F8D4A67006E53FA /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C647A8051F8D4A67006E53FA /* TimerViewController.swift */; };
+		C672E3AB1F9ACDD400DAE227 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C672E3AA1F9ACDD400DAE227 /* UserServices.swift */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D3C1F87C58F006415CF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D3B1F87C58F006415CF /* MapViewController.swift */; };
 		C67B4D3F1F87C58F006415CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D3D1F87C58F006415CF /* Main.storyboard */; };
@@ -22,6 +24,7 @@
 		C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D4B1F87C5B8006415CF /* LocationServicesProtocol.swift */; };
 		C67B4D4E1F87CAE7006415CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D4D1F87CAE7006415CF /* User.swift */; };
 		C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */; };
+		C69A72F01F9AB96B006B002B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A72EF1F9AB96B006B002B /* LoginViewController.swift */; };
 		C6EFA0D61F96A37D00D4483F /* TimerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,8 +35,18 @@
 		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
+		C6152DF31FA292DA00CC4F76 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C61FB2971F9AAEA80021BE3F /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FB2981F9AAEA80021BE3F /* FacebookCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FacebookCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FB2991F9AAEA80021BE3F /* FacebookLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FacebookLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FB29A1F9AAEA80021BE3F /* FacebookShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FacebookShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FB29B1F9AAEA80021BE3F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FB29C1F9AAEA80021BE3F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FB29D1F9AAEA80021BE3F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61FB29F1F9AB0D10021BE3F /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C647A8031F8C29A9006E53FA /* infos admin.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "infos admin.strings"; sourceTree = "<group>"; };
 		C647A8051F8D4A67006E53FA /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		C672E3AA1F9ACDD400DAE227 /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67B4D3B1F87C58F006415CF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +57,8 @@
 		C67B4D4B1F87C5B8006415CF /* LocationServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicesProtocol.swift; sourceTree = "<group>"; };
 		C67B4D4D1F87CAE7006415CF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServicesProtocol.swift; sourceTree = "<group>"; };
+		C69A72EF1F9AB96B006B002B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C69A72F11F9ABBE3006B002B /* Guarded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guarded.entitlements; sourceTree = "<group>"; };
 		C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailsViewController.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +79,14 @@
 		305BA6679A38B6A71EB30FF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C61FB29F1F9AB0D10021BE3F /* Bolts.framework */,
+				C61FB2971F9AAEA80021BE3F /* Bolts.framework */,
+				C61FB2981F9AAEA80021BE3F /* FacebookCore.framework */,
+				C61FB2991F9AAEA80021BE3F /* FacebookLogin.framework */,
+				C61FB29A1F9AAEA80021BE3F /* FacebookShare.framework */,
+				C61FB29B1F9AAEA80021BE3F /* FBSDKCoreKit.framework */,
+				C61FB29C1F9AAEA80021BE3F /* FBSDKLoginKit.framework */,
+				C61FB29D1F9AAEA80021BE3F /* FBSDKShareKit.framework */,
 				891055101F8D01CD004B3AED /* CoreLocation.framework */,
 				6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */,
 			);
@@ -77,6 +100,21 @@
 				E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C6152DEF1FA2921D00CC4F76 /* UserModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserModule;
+			sourceTree = "<group>";
+		};
+		C6152DF51FA2933900CC4F76 /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				C6152DF31FA292DA00CC4F76 /* Location.swift */,
+			);
+			path = Structures;
 			sourceTree = "<group>";
 		};
 		C647A7FF1F8C28DA006E53FA /* Info */ = {
@@ -108,12 +146,15 @@
 		C67B4D381F87C58F006415CF /* Guarded */ = {
 			isa = PBXGroup;
 			children = (
+				C69A72F11F9ABBE3006B002B /* Guarded.entitlements */,
 				C647A7FF1F8C28DA006E53FA /* Info */,
 				89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */,
 				C67B4D391F87C58F006415CF /* AppDelegate.swift */,
+				C6152DF51FA2933900CC4F76 /* Structures */,
 				C67B4D511F87CB26006415CF /* User */,
 				C67B4D501F87CB0F006415CF /* Protocols */,
 				C67B4D4F1F87CB01006415CF /* Services */,
+				C6152DEF1FA2921D00CC4F76 /* UserModule */,
 				C67B4D551F87CF93006415CF /* ViewControllers */,
 				C67B4D541F87CF8B006415CF /* Storyboards */,
 				C67B4D401F87C58F006415CF /* Assets.xcassets */,
@@ -125,6 +166,7 @@
 		C67B4D4F1F87CB01006415CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C672E3AA1F9ACDD400DAE227 /* UserServices.swift */,
 				8910550D1F8C076B004B3AED /* LocationServices.swift */,
 				8910550C1F8C076B004B3AED /* TimerServices.swift */,
 			);
@@ -160,6 +202,7 @@
 		C67B4D551F87CF93006415CF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C69A72EF1F9AB96B006B002B /* LoginViewController.swift */,
 				C67B4D3B1F87C58F006415CF /* MapViewController.swift */,
 				C647A8051F8D4A67006E53FA /* TimerViewController.swift */,
 				C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */,
@@ -203,6 +246,11 @@
 					C67B4D351F87C58F006415CF = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -265,12 +313,26 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -303,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C67B4D4E1F87CAE7006415CF /* User.swift in Sources */,
+				C672E3AB1F9ACDD400DAE227 /* UserServices.swift in Sources */,
 				8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */,
 				8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */,
 				C67B4D3C1F87C58F006415CF /* MapViewController.swift in Sources */,
@@ -310,6 +373,8 @@
 				C647A8061F8D4A67006E53FA /* TimerViewController.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
 				C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */,
+				C69A72F01F9AB96B006B002B /* LoginViewController.swift in Sources */,
+				C6152DF41FA292DA00CC4F76 /* Location.swift in Sources */,
 				C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,8 +513,27 @@
 			baseConfigurationReference = 9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/leveldb-library\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"$(SRCROOT)/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -465,8 +549,27 @@
 			baseConfigurationReference = E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/leveldb-library\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"$(SRCROOT)/**",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
