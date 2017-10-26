@@ -8,10 +8,12 @@
 
 import Foundation
 import CoreLocation
-import FirebaseDatabase
+
 
 protocol locationUpdateProtocol {
     func displayCurrentLocation (myLocation: CLLocationCoordinate2D)
+    func displayOtherLocation(someLocation: CLLocationCoordinate2D)
+    
 }
 
 class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDelegate {
@@ -20,7 +22,6 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
     let geocoder = CLGeocoder()
     var location: CLLocation?
     var delegate: locationUpdateProtocol!
-    var ref: DatabaseReference?
 
     override init() {
         super.init()
@@ -63,6 +64,8 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
         /// create location point
         let userLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude)
 
+		currentUser?.currentLocation = userLocation
+
         /// display the location every time it`s updated
         self.delegate.displayCurrentLocation(myLocation: userLocation)
         
@@ -95,40 +98,11 @@ class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDel
 
                 //let annotation = MKPlacemark(placemark: placemark)
                 //self.map.addAnnotation(annotation)
-                self.delegate.displayCurrentLocation(myLocation: coordinates)
+                self.delegate.displayOtherLocation(someLocation: coordinates)
 
             }
         })
     }
 
-    ///Gets current user's location
-    func getLocation() -> CLLocation {
-        return location!
-    }
     
-    /// Sends user's location to server
-    /// Firebase scheme: user -> (latitude: valor x), (longitude: valor y)
-    /// obs: maybe it doesn't need to send user, just catch current user
-    func sendLocationToServer(user: User) {
-
-        ref = Database.database().reference()
-        ref?.child(user.name!).child("latitude").setValue(self.location?.coordinate.latitude)
-        ref?.child(user.name!).child("longitude").setValue(self.location?.coordinate.longitude)
-    }
-    
-    /// Receives location from server
-    func getLocationFromServer(user: User){
-        ref = Database.database().reference()
-
-        ref?.child(user.name!).observe(.value, with: { (snapshot) in
-
-            print(snapshot)
-
-        }, withCancel: { (error) in
-
-            print(error.localizedDescription)
-
-        })
-
-    }
 }

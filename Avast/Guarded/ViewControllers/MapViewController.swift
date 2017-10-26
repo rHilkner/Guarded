@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
+var currentUser: User?
+
 class MapViewController: UIViewController  {
     
     var timerService: TimerServices?
@@ -22,35 +24,42 @@ class MapViewController: UIViewController  {
 
     var location: CLLocation?
     let locationServices = LocationServices()
+	var firebaseServices: FirebaseServices?
 
 
     @IBAction func sendLocation(_ sender: Any) {
-        let user = User.init(name: "2")
-        locationServices.sendLocationToServer(user: user)
+		let location = currentUser?.currentLocation
+		firebaseServices!.updateCurrentLocation(user: currentUser!, currentLocation: location!)
     }
 
     @IBAction func getCurrentLocationAction(_ sender: UIButton) {
-        let location = locationServices.getLocation()
-
-        self.currentLocationLabel.text = "latitude: \(location.coordinate.latitude) longitude: \(location.coordinate.longitude)"
+		let location = currentUser?.currentLocation
+		self.currentLocationLabel.text = "latitude: \(location!.latitude) longitude: \(location!.longitude)"
     }
 
     @IBAction func receiveUserLocation(_ sender: UIButton) {
 
-        /// o user vai ser algum protegido do atual usuario
-        let user = User(name: "1")
+		let user = User.init(name: "2")
+		firebaseServices?.getCurrentLocation(user: user)
 
-        locationServices.getLocationFromServer(user: user)
-    }
+	}
 
     @IBAction func addressToLocation(_ sender: Any) {
-        locationServices.addressToLocation(address: "")
+        let location = currentUser?.currentLocation
+
+		//firebaseServices?.updateMeusLocais(user: currentUser!, locationName: "Meu novo local", myLocation: location!)
+		firebaseServices?.deleteMeusLocais(user: currentUser!, locationName: "Meu novo local")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         locationServices.delegate = self
+
+		firebaseServices = FirebaseServices()
+		firebaseServices?.delegate = self
+
+		currentUser = User.init(name: "3")
         
         self.timerButton.isHidden = true
     }
@@ -84,6 +93,24 @@ class MapViewController: UIViewController  {
     
 }
 
+extension MapViewController: receiveFirebaseDataProtocol {
+
+	/// this function will handle the current location received
+	func receiveCurrentLocation(location: CLLocationCoordinate2D) {
+		self.currentLocationLabel.text = "latitude: \(location.latitude) longitude: \(location.longitude)"
+
+		displayOtherLocation(someLocation: location)
+	}
+
+	/// this function will handle the current location received
+	func receiveMeusLocais(location: CLLocationCoordinate2D, name: String) {
+		self.currentLocationLabel.text = "nome: \(name) latitude: \(location.latitude) longitude: \(location.longitude)"
+		displayOtherLocation(someLocation: location)
+	}
+}
+
+
+
 extension MapViewController: locationUpdateProtocol {
 
     func displayCurrentLocation(myLocation: CLLocationCoordinate2D) {
@@ -95,6 +122,21 @@ extension MapViewController: locationUpdateProtocol {
 
         map.setRegion(region, animated: true)
 
+        self.map.showsUserLocation = true
+    }
+
+    func displayOtherLocation(someLocation: CLLocationCoordinate2D){
+        /// defining zoom scale
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+
+        /// show region around the location with the scale defined
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(someLocation, span)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = someLocation
+        self.map.addAnnotation(annotation)
+
+        map.setRegion(region, animated: true)
         self.map.showsUserLocation = true
     }
 
