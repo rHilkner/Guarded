@@ -15,6 +15,7 @@ protocol TimerViewControllerDelegate {
 
 class TimerViewController: UIViewController {
     
+    @IBOutlet weak var timeSelection: UIDatePicker!
     @IBOutlet weak var timeTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     //delegate is set in prepare(for segue) from MapViewController
@@ -28,11 +29,15 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func doneButton(_ sender: Any) {
+        
+        
         guard let timeString = timeTextField.text else {
             return
         }
         
-        let timerService = TimerServices(seconds: Int(timeString)!,
+        // FIXME: Find out why timeSelection starts with a larger value than it should
+        // Currently fixed by subtracting the unknown added value
+        let timerService = TimerServices(seconds: Int(timeSelection.countDownDuration)-Int(timeSelection.countDownDuration)%60,
                                          destination: CLLocation(latitude: 37.2, longitude: 22.9),
                                          delegate: delegate as! TimerServicesDelegate)
         self.delegate?.timerReady(timerService: timerService)

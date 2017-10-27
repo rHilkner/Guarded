@@ -10,8 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-var currentUser: User?
-
 class MapViewController: UIViewController  {
     
     var timerService: TimerServices?
@@ -19,8 +17,8 @@ class MapViewController: UIViewController  {
     
     
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var currentLocationLabel: UILabel!
-    @IBOutlet weak var anotherUserLocationLabel: UILabel!
+    //@IBOutlet weak var currentLocationLabel: UILabel!
+    //@IBOutlet weak var anotherUserLocationLabel: UILabel!
 
     var location: CLLocation?
     let locationServices = LocationServices()
@@ -32,17 +30,17 @@ class MapViewController: UIViewController  {
 		firebaseServices!.updateCurrentLocation(user: currentUser!, currentLocation: location!)
     }
 
-    @IBAction func getCurrentLocationAction(_ sender: UIButton) {
-		let location = currentUser?.currentLocation
-		self.currentLocationLabel.text = "latitude: \(location!.latitude) longitude: \(location!.longitude)"
-    }
+//    @IBAction func getCurrentLocationAction(_ sender: UIButton) {
+//        let location = currentUser?.currentLocation
+//        self.currentLocationLabel.text = "latitude: \(location!.latitude) longitude: \(location!.longitude)"
+//    }
 
-    @IBAction func receiveUserLocation(_ sender: UIButton) {
-
-		let user = User.init(name: "2")
-		firebaseServices?.getCurrentLocation(user: user)
-
-	}
+//    @IBAction func receiveUserLocation(_ sender: UIButton) {
+//
+//        let user = User.init(name: "2")
+//        firebaseServices?.getCurrentLocation(user: user)
+//
+//    }
 
     @IBAction func addressToLocation(_ sender: Any) {
         let location = currentUser?.currentLocation
@@ -63,18 +61,17 @@ class MapViewController: UIViewController  {
         
         self.timerButton.isHidden = true
 
-
     }
     
     
-    @IBAction func setTimer() {
-        performSegue(withIdentifier: "SetTimerViewController", sender: nil)
-    }
-    
-    
-    @IBAction func checkTimer() {
-        performSegue(withIdentifier: "TimerDetailsViewController", sender: nil)
-    }
+//    @IBAction func setTimer() {
+//        performSegue(withIdentifier: "SetTimerViewController", sender: nil)
+//    }
+//    
+//    
+//    @IBAction func checkTimer() {
+//        performSegue(withIdentifier: "TimerDetailsViewController", sender: nil)
+//    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -99,14 +96,14 @@ extension MapViewController: receiveFirebaseDataProtocol {
 
 	/// this function will handle the current location received
 	func receiveCurrentLocation(location: CLLocationCoordinate2D) {
-		self.currentLocationLabel.text = "latitude: \(location.latitude) longitude: \(location.longitude)"
+		//self.currentLocationLabel.text = "latitude: \(location.latitude) longitude: \(location.longitude)"
 
 		displayOtherLocation(someLocation: location)
 	}
 
 	/// this function will handle the current location received
 	func receiveMeusLocais(location: CLLocationCoordinate2D, name: String) {
-		self.currentLocationLabel.text = "nome: \(name) latitude: \(location.latitude) longitude: \(location.longitude)"
+		//self.currentLocationLabel.text = "nome: \(name) latitude: \(location.latitude) longitude: \(location.longitude)"
 		displayOtherLocation(someLocation: location)
 	}
 }

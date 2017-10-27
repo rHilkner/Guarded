@@ -53,14 +53,11 @@ class TimerDetailsViewController: UIViewController, TimerServicesDelegate {
     
     @IBAction func dismissTimerButton() {
         dismissTimer()
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func snoozeButton() {
         timerService?.snooze()
-    }
-    
-    @IBAction func dismissViewButton() {
-        self.dismiss(animated: true, completion: nil)
     }
     
 }
