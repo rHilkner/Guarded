@@ -27,7 +27,7 @@ class TimerViewController: UIViewController {
         addressTextField.placeholder = "Address"
     }
     
-    @IBAction func readyButton(_ sender: UIButton) {
+    @IBAction func doneButton(_ sender: Any) {
         guard let timeString = timeTextField.text else {
             return
         }
@@ -37,7 +37,9 @@ class TimerViewController: UIViewController {
                                          delegate: delegate as! TimerServicesDelegate)
         self.delegate?.timerReady(timerService: timerService)
         
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
