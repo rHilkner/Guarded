@@ -20,7 +20,6 @@
 		D46A38211FA2E95700D6BD09 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A381E1FA2E95700D6BD09 /* FirebaseServices.swift */; };
 		D46A38221FA2E95700D6BD09 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A381F1FA2E95700D6BD09 /* LocationServices.swift */; };
 		D46A38231FA2E95700D6BD09 /* TimerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A38201FA2E95700D6BD09 /* TimerServices.swift */; };
-		D46A38281FA2E95F00D6BD09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A38241FA2E95F00D6BD09 /* ViewController.swift */; };
 		D46A38291FA2E95F00D6BD09 /* TimerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A38251FA2E95F00D6BD09 /* TimerDetailsViewController.swift */; };
 		D46A382A1FA2E95F00D6BD09 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A38261FA2E95F00D6BD09 /* MapViewController.swift */; };
 		D46A382B1FA2E95F00D6BD09 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A38271FA2E95F00D6BD09 /* TimerViewController.swift */; };
@@ -29,6 +28,9 @@
 		D46A38381FA2E96B00D6BD09 /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A38331FA2E96B00D6BD09 /* PlacesTableViewController.swift */; };
 		D46A383D1FA2E98500D6BD09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46A38391FA2E98500D6BD09 /* Main.storyboard */; };
 		D46A383E1FA2E98500D6BD09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46A383B1FA2E98500D6BD09 /* LaunchScreen.storyboard */; };
+		D48231B61FA4468F0027EC1F /* ProtectCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48231B51FA4468F0027EC1F /* ProtectCollectionViewController.swift */; };
+		D48231BA1FA4471A0027EC1F /* ProtectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48231B91FA4471A0027EC1F /* ProtectorCollectionViewCell.swift */; };
+		D48231BC1FA447330027EC1F /* ProtectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48231BB1FA447330027EC1F /* ProtectedCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +50,6 @@
 		D46A381E1FA2E95700D6BD09 /* FirebaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
 		D46A381F1FA2E95700D6BD09 /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		D46A38201FA2E95700D6BD09 /* TimerServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerServices.swift; sourceTree = "<group>"; };
-		D46A38241FA2E95F00D6BD09 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D46A38251FA2E95F00D6BD09 /* TimerDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerDetailsViewController.swift; sourceTree = "<group>"; };
 		D46A38261FA2E95F00D6BD09 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D46A38271FA2E95F00D6BD09 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +58,9 @@
 		D46A38331FA2E96B00D6BD09 /* PlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
 		D46A383A1FA2E98500D6BD09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D46A383C1FA2E98500D6BD09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D48231B51FA4468F0027EC1F /* ProtectCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectCollectionViewController.swift; sourceTree = "<group>"; };
+		D48231B91FA4471A0027EC1F /* ProtectorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectorCollectionViewCell.swift; sourceTree = "<group>"; };
+		D48231BB1FA447330027EC1F /* ProtectedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedCollectionViewCell.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,8 +130,7 @@
 				C67B4D511F87CB26006415CF /* Persistence */,
 				C67B4D501F87CB0F006415CF /* Protocols */,
 				C67B4D4F1F87CB01006415CF /* Services */,
-				C67B4D551F87CF93006415CF /* ViewControllers */,
-				C67B4D541F87CF8B006415CF /* Storyboards */,
+				C67B4D541F87CF8B006415CF /* View */,
 				C67B4D401F87C58F006415CF /* Assets.xcassets */,
 				C67B4D451F87C58F006415CF /* Info.plist */,
 			);
@@ -162,27 +165,38 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		C67B4D541F87CF8B006415CF /* Storyboards */ = {
+		C67B4D541F87CF8B006415CF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D46A383B1FA2E98500D6BD09 /* LaunchScreen.storyboard */,
-				D46A38391FA2E98500D6BD09 /* Main.storyboard */,
-				D46A382D1FA2E96B00D6BD09 /* CustomTabBarController.swift */,
-				D46A382C1FA2E96B00D6BD09 /* PlaceCell.swift */,
-				D46A38331FA2E96B00D6BD09 /* PlacesTableViewController.swift */,
+				D48231B71FA4469D0027EC1F /* Storyboards */,
+				C67B4D551F87CF93006415CF /* Controllers */,
 			);
-			path = Storyboards;
+			path = View;
 			sourceTree = "<group>";
 		};
-		C67B4D551F87CF93006415CF /* ViewControllers */ = {
+		C67B4D551F87CF93006415CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D46A38261FA2E95F00D6BD09 /* MapViewController.swift */,
 				D46A38251FA2E95F00D6BD09 /* TimerDetailsViewController.swift */,
 				D46A38271FA2E95F00D6BD09 /* TimerViewController.swift */,
-				D46A38241FA2E95F00D6BD09 /* ViewController.swift */,
+				D46A382D1FA2E96B00D6BD09 /* CustomTabBarController.swift */,
+				D46A38331FA2E96B00D6BD09 /* PlacesTableViewController.swift */,
+				D46A382C1FA2E96B00D6BD09 /* PlaceCell.swift */,
+				D48231B51FA4468F0027EC1F /* ProtectCollectionViewController.swift */,
+				D48231B91FA4471A0027EC1F /* ProtectorCollectionViewCell.swift */,
+				D48231BB1FA447330027EC1F /* ProtectedCollectionViewCell.swift */,
 			);
-			path = ViewControllers;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D48231B71FA4469D0027EC1F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D46A383B1FA2E98500D6BD09 /* LaunchScreen.storyboard */,
+				D46A38391FA2E98500D6BD09 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +234,7 @@
 				TargetAttributes = {
 					C67B4D351F87C58F006415CF = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -327,14 +342,16 @@
 				D46A38111FA2E89000D6BD09 /* User.swift in Sources */,
 				D46A382B1FA2E95F00D6BD09 /* TimerViewController.swift in Sources */,
 				D46A38221FA2E95700D6BD09 /* LocationServices.swift in Sources */,
-				D46A38281FA2E95F00D6BD09 /* ViewController.swift in Sources */,
 				D46A38351FA2E96B00D6BD09 /* CustomTabBarController.swift in Sources */,
 				D46A38231FA2E95700D6BD09 /* TimerServices.swift in Sources */,
 				D46A38211FA2E95700D6BD09 /* FirebaseServices.swift in Sources */,
 				D46A381B1FA2E94E00D6BD09 /* TimerServicesProtocol.swift in Sources */,
+				D48231B61FA4468F0027EC1F /* ProtectCollectionViewController.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
+				D48231BC1FA447330027EC1F /* ProtectedCollectionViewCell.swift in Sources */,
 				D46A381D1FA2E94E00D6BD09 /* LocationServicesProtocol.swift in Sources */,
 				D46A38381FA2E96B00D6BD09 /* PlacesTableViewController.swift in Sources */,
+				D48231BA1FA4471A0027EC1F /* ProtectorCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +489,7 @@
 			baseConfigurationReference = 9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
@@ -479,6 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xpt.Avast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -489,6 +508,7 @@
 			baseConfigurationReference = E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";

@@ -16,24 +16,16 @@ protocol TimerViewControllerDelegate {
 class TimerViewController: UIViewController {
     
     @IBOutlet weak var timeSelection: UIDatePicker!
-    @IBOutlet weak var timeTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     //delegate is set in prepare(for segue) from MapViewController
     var delegate: TimerViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        timeTextField.placeholder = "Time in secs"
-        addressTextField.placeholder = "Address"
+        self.timeSelection.countDownDuration = TimeInterval(0.0)
     }
     
     @IBAction func doneButton(_ sender: Any) {
-        
-        
-        guard let timeString = timeTextField.text else {
-            return
-        }
         
         // FIXME: Find out why timeSelection starts with a larger value than it should
         // Currently fixed by subtracting the unknown added value
