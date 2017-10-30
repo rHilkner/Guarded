@@ -12,15 +12,17 @@ import CoreLocation
 
 class DatabaseManager {
     
+    ///FIRDatabaseReference for the root of Guarded's Firebase Database
     static var ref: DatabaseReference = Database.database().reference()
     
     //TODO: get completionhandler from adding stuff in database to check if stuff was successfully included or not
     
-    ///Checks connection with database backend
+    ///Checks connection with Firebase Database backend
     static func checkConnection(completionHandler: @escaping (Bool) -> Void) {
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         
-        connectedRef.observe(.value) { snapshot in
+        connectedRef.observe(.value) {
+            snapshot in
             if let connected = snapshot.value as? Bool, connected {
                 print("Connected")
             } else {
@@ -34,7 +36,7 @@ class DatabaseManager {
         self.fetchMainUser(by: user.id) {
             (userFetched) in
             
-            //TODO: what if internet connection lost right here? How to handle this error?
+            //TODO: what if internet connection lost right here? How to catch/handle this error?
             
             if (userFetched != nil) {
                 print("User was already included in the DB. Updating his name and email informations.")
