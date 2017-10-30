@@ -10,59 +10,62 @@ import UIKit
 import MapKit
 import CoreLocation
 
-var currentUser: User?
-
 class MapViewController: UIViewController  {
+    
+    var location: CLLocation?
     
     var timerService: TimerServices?
     @IBOutlet weak var timerButton: UIButton!
     
-    
+    var locationServices: LocationServices?
     @IBOutlet weak var map: MKMapView!
+    
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var anotherUserLocationLabel: UILabel!
-
-    var location: CLLocation?
-    let locationServices = LocationServices()
-	var firebaseServices: FirebaseServices?
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        locationServices = LocationServices()
+        locationServices?.delegate = self
+        
+        self.timerButton.isHidden = true
+        
+        //dispatch async - mandar o mapa ficar updatando a cada 10 seg (?)
+    }
 
     @IBAction func sendLocation(_ sender: Any) {
-		let location = currentUser?.currentLocation
-		firebaseServices!.updateCurrentLocation(user: currentUser!, currentLocation: location!)
+        if let location = AppSettings.mainUser!.lastLocation {
+            DatabaseManager.updateLastLocation(user: AppSettings.mainUser!, currentLocation: location)
+        }
     }
 
     @IBAction func getCurrentLocationAction(_ sender: UIButton) {
-		let location = currentUser?.currentLocation
+		let location = AppSettings.mainUser!.lastLocation
 		self.currentLocationLabel.text = "latitude: \(location!.latitude) longitude: \(location!.longitude)"
     }
 
     @IBAction func receiveUserLocation(_ sender: UIButton) {
 
-		let user = User.init(name: "2")
-		firebaseServices?.getCurrentLocation(user: user)
-
+        let user = User(id: "2", name: "", email: "", phoneNumber: "")
+        DatabaseManager.getLastLocation(user: user) {
+            lastLocation in
+            
+            guard (lastLocation != nil) else {
+                print("Couldn't fetch user's last location.")
+                return
+            }
+            
+            self.displayLocation(location: lastLocation!)
+        }
 	}
 
-    @IBAction func addressToLocation(_ sender: Any) {
-        let location = currentUser?.currentLocation
-
-		//firebaseServices?.updateMeusLocais(user: currentUser!, locationName: "Meu novo local", myLocation: location!)
-		firebaseServices?.deleteMeusLocais(user: currentUser!, locationName: "Meu novo local")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        locationServices.delegate = self
-
-		firebaseServices = FirebaseServices()
-		firebaseServices?.delegate = self
-
-		currentUser = User.init(name: "3")
-        
-        self.timerButton.isHidden = true
-    }
+//    @IBAction func addressToLocation(_ sender: Any) {
+//        let location = AppSettings.mainUser!.lastLocation
+//
+//        //firebaseServices?.updateMeusLocais(user: currentUser!, locationName: "Meu novo local", myLocation: location!)
+////        firebaseServices?.deleteMeusLocais(user: currentUser!, locationName: "Meu novo local")
+//    }
     
     
     @IBAction func setTimer() {
@@ -93,47 +96,52 @@ class MapViewController: UIViewController  {
     
 }
 
-extension MapViewController: receiveFirebaseDataProtocol {
+//extension MapViewController: receiveFirebaseDataProtocol {
+//
+//    /// this function will handle the current location received
+//    func receiveCurrentLocation(location: Coordinate) {
+//        self.currentLocationLabel.text = "latitude: \(location.latitude) longitude: \(location.longitude)"
+//
+//        displayOtherLocation(someLocation: location)
+//    }
+//
+//    /// this function will handle the current location received
+//    func receiveMeusLocais(location: Coordinate, name: String) {
+//        self.currentLocationLabel.text = "nome: \(name) latitude: \(location.latitude) longitude: \(location.longitude)"
+//        displayOtherLocation(someLocation: location)
+//    }
+//}
 
-	/// this function will handle the current location received
-	func receiveCurrentLocation(location: CLLocationCoordinate2D) {
-		self.currentLocationLabel.text = "latitude: \(location.latitude) longitude: \(location.longitude)"
-
-		displayOtherLocation(someLocation: location)
-	}
-
-	/// this function will handle the current location received
-	func receiveMeusLocais(location: CLLocationCoordinate2D, name: String) {
-		self.currentLocationLabel.text = "nome: \(name) latitude: \(location.latitude) longitude: \(location.longitude)"
-		displayOtherLocation(someLocation: location)
-	}
-}
 
 
+extension MapViewController: LocationUpdateProtocol {
 
-extension MapViewController: locationUpdateProtocol {
-
-    func displayCurrentLocation(myLocation: CLLocationCoordinate2D) {
+    func displayCurrentLocation() {
         /// defining zoom scale
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        
+        let myLoc2D = CLLocationCoordinate2D(latitude: AppSettings.mainUser!.lastLocation!.latitude, longitude: AppSettings.mainUser!.lastLocation!.longitude)
 
         /// show region around the location with the scale defined
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLoc2D, span)
 
         map.setRegion(region, animated: true)
 
         self.map.showsUserLocation = true
     }
 
-    func displayOtherLocation(someLocation: CLLocationCoordinate2D){
+    func displayLocation(location: Coordinate) {
+        
         /// defining zoom scale
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        
+        let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 
         /// show region around the location with the scale defined
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(someLocation, span)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(someLoc2D, span)
 
         let annotation = MKPointAnnotation()
-        annotation.coordinate = someLocation
+        annotation.coordinate = someLoc2D
         self.map.addAnnotation(annotation)
 
         map.setRegion(region, animated: true)

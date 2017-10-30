@@ -10,99 +10,112 @@ import Foundation
 import CoreLocation
 
 
-protocol locationUpdateProtocol {
-    func displayCurrentLocation (myLocation: CLLocationCoordinate2D)
-    func displayOtherLocation(someLocation: CLLocationCoordinate2D)
-    
+protocol LocationUpdateProtocol {
+    func displayCurrentLocation()
+    func displayLocation(location: Coordinate)
 }
 
-class LocationServices: NSObject, LocationServicesProtocol, CLLocationManagerDelegate {
+class LocationServices: NSObject {
 
-    let manager = CLLocationManager()
-    let geocoder = CLGeocoder()
-    var location: CLLocation?
-    var delegate: locationUpdateProtocol!
+    var manager = CLLocationManager()
+    var geocoder = CLGeocoder()
+    var delegate: LocationUpdateProtocol!
 
     override init() {
         super.init()
 
-        manager.delegate = self
+        self.manager.delegate = self
 
-        /// get the best accuracy
-        /// to do: check if affects the app performance
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+        // Get the best accuracy
+        // TODO: check if affects the app performance
+        self.manager.desiredAccuracy = kCLLocationAccuracyBest
 
-        /// test the authorization status, so it doesn't asks permission more than one time
+        // Test the authorization status, so it doesn't asks permission more than one time
         switch CLLocationManager.authorizationStatus() {
             case .notDetermined:
                 // Request when-in-use authorization initially
-                manager.requestWhenInUseAuthorization()
+                self.manager.requestWhenInUseAuthorization()
                 break
 
             case .restricted, .denied:
                 // Disable location features
                 print("Error: permission denied or restricted")
-                manager.stopUpdatingLocation()
+                self.manager.stopUpdatingLocation()
                 break
 
             case .authorizedWhenInUse, .authorizedAlways:
                 // Enable location features
-                manager.startUpdatingLocation()
+                self.manager.startUpdatingLocation()
                 break
 
         }
 
     }
 
-    /// this function is called every time the user location is updated
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
-        /// locations is an array with all the locations of the user
-        /// locations[0] is the most recent location
-        location = locations[0]
-
-        /// create location point
-        let userLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location!.coordinate.latitude, location!.coordinate.longitude)
-
-		currentUser?.currentLocation = userLocation
-
-        /// display the location every time it`s updated
-        self.delegate.displayCurrentLocation(myLocation: userLocation)
-        
-    }
-
-    /// handle authorization status changes
-    private func locationManager(manager: CLLocationManager,
-                                 didChangeAuthorizationStatus status: CLAuthorizationStatus)
-    {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
-            manager.startUpdatingLocation()
-        }
-        else if status == .denied || status == .restricted{
-            manager.stopUpdatingLocation()
-        }
-    }
 
     /// Receive address and display its location
     func addressToLocation(address: String) {
 
         let address: String = "Rua Roxo Moreira, 600, Campinas, São Paulo, Brasil"
 
-        geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
-            if((error) != nil){
+        self.geocoder.geocodeAddressString(address) {
+            (placemarks, error) in
+            
+            guard (error == nil) else {
                 print("Error", error ?? "")
+                return
             }
+            
             if let placemark = placemarks?.first {
-                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                let latitude = placemark.location!.coordinate.latitude
+                let longitude = placemark.location!.coordinate.longitude
+                
+                let coordinates = Coordinate(latitude: latitude, longitude: longitude)
                 print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
 
                 //let annotation = MKPlacemark(placemark: placemark)
                 //self.map.addAnnotation(annotation)
-                self.delegate.displayOtherLocation(someLocation: coordinates)
+                self.delegate.displayLocation(location: coordinates)
 
             }
-        })
+        }
     }
 
     
+}
+
+extension LocationServices: CLLocationManagerDelegate {
+    /// this function is called every time the user location is updated
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        /// locations is an array with all the locations of the user
+        /// locations[0] is the most recent location
+        guard locations.count > 0 else {
+            print("Current location is nil.")
+            return
+        }
+        
+        let lastCoordinate = locations[0].coordinate
+        
+        /// create location point
+        let userLocation = Coordinate(latitude: lastCoordinate.latitude, longitude: lastCoordinate.longitude)
+        
+        AppSettings.mainUser!.lastLocation = userLocation
+        
+        /// display the location every time it's updated
+        self.delegate.displayCurrentLocation()
+        
+    }
+    
+    /// handle authorization status changes
+    private func locationManager(manager: CLLocationManager,
+                                 didChangeAuthorizationStatus status: CLAuthorizationStatus)
+    {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            self.manager.startUpdatingLocation()
+        }
+        else if status == .denied || status == .restricted{
+            self.manager.stopUpdatingLocation()
+        }
+    }
 }

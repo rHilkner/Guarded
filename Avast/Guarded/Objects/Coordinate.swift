@@ -1,5 +1,5 @@
 //
-//  Location.swift
+//  Coordinates.swift
 //  Guarded
 //
 //  Created by Rodrigo Hilkner on 26/10/17.
@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreLocation
 
-struct Location {
-    var latitude: Int
-    var longitude: Int
+struct Coordinate {
+    var latitude: CLLocationDegrees
+    var longitude: CLLocationDegrees
 }

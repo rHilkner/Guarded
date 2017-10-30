@@ -7,9 +7,7 @@
 
 
 TODO:
-- criar botoes e labels para visualizar os feedbacks na tela
-- criar metodos front end (controller) com variaveis protocols
-- implementar metodos em branco
+- Implementar database persistence classes
  
  
  

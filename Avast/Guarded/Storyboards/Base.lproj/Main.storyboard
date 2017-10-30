@@ -20,10 +20,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="5Gt-jN-jzD"/>
                     </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="MapViewController" id="zEp-2C-dEE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPX-8e-zK2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1044" y="-368"/>
+            <point key="canvasLocation" x="-1118" y="-368"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">

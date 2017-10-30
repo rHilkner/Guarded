@@ -27,9 +27,21 @@ class LoginViewController: UIViewController {
         //TODO: substituir por constraints
         loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
         
+        print("oi")
+        
         //checking if user is already logged in
         if (FBSDKAccessToken.current() != nil) {
-            handleUserLoggedIn()
+            print("hm")
+            LoginServices.handleUserLoggedIn {
+                successful in
+                print("well")
+                if (successful == false) {
+                    print("Couldn't fetch user's facebook or database information.")
+                    return
+                }
+                
+                self.performSegue(withIdentifier: "MapViewController", sender: nil)
+            }
         }
     }
     
@@ -38,35 +50,33 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: FBSDKLoginButtonDelegate {
     
-    func handleUserLoggedIn() {
-        //inicializa objeto do usuario
-        //vai pra proxima tela
-    }
-    
+    //method called after user logs in to facebook
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if (error != nil) {
-            print(error)
+        
+        guard (error == nil) else {
+            print("Error on clicking facebook login button.")
             return
         }
         
         print("-----------------------------------------------")
-        print("Successfully logged in with facebook:")
-        getUserInfo()
-    }
-    
-    func getUserInfo() {
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "id, name, email"]).start { (connection, result, error) in
-            if (error != nil) {
-                print("Failed to start graph request: ", error!)
+        print("Successfully logged in with facebook.")
+        
+        LoginServices.handleUserLoggedIn {
+            successful in
+            
+            if (successful == false) {
+                print("Couldn't fetch user's facebook or database information.")
                 return
             }
             
-            print(result!)
-            print("-----------------------------------------------")
+            print("uh")
+            self.performSegue(withIdentifier: "MapViewController", sender: nil)
         }
     }
     
+    //method called after user logs out of facebook
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("App did log out of facebook.")
+        LoginServices.handleUserLoggedOut()
     }
 }
