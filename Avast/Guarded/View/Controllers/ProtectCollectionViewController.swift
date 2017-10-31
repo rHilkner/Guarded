@@ -97,7 +97,7 @@ class ProtectCollectionViewController: UICollectionViewController {
         if segmentedControl.selectedSegmentIndex == 0 {
             let sendLocationAction = UIAlertAction(title: "Send Location", style: .default, handler: {
                 (alert: UIAlertAction!) -> Void in
-                    let location = currentUser?.currentLocation
+                    let location = AppSettings.mainUser!.lastLocation
                     let alert = UIAlertController(title: "Send Location", message: "latitude: \(location!.latitude) longitude: \(location!.longitude)", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(okAction)

@@ -15,7 +15,7 @@ protocol TimerServicesDelegate {
     func dismissTimer()
 }
 
-class TimerServices: TimerServicesProtocol {
+class TimerServices {
     
     var delegate: TimerServicesDelegate
     var timer: Timer?

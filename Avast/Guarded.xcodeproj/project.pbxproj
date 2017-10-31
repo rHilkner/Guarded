@@ -10,38 +10,47 @@
 		0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */; };
 		891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891055101F8D01CD004B3AED /* CoreLocation.framework */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
-		89C871541F9A2CB4002C3455 /* FirebaseServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C871531F9A2CB4002C3455 /* FirebaseServicesProtocol.swift */; };
+		C60EEC561FA83642001E2194 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC521FA83642001E2194 /* MainUser.swift */; };
+		C60EEC571FA83642001E2194 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC531FA83642001E2194 /* Protected.swift */; };
+		C60EEC581FA83642001E2194 /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC541FA83642001E2194 /* Protector.swift */; };
+		C60EEC591FA83642001E2194 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC551FA83642001E2194 /* User.swift */; };
 		C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF31FA292DA00CC4F76 /* Place.swift */; };
 		C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF61FA2A03700CC4F76 /* Coordinate.swift */; };
-		C6152DF91FA2A40300CC4F76 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF81FA2A40300CC4F76 /* MainUser.swift */; };
-		C6152DFB1FA2A41C00CC4F76 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DFA1FA2A41C00CC4F76 /* Protected.swift */; };
-		C6152DFD1FA2A45A00CC4F76 /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DFC1FA2A45A00CC4F76 /* Protector.swift */; };
 		C6152E021FA2B27C00CC4F76 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152E011FA2B27C00CC4F76 /* DatabaseManager.swift */; };
 		C6152E051FA2DB6A00CC4F76 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152E041FA2DB6A00CC4F76 /* AppSettings.swift */; };
 		C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62DF0FB1FA6B47500DC956F /* DatabaseError.swift */; };
 		C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */ = {isa = PBXBuildFile; fileRef = C647A8031F8C29A9006E53FA /* infos admin.strings */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D401F87C58F006415CF /* Assets.xcassets */; };
-		C67B4D441F87C58F006415CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D421F87C58F006415CF /* LaunchScreen.storyboard */; };
-		C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D4B1F87C5B8006415CF /* LocationServicesProtocol.swift */; };
-		C67B4D4E1F87CAE7006415CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D4D1F87CAE7006415CF /* User.swift */; };
-		C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */; };
-		C69A72F01F9AB96B006B002B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A72EF1F9AB96B006B002B /* LoginViewController.swift */; };
+		C69153D81FA82B77004BAFE4 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D61FA82B77004BAFE4 /* LocationServices.swift */; };
+		C69153D91FA82B77004BAFE4 /* TimerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D71FA82B77004BAFE4 /* TimerServices.swift */; };
+		C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C69153DA1FA82B86004BAFE4 /* Main.storyboard */; };
+		C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */; };
+		C69153ED1FA82C21004BAFE4 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E31FA82C20004BAFE4 /* TimerViewController.swift */; };
+		C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E41FA82C20004BAFE4 /* ProtectedCollectionViewCell.swift */; };
+		C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E51FA82C20004BAFE4 /* PlacesTableViewController.swift */; };
+		C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E61FA82C20004BAFE4 /* ProtectCollectionViewController.swift */; };
+		C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E71FA82C20004BAFE4 /* MapViewController.swift */; };
+		C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E81FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift */; };
+		C69153F31FA82C21004BAFE4 /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E91FA82C21004BAFE4 /* PlaceCell.swift */; };
+		C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EA1FA82C21004BAFE4 /* CustomTabBarController.swift */; };
+		C69153F51FA82C21004BAFE4 /* TimerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EB1FA82C21004BAFE4 /* TimerDetailsViewController.swift */; };
+		C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EC1FA82C21004BAFE4 /* ViewController.swift */; };
+		C69153F81FA82C37004BAFE4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153F71FA82C37004BAFE4 /* LoginViewController.swift */; };
 		C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C070C1FA39C830087D613 /* LoginServices.swift */; };
-		C6EFA0D61F96A37D00D4483F /* TimerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Guarded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		89C871531F9A2CB4002C3455 /* FirebaseServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServicesProtocol.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
+		C60EEC521FA83642001E2194 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
+		C60EEC531FA83642001E2194 /* Protected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
+		C60EEC541FA83642001E2194 /* Protector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
+		C60EEC551FA83642001E2194 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C6152DF31FA292DA00CC4F76 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C6152DF61FA2A03700CC4F76 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		C6152DF81FA2A40300CC4F76 /* MainUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
-		C6152DFA1FA2A41C00CC4F76 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
-		C6152DFC1FA2A45A00CC4F76 /* Protector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Protector.swift; path = "/Users/rodrigohilkner/Desktop/bepid/Final Challenge - Guarded/Guarded/Avast/Guarded/Uer/Protector.swift"; sourceTree = "<absolute>"; };
 		C6152E011FA2B27C00CC4F76 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C6152E041FA2DB6A00CC4F76 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		C61FB2971F9AAEA80021BE3F /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,13 +67,23 @@
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67B4D401F87C58F006415CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C67B4D451F87C58F006415CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C67B4D4B1F87C5B8006415CF /* LocationServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServicesProtocol.swift; sourceTree = "<group>"; };
-		C67B4D4D1F87CAE7006415CF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		C67B4D521F87CB79006415CF /* TimerServicesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServicesProtocol.swift; sourceTree = "<group>"; };
-		C69A72EF1F9AB96B006B002B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C69153D61FA82B77004BAFE4 /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
+		C69153D71FA82B77004BAFE4 /* TimerServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerServices.swift; sourceTree = "<group>"; };
+		C69153DB1FA82B86004BAFE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C69153DD1FA82B86004BAFE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C69153E31FA82C20004BAFE4 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		C69153E41FA82C20004BAFE4 /* ProtectedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectedCollectionViewCell.swift; sourceTree = "<group>"; };
+		C69153E51FA82C20004BAFE4 /* PlacesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
+		C69153E61FA82C20004BAFE4 /* ProtectCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectCollectionViewController.swift; sourceTree = "<group>"; };
+		C69153E71FA82C20004BAFE4 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C69153E81FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectorCollectionViewCell.swift; sourceTree = "<group>"; };
+		C69153E91FA82C21004BAFE4 /* PlaceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
+		C69153EA1FA82C21004BAFE4 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		C69153EB1FA82C21004BAFE4 /* TimerDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerDetailsViewController.swift; sourceTree = "<group>"; };
+		C69153EC1FA82C21004BAFE4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C69153F71FA82C37004BAFE4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "/Users/rodrigohilkner/Desktop/bepid/Final Challenge - Guarded/Guarded/Avast/Guarded/View/Controllers/LoginViewController.swift"; sourceTree = "<absolute>"; };
 		C69A72F11F9ABBE3006B002B /* Guarded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guarded.entitlements; sourceTree = "<group>"; };
 		C69C070C1FA39C830087D613 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
-		C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailsViewController.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +124,17 @@
 				E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C60EEC511FA83642001E2194 /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				C60EEC521FA83642001E2194 /* MainUser.swift */,
+				C60EEC531FA83642001E2194 /* Protected.swift */,
+				C60EEC541FA83642001E2194 /* Protector.swift */,
+				C60EEC551FA83642001E2194 /* User.swift */,
+			);
+			path = Actors;
 			sourceTree = "<group>";
 		};
 		C6152DF51FA2933900CC4F76 /* Objects */ = {
@@ -175,9 +205,9 @@
 				C67B4D391F87C58F006415CF /* AppDelegate.swift */,
 				C6152E031FA2DB5200CC4F76 /* AppSettings */,
 				C6152DF51FA2933900CC4F76 /* Objects */,
-				C67B4D511F87CB26006415CF /* Actors */,
 				C62DF0FA1FA6B44500DC956F /* Errors */,
 				C67B4D501F87CB0F006415CF /* Protocols */,
+				C60EEC511FA83642001E2194 /* Actors */,
 				C6152DFE1FA2A8D000CC4F76 /* Persistence */,
 				C67B4D4F1F87CB01006415CF /* Services */,
 				C67B4D541F87CF8B006415CF /* View */,
@@ -190,9 +220,9 @@
 		C67B4D4F1F87CB01006415CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C69153D61FA82B77004BAFE4 /* LocationServices.swift */,
+				C69153D71FA82B77004BAFE4 /* TimerServices.swift */,
 				C69C070C1FA39C830087D613 /* LoginServices.swift */,
-				8910550D1F8C076B004B3AED /* LocationServices.swift */,
-				8910550C1F8C076B004B3AED /* TimerServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -200,23 +230,8 @@
 		C67B4D501F87CB0F006415CF /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D46A38191FA2E94E00D6BD09 /* FirebaseServicesProtocol.swift */,
-				D46A381A1FA2E94E00D6BD09 /* LocationServicesProtocol.swift */,
-				D46A38181FA2E94E00D6BD09 /* TimerServicesProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		C67B4D511F87CB26006415CF /* Actors */ = {
-			isa = PBXGroup;
-			children = (
-				C67B4D4D1F87CAE7006415CF /* User.swift */,
-				C6152DF81FA2A40300CC4F76 /* MainUser.swift */,
-				C6152DFA1FA2A41C00CC4F76 /* Protected.swift */,
-				C6152DFC1FA2A45A00CC4F76 /* Protector.swift */,
-			);
-			name = Actors;
-			path = Uer;
 			sourceTree = "<group>";
 		};
 		C67B4D541F87CF8B006415CF /* View */ = {
@@ -231,15 +246,17 @@
 		C67B4D551F87CF93006415CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D46A38261FA2E95F00D6BD09 /* MapViewController.swift */,
-				D46A38251FA2E95F00D6BD09 /* TimerDetailsViewController.swift */,
-				D46A38271FA2E95F00D6BD09 /* TimerViewController.swift */,
-				D46A382D1FA2E96B00D6BD09 /* CustomTabBarController.swift */,
-				D46A38331FA2E96B00D6BD09 /* PlacesTableViewController.swift */,
-				D46A382C1FA2E96B00D6BD09 /* PlaceCell.swift */,
-				D48231B51FA4468F0027EC1F /* ProtectCollectionViewController.swift */,
-				D48231B91FA4471A0027EC1F /* ProtectorCollectionViewCell.swift */,
-				D48231BB1FA447330027EC1F /* ProtectedCollectionViewCell.swift */,
+				C69153F71FA82C37004BAFE4 /* LoginViewController.swift */,
+				C69153EA1FA82C21004BAFE4 /* CustomTabBarController.swift */,
+				C69153E71FA82C20004BAFE4 /* MapViewController.swift */,
+				C69153E91FA82C21004BAFE4 /* PlaceCell.swift */,
+				C69153E51FA82C20004BAFE4 /* PlacesTableViewController.swift */,
+				C69153E61FA82C20004BAFE4 /* ProtectCollectionViewController.swift */,
+				C69153E41FA82C20004BAFE4 /* ProtectedCollectionViewCell.swift */,
+				C69153E81FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift */,
+				C69153EB1FA82C21004BAFE4 /* TimerDetailsViewController.swift */,
+				C69153E31FA82C20004BAFE4 /* TimerViewController.swift */,
+				C69153EC1FA82C21004BAFE4 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,10 +264,8 @@
 		D48231B71FA4469D0027EC1F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				C69A72EF1F9AB96B006B002B /* LoginViewController.swift */,
-				C67B4D3B1F87C58F006415CF /* MapViewController.swift */,
-				C647A8051F8D4A67006E53FA /* TimerViewController.swift */,
-				C6EFA0D51F96A37D00D4483F /* TimerDetailsViewController.swift */,
+				C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */,
+				C69153DA1FA82B86004BAFE4 /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -326,8 +341,8 @@
 				C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
 				C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
-				D46A383E1FA2E98500D6BD09 /* LaunchScreen.storyboard in Resources */,
-				D46A383D1FA2E98500D6BD09 /* Main.storyboard in Resources */,
+				C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */,
+				C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,44 +425,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C67B4D4E1F87CAE7006415CF /* User.swift in Sources */,
-				8910550E1F8C076B004B3AED /* TimerServices.swift in Sources */,
-				C6152DFD1FA2A45A00CC4F76 /* Protector.swift in Sources */,
+				C60EEC561FA83642001E2194 /* MainUser.swift in Sources */,
+				C69153F81FA82C37004BAFE4 /* LoginViewController.swift in Sources */,
+				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
+				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
 				C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */,
-				8910550F1F8C076B004B3AED /* LocationServices.swift in Sources */,
-				C67B4D3C1F87C58F006415CF /* MapViewController.swift in Sources */,
-				C6EFA0D61F96A37D00D4483F /* TimerDetailsViewController.swift in Sources */,
-				C647A8061F8D4A67006E53FA /* TimerViewController.swift in Sources */,
 				C6152E021FA2B27C00CC4F76 /* DatabaseManager.swift in Sources */,
+				C60EEC581FA83642001E2194 /* Protector.swift in Sources */,
+				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
+				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
+				C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */,
 				C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */,
-				C6152DFB1FA2A41C00CC4F76 /* Protected.swift in Sources */,
-				C67B4D4C1F87C5B8006415CF /* LocationServicesProtocol.swift in Sources */,
+				C69153D91FA82B77004BAFE4 /* TimerServices.swift in Sources */,
+				C69153F31FA82C21004BAFE4 /* PlaceCell.swift in Sources */,
+				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
-				C69A72F01F9AB96B006B002B /* LoginViewController.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,
-				C6152DF91FA2A40300CC4F76 /* MainUser.swift in Sources */,
-				C67B4D531F87CB79006415CF /* TimerServicesProtocol.swift in Sources */,
+				C60EEC591FA83642001E2194 /* User.swift in Sources */,
+				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
+				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
+				C69153ED1FA82C21004BAFE4 /* TimerViewController.swift in Sources */,
+				C69153F51FA82C21004BAFE4 /* TimerDetailsViewController.swift in Sources */,
+				C69153D81FA82B77004BAFE4 /* LocationServices.swift in Sources */,
 				C6152E051FA2DB6A00CC4F76 /* AppSettings.swift in Sources */,
-				89C871541F9A2CB4002C3455 /* FirebaseServicesProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D46A38391FA2E98500D6BD09 /* Main.storyboard */ = {
+		C69153DA1FA82B86004BAFE4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D46A383A1FA2E98500D6BD09 /* Base */,
+				C69153DB1FA82B86004BAFE4 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		D46A383B1FA2E98500D6BD09 /* LaunchScreen.storyboard */ = {
+		C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D46A383C1FA2E98500D6BD09 /* Base */,
+				C69153DD1FA82B86004BAFE4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
