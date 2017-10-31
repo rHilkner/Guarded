@@ -14,18 +14,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let loginButton = FBSDKLoginButton()
-        loginButton.delegate = self
-        
-        view.addSubview(loginButton)
-        //TODO: substituir por constraints
-        loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
-        
-        print("oi")
+        self.setFBLoginButton()
         
         //checking if user is already logged in
         if (FBSDKAccessToken.current() != nil) {
-            print("hm")
+            
             LoginServices.handleUserLoggedIn {
                 successful in
                 
@@ -39,6 +32,15 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func setFBLoginButton() {
+        let loginButton = FBSDKLoginButton()
+        loginButton.readPermissions = ["public_profile", "email"]
+        loginButton.delegate = self
+        
+        view.addSubview(loginButton)
+        //TODO: substituir por constraints
+        loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
+    }
 }
 
 
