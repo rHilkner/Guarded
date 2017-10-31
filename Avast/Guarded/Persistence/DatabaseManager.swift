@@ -50,7 +50,7 @@ class DatabaseManager {
                     return
                 }
                 
-                ref.child("users").child(user.id).child("email").setValue(user.name) {
+                ref.child("users").child(user.id).child("email").setValue(user.email) {
                     (error, snapshot) in
                     guard (error == nil) else {
                         completionHandler(error)
@@ -209,7 +209,28 @@ class DatabaseManager {
     }
     
     ///Builds protector object from users' database information
-    static func fetchProtector(by userID: String, completionHandler: @escaping (Protector?, Error?) -> Void) {
+    static func fetchProtector(by userName: String, completionHandler: @escaping (Protector?, Error?) -> Void) {
+
+		/*ref.child("users").queryOrdered(byChild: "name").queryEqual(toValue: "Rodrigo Hilkner").observe(.value) {
+
+		}
+
+		databaseRef.child("Items").queryOrdered(byChild: "Name").queryEqual(toValue: "Fadi").observeSingleEvent(of: .value, with: { (snapShot) in
+
+			if let snapDict = snapShot.value as? [String:AnyObject]{
+
+				for each in snapDict{
+					let key  = each.key as! String
+					let name = each.value["Name"] as! String
+					print(key)
+					print(name)
+				}
+			}
+		}, withCancel: {(Err) in
+
+			print(Err.localizedDescription)
+
+		})*/
         
     }
     

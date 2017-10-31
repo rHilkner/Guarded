@@ -30,11 +30,17 @@ class MapViewController: UIViewController  {
         locationServices?.delegate = self
         
         self.timerButton.isHidden = true
-        
+
+		self.map.showsUserLocation = true
+		
         //dispatch async - mandar o mapa ficar updatando a cada 10 seg (?)
     }
 
-    @IBAction func sendLocation(_ sender: Any) {
+	@IBAction func setRegionOnUser(_ sender: Any) {
+		self.displayCurrentLocation()
+	}
+
+	@IBAction func sendLocation(_ sender: Any) {
         if let location = AppSettings.mainUser!.lastLocation {
             DatabaseManager.updateLastLocation(user: AppSettings.mainUser!, currentLocation: location)
         }
@@ -132,7 +138,6 @@ extension MapViewController: LocationUpdateProtocol {
 
         map.setRegion(region, animated: true)
 
-        self.map.showsUserLocation = true
     }
 
     func displayLocation(location: Coordinate) {

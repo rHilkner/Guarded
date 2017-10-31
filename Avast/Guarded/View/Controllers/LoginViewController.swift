@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
                     print("Couldn't fetch user's facebook or database information.")
                     return
                 }
-                
+                print("logado")
                 self.performSegue(withIdentifier: "MapViewController", sender: nil)
             }
         }
