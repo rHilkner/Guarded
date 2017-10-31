@@ -11,17 +11,11 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
-    //creating facebook login button instance
-    let loginButtonObject: FBSDKLoginButton! = {
-        let button = FBSDKLoginButton()
-        button.readPermissions = ["public_profile", "email"]
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let loginButton = FBSDKLoginButton()
+        loginButton.delegate = self
         
         view.addSubview(loginButton)
         //TODO: substituir por constraints
@@ -34,7 +28,7 @@ class LoginViewController: UIViewController {
             print("hm")
             LoginServices.handleUserLoggedIn {
                 successful in
-                print("well")
+                
                 if (successful == false) {
                     print("Couldn't fetch user's facebook or database information.")
                     return
@@ -58,8 +52,10 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
             return
         }
         
-        print("-----------------------------------------------")
-        print("Successfully logged in with facebook.")
+        if result.isCancelled {
+            print("Facebook login has been cancelled")
+            return
+        }
         
         LoginServices.handleUserLoggedIn {
             successful in
@@ -69,7 +65,6 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
                 return
             }
             
-            print("uh")
             self.performSegue(withIdentifier: "MapViewController", sender: nil)
         }
     }

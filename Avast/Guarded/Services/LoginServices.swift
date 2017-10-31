@@ -14,13 +14,9 @@ class LoginServices {
     ///Fetches user's facebook information (id, name, email), then fetches user's information on database (and builds full MainUser object) or create new user on database if it doesn't exist. If everything fails, method logs user out of facebook to force manual restart of all fetching.
     static func handleUserLoggedIn(completionHandler: @escaping (Bool) -> Void) {
         
-        print("0")
-        
         //fetching user's facebook information
         LoginServices.fetchFacebookUserInfo {
             (userID, userName, userEmail, error) in
-            
-            print("1")
             
             guard (error == nil) else {
                 print("Error on fetching user info from facebook")
@@ -32,8 +28,6 @@ class LoginServices {
             //fetching user's database information
             DatabaseManager.fetchMainUser(by: userID!) {
                 (user) in
-                
-                print("2")
                 
                 if (user != nil) {
                     AppSettings.mainUser = user
@@ -47,8 +41,6 @@ class LoginServices {
                 //adding new main user object to database
                 DatabaseManager.addUser(user: mainUser) {
                     (error) in
-                    
-                    print("3")
                     
                     guard (error == nil) else {
                         print("Couldn't add user to database")
