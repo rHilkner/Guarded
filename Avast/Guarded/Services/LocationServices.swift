@@ -5,7 +5,6 @@
 //  Created by Rodrigo Hilkner on 09/10/17.
 //  Copyright © 2017 Rodrigo Hilkner. All rights reserved.
 //
-
 import Foundation
 import CoreLocation
 
@@ -49,13 +48,13 @@ class LocationServices: NSObject {
                 break
 
         }
-
+        
     }
 
 
     /// Receive address and display its location
     func addressToLocation(address: String) {
-
+        
         let address: String = "Rua Roxo Moreira, 600, Campinas, São Paulo, Brasil"
 
         self.geocoder.geocodeAddressString(address) {
@@ -72,7 +71,7 @@ class LocationServices: NSObject {
                 
                 let coordinates = Coordinate(latitude: latitude, longitude: longitude)
                 print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
-
+                
                 //let annotation = MKPlacemark(placemark: placemark)
                 //self.map.addAnnotation(annotation)
                 self.delegate.displayLocation(location: coordinates)
@@ -80,7 +79,7 @@ class LocationServices: NSObject {
             }
         }
     }
-
+    
     
 }
 

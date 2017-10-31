@@ -89,14 +89,16 @@ class TimerServices: TimerServicesProtocol {
     
     ///Adds 5 more minutes to timer
     func snooze() {
-        self.seconds = snoozeTime
+        self.seconds += snoozeTime
         start()
     }
     
     ///Returns a string "mm:ss" given a number of seconds
     static func timeToString(timeInSecs: Int) -> String {
-        let minutes = timeInSecs/60
+        let hours = timeInSecs/3600
+        let minutes = (timeInSecs/60)%60
         let secs = timeInSecs%60
-        return String(format: "%02d:%02d", minutes, secs)
+
+        return String(format: "%02d:%02d:%02d", hours, minutes, secs)
     }
 }
