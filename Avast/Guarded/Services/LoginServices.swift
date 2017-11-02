@@ -34,7 +34,7 @@ class LoginServices {
                     completionHandler(true)
                     return
                 }
-                
+
                 //creating main user object
                 let mainUser = MainUser(id: userID!, name: userName!, email: userEmail, phoneNumber: nil)
                 

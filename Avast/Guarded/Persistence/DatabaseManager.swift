@@ -142,12 +142,14 @@ class DatabaseManager {
     }
     
     ///Adds place to user's places list
-    static func addPlace(user: User, place: Place, completionHandler: @escaping (Error?) -> Void) {
+    static func addPlace(by userID: String, place: Place) {
         //TODO: how to atomic??
         
-        ref.child("users").child(user.id).child("places").child(place.name).child("address").setValue(place.address)
-        ref.child("users").child(user.id).child("places").child(place.name).child("coordinates").child("latitude").setValue(place.coordinate.latitude)
-        ref.child("users").child(user.id).child("places").child(place.name).child("coordinates").child("longitude").setValue(place.coordinate.longitude)
+        ref.child("users").child(userID).child("places").child(place.name).child("address").setValue(place.address)
+
+		ref.child("users").child(userID).child("places").child(place.name).child("city").setValue(place.city)
+        ref.child("users").child(userID).child("places").child(place.name).child("coordinates").child("latitude").setValue(place.coordinate.latitude)
+        ref.child("users").child(userID).child("places").child(place.name).child("coordinates").child("longitude").setValue(place.coordinate.longitude)
     }
     
     ///Removes place from user's places list
@@ -167,7 +169,8 @@ class DatabaseManager {
     
     ///Builds main user object from users' database information
     static func fetchMainUser(by userID: String, completionHandler: @escaping (MainUser?) -> Void) {
-        ref.child("users").child(userID).observe(.value) {
+
+		ref.child("users").child(userID).observe(.value) {
             (snapshot) in
             
             guard let userName = snapshot.childSnapshot(forPath: "name").value as? String? else {
@@ -200,13 +203,61 @@ class DatabaseManager {
             } else {
                 mainUser.lastLocation = nil
             }
-            
-            //TODO: fetch places, protectors, protected
+
+			/// Fetch places
+			if let placesSnapshot = snapshot.childSnapshot(forPath: "places") as? DataSnapshot {
+
+				for place in placesSnapshot.children.allObjects as! [DataSnapshot] {
+
+					guard let placeName = place.key as? String else {
+						print("Fetching place's name from DB returns nil")
+						completionHandler(nil)
+						return
+					}
+
+					guard let placeAddress = place.childSnapshot(forPath: "address").value as? String else {
+						print("Fetching my place's (\(placeName)) address from DB returns nil")
+						completionHandler(nil)
+						return
+					}
+
+					guard let placeCity = place.childSnapshot(forPath: "city").value as? String else {
+						print("Fetching my place's (\(placeName)) city from DB returns nil")
+						completionHandler(nil)
+						return
+					}
+
+					guard let placeLatitude = place.childSnapshot(forPath: "coordinates/latitude").value as? Double else {
+						print("Fetching my place's (\(placeName)) latitude from DB returns nil")
+						completionHandler(nil)
+						return
+					}
+
+					guard let placeLongitude = place.childSnapshot(forPath: "coordinates/longitude").value as? Double else {
+						print("Fetching my place's (\(placeName)) longitude from DB returns nil")
+						completionHandler(nil)
+						return
+					}
+
+					let placeCoordinate = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
+					let newPlace = Place(name: placeName, address: placeAddress, city: placeCity, coordinate: placeCoordinate)
+
+					mainUser.myPlaces.append(newPlace)
+				}
+			} else {
+				print("Fetching user's my places from DB returns nil.")
+				completionHandler(nil)
+				return
+			}
+
+            //TODO: protectors, protected
             
             completionHandler(mainUser)
             
         }
     }
+
+
     
     ///Builds protector object from users' database information
     static func fetchProtector(by userName: String, completionHandler: @escaping (Protector?, Error?) -> Void) {

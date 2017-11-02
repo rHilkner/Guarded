@@ -12,11 +12,13 @@ import CoreLocation
 class Place {
     
     var name: String
+	var city: String
     var address: String
     var coordinate: Coordinate
     
-    init(name: String, address: String, coordinate: Coordinate) {
+    init(name: String, address: String, city: String, coordinate: Coordinate) {
         self.name = name
+		self.city = city
         self.address = address
         self.coordinate = coordinate
     }
