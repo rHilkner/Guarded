@@ -352,7 +352,7 @@
                     <navigationItem key="navigationItem" title="Navigate" id="sKo-xq-zRu">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="VPO-jJ-ndu">
                             <connections>
-                                <action selector="addressToLocation:" destination="1iy-gm-vn2" id="uAF-0i-sHi"/>
+                                <action selector="searchButtonClicked:" destination="1iy-gm-vn2" id="jfV-ew-xhd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -294,9 +294,9 @@ class DatabaseManager {
     /// Change the latitude and longitude values of current location
     static func updateLastLocation(user: User, currentLocation: Coordinate) {
         //TODO: how to atomic?
-        
-        ref.child(user.id).child("lastLocation").child("latitude").setValue(currentLocation.latitude)
-        ref.child(user.id).child("lastLocation").child("longitude").setValue(currentLocation.longitude)
+
+	ref.child(user.id).child("lastLocation").child("latitude").setValue(currentLocation.latitude)
+	ref.child(user.id).child("lastLocation").child("longitude").setValue(currentLocation.longitude)
     }
     
     

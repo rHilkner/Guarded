@@ -9,9 +9,10 @@
 import UIKit
 import MapKit
 import CoreLocation
+import GooglePlaces
 
-class MapViewController: UIViewController  {
-    
+class MapViewController: UIViewController, UIGestureRecognizerDelegate {
+
     var location: CLLocation?
     
     var timerService: TimerServices?
@@ -22,6 +23,37 @@ class MapViewController: UIViewController  {
     
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var anotherUserLocationLabel: UILabel!
+
+
+	/// add tap gesture
+	@objc func tapGesture(gestureReconizer: UITapGestureRecognizer) {
+
+		print("tap")
+
+		//add some location to my places just for test
+		let point = gestureReconizer.location(in: map)
+		let tapPoint = map.convert(point, toCoordinateFrom: map)
+		
+		let userID = AppSettings.mainUser?.id
+		let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
+
+		let place = Place(name: "zé bostola", address: "eldorado", city: "campinas", coordinate: coordinate)
+
+		DatabaseManager.addPlace(by: userID!, place: place)
+
+		/// TODO: Definir o que fazer no singleTapGesture
+		//self.anotherUserLocationLabel.text = "\(tapPoint.latitude),\(tapPoint.longitude)"
+
+		print("\(tapPoint.latitude),\(tapPoint.longitude)")
+
+	}
+
+
+	override func viewWillAppear(_ animated: Bool) {
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(gestureReconizer: )))
+		tapGestureRecognizer.delegate = self
+		map.addGestureRecognizer(tapGestureRecognizer)
+	}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +64,7 @@ class MapViewController: UIViewController  {
         self.timerButton.isHidden = true
 
 		self.map.showsUserLocation = true
+
 		
         //dispatch async - mandar o mapa ficar updatando a cada 10 seg (?)
     }
@@ -40,40 +73,36 @@ class MapViewController: UIViewController  {
 		self.displayCurrentLocation()
 	}
 
-	@IBAction func sendLocation(_ sender: Any) {
-        if let location = AppSettings.mainUser!.lastLocation {
-            DatabaseManager.updateLastLocation(user: AppSettings.mainUser!, currentLocation: location)
-        }
-    }
-
-    @IBAction func getCurrentLocationAction(_ sender: UIButton) {
-		let location = AppSettings.mainUser!.lastLocation
-		self.currentLocationLabel.text = "latitude: \(location!.latitude) longitude: \(location!.longitude)"
-    }
-
-    @IBAction func receiveUserLocation(_ sender: UIButton) {
-
-        let user = User(id: "2", name: "", email: "", phoneNumber: "")
-        DatabaseManager.getLastLocation(user: user) {
-            lastLocation in
-            
-            guard (lastLocation != nil) else {
-                print("Couldn't fetch user's last location.")
-                return
-            }
-            
-            self.displayLocation(location: lastLocation!)
-        }
+	@IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
+		self.autocompleteSearch()
 	}
-
-//    @IBAction func addressToLocation(_ sender: Any) {
-//        let location = AppSettings.mainUser!.lastLocation
-//
-//        //firebaseServices?.updateMeusLocais(user: currentUser!, locationName: "Meu novo local", myLocation: location!)
-////        firebaseServices?.deleteMeusLocais(user: currentUser!, locationName: "Meu novo local")
+	//	@IBAction func sendLocation(_ sender: Any) {
+ //       if let location = AppSettings.mainUser!.lastLocation {
+  //          DatabaseManager.updateLastLocation(user: AppSettings.mainUser!, currentLocation: location)
+//        }
 //    }
-    
-    
+
+//   @IBAction func getCurrentLocationAction(_ sender: UIButton) {
+//		let location = AppSettings.mainUser!.lastLocation
+//		self.currentLocationLabel.text = "latitude: \(location!.latitude) longitude: \(location!.longitude)"
+//    }
+
+//    @IBAction func receiveUserLocation(_ sender: UIButton) {
+
+   //     let user = User(id: "2", name: "", email: "", phoneNumber: "")
+   //     DatabaseManager.getLastLocation(user: user) {
+   //         lastLocation in
+            
+   //         guard (lastLocation != nil) else {
+   //             print("Couldn't fetch user's last location.")
+   //             return
+   //         }
+            
+   //         self.displayLocation(location: lastLocation!)
+    //    }
+	//}
+
+
     @IBAction func setTimer() {
         performSegue(withIdentifier: "SetTimerViewController", sender: nil)
     }
@@ -106,6 +135,7 @@ class MapViewController: UIViewController  {
     }
     
 }
+
 
 //extension MapViewController: receiveFirebaseDataProtocol {
 //
@@ -206,3 +236,53 @@ extension MapViewController: TimerServicesDelegate {
         self.timerService = nil
     }
 }
+
+extension MapViewController: GMSAutocompleteViewControllerDelegate {
+
+	public func autocompleteSearch () {
+		let placePickerController = GMSAutocompleteViewController()
+		placePickerController.delegate = self
+
+		let filter = GMSAutocompleteFilter()
+		filter.country = "BR"
+
+		placePickerController.autocompleteFilter = filter
+
+		present(placePickerController, animated: true, completion: nil)
+	}
+
+	// Handle the user's selection.
+	func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+
+		let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+
+		self.displayLocation(location: coordinate)
+
+		print("Place name: \(place.name)")
+		print("Place address: \(place.formattedAddress)")
+		print("Place attributions: \(place.attributions)")
+		dismiss(animated: true, completion: nil)
+	}
+
+	func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+		// TODO: handle the error.
+		print("Error: ", error.localizedDescription)
+	}
+
+	// User canceled the operation.
+	func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+		dismiss(animated: true, completion: nil)
+	}
+
+	// Turn the network activity indicator on and off again.
+	func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
+	}
+
+	func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+		UIApplication.shared.isNetworkActivityIndicatorVisible = false
+	}
+
+}
+
+

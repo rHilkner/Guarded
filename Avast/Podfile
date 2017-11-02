@@ -11,6 +11,8 @@ pod 'Firebase/Database'
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
+pod 'GooglePlaces'
+pod 'GoogleMaps'
 
 end
 
