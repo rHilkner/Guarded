@@ -19,6 +19,8 @@ class LocationServices: NSObject {
     var manager = CLLocationManager()
     var geocoder = CLGeocoder()
     var delegate: LocationUpdateProtocol!
+	var isInitialized: Bool = false
+
 
     override init() {
         super.init()
@@ -55,7 +57,7 @@ class LocationServices: NSObject {
     /// Receive address and display its location
     func addressToLocation(address: String) {
         
-        let address: String = "Rua Roxo Moreira, 600, Campinas, São Paulo, Brasil"
+        let address: String = "Rua da Conceição, 663, Juazeiro do Norte"
 
         self.geocoder.geocodeAddressString(address) {
             (placemarks, error) in
@@ -70,10 +72,7 @@ class LocationServices: NSObject {
                 let longitude = placemark.location!.coordinate.longitude
                 
                 let coordinates = Coordinate(latitude: latitude, longitude: longitude)
-                print("Lat: \(coordinates.latitude) -- Long: \(coordinates.longitude)")
-                
-                //let annotation = MKPlacemark(placemark: placemark)
-                //self.map.addAnnotation(annotation)
+
                 self.delegate.displayLocation(location: coordinates)
 
             }
@@ -87,7 +86,7 @@ extension LocationServices: CLLocationManagerDelegate {
     
     /// this function is called every time the user location is updated
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+
         /// locations is an array with all the locations of the user
         /// locations[0] is the most recent location
         guard locations.count > 0 else {

@@ -439,6 +439,8 @@ class DatabaseManager {
             completionHandler(protected)
         }
     }
+
+
     
     ///Fetches protected information from users' database from his/her name and returns its object on completionHandler
     static func fetchProtected(protectedName: String, completionHandler: @escaping (Protected?) -> Void) {

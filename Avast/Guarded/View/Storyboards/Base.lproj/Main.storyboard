@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -322,6 +322,18 @@
                                     <segue destination="gXe-Ri-jvv" kind="show" identifier="TimerDetailsViewController" id="6nj-4c-zaG"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHs-rB-znu">
+                                <rect key="frame" x="284" y="64" width="91" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.51696306467056274" green="0.70824325084686279" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Zoom">
+                                    <color key="titleColor" red="0.99203723669052124" green="0.9921455979347229" blue="0.9961208701133728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.51696306467056274" green="0.70824325084686279" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="setRegionOnUser:" destination="1iy-gm-vn2" eventType="touchUpInside" id="RGd-vy-V7g"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -340,7 +352,7 @@
                     <navigationItem key="navigationItem" title="Navigate" id="sKo-xq-zRu">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="VPO-jJ-ndu">
                             <connections>
-                                <action selector="addressToLocation:" destination="1iy-gm-vn2" id="uAF-0i-sHi"/>
+                                <action selector="searchButtonClicked:" destination="1iy-gm-vn2" id="jfV-ew-xhd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
