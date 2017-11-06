@@ -19,13 +19,14 @@ class LocationServices: NSObject {
     var manager = CLLocationManager()
     var geocoder = CLGeocoder()
     var delegate: LocationUpdateProtocol!
-    var isInitialized: Bool = false
+    var isInitialized: Bool!
 
 
     override init() {
         super.init()
 
         self.manager.delegate = self
+		self.isInitialized = false
 
         // Get the best accuracy
         // TODO: check if affects the app performance
@@ -112,7 +113,11 @@ extension LocationServices: CLLocationManagerDelegate {
         }
         
         /// display the location every time it's updated
-        self.delegate.displayCurrentLocation()
+		if (!isInitialized){
+			self.delegate.displayCurrentLocation()
+			isInitialized = true
+		}
+
         
     }
     
