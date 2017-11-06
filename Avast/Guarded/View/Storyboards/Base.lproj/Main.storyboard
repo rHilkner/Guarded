@@ -27,7 +27,7 @@
                         <viewLayoutGuide key="safeArea" id="aiF-8c-ePx"/>
                     </view>
                     <connections>
-                        <segue destination="fY6-Ze-G4L" kind="show" identifier="MapViewController" id="dGD-N9-a8F"/>
+                        <segue destination="fY6-Ze-G4L" kind="show" identifier="NavigateViewController" id="KPc-zu-PNT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQu-WM-gj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,11 +139,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlE-eJ-cUL">
-                                <rect key="frame" x="0.0" y="189" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="145" width="375" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Oge-0l-J53">
-                                <rect key="frame" x="0.0" y="189" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="145" width="375" height="130"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="mS9-42-L4m"/>
@@ -153,11 +153,11 @@
                                 </date>
                             </datePicker>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZQ-8F-Vls">
-                                <rect key="frame" x="0.0" y="109" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NHw-nV-yie">
-                                <rect key="frame" x="15" y="109" width="345" height="35"/>
+                                <rect key="frame" x="15" y="65" width="345" height="35"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="2DW-An-NSo"/>
@@ -167,13 +167,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohl-U3-56x">
-                                <rect key="frame" x="15" y="86.5" width="345" height="16"/>
+                                <rect key="frame" x="15" y="42.5" width="345" height="16"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" red="0.42745098039215684" green="0.42745098039215684" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXPECTED TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEZ-9h-3sP">
-                                <rect key="frame" x="15" y="165" width="345" height="16"/>
+                                <rect key="frame" x="15" y="121" width="345" height="16"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -393,7 +393,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWB-Hu-Xvb">
-                                <rect key="frame" x="0.0" y="109" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="70"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="gqR-sk-76b"/>
@@ -403,7 +403,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geh-0I-prS">
-                                <rect key="frame" x="0.0" y="224" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="180" width="375" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ws5-Zf-aLx">
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="70"/>
@@ -674,7 +674,11 @@
                                 <action selector="segControlChanged:" destination="dM9-f4-zPk" eventType="valueChanged" id="nzQ-rn-RkY"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="mqq-o9-Xk4"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="mqq-o9-Xk4">
+                            <connections>
+                                <segue destination="D7c-mp-oBu" kind="show" id="KGo-ks-hdr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addProtectorButton" destination="mqq-o9-Xk4" id="w2s-9b-vQG"/>
@@ -720,6 +724,48 @@
             </objects>
             <point key="canvasLocation" x="6350" y="0.0"/>
         </scene>
+        <!--AddProtector-->
+        <scene sceneID="dwD-lQ-a8K">
+            <objects>
+                <viewController title="AddProtector" id="D7c-mp-oBu" customClass="AddProtectorViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m1k-d0-3QQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="slJ-um-jGS">
+                                <rect key="frame" x="84" y="318" width="206" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Insert user name on DB pls" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMb-iK-MTV">
+                                <rect key="frame" x="84" y="254" width="206" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aog-tp-4iT">
+                                <rect key="frame" x="129" y="385" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add as Protector"/>
+                                <connections>
+                                    <action selector="addProtector" destination="D7c-mp-oBu" eventType="touchUpInside" id="xCV-dz-Viu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="yeO-4F-mzM"/>
+                    </view>
+                    <connections>
+                        <outlet property="protectorTextField" destination="slJ-um-jGS" id="9ZC-Ui-9fp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X46-CA-9g3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5568.8000000000002" y="752.47376311844084"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="zPP-qd-oBB">
             <objects>
@@ -753,8 +799,8 @@
         <image name="tabbar_settings_unselected" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6nj-4c-zaG"/>
-        <segue reference="57U-zy-dAQ"/>
+        <segue reference="YTf-W1-GwX"/>
+        <segue reference="kxH-pH-1us"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.45098039215686275" green="0.66666666666666663" blue="0.0078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
 </document>

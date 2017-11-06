@@ -61,7 +61,7 @@ class LocationServices: NSObject {
             (placemarks, error) in
             
             guard (error == nil) else {
-                print("Error", error ?? "")
+                print("Error on finding given address.")
                 return
             }
             
@@ -84,6 +84,7 @@ class LocationServices: NSObject {
 }
 
 extension LocationServices: CLLocationManagerDelegate {
+    
     /// this function is called every time the user location is updated
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -100,6 +101,16 @@ extension LocationServices: CLLocationManagerDelegate {
         let userLocation = Coordinate(latitude: lastCoordinate.latitude, longitude: lastCoordinate.longitude)
         
         AppSettings.mainUser!.lastLocation = userLocation
+        print("Updating user's location: \(userLocation)")
+        
+        DatabaseManager.updateLastLocation(userLocation) {
+            (error) in
+            
+            guard (error == nil) else {
+                print("Error on updating user's last location on DB.")
+                return
+            }
+        }
         
         /// display the location every time it's updated
         self.delegate.displayCurrentLocation()
@@ -110,10 +121,9 @@ extension LocationServices: CLLocationManagerDelegate {
     private func locationManager(manager: CLLocationManager,
                                  didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
+        if (status == .authorizedAlways || status == .authorizedWhenInUse) {
             self.manager.startUpdatingLocation()
-        }
-        else if status == .denied || status == .restricted{
+        } else if (status == .denied || status == .restricted) {
             self.manager.stopUpdatingLocation()
         }
     }

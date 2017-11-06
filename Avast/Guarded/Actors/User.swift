@@ -9,19 +9,29 @@
 import Foundation
 import CoreLocation
 
-//TODO: abtract class
+//TODO: abtract class (?)
 class User {
-    
+
     var id: String
     var name: String
-    var email: String?
-    var phoneNumber: String?
+    var email: String
+    var phoneNumber: String
 
     init(id: String, name: String, email: String?, phoneNumber: String?) {
         self.id = id
         self.name = name
-        self.email = email
-        self.phoneNumber = phoneNumber
+        
+        if let email = email {
+            self.email = email
+        } else {
+            self.email = ""
+        }
+        
+        if let phoneNumber = phoneNumber {
+            self.phoneNumber = phoneNumber
+        } else {
+            self.phoneNumber = ""
+        }
     }
     
 }

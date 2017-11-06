@@ -11,11 +11,46 @@ import Foundation
 class MainUser: User {
     
     var lastLocation: Coordinate?
-    var myPlaces: [Place] = []
-    var myProtectors: [Protector] = []
-    var myProtected: [Protected] = []
+    var places: [Place] = []
+    var protectors: [Protector] = []
+    var protected: [Protected] = []
     
-    override init(id: String, name: String, email: String?, phoneNumber: String?) {
-        super.init(id: id, name: name, email: email, phoneNumber: phoneNumber)
+    func updateLastLocation(_ coordinate: Coordinate) {
+        DatabaseManager.updateLastLocation(coordinate) {
+            (error) in
+            
+            guard (error == nil) else {
+                print("Error on updating current location to database.")
+                return
+            }
+            
+            self.lastLocation = coordinate
+        }
+    }
+    
+    func addPlace(_ place: Place) {
+        DatabaseManager.addPlace(place) {
+            (error) in
+            
+            guard (error == nil) else {
+                print("Error on adding place to database.")
+                return
+            }
+            
+            self.places.append(place)
+        }
+    }
+    
+    func addProtector(_ protector: Protector) {
+        DatabaseManager.addProtector(protector) {
+            (error) in
+            
+            guard (error == nil) else {
+                print("Error on adding protector to database.")
+                return
+            }
+            
+            self.protectors.append(protector)
+        }
     }
 }

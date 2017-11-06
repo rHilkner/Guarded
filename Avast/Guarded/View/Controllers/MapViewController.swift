@@ -36,7 +36,14 @@ class MapViewController: UIViewController  {
 
     @IBAction func sendLocation(_ sender: Any) {
         if let location = AppSettings.mainUser!.lastLocation {
-            DatabaseManager.updateLastLocation(user: AppSettings.mainUser!, currentLocation: location)
+            DatabaseManager.updateLastLocation(location) {
+                (error) in
+                
+                guard (error == nil) else {
+                    print("Error on updating user's current location to DB.")
+                    return
+                }
+            }
         }
     }
 

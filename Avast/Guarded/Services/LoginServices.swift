@@ -26,10 +26,11 @@ class LoginServices {
             }
             
             //fetching user's database information
-            DatabaseManager.fetchMainUser(by: userID!) {
+            DatabaseManager.fetchUser(userID: userID!) {
                 (user) in
                 
                 if (user != nil) {
+                    print("DONE---------------------------------------------------------")
                     AppSettings.mainUser = user
                     completionHandler(true)
                     return
@@ -39,7 +40,7 @@ class LoginServices {
                 let mainUser = MainUser(id: userID!, name: userName!, email: userEmail, phoneNumber: nil)
                 
                 //adding new main user object to database
-                DatabaseManager.addUser(user: mainUser) {
+                DatabaseManager.addUser(mainUser) {
                     (error) in
                     
                     guard (error == nil) else {
@@ -49,6 +50,7 @@ class LoginServices {
                         return
                     }
                     
+                    print("DONE---------------------------------------------------------")
                     AppSettings.mainUser = mainUser
                     completionHandler(true)
                     return

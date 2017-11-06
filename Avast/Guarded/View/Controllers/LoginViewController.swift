@@ -16,20 +16,7 @@ class LoginViewController: UIViewController {
         
         self.setFBLoginButton()
         
-        //checking if user is already logged in
-        if (FBSDKAccessToken.current() != nil) {
-            
-            LoginServices.handleUserLoggedIn {
-                successful in
-                
-                if (successful == false) {
-                    print("Couldn't fetch user's facebook or database information.")
-                    return
-                }
-                
-                self.performSegue(withIdentifier: "MapViewController", sender: nil)
-            }
-        }
+        self.handleFacebookStatus()
     }
     
     func setFBLoginButton() {
@@ -40,6 +27,24 @@ class LoginViewController: UIViewController {
         view.addSubview(loginButton)
         //TODO: substituir por constraints
         loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
+    }
+    
+    func handleFacebookStatus() {
+        //checking if user is already logged in
+        if (FBSDKAccessToken.current() != nil) {
+            
+            LoginServices.handleUserLoggedIn {
+                (successful) in
+                
+                guard (successful == true) else {
+                    print("Couldn't fetch user's facebook or database information.")
+                    return
+                }
+                
+                print("Login successful2.")
+                self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
+            }
+        }
     }
 }
 
@@ -55,19 +60,20 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
         }
         
         if result.isCancelled {
-            print("Facebook login has been cancelled")
+            print("Facebook login has been cancelled.")
             return
         }
         
         LoginServices.handleUserLoggedIn {
-            successful in
+            (successful) in
             
             if (successful == false) {
                 print("Couldn't fetch user's facebook or database information.")
                 return
             }
             
-            self.performSegue(withIdentifier: "MapViewController", sender: nil)
+            print("Login successful1.")
+            self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
         }
     }
     

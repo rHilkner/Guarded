@@ -10,15 +10,14 @@
 		0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */; };
 		891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891055101F8D01CD004B3AED /* CoreLocation.framework */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
-		C60EEC561FA83642001E2194 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC521FA83642001E2194 /* MainUser.swift */; };
 		C60EEC571FA83642001E2194 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC531FA83642001E2194 /* Protected.swift */; };
 		C60EEC581FA83642001E2194 /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC541FA83642001E2194 /* Protector.swift */; };
-		C60EEC591FA83642001E2194 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC551FA83642001E2194 /* User.swift */; };
 		C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF31FA292DA00CC4F76 /* Place.swift */; };
 		C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF61FA2A03700CC4F76 /* Coordinate.swift */; };
 		C6152E021FA2B27C00CC4F76 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152E011FA2B27C00CC4F76 /* DatabaseManager.swift */; };
 		C6152E051FA2DB6A00CC4F76 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152E041FA2DB6A00CC4F76 /* AppSettings.swift */; };
 		C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62DF0FB1FA6B47500DC956F /* DatabaseError.swift */; };
+		C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6304DCC1FAECBBC00FEED9B /* User.swift */; };
 		C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */ = {isa = PBXBuildFile; fileRef = C647A8031F8C29A9006E53FA /* infos admin.strings */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D401F87C58F006415CF /* Assets.xcassets */; };
@@ -37,7 +36,9 @@
 		C69153F51FA82C21004BAFE4 /* TimerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EB1FA82C21004BAFE4 /* TimerDetailsViewController.swift */; };
 		C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EC1FA82C21004BAFE4 /* ViewController.swift */; };
 		C69153F81FA82C37004BAFE4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153F71FA82C37004BAFE4 /* LoginViewController.swift */; };
+		C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */; };
 		C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C070C1FA39C830087D613 /* LoginServices.swift */; };
+		C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2532F1FAA626C00853CA8 /* MainUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,10 +46,8 @@
 		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
-		C60EEC521FA83642001E2194 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
 		C60EEC531FA83642001E2194 /* Protected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		C60EEC541FA83642001E2194 /* Protector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
-		C60EEC551FA83642001E2194 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C6152DF31FA292DA00CC4F76 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C6152DF61FA2A03700CC4F76 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		C6152E011FA2B27C00CC4F76 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		C61FB29D1F9AAEA80021BE3F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61FB29F1F9AB0D10021BE3F /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C62DF0FB1FA6B47500DC956F /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
+		C6304DCC1FAECBBC00FEED9B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C647A8031F8C29A9006E53FA /* infos admin.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "infos admin.strings"; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,8 +82,10 @@
 		C69153EB1FA82C21004BAFE4 /* TimerDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerDetailsViewController.swift; sourceTree = "<group>"; };
 		C69153EC1FA82C21004BAFE4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C69153F71FA82C37004BAFE4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "/Users/rodrigohilkner/Desktop/bepid/Final Challenge - Guarded/Guarded/Avast/Guarded/View/Controllers/LoginViewController.swift"; sourceTree = "<absolute>"; };
+		C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProtectorViewController.swift; sourceTree = "<group>"; };
 		C69A72F11F9ABBE3006B002B /* Guarded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guarded.entitlements; sourceTree = "<group>"; };
 		C69C070C1FA39C830087D613 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
+		C6F2532F1FAA626C00853CA8 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,10 +131,10 @@
 		C60EEC511FA83642001E2194 /* Actors */ = {
 			isa = PBXGroup;
 			children = (
-				C60EEC521FA83642001E2194 /* MainUser.swift */,
+				C6304DCC1FAECBBC00FEED9B /* User.swift */,
+				C6F2532F1FAA626C00853CA8 /* MainUser.swift */,
 				C60EEC531FA83642001E2194 /* Protected.swift */,
 				C60EEC541FA83642001E2194 /* Protector.swift */,
-				C60EEC551FA83642001E2194 /* User.swift */,
 			);
 			path = Actors;
 			sourceTree = "<group>";
@@ -257,6 +259,7 @@
 				C69153EB1FA82C21004BAFE4 /* TimerDetailsViewController.swift */,
 				C69153E31FA82C20004BAFE4 /* TimerViewController.swift */,
 				C69153EC1FA82C21004BAFE4 /* ViewController.swift */,
+				C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -425,15 +428,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C60EEC561FA83642001E2194 /* MainUser.swift in Sources */,
 				C69153F81FA82C37004BAFE4 /* LoginViewController.swift in Sources */,
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
 				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
+				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
+				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,
 				C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */,
 				C6152E021FA2B27C00CC4F76 /* DatabaseManager.swift in Sources */,
 				C60EEC581FA83642001E2194 /* Protector.swift in Sources */,
 				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
 				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
+				C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
 				C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */,
 				C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */,
@@ -442,7 +447,6 @@
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,
-				C60EEC591FA83642001E2194 /* User.swift in Sources */,
 				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
 				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
 				C69153ED1FA82C21004BAFE4 /* TimerViewController.swift in Sources */,
