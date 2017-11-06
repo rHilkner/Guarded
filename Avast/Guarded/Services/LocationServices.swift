@@ -19,7 +19,7 @@ class LocationServices: NSObject {
     var manager = CLLocationManager()
     var geocoder = CLGeocoder()
     var delegate: LocationUpdateProtocol!
-	var isInitialized: Bool = false
+    var isInitialized: Bool = false
 
 
     override init() {

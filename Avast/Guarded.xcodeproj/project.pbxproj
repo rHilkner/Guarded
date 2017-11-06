@@ -45,7 +45,6 @@
 		6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Guarded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		89D4B6771FA892AD0069F73F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
 		C60EEC531FA83642001E2194 /* Protected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		C60EEC541FA83642001E2194 /* Protector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
@@ -173,6 +172,14 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		C6304DCE1FB0DA0C00FEED9B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C69153F71FA82C37004BAFE4 /* LoginViewController.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		C647A7FF1F8C28DA006E53FA /* Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +195,7 @@
 				C67B4D371F87C58F006415CF /* Products */,
 				62965B3982B4613031DE539F /* Pods */,
 				305BA6679A38B6A71EB30FF3 /* Frameworks */,
+				C6304DCE1FB0DA0C00FEED9B /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,7 +257,6 @@
 		C67B4D551F87CF93006415CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				89D4B6771FA892AD0069F73F /* LoginViewController.swift */,
 				C69153EA1FA82C21004BAFE4 /* CustomTabBarController.swift */,
 				C69153E71FA82C20004BAFE4 /* MapViewController.swift */,
 				C69153E91FA82C21004BAFE4 /* PlaceCell.swift */,
@@ -448,7 +455,6 @@
 				C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */,
 				C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */,
 				C69153D91FA82B77004BAFE4 /* TimerServices.swift in Sources */,
-				89D4B6781FA892AD0069F73F /* LoginViewController.swift in Sources */,
 				C69153F31FA82C21004BAFE4 /* PlaceCell.swift in Sources */,
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
@@ -598,7 +604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -635,7 +641,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",

@@ -39,7 +39,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 		let place = Place(name: "zé bostola", address: "eldorado", city: "campinas", coordinate: coordinate)
 
-		DatabaseManager.addPlace(by: userID!, place: place)
+        DatabaseManager.addPlace(place) {
+            (error) in
+        }
 
 		/// TODO: Definir o que fazer no singleTapGesture
 		//self.anotherUserLocationLabel.text = "\(tapPoint.latitude),\(tapPoint.longitude)"

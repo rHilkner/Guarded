@@ -343,6 +343,54 @@ class DatabaseManager {
                 print("User ID fetched returned a nil snapshot from DB.")
                 return
             }
+
+            /// Fetch places
+//            if let placesSnapshot = protectorSnapshot.childSnapshot(forPath: "places") as? DataSnapshot {
+//
+//                for place in placesSnapshot.children.allObjects as! [DataSnapshot] {
+//
+//                    guard let placeName = place.key as? String else {
+//                        print("Fetching place's name from DB returns nil")
+//                        completionHandler(nil)
+//                        return
+//                    }
+//
+//                    guard let placeAddress = place.childSnapshot(forPath: "address").value as? String else {
+//                        print("Fetching my place's (\(placeName)) address from DB returns nil")
+//                        completionHandler(nil)
+//                        return
+//                    }
+//
+//                    guard let placeCity = place.childSnapshot(forPath: "city").value as? String else {
+//                        print("Fetching my place's (\(placeName)) city from DB returns nil")
+//                        completionHandler(nil)
+//                        return
+//                    }
+//
+//                    guard let placeLatitude = place.childSnapshot(forPath: "coordinates/latitude").value as? Double else {
+//                        print("Fetching my place's (\(placeName)) latitude from DB returns nil")
+//                        completionHandler(nil)
+//                        return
+//                    }
+//
+//                    guard let placeLongitude = place.childSnapshot(forPath: "coordinates/longitude").value as? Double else {
+//                        print("Fetching my place's (\(placeName)) longitude from DB returns nil")
+//                        completionHandler(nil)
+//                        return
+//                    }
+//
+//                    let placeCoordinate = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
+//                    let newPlace = Place(name: placeName, address: placeAddress, city: placeCity, coordinate: placeCoordinate)
+//
+//                    mainUser.myPlaces.append(newPlace)
+//                }
+//            } else {
+//                print("Fetching user's my places from DB returns nil.")
+//                completionHandler(nil)
+//                return
+//            }
+
+            //TODO: protectors, protected
             
             protectorDictionary["id"] = protectorID as AnyObject
             
@@ -359,6 +407,8 @@ class DatabaseManager {
             completionHandler(protector)
         }
     }
+
+
     
     ///Fetches protector information from users' database from his/her name and returns its object on completionHandler
     static func fetchProtector(protectorName: String, completionHandler: @escaping (Protector?) -> Void) {
@@ -439,8 +489,6 @@ class DatabaseManager {
             completionHandler(protected)
         }
     }
-
-
     
     ///Fetches protected information from users' database from his/her name and returns its object on completionHandler
     static func fetchProtected(protectedName: String, completionHandler: @escaping (Protected?) -> Void) {
