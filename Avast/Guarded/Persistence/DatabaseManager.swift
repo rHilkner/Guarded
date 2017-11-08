@@ -15,8 +15,6 @@ class DatabaseManager {
     ///FIRDatabaseReference for the root of Guarded's Firebase Database
     static var ref: DatabaseReference = Database.database().reference()
     
-    //TODO: get completionhandler from adding stuff in database to check if stuff was successfully included or not
-    
     ///Checks connection with Firebase Database backend
     static func checkConnection(completionHandler: @escaping (Bool) -> Void) {
         let connectedRef = Database.database().reference(withPath: ".info/connected")
@@ -42,14 +40,19 @@ class DatabaseManager {
             
             let userRef = ref.child("users").child(user.id)
             
-            let userDict: [String : Any] = [
-                "name": user.name,
-                "email": user.email,
-                "phoneNumber": user.phoneNumber,
-                "lastLocation": "",
-                "places": "",
-                "protectors": "",
-                "protected": ""
+            let lastLocationDict: [String : AnyObject] = [
+                "latitude": "" as AnyObject,
+                "longitude": "" as AnyObject
+            ]
+            
+            let userDict: [String : AnyObject] = [
+                "name": user.name as AnyObject,
+                "email": user.email as AnyObject,
+                "phoneNumber": user.phoneNumber as AnyObject,
+                "lastLocation": lastLocationDict as AnyObject,
+                "places": "" as AnyObject,
+                "protectors": "" as AnyObject,
+                "protected": "" as AnyObject
             ]
             
             userRef.setValue(userDict) {
@@ -95,32 +98,10 @@ class DatabaseManager {
         
         let usersRef = ref.child("users")
         
+        //TODO: transaction block without downloading the whole "users" json
+        
         usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(true)
         usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(true)
-        
-//        let valuesToSet: [String: [String: [String : Bool]]] = [
-//            "\(AppSettings.mainUser!.id)": [
-//                "protectors": [
-//                    "\(protector.id)": true
-//                ]
-//            ],
-//            "\(protector.id)": [
-//                "protected": [
-//                    "\(AppSettings.mainUser!.id)": true
-//                ]
-//            ]
-//        ]
-        
-//        usersRef.setValue(valuesToSet) {
-//            (error, _) in
-//
-//            guard (error == nil) else {
-//                completionHandler(error)
-//                return
-//            }
-//
-//            completionHandler(nil)
-//        }
     }
     
     ///Removes protector to user's protectors list and also removes user as protector's protected list
@@ -187,26 +168,26 @@ class DatabaseManager {
         }
     }
     
-    ///Fetches user's basic profile information (id, name, email, phone number) from database snapshot.
+    ///Fetches user's basic profile information (id, name, email, phone number) from dictionary built by database snapshot.
     static func fetchUserBasicInfo(userDictionary: [String : AnyObject]) -> User? {
         
         guard let userID = userDictionary["id"] as? String else {
-            print("Fetching protector's id from DB returns nil.")
+            print("Fetching user's id from DB returns nil.")
             return nil
         }
         
         guard let userName = userDictionary["name"] as? String else {
-            print("Fetching protector's name from DB returns nil.")
+            print("Fetching user's name from DB returns nil.")
             return nil
         }
         
         guard let userEmail = userDictionary["email"] as? String else {
-            print("Fetching protector's email from DB returns nil.")
+            print("Fetching user's email from DB returns nil.")
             return nil
         }
         
         guard let userPhoneNumber = userDictionary["phoneNumber"] as? String else {
-            print("Fetching protector's phone number from DB returns nil.")
+            print("Fetching user's phone number from DB returns nil.")
             return nil
         }
         
@@ -215,76 +196,131 @@ class DatabaseManager {
         return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber)
     }
     
-    ///Fetches user's detailed profile information (places, protectors, protected) from database snapshot.
+    ///Fetches user's detailed profile information (places, protectors, protected) from dictionary built by database snapshot.
     ///Returns true if successfull and false otherwise.
-    static func fetchUserDetailedInfo(user: MainUser, userSnapshot: DataSnapshot, completionHandler: @escaping (Bool) -> Void) {
+    static func fetchUserDetailedInfo(user: MainUser, userDictionary: [String : AnyObject], completionHandler: @escaping (Bool) -> Void) {
         
-        //Fetching user's places
+        guard let placesDict = userDictionary["places"] as? [String : AnyObject] else {
+            print("Fetching user's places from DB returns nil.")
+            completionHandler(false)
+            return
+        }
+
+        //Reading user's places
         
-        var places: [Place] = []
+        var userPlaces: [Place] = []
         
-        if let placesSnapshot = userSnapshot.childSnapshot(forPath: "places").children.allObjects as? [DataSnapshot] {
-            for placeSnap in placesSnapshot {
-                let placeName = placeSnap.key
-                let placeAddress = placeSnap.childSnapshot(forPath: "address").value as! String
-                let placeCity = placeSnap.childSnapshot(forPath: "city").value as! String
-                let placeLatitude = placeSnap.childSnapshot(forPath: "coordinates/latitude").value as! CLLocationDegrees
-                let placeLongitude = placeSnap.childSnapshot(forPath: "coordinates/longitude").value as! CLLocationDegrees
-                let placeCoordinates = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
+        for placeDict in placesDict {
+            let placeName: String = placeDict.key
+            
+            guard let placeAddress = placeDict.value["address"] as? String else {
+                print("Fetching user's places from DB returns a place with address nil.")
+                completionHandler(false)
+                return
+            }
+            
+            guard let placeCity = placeDict.value["city"] as? String else {
+                print("Fetching user's places from DB returns a place with city nil.")
+                completionHandler(false)
+                return
+            }
+            
+            guard let placeCoordinatesDict = placeDict.value["coordinates"] as? [String : AnyObject] else {
+                print("Fetching user's places from DB returns a place with coordinates nil.")
+                completionHandler(false)
+                return
+            }
+            
+            guard let placeLatitude = placeCoordinatesDict["latitude"] as? Double else {
+                print("Fetching user's places from DB returns a place with latitude nil.")
+                completionHandler(false)
+                return
+            }
+            
+            guard let placeLongitude = placeCoordinatesDict["longitude"] as? Double else {
+                print("Fetching user's places from DB returns a place with longitude nil.")
+                completionHandler(false)
+                return
+            }
+            
+            let placeCoordinates = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
+            
+            let place = Place(name: placeName, address: placeAddress, city: placeCity, coordinate: placeCoordinates)
+            
+            userPlaces.append(place)
+        }
+
+        //Reading user's protectors
+        
+        guard let protectorsDict = userDictionary["protectors"] as? [String : AnyObject] else {
+            print("Fetching user's protectors from DB returns nil.")
+            completionHandler(false)
+            return
+        }
+        
+        var userProtectors: [Protector] = []
+        
+        for protectorDict in protectorsDict {
+            let protectorID = protectorDict.key
+            
+            guard let protectorStatus = protectorDict.value as? Bool else {
+                print("Fetching user's protectors' status (on/off) from DB returns nil.")
+                completionHandler(false)
+                return
+            }
+            
+            fetchProtector(protectorID: protectorID) {
+                (protector) in
                 
-                let place = Place(name: placeName, address: placeAddress, city: placeCity, coordinate: placeCoordinates)
+                guard let protector = protector else {
+                    print("Error on fetching protector with id: \(protectorID).")
+                    completionHandler(false)
+                    return
+                }
                 
-                places.append(place)
+                userProtectors.append(protector)
             }
-            
-            user.places = places
         }
         
-        //Fetching user's protectors
+        //Reading user's protecteds
         
-        var protectors: [Protector] = []
+        guard let protectedsDict = userDictionary["protected"] as? [String : AnyObject] else {
+            print("Fetching user's protected from DB returns nil.")
+            completionHandler(false)
+            return
+        }
         
-        if let protectorsSnapshot = userSnapshot.childSnapshot(forPath: "protectors").children.allObjects as? [DataSnapshot] {
+        var userProtecteds: [Protected] = []
+        
+        for protectedDict in protectedsDict {
+            let protectedID = protectedDict.key
             
-            for protectorSnap in protectorsSnapshot {
-                fetchProtector(protectorID: protectorSnap.key) {
-                    (protector) in
-                    
-                    guard let protector = protector else {
-                        print("Error on fetching protector")
-                        completionHandler(false)
-                        return
-                    }
-                    
-                    protectors.append(protector)
+            guard let protectedStatus = protectedDict.value as? Bool else {
+                print("Fetching user's protectors' status (on/off) from DB returns nil.")
+                completionHandler(false)
+                return
+            }
+            
+            fetchProtected(protectedID: protectedID) {
+                (protected) in
+                
+                guard let protected = protected else {
+                    print("Error on fetching protector with id: \(protectedID).")
+                    completionHandler(false)
+                    return
                 }
+                
+                protected.allowedToFollow = protectedStatus
+                
+                userProtecteds.append(protected)
             }
         }
         
-        user.protectors = protectors
-        
-        //Fetching user's protecteds
-        
-        var protecteds: [Protected] = []
-        
-        if let protectedsSnapshot = userSnapshot.childSnapshot(forPath: "protected").children.allObjects as? [DataSnapshot] {
-            
-            for protectedSnap in protectedsSnapshot {
-                fetchProtected(protectedID: protectedSnap.key) {
-                    (protected) in
-                    
-                    guard let protected = protected else {
-                        print("Error on fetching protected user with id \(protectedSnap.key).")
-                        completionHandler(false)
-                        return
-                    }
-                    
-                    protecteds.append(protected)
-                }
-            }
-        }
-        
-        user.protected = protecteds
+        user.places = userPlaces
+        user.protectors = userProtectors
+        user.protected = userProtecteds
+
+        completionHandler(true)
     }
     
     ///Builds main user object from users' database information
@@ -298,10 +334,13 @@ class DatabaseManager {
             //Getting protector's information dictionary
             guard var userDictionary = userSnapshot.value as? [String: AnyObject] else {
                 print("User ID fetched returned a nil snapshot from DB.")
+                completionHandler(nil)
                 return
             }
             
             userDictionary["id"] = userID as AnyObject
+            
+            print(userDictionary)
             
             //Fetching user's basic information
             
@@ -315,18 +354,17 @@ class DatabaseManager {
             
             let mainUser = MainUser(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber)
             
-            fetchUserDetailedInfo(user: mainUser, userSnapshot: userSnapshot) {
+            fetchUserDetailedInfo(user: mainUser, userDictionary: userDictionary) {
                 (success) in
                 
-                guard (success == false) else {
+                guard (success == true) else {
                     print("Error on fetching user's detailed profile information.")
                     completionHandler(nil)
                     return
                 }
+                
+                completionHandler(mainUser)
             }
-            
-            completionHandler(mainUser)
-            
         }
     }
     
@@ -341,63 +379,16 @@ class DatabaseManager {
             //Getting protector's information dictionary
             guard var protectorDictionary = protectorSnapshot.value as? [String: AnyObject] else {
                 print("User ID fetched returned a nil snapshot from DB.")
+                completionHandler(nil)
                 return
             }
-
-            /// Fetch places
-//            if let placesSnapshot = protectorSnapshot.childSnapshot(forPath: "places") as? DataSnapshot {
-//
-//                for place in placesSnapshot.children.allObjects as! [DataSnapshot] {
-//
-//                    guard let placeName = place.key as? String else {
-//                        print("Fetching place's name from DB returns nil")
-//                        completionHandler(nil)
-//                        return
-//                    }
-//
-//                    guard let placeAddress = place.childSnapshot(forPath: "address").value as? String else {
-//                        print("Fetching my place's (\(placeName)) address from DB returns nil")
-//                        completionHandler(nil)
-//                        return
-//                    }
-//
-//                    guard let placeCity = place.childSnapshot(forPath: "city").value as? String else {
-//                        print("Fetching my place's (\(placeName)) city from DB returns nil")
-//                        completionHandler(nil)
-//                        return
-//                    }
-//
-//                    guard let placeLatitude = place.childSnapshot(forPath: "coordinates/latitude").value as? Double else {
-//                        print("Fetching my place's (\(placeName)) latitude from DB returns nil")
-//                        completionHandler(nil)
-//                        return
-//                    }
-//
-//                    guard let placeLongitude = place.childSnapshot(forPath: "coordinates/longitude").value as? Double else {
-//                        print("Fetching my place's (\(placeName)) longitude from DB returns nil")
-//                        completionHandler(nil)
-//                        return
-//                    }
-//
-//                    let placeCoordinate = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
-//                    let newPlace = Place(name: placeName, address: placeAddress, city: placeCity, coordinate: placeCoordinate)
-//
-//                    mainUser.myPlaces.append(newPlace)
-//                }
-//            } else {
-//                print("Fetching user's my places from DB returns nil.")
-//                completionHandler(nil)
-//                return
-//            }
-
-            //TODO: protectors, protected
             
             protectorDictionary["id"] = protectorID as AnyObject
             
             //Fetching protector's basic information
             
             guard let user = fetchUserBasicInfo(userDictionary: protectorDictionary) else {
-                print("Error on fetching user's (\(protectorID)) basic profile information.")
+                print("Error on fetching user's (id: \(protectorID)) basic profile information.")
                 completionHandler(nil)
                 return
             }

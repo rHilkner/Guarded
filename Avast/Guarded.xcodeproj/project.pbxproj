@@ -14,11 +14,11 @@
 		C60EEC581FA83642001E2194 /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC541FA83642001E2194 /* Protector.swift */; };
 		C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF31FA292DA00CC4F76 /* Place.swift */; };
 		C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF61FA2A03700CC4F76 /* Coordinate.swift */; };
-		C6152E021FA2B27C00CC4F76 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152E011FA2B27C00CC4F76 /* DatabaseManager.swift */; };
 		C6152E051FA2DB6A00CC4F76 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152E041FA2DB6A00CC4F76 /* AppSettings.swift */; };
 		C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62DF0FB1FA6B47500DC956F /* DatabaseError.swift */; };
 		C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6304DCC1FAECBBC00FEED9B /* User.swift */; };
 		C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */ = {isa = PBXBuildFile; fileRef = C647A8031F8C29A9006E53FA /* infos admin.strings */; };
+		C65358281FB22D1E00301A3E /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65358271FB22D1E00301A3E /* DatabaseManager.swift */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D401F87C58F006415CF /* Assets.xcassets */; };
 		C69153D81FA82B77004BAFE4 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D61FA82B77004BAFE4 /* LocationServices.swift */; };
@@ -50,7 +50,6 @@
 		C60EEC541FA83642001E2194 /* Protector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
 		C6152DF31FA292DA00CC4F76 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		C6152DF61FA2A03700CC4F76 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
-		C6152E011FA2B27C00CC4F76 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C6152E041FA2DB6A00CC4F76 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		C61FB2971F9AAEA80021BE3F /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61FB2981F9AAEA80021BE3F /* FacebookCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FacebookCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +62,7 @@
 		C62DF0FB1FA6B47500DC956F /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		C6304DCC1FAECBBC00FEED9B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C647A8031F8C29A9006E53FA /* infos admin.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "infos admin.strings"; sourceTree = "<group>"; };
+		C65358271FB22D1E00301A3E /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67B4D401F87C58F006415CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		C6152DFE1FA2A8D000CC4F76 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				C6152E011FA2B27C00CC4F76 /* DatabaseManager.swift */,
+				C65358271FB22D1E00301A3E /* DatabaseManager.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -446,8 +446,8 @@
 				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
 				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,
 				C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */,
-				C6152E021FA2B27C00CC4F76 /* DatabaseManager.swift in Sources */,
 				C60EEC581FA83642001E2194 /* Protector.swift in Sources */,
+				C65358281FB22D1E00301A3E /* DatabaseManager.swift in Sources */,
 				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
 				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
 				C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */,

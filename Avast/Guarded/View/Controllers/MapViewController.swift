@@ -23,7 +23,23 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var anotherUserLocationLabel: UILabel!
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(gestureReconizer: )))
+        tapGestureRecognizer.delegate = self
+        map.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        locationServices = LocationServices()
+        locationServices?.delegate = self
+        
+        self.timerButton.isHidden = true
+        
+        self.map.showsUserLocation = false
+    }
 
 	/// add tap gesture
 	@objc func tapGesture(gestureReconizer: UITapGestureRecognizer) {
@@ -50,27 +66,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 	}
 
-
-	override func viewWillAppear(_ animated: Bool) {
-		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(gestureReconizer: )))
-		tapGestureRecognizer.delegate = self
-		map.addGestureRecognizer(tapGestureRecognizer)
-	}
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        locationServices = LocationServices()
-        locationServices?.delegate = self
-        
-        self.timerButton.isHidden = true
-
-		self.map.showsUserLocation = true
-
-		
-        //dispatch async - mandar o mapa ficar updatando a cada 10 seg (?)
-    }
-
     @IBAction func sendLocation(_ sender: Any) {
         if let location = AppSettings.mainUser!.lastLocation {
             DatabaseManager.updateLastLocation(location) {
@@ -86,33 +81,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 	@IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
 		self.autocompleteSearch()
-	}
-	//	@IBAction func sendLocation(_ sender: Any) {
- //       if let location = AppSettings.mainUser!.lastLocation {
-  //          DatabaseManager.updateLastLocation(user: AppSettings.mainUser!, currentLocation: location)
-//        }
-//    }
-
-//   @IBAction func getCurrentLocationAction(_ sender: UIButton) {
-//		let location = AppSettings.mainUser!.lastLocation
-//		self.currentLocationLabel.text = "latitude: \(location!.latitude) longitude: \(location!.longitude)"
-//    }
-
-//    @IBAction func receiveUserLocation(_ sender: UIButton) {
-
-   //     let user = User(id: "2", name: "", email: "", phoneNumber: "")
-   //     DatabaseManager.getLastLocation(user: user) {
-   //         lastLocation in
-            
-   //         guard (lastLocation != nil) else {
-   //             print("Couldn't fetch user's last location.")
-   //             return
-   //         }
-            
-   //         self.displayLocation(location: lastLocation!)
-    //    }
-	//}
-
+    }
 
     @IBAction func setTimer() {
         performSegue(withIdentifier: "SetTimerViewController", sender: nil)
