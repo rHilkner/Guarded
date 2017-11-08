@@ -38,7 +38,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.timerButton.isHidden = true
         
-        self.map.showsUserLocation = false
+        self.map.showsUserLocation = true
     }
 
 	/// add tap gesture
