@@ -200,11 +200,7 @@ class DatabaseManager {
     ///Returns true if successfull and false otherwise.
     static func fetchUserDetailedInfo(user: MainUser, userDictionary: [String : AnyObject], completionHandler: @escaping (Bool) -> Void) {
         
-        guard let placesDict = userDictionary["places"] as? [String : AnyObject] else {
-            print("Fetching user's places from DB returns nil.")
-            completionHandler(false)
-            return
-        }
+        let placesDict = userDictionary["places"] as? [String : AnyObject] ?? [:]
 
         //Reading user's places
         
@@ -252,23 +248,13 @@ class DatabaseManager {
 
         //Reading user's protectors
         
-        guard let protectorsDict = userDictionary["protectors"] as? [String : AnyObject] else {
-            print("Fetching user's protectors from DB returns nil.")
-            completionHandler(false)
-            return
-        }
+        let protectorsDict = userDictionary["protectors"] as? [String : AnyObject] ?? [:]
         
         var userProtectors: [Protector] = []
         
         for protectorDict in protectorsDict {
             let protectorID = protectorDict.key
-            
-            guard let protectorStatus = protectorDict.value as? Bool else {
-                print("Fetching user's protectors' status (on/off) from DB returns nil.")
-                completionHandler(false)
-                return
-            }
-            
+                        
             fetchProtector(protectorID: protectorID) {
                 (protector) in
                 
@@ -284,11 +270,7 @@ class DatabaseManager {
         
         //Reading user's protecteds
         
-        guard let protectedsDict = userDictionary["protected"] as? [String : AnyObject] else {
-            print("Fetching user's protected from DB returns nil.")
-            completionHandler(false)
-            return
-        }
+        let protectedsDict = userDictionary["protected"] as? [String : AnyObject] ?? [:]
         
         var userProtecteds: [Protected] = []
         
@@ -313,12 +295,14 @@ class DatabaseManager {
                 protected.allowedToFollow = protectedStatus
                 
                 userProtecteds.append(protected)
+                
+                print("Protected added.")
             }
         }
         
         user.places = userPlaces
         user.protectors = userProtectors
-        user.protected = userProtecteds
+        user.protecteds = userProtecteds
 
         completionHandler(true)
     }
@@ -340,8 +324,6 @@ class DatabaseManager {
             
             userDictionary["id"] = userID as AnyObject
             
-            print(userDictionary)
-            
             //Fetching user's basic information
             
             guard let user = fetchUserBasicInfo(userDictionary: userDictionary) else {
@@ -362,6 +344,8 @@ class DatabaseManager {
                     completionHandler(nil)
                     return
                 }
+                
+                print("aaaaaaaa \(mainUser.protecteds.count)")
                 
                 completionHandler(mainUser)
             }
@@ -456,26 +440,38 @@ class DatabaseManager {
             (protectedSnapshot) in
             
             //Getting protector's information dictionary
-            guard var protectedDictionary = protectedSnapshot.value as? [String: AnyObject] else {
+            guard var protectedDictionary = protectedSnapshot.value as? [String : AnyObject] else {
                 print("User ID fetched returned a nil snapshot from DB.")
                 return
             }
             
             protectedDictionary["id"] = protectedSnapshot.key as AnyObject
             
-            //Fetching protector's basic information
+            //Fetching protected's basic information
             
-            guard let protected = fetchUserBasicInfo(userDictionary: protectedDictionary) as? Protected else {
+            guard let user = fetchUserBasicInfo(userDictionary: protectedDictionary) else {
                 print("Error on fetching user's (\(protectedID)) basic profile information.")
                 completionHandler(nil)
                 return
             }
             
-            if let protectedLastLocation = fetchProtectedLastLocation(protected: protected, protectedSnapshot: protectedSnapshot) {
-                protected.lastLocation = protectedLastLocation
-            } else {
-                print("Error on fetching user's (\(protectedID)) last location.")
+            let protected = Protected(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber)
+            
+            //Fetching protected's last location
+            
+            guard let lastLocationDict = protectedDictionary["lastLocation"] as? [String : Double] else {
+                print("User ID fetched returned last location nil from DB.")
+                completionHandler(nil)
+                return
             }
+            
+            guard let protectedLastLocation = fetchLastLocation(lastLocationDict: lastLocationDict) else {
+                print("Error on fetching user's (\(protectedID)) last location.")
+                completionHandler(nil)
+                return
+            }
+            
+            protected.lastLocation = protectedLastLocation
             
             completionHandler(protected)
         }
@@ -504,22 +500,29 @@ class DatabaseManager {
                 let protectedSnap = protectedSnapList[0]
                 
                 //Getting protected's information dictionary
-                guard var protectedDictionary = protectedSnap.value as? [String: AnyObject] else {
+                guard var protectedDict = protectedSnap.value as? [String : AnyObject] else {
                     print("User ID fetched returned a nil snapshot from DB.")
                     return
                 }
                 
-                protectedDictionary["id"] = protectedSnap.key as AnyObject
+                protectedDict["id"] = protectedSnap.key as AnyObject
                 
                 //Fetching protector's basic information
-                guard let protected = fetchUserBasicInfo(userDictionary: protectedDictionary) as? Protected else {
+                guard let protected = fetchUserBasicInfo(userDictionary: protectedDict) as? Protected else {
                     print("Error on fetching user's (\(protectedName)) basic profile information.")
                     completionHandler(nil)
                     return
                 }
                 
                 //Fetching protected's last location
-                if let protectedLastLocation = fetchProtectedLastLocation(protected: protected, protectedSnapshot: protectedSnap) {
+                guard let lastLocationDict = protectedDict["lastLocation"] as? [String : Double] else {
+                    print("User ID fetched returned last location nil from DB.")
+                    completionHandler(nil)
+                    return
+                }
+                
+                
+                if let protectedLastLocation = fetchLastLocation(lastLocationDict: lastLocationDict) {
                     protected.lastLocation = protectedLastLocation
                 } else {
                     print("Error on fetching user's (\(protectedName)) last location.")
@@ -531,22 +534,57 @@ class DatabaseManager {
     }
     
     ///Fetches user's protecteds last location
-    static func fetchProtectedLastLocation(protected: Protected, protectedSnapshot: DataSnapshot) -> Coordinate? {
+    static func fetchLastLocation(lastLocationDict: [String : Double]) -> Coordinate? {
         
-        let lastLocationSnap = protectedSnapshot.childSnapshot(forPath: "lastLocation")
+        guard let latitude = lastLocationDict["latitude"] else {
+            print("Error on fetching latitude from given last location dictionary.")
+            return nil
+        }
         
-        guard let latitude = lastLocationSnap.childSnapshot(forPath: "latitude").value as? CLLocationDegrees,
-            let longitude = lastLocationSnap.childSnapshot(forPath: "longitude").value as? CLLocationDegrees else {
-                print("Error on fetching user's last location.")
-                return nil
+        guard let longitude = lastLocationDict["longitude"] else {
+            print("Error on fetching longitude from given last location dictionary.")
+            return nil
         }
         
         return Coordinate(latitude: latitude, longitude: longitude)
     }
     
-    ///Removes automatic update of user's protecteds last location
-    static func removeLastLocationObserver() {
-        
+    ///Adds observer to all of the main user's protecteds' last location
+    static func addObserverToProtectedsLocations(completionHandler: @escaping (Bool) -> Void) {
+        print("hmm: \(AppSettings.mainUser!.protecteds.count)")
+        for protected in AppSettings.mainUser!.protecteds {
+            let protectedLastLocationRef = ref.child("users/\(protected.id)/lastLocation")
+            
+            protectedLastLocationRef.observe(.value) {
+                (lastLocationSnap) in
+                
+                //Getting protected's information dictionary
+                guard let lastLocationDict = lastLocationSnap.value as? [String : Double] else {
+                    print("User fetched returned last location nil snapshot from DB.")
+                    completionHandler(false)
+                    return
+                }
+                
+                let protectedLocation = fetchLastLocation(lastLocationDict: lastLocationDict)
+                
+                protected.lastLocation = protectedLocation
+                
+                print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                
+                for newProtected in AppSettings.mainUser!.protecteds {
+                    print(newProtected.lastLocation)
+                }
+            }
+        }
+    }
+    
+    ///Adds observer of all of the main user's protecteds' last location
+    static func removeObserverFromProtectedsLocations() {
+        for protected in AppSettings.mainUser!.protecteds {
+            let protectedLastLocationRef = ref.child("users/\(protected.id)/lastLocation")
+            
+            protectedLastLocationRef.removeAllObservers()
+        }
     }
     
     ///Updates the latitude and longitude values of DB's last location.

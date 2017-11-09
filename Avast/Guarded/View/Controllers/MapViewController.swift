@@ -33,12 +33,22 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationServices = LocationServices()
-        locationServices?.delegate = self
-        
         self.timerButton.isHidden = true
         
         self.map.showsUserLocation = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        AppSettings.mainUser?.updateMapContinuously = true
+        
+        self.locationServices = LocationServices()
+        self.locationServices?.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AppSettings.mainUser?.updateMapContinuously = false
+        
+        self.locationServices = nil
     }
 
 	/// add tap gesture

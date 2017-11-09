@@ -19,7 +19,7 @@ class LoginServices {
             (userID, userName, userEmail, error) in
             
             guard (error == nil) else {
-                print("Error on fetching user info from facebook")
+                print("Error on fetching user info from facebook.")
                 FBSDKLoginManager().logOut()
                 completionHandler(false)
                 return
@@ -30,7 +30,6 @@ class LoginServices {
                 (user) in
                 
                 if (user != nil) {
-                    print("DONE---------------------------------------------------------")
                     AppSettings.mainUser = user
                     completionHandler(true)
                     return

@@ -13,7 +13,34 @@ class MainUser: User {
     var lastLocation: Coordinate?
     var places: [Place] = []
     var protectors: [Protector] = []
-    var protected: [Protected] = []
+    var protecteds: [Protected] = []
+    
+    private var _updateMapContinuously: Bool = false
+    var updateMapContinuously: Bool {
+        get {
+            return _updateMapContinuously
+        }
+        set {
+            if (newValue == _updateMapContinuously) {
+                return
+            }
+            
+            _updateMapContinuously = newValue
+            
+            if (newValue == true) {
+                DatabaseManager.addObserverToProtectedsLocations() {
+                    (success) in
+                    
+                    guard success == true else {
+                        print("An error has occured when trying to remove observers from all of main user's protecteds' last location.")
+                        return
+                    }
+                }
+            } else {
+                DatabaseManager.removeObserverFromProtectedsLocations()
+            }
+        }
+    }
     
     func updateLastLocation(_ coordinate: Coordinate) {
         DatabaseManager.updateLastLocation(coordinate) {
