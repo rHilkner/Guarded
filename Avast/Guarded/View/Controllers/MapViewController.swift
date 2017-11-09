@@ -62,7 +62,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
         locationServices = LocationServices()
         locationServices?.delegate = self
-        
+
         self.timerButton.isHidden = true
 
 		self.map.showsUserLocation = true
@@ -84,6 +84,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 
+	@IBAction func zoomInUserLocation(_ sender: Any) {
+		self.displayCurrentLocation()
+	}
 	@IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
 		self.autocompleteSearch()
 	}

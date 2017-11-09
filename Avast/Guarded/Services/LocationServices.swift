@@ -120,15 +120,18 @@ extension LocationServices: CLLocationManagerDelegate {
 
         
     }
-    
-    /// handle authorization status changes
-    private func locationManager(manager: CLLocationManager,
-                                 didChangeAuthorizationStatus status: CLAuthorizationStatus)
-    {
-        if (status == .authorizedAlways || status == .authorizedWhenInUse) {
-            self.manager.startUpdatingLocation()
-        } else if (status == .denied || status == .restricted) {
-            self.manager.stopUpdatingLocation()
-        }
-    }
+
+	/// handle authorization status changes
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		if (status == .authorizedAlways || status == .authorizedWhenInUse) {
+			self.manager.startUpdatingLocation()
+		} else if (status == .denied || status == .restricted) {
+			self.manager.stopUpdatingLocation()
+		}
+	}
+
+
+	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+		print(error.localizedDescription)
+	}
 }

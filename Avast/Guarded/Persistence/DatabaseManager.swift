@@ -298,6 +298,7 @@ class DatabaseManager {
             //Getting protector's information dictionary
             guard var userDictionary = userSnapshot.value as? [String: AnyObject] else {
                 print("User ID fetched returned a nil snapshot from DB.")
+				completionHandler(nil)
                 return
             }
             

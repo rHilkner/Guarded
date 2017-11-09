@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
 
-
+		UIApplication.shared.registerForRemoteNotifications()
         FirebaseApp.configure()
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
@@ -59,6 +59,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+	///handle the device token (probably send it to your server for later use)
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+
+		let tokenString = deviceToken.reduce("") { string, byte in
+			string + String(format: "%02X", byte)
+		}
+		print("Device Token: \(tokenString)")
+	}
+
+	/// The errors are pretty explicit
+	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+		print("Failed to register: \(error)")
+	}
+
+	/// 
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+		//handle received notification
+		print(userInfo)
+	}
 
 }
 
