@@ -51,30 +51,30 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         self.locationServices = nil
     }
 
-	/// add tap gesture
-	@objc func tapGesture(gestureReconizer: UITapGestureRecognizer) {
+    /// add tap gesture
+    @objc func tapGesture(gestureReconizer: UITapGestureRecognizer) {
 
-		print("tap")
+        print("tap")
 
-		//add some location to my places just for test
-		let point = gestureReconizer.location(in: map)
-		let tapPoint = map.convert(point, toCoordinateFrom: map)
-		
-		let userID = AppSettings.mainUser?.id
-		let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
+        //add some location to my places just for test
+        let point = gestureReconizer.location(in: map)
+        let tapPoint = map.convert(point, toCoordinateFrom: map)
+        
+        let userID = AppSettings.mainUser?.id
+        let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
 
-		let place = Place(name: "zé bostola", address: "eldorado", city: "campinas", coordinate: coordinate)
+        let place = Place(name: "zé bostola", address: "eldorado", city: "campinas", coordinate: coordinate)
 
         DatabaseManager.addPlace(place) {
             (error) in
         }
 
-		/// TODO: Definir o que fazer no singleTapGesture
-		//self.anotherUserLocationLabel.text = "\(tapPoint.latitude),\(tapPoint.longitude)"
+        /// TODO: Definir o que fazer no singleTapGesture
+        //self.anotherUserLocationLabel.text = "\(tapPoint.latitude),\(tapPoint.longitude)"
 
-		print("\(tapPoint.latitude),\(tapPoint.longitude)")
+        print("\(tapPoint.latitude),\(tapPoint.longitude)")
 
-	}
+    }
 
     @IBAction func sendLocation(_ sender: Any) {
         if let location = AppSettings.mainUser!.lastLocation {
@@ -89,11 +89,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 
-	@IBAction func zoomInUserLocation(_ sender: Any) {
-		self.displayCurrentLocation()
-	}
-	@IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
-		self.autocompleteSearch()
+    @IBAction func zoomInUserLocation(_ sender: Any) {
+        self.displayCurrentLocation()
+    }
+    @IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
+        self.autocompleteSearch()
     }
 
     @IBAction func setTimer() {
@@ -232,49 +232,49 @@ extension MapViewController: TimerServicesDelegate {
 
 extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
-	public func autocompleteSearch () {
-		let placePickerController = GMSAutocompleteViewController()
-		placePickerController.delegate = self
+    public func autocompleteSearch () {
+        let placePickerController = GMSAutocompleteViewController()
+        placePickerController.delegate = self
 
-		let filter = GMSAutocompleteFilter()
-		filter.country = "BR"
+        let filter = GMSAutocompleteFilter()
+        filter.country = "BR"
 
-		placePickerController.autocompleteFilter = filter
+        placePickerController.autocompleteFilter = filter
 
-		present(placePickerController, animated: true, completion: nil)
-	}
+        present(placePickerController, animated: true, completion: nil)
+    }
 
-	// Handle the user's selection.
-	func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
 
-		let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
-		self.displayLocation(location: coordinate)
+        self.displayLocation(location: coordinate)
 
-		print("Place name: \(place.name)")
-		print("Place address: \(place.formattedAddress)")
-		print("Place attributions: \(place.attributions)")
-		dismiss(animated: true, completion: nil)
-	}
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        dismiss(animated: true, completion: nil)
+    }
 
-	func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-		// TODO: handle the error.
-		print("Error: ", error.localizedDescription)
-	}
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
+    }
 
-	// User canceled the operation.
-	func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-		dismiss(animated: true, completion: nil)
-	}
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
 
-	// Turn the network activity indicator on and off again.
-	func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-		UIApplication.shared.isNetworkActivityIndicatorVisible = true
-	}
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
 
-	func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-		UIApplication.shared.isNetworkActivityIndicatorVisible = false
-	}
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
 
 }
 

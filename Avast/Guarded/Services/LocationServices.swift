@@ -19,14 +19,13 @@ class LocationServices: NSObject {
     var manager = CLLocationManager()
     var geocoder = CLGeocoder()
     var delegate: LocationUpdateProtocol!
-    var isInitialized: Bool!
+    var isInitialized: Bool = false
 
 
     override init() {
         super.init()
 
         self.manager.delegate = self
-		self.isInitialized = false
 
         // Get the best accuracy
         // TODO: check if affects the app performance
@@ -113,25 +112,25 @@ extension LocationServices: CLLocationManagerDelegate {
         }
         
         /// display the location every time it's updated
-		if (!isInitialized){
-			self.delegate.displayCurrentLocation()
-			isInitialized = true
-		}
+        if (!isInitialized){
+            self.delegate.displayCurrentLocation()
+            isInitialized = true
+        }
 
         
     }
 
-	/// handle authorization status changes
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		if (status == .authorizedAlways || status == .authorizedWhenInUse) {
-			self.manager.startUpdatingLocation()
-		} else if (status == .denied || status == .restricted) {
-			self.manager.stopUpdatingLocation()
-		}
-	}
+    /// handle authorization status changes
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedAlways || status == .authorizedWhenInUse) {
+            self.manager.startUpdatingLocation()
+        } else if (status == .denied || status == .restricted) {
+            self.manager.stopUpdatingLocation()
+        }
+    }
 
 
-	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-		print(error.localizedDescription)
-	}
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
 }
