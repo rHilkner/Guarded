@@ -235,7 +235,7 @@
                                     <color key="titleShadowColor" red="0.51696306467056274" green="0.70824325084686279" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="setRegionOnUser:" destination="1iy-gm-vn2" eventType="touchUpInside" id="RGd-vy-V7g"/>
+                                    <action selector="zoomInUserLocation:" destination="1iy-gm-vn2" eventType="touchUpInside" id="vzT-HB-4cd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -408,18 +408,41 @@
         <!--HELP-->
         <scene sceneID="WGB-6i-6BM">
             <objects>
-                <viewController id="ajE-R7-KR4" sceneMemberID="viewController">
+                <viewController id="ajE-R7-KR4" customClass="HelpViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5v2-vA-5By">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9d-CS-d0N">
+                                <rect key="frame" x="82" y="243" width="211" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="Help">
+                                    <color key="titleColor" red="0.99559134244918823" green="0.005286692176014185" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="helpButtonClicked:" destination="ajE-R7-KR4" eventType="touchUpInside" id="piT-Ra-Dej"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rolooooooouuuuu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpO-Lp-A95">
+                                <rect key="frame" x="55" y="450" width="264" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BkP-Fx-Ail"/>
                     </view>
                     <navigationItem key="navigationItem" title="HELP" id="YBu-dX-fWf"/>
+                    <connections>
+                        <outlet property="rolouLabel" destination="tpO-Lp-A95" id="SUl-6t-hAZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aWF-KC-Wio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4782" y="1"/>
+            <point key="canvasLocation" x="4781.6000000000004" y="0.44977511244377816"/>
         </scene>
         <!--HELP-->
         <scene sceneID="rN7-HN-ik1">

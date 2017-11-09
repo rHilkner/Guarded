@@ -89,6 +89,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
 
+	@IBAction func zoomInUserLocation(_ sender: Any) {
+		self.displayCurrentLocation()
+	}
 	@IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
 		self.autocompleteSearch()
     }
