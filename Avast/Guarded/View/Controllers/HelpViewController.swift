@@ -10,7 +10,6 @@ import UIKit
 
 class HelpViewController: UIViewController {
 
-	var notificationServices: NotificationServices?
 	var contador: Int?
 
 	@IBOutlet weak var rolouLabel: UILabel!
@@ -35,20 +34,6 @@ class HelpViewController: UIViewController {
 		self.rolouLabel.isHidden = true
 
 		self.contador = 0
-
-		notificationServices = NotificationServices()
-
-		DatabaseManager.addObserverToProtectedsHelpOccurrences(){
-			(coordinate) in
-
-			guard (coordinate != nil) else {
-				print("Error on adding a observer to help occurrences.")
-				return
-			}
-
-			NotificationServices.sendHelpNotification()
-			print(coordinate)
-		}
 
         // Do any additional setup after loading the view.
     }

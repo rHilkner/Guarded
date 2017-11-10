@@ -16,7 +16,7 @@ class MainUser: User {
     var protecteds: [Protected] = []
     
     private var _updateMapContinuously: Bool = false
-    var updateMapContinuously: Bool {
+   /* var updateMapContinuously: Bool {
         get {
             return _updateMapContinuously
         }
@@ -40,7 +40,7 @@ class MainUser: User {
                 DatabaseManager.removeObserverFromProtectedsLocations()
             }
         }
-    }
+    }*/
     
     func updateLastLocation(_ coordinate: Coordinate) {
         DatabaseManager.updateLastLocation(coordinate) {

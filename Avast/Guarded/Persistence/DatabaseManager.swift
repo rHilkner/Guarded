@@ -609,7 +609,7 @@ class DatabaseManager {
 	}
     
     ///Adds observer to all of the main user's protecteds' last location
-    static func addObserverToProtectedsLocations(completionHandler: @escaping (Bool) -> Void) {
+    static func addObserverToProtectedsLocations(completionHandler: @escaping (Protected?) -> Void) {
         print("hmm: \(AppSettings.mainUser!.protecteds.count)")
         for protected in AppSettings.mainUser!.protecteds {
             let protectedLastLocationRef = ref.child("users/\(protected.id)/lastLocation")
@@ -620,7 +620,7 @@ class DatabaseManager {
                 //Getting protected's information dictionary
                 guard let lastLocationDict = lastLocationSnap.value as? [String : Double] else {
                     print("User fetched returned last location nil snapshot from DB.")
-                    completionHandler(false)
+                    completionHandler(nil)
                     return
                 }
                 
@@ -628,7 +628,7 @@ class DatabaseManager {
                 
                 protected.lastLocation = protectedLocation
                 
-                
+                completionHandler(protected)
                 print("Protected [\(protected.name)] new location: \(protected.lastLocation!).")
             }
         }

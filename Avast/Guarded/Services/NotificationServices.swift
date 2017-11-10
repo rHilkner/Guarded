@@ -35,7 +35,21 @@ class NotificationServices: NSObject {
 	}
 
     static func sendHelpNotification () {
-		NotificationCenter.default.post(name: .helpNotification, object: nil)
+
+		let content = UNMutableNotificationContent()
+		content.title = "Ajuda requisitada!"
+		content.body = "Um protegido seu pediu sua ajuda, procure entender a situação e ajudá-lo"
+
+		let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3.0, repeats: false)
+
+		let notificationRequest = UNNotificationRequest(identifier: "help", content: content, trigger: trigger)
+		UNUserNotificationCenter.current().add(notificationRequest){
+			(error) in
+
+			if error != nil {
+				print("Error in adding notification request")
+			}
+		}
 	}
 
 	@objc func handleNotification (notification: Notification) {

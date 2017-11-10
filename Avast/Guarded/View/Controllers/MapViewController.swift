@@ -40,18 +40,47 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        AppSettings.mainUser?.updateMapContinuously = true
+      //  AppSettings.mainUser?.updateMapContinuously = true
         
         self.locationServices = LocationServices()
         self.locationServices?.delegate = self
 
-		for protected in (AppSettings.mainUser?.protecteds)! {
-			displayLocation(location: protected.lastLocation!, name: protected.name, place: false)
+		DatabaseManager.addObserverToProtectedsHelpOccurrences(){
+			(coordinate) in
+
+			guard (coordinate != nil) else {
+				print("Error on adding a observer to help occurrences.")
+				return
+			}
+
+			NotificationServices.sendHelpNotification()
+			self.displayLocation(location: coordinate!, name: "Help", identifier: "Help Button")
+			print(coordinate)
 		}
+
+		DatabaseManager.addObserverToProtectedsLocations(){
+			(protected) in
+
+			guard (protected != nil) else {
+				print("Error on adding a observer to protected locations.")
+				return
+			}
+
+			self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: "Protected")
+		}
+
+		for place in (AppSettings.mainUser?.places)!{
+			self.displayLocation(location: place.coordinate, name: place.name, identifier: "My Place")
+		}
+
+		/*for protected in (AppSettings.mainUser?.protecteds)! {
+			self.displayLocation(location: protected.lastLocation!, name: protected.name, identifier: "Protected")
+		}*/
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        AppSettings.mainUser?.updateMapContinuously = false
+       // AppSettings.mainUser?.updateMapContinuously = false
         
         self.locationServices = nil
     }
@@ -156,32 +185,30 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
 
+
+
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 		if annotation is MKUserLocation {
 			//return nil so map view draws "blue dot" for standard user location
 			return nil
 		}
 
-
-		if annotation.subtitle! == "My Place" {
-			var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "")
-			pinView.canShowCallout = true
-			pinView.animatesDrop = true
-			pinView.pinTintColor = .red
-
-			return pinView
-		}
-
 		var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "")
 		pinView.canShowCallout = true
-		pinView.animatesDrop = true
-		pinView.pinTintColor = .green
+		pinView.animatesDrop = false
+
+
+		if annotation.subtitle! == "My Place" {
+			pinView.pinTintColor = .blue
+		} else if annotation.subtitle! == "Help Button" {
+			pinView.pinTintColor = .red
+		} else if annotation.subtitle! == "Protected" {
+			pinView.pinTintColor = .green
+		} else {
+			pinView.pinTintColor = UIColor.gray
+		}
 
 		return pinView
-		var annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "")
-		annotationView.canShowCallout = true
-		annotationView.backgroundColor = .red
-		return annotationView
 
 	}
 }
@@ -200,33 +227,35 @@ extension MapViewController: LocationUpdateProtocol {
 
         map.setRegion(region, animated: true)
 
+
+
+
+
     }
 
-	func displayLocation(location: Coordinate, name: String, place: Bool) {
+	func displayLocation(location: Coordinate, name: String, identifier: String) {
         
         /// defining zoom scale
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+      //  let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         
         let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 
         /// show region around the location with the scale defined
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(someLoc2D, span)
+    //    let region: MKCoordinateRegion = MKCoordinateRegionMake(someLoc2D, span)
 
 		let annotation = MKPointAnnotation()
 		annotation.title = name
 		annotation.coordinate = someLoc2D
 
-		if place {
-			annotation.subtitle = "My Place"
-		} else {
-			annotation.subtitle = "Protected"
-		}
+		annotation.subtitle = identifier
 
 		self.map.addAnnotation(annotation)
 
 
-        map.setRegion(region, animated: true)
-        //self.map.showAnnotations([annotation], animated: true)
+ //       map.setRegion(region, animated: true)
+        self.map.showAnnotations([annotation], animated: true)
+
+
     }
 
 }
@@ -297,7 +326,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
         let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
-		self.displayLocation(location: coordinate, name: place.name, place: true)
+		self.displayLocation(location: coordinate, name: place.name, identifier: "Search")
 
         print("Place name: \(place.name)")
         print("Place address: \(place.formattedAddress)")
