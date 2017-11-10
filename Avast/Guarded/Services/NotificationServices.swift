@@ -34,11 +34,9 @@ class NotificationServices: NSObject {
 		NotificationCenter.default.removeObserver(self)
 	}
 
-    func sendHelpNotification () {
+    static func sendHelpNotification () {
 		NotificationCenter.default.post(name: .helpNotification, object: nil)
 	}
-
-
 
 	@objc func handleNotification (notification: Notification) {
 		
