@@ -587,8 +587,8 @@ class DatabaseManager {
 	static func addObserverToProtectedsHelpOccurrences(completionHandler: @escaping (Coordinate?) -> Void){
 
 		//print("hmm: \(AppSettings.mainUser!.protecteds.count)")
-	//	for protected in AppSettings.mainUser!.protecteds {
-			let protectedHelpButtonOccurrencesRef = ref.child("users/\(AppSettings.mainUser!.id)/helpButtonOccurences")
+		for protected in AppSettings.mainUser!.protecteds {
+			let protectedHelpButtonOccurrencesRef = ref.child("users/\(protected.id)/helpButtonOccurences")
 
 			protectedHelpButtonOccurrencesRef.observe(.childAdded){
 				(helpButtonOccurrencesSnap) in
@@ -603,6 +603,7 @@ class DatabaseManager {
 
 				completionHandler(coordinate)
 			}
+		}
 
 
 

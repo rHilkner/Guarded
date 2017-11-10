@@ -77,6 +77,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			self.displayLocation(location: protected.lastLocation!, name: protected.name, identifier: "Protected")
 		}*/
 
+		//self.displayCurrentLocation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
