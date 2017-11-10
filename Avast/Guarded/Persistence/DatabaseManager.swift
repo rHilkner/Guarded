@@ -253,8 +253,12 @@ class DatabaseManager {
         
         var userProtectors: [Protector] = []
         
+        let dispatchGroup = DispatchGroup()
+        
         for protectorDict in protectorsDict {
             let protectorID = protectorDict.key
+            
+            dispatchGroup.enter()
                         
             fetchProtector(protectorID: protectorID) {
                 (protector) in
@@ -266,6 +270,8 @@ class DatabaseManager {
                 }
                 
                 userProtectors.append(protector)
+                
+                dispatchGroup.leave()
             }
         }
         
@@ -284,6 +290,8 @@ class DatabaseManager {
                 return
             }
             
+            dispatchGroup.enter()
+            
             fetchProtected(protectedID: protectedID) {
                 (protected) in
                 
@@ -297,15 +305,17 @@ class DatabaseManager {
                 
                 userProtecteds.append(protected)
                 
-                print("Protected added.")
+                dispatchGroup.leave()
             }
         }
         
-        user.places = userPlaces
-        user.protectors = userProtectors
-        user.protecteds = userProtecteds
-
-        completionHandler(true)
+        dispatchGroup.notify(queue: .main) {
+            user.places = userPlaces
+            user.protectors = userProtectors
+            user.protecteds = userProtecteds
+            
+            completionHandler(true)
+        }
     }
     
     ///Builds main user object from users' database information
@@ -617,11 +627,8 @@ class DatabaseManager {
                 
                 protected.lastLocation = protectedLocation
                 
-                print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 
-                for newProtected in AppSettings.mainUser!.protecteds {
-                    print(newProtected.lastLocation)
-                }
+                print("Protected [\(protected.name)] new location: \(protected.lastLocation!).")
             }
         }
     }
