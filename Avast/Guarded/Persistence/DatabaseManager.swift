@@ -304,11 +304,12 @@ class DatabaseManager {
                 protected.allowedToFollow = protectedStatus
                 
                 userProtecteds.append(protected)
-                
+
+				
                 dispatchGroup.leave()
             }
         }
-        
+
         dispatchGroup.notify(queue: .main) {
             user.places = userPlaces
             user.protectors = userProtectors
