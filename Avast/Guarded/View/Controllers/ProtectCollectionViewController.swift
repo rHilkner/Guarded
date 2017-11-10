@@ -11,20 +11,17 @@ import CoreLocation
 import MapKit
 
 class ProtectCollectionViewController: UICollectionViewController {
-
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var addProtectorButton: UIBarButtonItem!
     
+    var protectors = [Protector]()
+    var protected = [Protected]()
     
     override func viewDidLoad() {
+        loadActors()
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,8 +48,12 @@ class ProtectCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 1
+        let reuseIndex = segmentedControl.selectedSegmentIndex
+        if (reuseIndex == 0) {
+            return self.protectors.count
+        } else {
+            return self.protected.count
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -61,21 +62,20 @@ class ProtectCollectionViewController: UICollectionViewController {
         if (reuseIndex == 0) {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectorCell", for: indexPath) as! ProtectorCollectionViewCell
-            cell.personName.text = "Paulo"
+            cell.personName.text = protectors[indexPath.row].name
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
             return cell
             
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectedCell", for: indexPath) as! ProtectedCollectionViewCell
-            cell.personName.text = "Andressa"
+            cell.personName.text = protected[indexPath.row].name
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
             cell.pin.image = UIImage(named:"Orange Pin")
             return cell
             
         }
     }
-    
     
     @IBAction func segControlChanged(_ sender: UISegmentedControl) {
         self.collectionView?.reloadData()
@@ -125,5 +125,20 @@ class ProtectCollectionViewController: UICollectionViewController {
         showActionSheet()
     }
 
+    func loadActors(){
+        if let userProtectors = AppSettings.mainUser?.protectors {
+            self.protectors = userProtectors
+        } else {
+            self.protectors = [Protector]()
+        }
+        
+        if let userProtected = AppSettings.mainUser?.protecteds {
+            self.protected = userProtected
+        } else {
+            self.protected = [Protected]()
+        }
+
+    }
+    
     
 }
