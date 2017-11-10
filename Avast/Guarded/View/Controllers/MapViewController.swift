@@ -34,6 +34,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         self.timerButton.isHidden = true
+		self.map.delegate = self
         
         self.map.showsUserLocation = true
     }
@@ -43,6 +44,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.locationServices = LocationServices()
         self.locationServices?.delegate = self
+
+		for protected in (AppSettings.mainUser?.protecteds)! {
+			displayLocation(location: protected.lastLocation!, name: protected.name, place: false)
+		}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,7 +131,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
     }
-    
+
+
+
+
 }
 
 
@@ -146,6 +154,37 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 //    }
 //}
 
+extension MapViewController: MKMapViewDelegate {
+
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+		if annotation is MKUserLocation {
+			//return nil so map view draws "blue dot" for standard user location
+			return nil
+		}
+
+
+		if annotation.subtitle! == "My Place" {
+			var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "")
+			pinView.canShowCallout = true
+			pinView.animatesDrop = true
+			pinView.pinTintColor = .red
+
+			return pinView
+		}
+
+		var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "")
+		pinView.canShowCallout = true
+		pinView.animatesDrop = true
+		pinView.pinTintColor = .green
+
+		return pinView
+		var annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "")
+		annotationView.canShowCallout = true
+		annotationView.backgroundColor = .red
+		return annotationView
+
+	}
+}
 
 
 extension MapViewController: LocationUpdateProtocol {
@@ -163,7 +202,7 @@ extension MapViewController: LocationUpdateProtocol {
 
     }
 
-    func displayLocation(location: Coordinate) {
+	func displayLocation(location: Coordinate, name: String, place: Bool) {
         
         /// defining zoom scale
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
@@ -173,12 +212,21 @@ extension MapViewController: LocationUpdateProtocol {
         /// show region around the location with the scale defined
         let region: MKCoordinateRegion = MKCoordinateRegionMake(someLoc2D, span)
 
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = someLoc2D
-        self.map.addAnnotation(annotation)
+		let annotation = MKPointAnnotation()
+		annotation.title = name
+		annotation.coordinate = someLoc2D
+
+		if place {
+			annotation.subtitle = "My Place"
+		} else {
+			annotation.subtitle = "Protected"
+		}
+
+		self.map.addAnnotation(annotation)
+
 
         map.setRegion(region, animated: true)
-        self.map.showsUserLocation = true
+        //self.map.showAnnotations([annotation], animated: true)
     }
 
 }
@@ -249,7 +297,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
         let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
-        self.displayLocation(location: coordinate)
+		self.displayLocation(location: coordinate, name: place.name, place: true)
 
         print("Place name: \(place.name)")
         print("Place address: \(place.formattedAddress)")
