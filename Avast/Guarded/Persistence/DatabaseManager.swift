@@ -50,6 +50,7 @@ class DatabaseManager {
                 "email": user.email as AnyObject,
                 "phoneNumber": user.phoneNumber as AnyObject,
                 "lastLocation": lastLocationDict as AnyObject,
+                "helpButtonOccurrences": "" as AnyObject,
                 "places": "" as AnyObject,
                 "protectors": "" as AnyObject,
                 "protected": "" as AnyObject
@@ -303,11 +304,12 @@ class DatabaseManager {
                 protected.allowedToFollow = protectedStatus
                 
                 userProtecteds.append(protected)
-                
+
+				
                 dispatchGroup.leave()
             }
         }
-        
+
         dispatchGroup.notify(queue: .main) {
             user.places = userPlaces
             user.protectors = userProtectors
@@ -558,9 +560,57 @@ class DatabaseManager {
         
         return Coordinate(latitude: latitude, longitude: longitude)
     }
+
+	static func addHelpOccurrence(location: Coordinate, date: Int, completionHandler: @escaping (Error?) -> Void){
+
+		let helpRef = ref.child("users").child(AppSettings.mainUser!.id).child("helpButtonOccurences")
+
+		let helpDict: [String : Any] = [
+			"\(date)": [
+				"latitude": location.latitude,
+				"longitude": location.longitude
+				]
+		]
+
+		helpRef.setValue(helpDict) {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)
+		}
+	}
+
+	static func addObserverToProtectedsHelpOccurrences(completionHandler: @escaping (Coordinate?) -> Void){
+
+		//print("hmm: \(AppSettings.mainUser!.protecteds.count)")
+		for protected in AppSettings.mainUser!.protecteds {
+			let protectedHelpButtonOccurrencesRef = ref.child("users/\(protected.id)/helpButtonOccurences")
+
+			protectedHelpButtonOccurrencesRef.observe(.childAdded){
+				(helpButtonOccurrencesSnap) in
+
+				guard let helpOccurrenceDict = helpButtonOccurrencesSnap.value as? [String:Double] else {
+					print("Add observer returned help occurencces nil snapshot from DB.")
+					completionHandler(nil)
+					return
+				}
+
+				let coordinate = Coordinate(latitude: helpOccurrenceDict["latitude"]!, longitude: helpOccurrenceDict["longitude"]!)
+
+				completionHandler(coordinate)
+			}
+		}
+
+
+
+	}
     
     ///Adds observer to all of the main user's protecteds' last location
-    static func addObserverToProtectedsLocations(completionHandler: @escaping (Bool) -> Void) {
+    static func addObserverToProtectedsLocations(completionHandler: @escaping (Protected?) -> Void) {
         print("hmm: \(AppSettings.mainUser!.protecteds.count)")
         for protected in AppSettings.mainUser!.protecteds {
             let protectedLastLocationRef = ref.child("users/\(protected.id)/lastLocation")
@@ -571,7 +621,7 @@ class DatabaseManager {
                 //Getting protected's information dictionary
                 guard let lastLocationDict = lastLocationSnap.value as? [String : Double] else {
                     print("User fetched returned last location nil snapshot from DB.")
-                    completionHandler(false)
+                    completionHandler(nil)
                     return
                 }
                 
@@ -579,7 +629,7 @@ class DatabaseManager {
                 
                 protected.lastLocation = protectedLocation
                 
-                
+                completionHandler(protected)
                 print("Protected [\(protected.name)] new location: \(protected.lastLocation!).")
             }
         }

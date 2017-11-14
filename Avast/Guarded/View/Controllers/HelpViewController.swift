@@ -10,11 +10,21 @@ import UIKit
 
 class HelpViewController: UIViewController {
 
-	var notificationServices: NotificationServices?
+	var contador: Int?
 
 	@IBOutlet weak var rolouLabel: UILabel!
 
 	@IBAction func helpButtonClicked(_ sender: Any) {
+		DatabaseManager.addHelpOccurrence(location: AppSettings.mainUser!.lastLocation!, date: contador!){
+			(error) in
+
+			guard (error == nil) else {
+				print("Error on adding a new help occurrence.")
+				return
+			}
+
+			self.contador = self.contador! + 1
+		}
 
 	}
 
@@ -23,7 +33,7 @@ class HelpViewController: UIViewController {
         super.viewDidLoad()
 		self.rolouLabel.isHidden = true
 
-		notificationServices = NotificationServices()
+		self.contador = 0
 
         // Do any additional setup after loading the view.
     }

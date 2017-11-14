@@ -17,7 +17,7 @@ class MainUser: User {
     
     //_updateMapContinuously: true if AppSettings.mainUser is on MapViewController
     private var _updateMapContinuously: Bool = false
-    var updateMapContinuously: Bool {
+   /* var updateMapContinuously: Bool {
         get {
             return _updateMapContinuously
         }
@@ -41,7 +41,7 @@ class MainUser: User {
                 DatabaseManager.removeObserverFromProtectedsLocations()
             }
         }
-    }
+    }*/
     
     ///Updates user's last location on DB
     func updateLastLocation(_ coordinate: Coordinate) {
