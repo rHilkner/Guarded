@@ -15,6 +15,7 @@ class MainUser: User {
     var protectors: [Protector] = []
     var protecteds: [Protected] = []
     
+    //_updateMapContinuously: true if AppSettings.mainUser is on MapViewController
     private var _updateMapContinuously: Bool = false
     var updateMapContinuously: Bool {
         get {
@@ -42,6 +43,7 @@ class MainUser: User {
         }
     }
     
+    ///Updates user's last location on DB
     func updateLastLocation(_ coordinate: Coordinate) {
         DatabaseManager.updateLastLocation(coordinate) {
             (error) in
@@ -55,6 +57,7 @@ class MainUser: User {
         }
     }
     
+    ///Adds place to user's places on DB
     func addPlace(_ place: Place) {
         DatabaseManager.addPlace(place) {
             (error) in
@@ -68,6 +71,7 @@ class MainUser: User {
         }
     }
     
+    ///Adds protector to user's protectors on DB
     func addProtector(_ protector: Protector) {
         DatabaseManager.addProtector(protector) {
             (error) in
