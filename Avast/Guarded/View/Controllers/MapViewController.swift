@@ -11,6 +11,13 @@ import MapKit
 import CoreLocation
 import GooglePlaces
 
+struct annotationIdentifiers {
+	static let myPlace = "My Place"
+	static let helpButton = "Help Button"
+	static let protected = "Protected"
+	static let searchLocal = "searchLocal"
+}
+
 class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var location: CLLocation?
@@ -35,16 +42,17 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.timerButton.isHidden = true
 		self.map.delegate = self
+
+		self.locationServices = LocationServices()
+		self.locationServices?.delegate = self
         
         self.map.showsUserLocation = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
       //  AppSettings.mainUser?.updateMapContinuously = true
-        
-        self.locationServices = LocationServices()
-        self.locationServices?.delegate = self
 
+		/// Receive the coordinate of a new protected`s occurence
 		DatabaseManager.addObserverToProtectedsHelpOccurrences(){
 			(coordinate) in
 
@@ -54,10 +62,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			}
 
 			NotificationServices.sendHelpNotification()
-			self.displayLocation(location: coordinate!, name: "Help", identifier: "Help Button")
+			self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.helpButton)
 			print(coordinate)
 		}
 
+		/// Receive all protected`s last location
+		/// TODO: fix bug (delete past locations)
 		DatabaseManager.addObserverToProtectedsLocations(){
 			(protected) in
 
@@ -66,18 +76,17 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 				return
 			}
 
-			self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: "Protected")
+			self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected)
 		}
 
+		/// get all places of the current user and display on the map
 		for place in (AppSettings.mainUser?.places)!{
-			self.displayLocation(location: place.coordinate, name: place.name, identifier: "My Place")
+			self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.myPlace)
+
 		}
 
-		/*for protected in (AppSettings.mainUser?.protecteds)! {
-			self.displayLocation(location: protected.lastLocation!, name: protected.name, identifier: "Protected")
-		}*/
+		self.displayCurrentLocation()
 
-		//self.displayCurrentLocation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -89,24 +98,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     /// add tap gesture
     @objc func tapGesture(gestureReconizer: UITapGestureRecognizer) {
 
-        print("tap")
-
         //add some location to my places just for test
         let point = gestureReconizer.location(in: map)
         let tapPoint = map.convert(point, toCoordinateFrom: map)
-        
-        let userID = AppSettings.mainUser?.id
         let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
 
-        let place = Place(name: "zé bostola", address: "eldorado", city: "campinas", coordinate: coordinate)
 
-        DatabaseManager.addPlace(place) {
-            (error) in
-        }
-
-        /// TODO: Definir o que fazer no singleTapGesture
-        //self.anotherUserLocationLabel.text = "\(tapPoint.latitude),\(tapPoint.longitude)"
-
+		self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace)
+	    print("Tap Gesture")
         print("\(tapPoint.latitude),\(tapPoint.longitude)")
 
     }
@@ -135,17 +134,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         performSegue(withIdentifier: "SetTimerViewController", sender: nil)
     }
     
-    
-//    @IBAction func setTimer() {
-//        performSegue(withIdentifier: "SetTimerViewController", sender: nil)
-//    }
-//    
-//    
-//    @IBAction func checkTimer() {
-//        performSegue(withIdentifier: "TimerDetailsViewController", sender: nil)
-//    }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier! {
@@ -168,25 +156,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 }
 
 
-//extension MapViewController: receiveFirebaseDataProtocol {
-//
-//    /// this function will handle the current location received
-//    func receiveCurrentLocation(location: Coordinate) {
-//        self.currentLocationLabel.text = "latitude: \(location.latitude) longitude: \(location.longitude)"
-//
-//        displayOtherLocation(someLocation: location)
-//    }
-//
-//    /// this function will handle the current location received
-//    func receiveMeusLocais(location: Coordinate, name: String) {
-//        self.currentLocationLabel.text = "nome: \(name) latitude: \(location.latitude) longitude: \(location.longitude)"
-//        displayOtherLocation(someLocation: location)
-//    }
-//}
-
 extension MapViewController: MKMapViewDelegate {
-
-
 
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 		if annotation is MKUserLocation {
@@ -194,22 +164,23 @@ extension MapViewController: MKMapViewDelegate {
 			return nil
 		}
 
-		var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "")
-		pinView.canShowCallout = true
-		pinView.animatesDrop = false
+		if let annotation = annotation as? Annotation {
 
+			let identifier = annotation.identifier
+			var view: MKPinAnnotationView
 
-		if annotation.subtitle! == "My Place" {
-			pinView.pinTintColor = .blue
-		} else if annotation.subtitle! == "Help Button" {
-			pinView.pinTintColor = .red
-		} else if annotation.subtitle! == "Protected" {
-			pinView.pinTintColor = .green
-		} else {
-			pinView.pinTintColor = UIColor.gray
+			view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+			view.canShowCallout = true
+			view.calloutOffset = CGPoint(x: -5, y: 5)
+			view.animatesDrop = false
+			view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
+			view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
+			view.pinColor = annotation.color
+
+			return view
 		}
 
-		return pinView
+		return nil
 
 	}
 }
@@ -228,33 +199,20 @@ extension MapViewController: LocationUpdateProtocol {
 
         map.setRegion(region, animated: true)
 
-
-
-
-
     }
 
 	func displayLocation(location: Coordinate, name: String, identifier: String) {
-        
-        /// defining zoom scale
-      //  let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-        
+
         let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 
-        /// show region around the location with the scale defined
-    //    let region: MKCoordinateRegion = MKCoordinateRegionMake(someLoc2D, span)
 
-		let annotation = MKPointAnnotation()
-		annotation.title = name
-		annotation.coordinate = someLoc2D
-
-		annotation.subtitle = identifier
+		/// TODO: Get the address of the annotation
+		let annotation = Annotation.init(identifier: identifier, title: name, subtitle: "", coordinate: someLoc2D, address: "")
 
 		self.map.addAnnotation(annotation)
 
 
- //       map.setRegion(region, animated: true)
-        self.map.showAnnotations([annotation], animated: true)
+       // self.map.showAnnotations([annotation], animated: true)
 
 
     }
@@ -327,11 +285,8 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
         let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
-		self.displayLocation(location: coordinate, name: place.name, identifier: "Search")
+		self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.searchLocal)
 
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
         dismiss(animated: true, completion: nil)
     }
 
