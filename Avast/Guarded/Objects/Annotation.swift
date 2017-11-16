@@ -15,7 +15,7 @@ class Annotation: NSObject, MKAnnotation {
 	let title: String?
 	let subtitle: String?
 	let coordinate: CLLocationCoordinate2D
-	let color: MKPinAnnotationColor
+	let color: UIColor
 	let address: String?
 
 	init(identifier: String, title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, address: String?) {
@@ -31,7 +31,7 @@ class Annotation: NSObject, MKAnnotation {
 		} else if identifier  == annotationIdentifiers.protected {
 			self.color = .green
 		} else {
-			self.color = .purple
+			self.color = .darkGray
 		}
 
 		super.init()

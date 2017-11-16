@@ -21,20 +21,25 @@ struct annotationIdentifiers {
 class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var location: CLLocation?
-    
-    var timerService: TimerServices?
-    @IBOutlet weak var timerButton: UIButton!
-    
     var locationServices: LocationServices?
+    var timerService: TimerServices?
+	var launched: Bool = false
+
+    @IBOutlet weak var timerButton: UIButton!
     @IBOutlet weak var map: MKMapView!
-    
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var anotherUserLocationLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(gestureReconizer: )))
-        tapGestureRecognizer.delegate = self
-        map.addGestureRecognizer(tapGestureRecognizer)
+
+		let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(gestureReconizer:)))
+
+		longPressGestureRecognizer.delegate = self
+		longPressGestureRecognizer.minimumPressDuration = 0.5
+		//longPressGestureRecognizer.numberOfTapsRequired = 1
+
+		map.addGestureRecognizer(longPressGestureRecognizer)
+
     }
     
     override func viewDidLoad() {
@@ -85,7 +90,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 		}
 
-		self.displayCurrentLocation()
+		if(!launched) {
+			launched = true
+			self.displayCurrentLocation()
+		}
+
 
     }
     
@@ -95,20 +104,22 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         self.locationServices = nil
     }
 
-    /// add tap gesture
-    @objc func tapGesture(gestureReconizer: UITapGestureRecognizer) {
+	/// add long press gesture to create an annotation and peforme action in the location pressed
+	@objc func longPressGesture(gestureReconizer: UILongPressGestureRecognizer) {
 
-        //add some location to my places just for test
-        let point = gestureReconizer.location(in: map)
-        let tapPoint = map.convert(point, toCoordinateFrom: map)
-        let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
+		if gestureReconizer.state == .began{
+			//add some location to my places just for test
+			let point = gestureReconizer.location(in: map)
+			let tapPoint = map.convert(point, toCoordinateFrom: map)
+			let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
 
+			self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace)
+			print("Long Press Gesture")
+			print("\(tapPoint.latitude),\(tapPoint.longitude)")
 
-		self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace)
-	    print("Tap Gesture")
-        print("\(tapPoint.latitude),\(tapPoint.longitude)")
+		}
 
-    }
+	}
 
     @IBAction func sendLocation(_ sender: Any) {
         if let location = AppSettings.mainUser!.lastLocation {
@@ -124,7 +135,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @IBAction func zoomInUserLocation(_ sender: Any) {
-        self.displayCurrentLocation()
+		self.displayCurrentLocation()
     }
     @IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
         self.autocompleteSearch()
@@ -169,15 +180,24 @@ extension MapViewController: MKMapViewDelegate {
 			let identifier = annotation.identifier
 			var view: MKPinAnnotationView
 
-			view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-			view.canShowCallout = true
-			view.calloutOffset = CGPoint(x: -5, y: 5)
-			view.animatesDrop = false
-			view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
-			view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
-			view.pinColor = annotation.color
+			if identifier == annotationIdentifiers.protected{
+				if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+				{
+					view = dequeuedView
+					view.annotation = annotation
+				}
+			}
+			else {
+				view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+				view.canShowCallout = true
+				view.calloutOffset = CGPoint(x: -5, y: 5)
+				view.animatesDrop = false
+				view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
+				view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
+				view.pinTintColor = annotation.color
 
-			return view
+				return view
+			}
 		}
 
 		return nil
@@ -188,16 +208,24 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: LocationUpdateProtocol {
 
+	func centerInLocation(location: Coordinate){
+
+		let location2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+		/// defining zoom scale
+		let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+
+		/// show region around the location with the scale defined
+		let region: MKCoordinateRegion = MKCoordinateRegionMake(location2D, span)
+
+		map.setRegion(region, animated: true)
+
+	}
+
     func displayCurrentLocation() {
-        /// defining zoom scale
-        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-        
-        let myLoc2D = CLLocationCoordinate2D(latitude: AppSettings.mainUser!.lastLocation!.latitude, longitude: AppSettings.mainUser!.lastLocation!.longitude)
 
-        /// show region around the location with the scale defined
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLoc2D, span)
+        let myLoc2D = Coordinate(latitude: AppSettings.mainUser!.lastLocation!.latitude, longitude: AppSettings.mainUser!.lastLocation!.longitude)
 
-        map.setRegion(region, animated: true)
+		self.centerInLocation(location: myLoc2D)
 
     }
 
@@ -286,6 +314,8 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
         let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
 		self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.searchLocal)
+
+		self.centerInLocation(location: coordinate)
 
         dismiss(animated: true, completion: nil)
     }
