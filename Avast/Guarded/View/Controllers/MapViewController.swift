@@ -25,6 +25,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     var timerService: TimerServices?
 	var launched: Bool = false
 
+	var protectedsAnnotationArray : [Annotation] = []
+
     @IBOutlet weak var timerButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var currentLocationLabel: UILabel!
@@ -67,12 +69,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			}
 
 			NotificationServices.sendHelpNotification()
-			self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.helpButton)
+			self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.helpButton, protectedId: "")
 			print(coordinate)
 		}
 
 		/// Receive all protected`s last location
-		/// TODO: fix bug (delete past locations)
 		DatabaseManager.addObserverToProtectedsLocations(){
 			(protected) in
 
@@ -81,12 +82,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 				return
 			}
 
-			self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected)
+
+			self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id)
 		}
 
 		/// get all places of the current user and display on the map
 		for place in (AppSettings.mainUser?.places)!{
-			self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.myPlace)
+			self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.myPlace, protectedId: "")
 
 		}
 
@@ -113,7 +115,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			let tapPoint = map.convert(point, toCoordinateFrom: map)
 			let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
 
-			self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace)
+			self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace, protectedId: "")
 			print("Long Press Gesture")
 			print("\(tapPoint.latitude),\(tapPoint.longitude)")
 
@@ -161,9 +163,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
 
-
-
-
 }
 
 
@@ -180,28 +179,19 @@ extension MapViewController: MKMapViewDelegate {
 			let identifier = annotation.identifier
 			var view: MKPinAnnotationView
 
-			if identifier == annotationIdentifiers.protected{
-				if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
-				{
-					view = dequeuedView
-					view.annotation = annotation
-				}
-			}
-			else {
-				view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-				view.canShowCallout = true
-				view.calloutOffset = CGPoint(x: -5, y: 5)
-				view.animatesDrop = false
-				view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
-				view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
-				view.pinTintColor = annotation.color
 
-				return view
-			}
+			view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+			view.canShowCallout = true
+			view.calloutOffset = CGPoint(x: -5, y: 5)
+			view.animatesDrop = false
+			view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
+			view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
+			view.pinTintColor = annotation.color
+
+			return view
 		}
 
 		return nil
-
 	}
 }
 
@@ -229,19 +219,34 @@ extension MapViewController: LocationUpdateProtocol {
 
     }
 
-	func displayLocation(location: Coordinate, name: String, identifier: String) {
+	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String) {
 
         let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 
 
-		/// TODO: Get the address of the annotation
-		let annotation = Annotation.init(identifier: identifier, title: name, subtitle: "", coordinate: someLoc2D, address: "")
+		if identifier == annotationIdentifiers.protected {
 
-		self.map.addAnnotation(annotation)
+			/// check if already is a annotation to this protected
+			/// if true, remove old annotation
+			/// this prevents the creation of a path full of annotation
+			for i in protectedsAnnotationArray {
+				if protectedId == i.protectedId {
+					self.map.removeAnnotation(i)
+				}
+			}
+
+			let annotation = Annotation.init(identifier: identifier, protectedId: protectedId, title: name, subtitle: "", coordinate: someLoc2D, address: "")
+			self.map.addAnnotation(annotation)
+
+			protectedsAnnotationArray.append(annotation)
+		}
+		else {
+			/// TODO: Get the address of the annotation
+			let annotation = Annotation.init(identifier: identifier, protectedId: "", title: name, subtitle: "", coordinate: someLoc2D, address: "")
 
 
-       // self.map.showAnnotations([annotation], animated: true)
-
+			self.map.addAnnotation(annotation)
+		}
 
     }
 
@@ -313,7 +318,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
         let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
-		self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.searchLocal)
+		self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.searchLocal, protectedId: "")
 
 		self.centerInLocation(location: coordinate)
 

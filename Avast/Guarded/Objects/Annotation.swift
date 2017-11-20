@@ -12,15 +12,17 @@ import MapKit
 class Annotation: NSObject, MKAnnotation {
 
 	let identifier : String
+	let protectedId: String?
 	let title: String?
 	let subtitle: String?
 	let coordinate: CLLocationCoordinate2D
 	let color: UIColor
 	let address: String?
 
-	init(identifier: String, title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, address: String?) {
+	init(identifier: String, protectedId: String?, title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, address: String?) {
 
 		self.identifier = identifier
+		self.protectedId = protectedId
 		self.title = title
 		self.subtitle = subtitle
 		self.coordinate = coordinate
