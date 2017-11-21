@@ -40,6 +40,7 @@
 		C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EC1FA82C21004BAFE4 /* ViewController.swift */; };
 		C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */; };
 		C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C070C1FA39C830087D613 /* LoginServices.swift */; };
+		C6A0AFA61FC481BA00BF74D4 /* PinPlaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA51FC481BA00BF74D4 /* PinPlaceInfo.swift */; };
 		C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2532F1FAA626C00853CA8 /* MainUser.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProtectorViewController.swift; sourceTree = "<group>"; };
 		C69A72F11F9ABBE3006B002B /* Guarded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guarded.entitlements; sourceTree = "<group>"; };
 		C69C070C1FA39C830087D613 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
+		C6A0AFA51FC481BA00BF74D4 /* PinPlaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPlaceInfo.swift; sourceTree = "<group>"; };
 		C6F2532F1FAA626C00853CA8 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 			children = (
 				C6152DF31FA292DA00CC4F76 /* Place.swift */,
 				C6152DF61FA2A03700CC4F76 /* Coordinate.swift */,
+				C6A0AFA51FC481BA00BF74D4 /* PinPlaceInfo.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
+				C6A0AFA61FC481BA00BF74D4 /* PinPlaceInfo.swift in Sources */,
 				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
 				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
 				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,
@@ -617,7 +621,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -654,7 +658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",

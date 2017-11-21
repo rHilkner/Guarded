@@ -136,3 +136,62 @@ extension LocationServices: CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
 }
+
+extension LocationServices {
+    static func coordinateToAddress(coordinate: Coordinate, completionHandler: @escaping (PinPlaceInfo?) -> Void) {
+        let geocoder = CLGeocoder()
+        
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        geocoder.reverseGeocodeLocation(location) {
+            (_placemarks, error) in
+            
+            guard error == nil else {
+                print("Error on reversing given coordinate to address.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placemarks = _placemarks! as [CLPlacemark]
+            
+            guard placemarks.count > 0 else {
+                print("Problem receiving data from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placemark: CLPlacemark = placemarks[0]
+            
+            guard let placeAddress = placemark.thoroughfare else {
+                print("Problem receiving address from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            guard let placeCity = placemark.locality else {
+                print("Problem receiving city from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            guard let placeState = placemark.administrativeArea else {
+                print("Problem receiving state from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            guard let placeCountry = placemark.country else {
+                print("Problem receiving country from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placeInfo = PinPlaceInfo(address: placeAddress, city: placeCity, state: placeState, country: placeCountry)
+            
+            print(placeInfo)
+            
+            completionHandler(placeInfo)
+        }
+    }
+}
+
