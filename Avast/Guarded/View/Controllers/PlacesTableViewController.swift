@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol RecenterMapProtocol {
+	func centerInLocation(location: Coordinate)
+}
+
 class PlacesTableViewController: UITableViewController {
 
     var places = [Place]()
@@ -54,6 +58,18 @@ class PlacesTableViewController: UITableViewController {
         
         return cell
     }
+
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+
+		let navigatioController = tabBarController?.viewControllers?.first
+		let mapViewController = navigatioController?.childViewControllers[0] as! MapViewController
+
+		
+		mapViewController.centerInLocation(location: places[indexPath.row].coordinate)
+		self.tabBarController?.selectedIndex = 0
+
+	}
     
     func loadPlaces() {
         if let userPlaces = AppSettings.mainUser?.places {
