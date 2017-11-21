@@ -11,7 +11,7 @@ import CoreLocation
 
 protocol LocationUpdateProtocol {
     func displayCurrentLocation()
-	func displayLocation(location: Coordinate, name: String, identifier: String)
+	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String)
 }
 
 class LocationServices: NSObject {
@@ -19,8 +19,6 @@ class LocationServices: NSObject {
     var manager = CLLocationManager()
     var geocoder = CLGeocoder()
     var delegate: LocationUpdateProtocol!
-    var isInitialized: Bool = false
-
 
     override init() {
         super.init()
@@ -73,7 +71,7 @@ class LocationServices: NSObject {
                 
                 let coordinates = Coordinate(latitude: latitude, longitude: longitude)
 
-				self.delegate.displayLocation(location: coordinates, name: address, identifier: "Address")
+				self.delegate.displayLocation(location: coordinates, name: address, identifier: "Address", protectedId: "")
 
             }
         }
@@ -110,15 +108,6 @@ extension LocationServices: CLLocationManagerDelegate {
                 return
             }
         }
-
-
-        
-        /// display the location every time it's updated
-        if (!isInitialized){
-            self.delegate.displayCurrentLocation()
-            isInitialized = true
-        }
-
         
     }
 
