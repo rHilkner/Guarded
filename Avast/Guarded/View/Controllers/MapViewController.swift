@@ -12,10 +12,10 @@ import CoreLocation
 import GooglePlaces
 
 struct annotationIdentifiers {
-	static let myPlace = "My Place"
-	static let helpButton = "Help Button"
-	static let protected = "Protected"
-	static let searchLocal = "searchLocal"
+    static let myPlace = "My Place"
+    static let helpButton = "Help Button"
+    static let protected = "Protected"
+    static let searchLocal = "searchLocal"
 }
 
 class MapViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -23,12 +23,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     var location: CLLocation?
     var locationServices: LocationServices?
     var timerService: TimerServices?
-	
-	var displayInCenter: String = ""
+    
+    var displayInCenter: String = ""
 
-	var launched: Bool = false
+    var launched: Bool = false
     var selectedAnnotation : Annotation?
-	var protectedsAnnotationArray : [Annotation] = []
+    var showPlace: Int?
+
+    var protectedsAnnotationArray : [Annotation] = []
 
     @IBOutlet weak var timerButton: UIButton!
     @IBOutlet weak var map: MKMapView!
@@ -37,26 +39,26 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
 
-		let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(gestureReconizer:)))
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(gestureReconizer:)))
 
-		longPressGestureRecognizer.delegate = self
-		longPressGestureRecognizer.minimumPressDuration = 0.5
-		//longPressGestureRecognizer.numberOfTapsRequired = 1
+        longPressGestureRecognizer.delegate = self
+        longPressGestureRecognizer.minimumPressDuration = 0.5
+        //longPressGestureRecognizer.numberOfTapsRequired = 1
 
-		map.addGestureRecognizer(longPressGestureRecognizer)
+        map.addGestureRecognizer(longPressGestureRecognizer)
 
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		self.displayInCenter = ""
+        self.displayInCenter = ""
         
         self.timerButton.isHidden = true
-		self.map.delegate = self
+        self.map.delegate = self
 
-		self.locationServices = LocationServices()
-		self.locationServices?.delegate = self
+        self.locationServices = LocationServices()
+        self.locationServices?.delegate = self
         
         self.map.showsUserLocation = true
     }
@@ -64,43 +66,43 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
       //  AppSettings.mainUser?.updateMapContinuously = true
 
-		/// Receive the coordinate of a new protected`s occurence
-		DatabaseManager.addObserverToProtectedsHelpOccurrences(){
-			(coordinate) in
+        /// Receive the coordinate of a new protected`s occurence
+        DatabaseManager.addObserverToProtectedsHelpOccurrences(){
+            (coordinate) in
 
-			guard (coordinate != nil) else {
-				print("Error on adding a observer to help occurrences.")
-				return
-			}
+            guard (coordinate != nil) else {
+                print("Error on adding a observer to help occurrences.")
+                return
+            }
 
-			NotificationServices.sendHelpNotification()
-			self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.helpButton, protectedId: "")
-			print(coordinate!)
-		}
+            NotificationServices.sendHelpNotification()
+            self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.helpButton, protectedId: "")
+            print(coordinate!)
+        }
 
-		/// Receive all protected`s last location
-		DatabaseManager.addObserverToProtectedsLocations(){
-			(protected) in
+        /// Receive all protected`s last location
+        DatabaseManager.addObserverToProtectedsLocations(){
+            (protected) in
 
-			guard (protected != nil) else {
-				print("Error on adding a observer to protected locations.")
-				return
-			}
+            guard (protected != nil) else {
+                print("Error on adding a observer to protected locations.")
+                return
+            }
 
 
-			self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id)
-		}
+            self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id)
+        }
 
-		/// get all places of the current user and display on the map
-		for place in (AppSettings.mainUser?.places)!{
-			self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.myPlace, protectedId: "")
+        /// get all places of the current user and display on the map
+        for place in (AppSettings.mainUser?.places)!{
+            self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.myPlace, protectedId: "")
 
-		}
+        }
 
-		if(!launched) {
-			launched = true
-			self.displayCurrentLocation()
-		}
+        if(!launched) {
+            launched = true
+            self.displayCurrentLocation()
+        }
 
 
     }
@@ -111,20 +113,20 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         self.locationServices = nil
     }
 
-	/// add long press gesture to create an annotation and peforme action in the location pressed
-	@objc func longPressGesture(gestureReconizer: UILongPressGestureRecognizer) {
+    /// add long press gesture to create an annotation and peforme action in the location pressed
+    @objc func longPressGesture(gestureReconizer: UILongPressGestureRecognizer) {
 
-		if gestureReconizer.state == .began {
-			//add some location to my places just for test
-			let point = gestureReconizer.location(in: map)
-			let tapPoint = map.convert(point, toCoordinateFrom: map)
-			let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
+        if gestureReconizer.state == .began {
+            //add some location to my places just for test
+            let point = gestureReconizer.location(in: map)
+            let tapPoint = map.convert(point, toCoordinateFrom: map)
+            let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
 
-			self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace, protectedId: "")
+            self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace, protectedId: "")
             print("Long Press Gesture: \(coordinate)")
-		}
+        }
 
-	}
+    }
 
     @IBAction func sendLocation(_ sender: Any) {
         if let location = AppSettings.mainUser!.lastLocation {
@@ -140,7 +142,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @IBAction func zoomInUserLocation(_ sender: Any) {
-		self.displayCurrentLocation()
+        self.displayCurrentLocation()
     }
     
     @IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
@@ -192,13 +194,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
 
-	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-		if annotation is MKUserLocation {
-			//return nil so map view draws "blue dot" for standard user location
-			return nil
-		}
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
 
-		if let annotation = annotation as? Annotation {
+        if let annotation = annotation as? Annotation {
             
             let latitude = annotation.coordinate.latitude
             let longitude = annotation.coordinate.longitude
@@ -218,12 +220,12 @@ extension MapViewController: MKMapViewDelegate {
                 print("Annotation address: \(self.selectedAnnotation?.locationInfo?.address)")
             }
 
-			let identifier = annotation.identifier
+            let identifier = annotation.identifier
             
-			let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-			view.canShowCallout = true
-			view.calloutOffset = CGPoint(x: -5, y: 5)
-			view.animatesDrop = false
+            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.animatesDrop = false
             
             let leftButton = UIButton(type: UIButtonType.detailDisclosure)
             leftButton.addTarget(self, action: #selector(MapViewController.disclosure(_:)), for: UIControlEvents.touchUpInside)
@@ -231,16 +233,16 @@ extension MapViewController: MKMapViewDelegate {
             let rightButton = UIButton(type: UIButtonType.contactAdd)
             rightButton.addTarget(self, action: #selector(MapViewController.addPlace(_:)), for: UIControlEvents.touchUpInside)
             
-			view.leftCalloutAccessoryView = leftButton
-			view.rightCalloutAccessoryView = rightButton
+            view.leftCalloutAccessoryView = leftButton
+            view.rightCalloutAccessoryView = rightButton
             
-			view.pinTintColor = annotation.color
+            view.pinTintColor = annotation.color
 
-			return view
-		}
+            return view
+        }
 
-		return nil
-	}
+        return nil
+    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation as? Annotation else {
@@ -260,53 +262,53 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: LocationUpdateProtocol {
 
-	func centerInLocation(location: Coordinate) {
+    func centerInLocation(location: Coordinate) {
 
-		let location2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-		/// defining zoom scale
-		let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let location2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+        /// defining zoom scale
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
 
-		/// show region around the location with the scale defined
-		let region: MKCoordinateRegion = MKCoordinateRegionMake(location2D, span)
+        /// show region around the location with the scale defined
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(location2D, span)
 
-		map.setRegion(region, animated: true)
+        map.setRegion(region, animated: true)
 
-	}
+    }
 
     func displayCurrentLocation() {
 
         let myLoc2D = Coordinate(latitude: AppSettings.mainUser!.lastLocation!.latitude, longitude: AppSettings.mainUser!.lastLocation!.longitude)
 
-		self.centerInLocation(location: myLoc2D)
+        self.centerInLocation(location: myLoc2D)
 
     }
 
-	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String) {
+    func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String) {
 
         let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 
-		if identifier == annotationIdentifiers.protected {
+        if identifier == annotationIdentifiers.protected {
 
-			/// check if already is a annotation to this protected
-			/// if true, remove old annotation
-			/// this prevents the creation of a path full of annotation
-			for i in protectedsAnnotationArray {
-				if protectedId == i.protectedId {
-					self.map.removeAnnotation(i)
-				}
-			}
+            /// check if already is a annotation to this protected
+            /// if true, remove old annotation
+            /// this prevents the creation of a path full of annotation
+            for i in protectedsAnnotationArray {
+                if protectedId == i.protectedId {
+                    self.map.removeAnnotation(i)
+                }
+            }
 
             let annotation = Annotation(identifier: identifier, protectedId: protectedId, title: name, subtitle: "", coordinate: someLoc2D, locationInfo: nil)
-			self.map.addAnnotation(annotation)
+            self.map.addAnnotation(annotation)
 
-			protectedsAnnotationArray.append(annotation)
-		} else {
+            protectedsAnnotationArray.append(annotation)
+        } else {
             let annotation = Annotation(identifier: identifier, protectedId: "", title: name, subtitle: "", coordinate: someLoc2D, locationInfo: nil)
             
             print("Place annotation created.")
             
             self.map.addAnnotation(annotation)
-		}
+        }
     }
 
 }
@@ -377,9 +379,9 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
         let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
-		self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.searchLocal, protectedId: "")
+        self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.searchLocal, protectedId: "")
 
-		self.centerInLocation(location: coordinate)
+        self.centerInLocation(location: coordinate)
 
         dismiss(animated: true, completion: nil)
     }
