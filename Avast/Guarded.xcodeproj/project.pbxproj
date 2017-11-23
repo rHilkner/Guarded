@@ -41,7 +41,8 @@
 		C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EC1FA82C21004BAFE4 /* ViewController.swift */; };
 		C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */; };
 		C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C070C1FA39C830087D613 /* LoginServices.swift */; };
-		C6A0AFA61FC481BA00BF74D4 /* PinPlaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA51FC481BA00BF74D4 /* PinPlaceInfo.swift */; };
+		C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */; };
+		C6A0AFA81FC4B5C500BF74D4 /* AddPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */; };
 		C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2532F1FAA626C00853CA8 /* MainUser.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,7 +94,8 @@
 		C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProtectorViewController.swift; sourceTree = "<group>"; };
 		C69A72F11F9ABBE3006B002B /* Guarded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guarded.entitlements; sourceTree = "<group>"; };
 		C69C070C1FA39C830087D613 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
-		C6A0AFA51FC481BA00BF74D4 /* PinPlaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPlaceInfo.swift; sourceTree = "<group>"; };
+		C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
+		C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceViewController.swift; sourceTree = "<group>"; };
 		C6F2532F1FAA626C00853CA8 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,7 +155,8 @@
 			children = (
 				C6152DF31FA292DA00CC4F76 /* Place.swift */,
 				C6152DF61FA2A03700CC4F76 /* Coordinate.swift */,
-				C6A0AFA51FC481BA00BF74D4 /* PinPlaceInfo.swift */,
+				C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */,
+				891934851FBB6D86004AFD4E /* Annotation.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */,
 				8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */,
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
+				C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -456,8 +460,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6A0AFA81FC4B5C500BF74D4 /* AddPlaceViewController.swift in Sources */,
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
-				C6A0AFA61FC481BA00BF74D4 /* PinPlaceInfo.swift in Sources */,
+				C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */,
 				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
 				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
 				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,

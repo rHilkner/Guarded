@@ -134,7 +134,6 @@ class DatabaseManager {
 
         let placeDict: [String : Any] = [
             "address": place.address,
-            "city": place.city,
             "coordinates": [
                 "latitude": place.coordinate.latitude,
                 "longitude": place.coordinate.longitude
@@ -242,7 +241,7 @@ class DatabaseManager {
             
             let placeCoordinates = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
             
-            let place = Place(name: placeName, address: placeAddress, city: placeCity, coordinate: placeCoordinates)
+            let place = Place(name: placeName, address: placeAddress, coordinate: placeCoordinates)
             
             userPlaces.append(place)
         }
@@ -611,7 +610,7 @@ class DatabaseManager {
     
     ///Adds observer to all of the main user's protecteds' last location
     static func addObserverToProtectedsLocations(completionHandler: @escaping (Protected?) -> Void) {
-        print("hmm: \(AppSettings.mainUser!.protecteds.count)")
+        print("Number of protecteds: \(AppSettings.mainUser!.protecteds.count)")
         for protected in AppSettings.mainUser!.protecteds {
             let protectedLastLocationRef = ref.child("users/\(protected.id)/lastLocation")
             

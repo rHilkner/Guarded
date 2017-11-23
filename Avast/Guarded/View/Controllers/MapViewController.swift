@@ -24,7 +24,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     var locationServices: LocationServices?
     var timerService: TimerServices?
 	var launched: Bool = false
-
+    var selectedAnnotation : Annotation?
 	var protectedsAnnotationArray : [Annotation] = []
 
     @IBOutlet weak var timerButton: UIButton!
@@ -109,16 +109,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 	/// add long press gesture to create an annotation and peforme action in the location pressed
 	@objc func longPressGesture(gestureReconizer: UILongPressGestureRecognizer) {
 
-		if gestureReconizer.state == .began{
+		if gestureReconizer.state == .began {
 			//add some location to my places just for test
 			let point = gestureReconizer.location(in: map)
 			let tapPoint = map.convert(point, toCoordinateFrom: map)
 			let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
 
 			self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.myPlace, protectedId: "")
-			print("Long Press Gesture")
-			print("\(tapPoint.latitude),\(tapPoint.longitude)")
-
+            print("Long Press Gesture: \(coordinate)")
 		}
 
 	}
@@ -139,6 +137,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func zoomInUserLocation(_ sender: Any) {
 		self.displayCurrentLocation()
     }
+    
     @IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
         self.autocompleteSearch()
     }
@@ -147,16 +146,36 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         performSegue(withIdentifier: "SetTimerViewController", sender: nil)
     }
     
+    @objc func addPlace(_: UIButton) {
+        print("Addr: \(self.selectedAnnotation?.locationInfo?.address)")
+        performSegue(withIdentifier: "AddPlaceViewController", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier! {
+            case "AddPlaceViewController":
+                
+                guard let locationInfo = self.selectedAnnotation?.locationInfo else {
+                    print("Error on sending location information to AddPlaceViewController.")
+                    return
+                }
+                
+                print("Addr: \(locationInfo.address) -- WTF")
+                
+                let addPlaceViewController = segue.destination as! AddPlaceViewController
+                
+                addPlaceViewController.locationInfo = locationInfo
+                break
             case "SetTimerViewController":
                 let timerViewController = segue.destination as! TimerViewController
                 timerViewController.delegate = self
+                break
             case "TimerDetailsViewController":
                 let timerDetailsViewController = segue.destination as! TimerDetailsViewController
                 timerDetailsViewController.timerService = self.timerService
                 timerDetailsViewController.delegate = self
+                break
             default:
                 break
         }
@@ -175,17 +194,41 @@ extension MapViewController: MKMapViewDelegate {
 		}
 
 		if let annotation = annotation as? Annotation {
+            
+            let latitude = annotation.coordinate.latitude
+            let longitude = annotation.coordinate.longitude
+            
+            let coordinate = Coordinate(latitude: latitude, longitude: longitude)
+            
+            LocationServices.coordinateToAddress(coordinate: coordinate) {
+                (locationInfo) in
+                
+                guard let locationInfo = locationInfo else {
+                    print("Problem on fetching location information.")
+                    return
+                }
+                
+                annotation.locationInfo = locationInfo
+                
+                print("Annotation address: \(self.selectedAnnotation?.locationInfo?.address)")
+            }
 
 			let identifier = annotation.identifier
-			var view: MKPinAnnotationView
-
-
-			view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            
+			let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 			view.canShowCallout = true
 			view.calloutOffset = CGPoint(x: -5, y: 5)
 			view.animatesDrop = false
-			view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
-			view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
+            
+            let leftButton = UIButton(type: UIButtonType.detailDisclosure)
+            leftButton.addTarget(self, action: #selector(MapViewController.disclosure(_:)), for: UIControlEvents.touchUpInside)
+            
+            let rightButton = UIButton(type: UIButtonType.contactAdd)
+            rightButton.addTarget(self, action: #selector(MapViewController.addPlace(_:)), for: UIControlEvents.touchUpInside)
+            
+			view.leftCalloutAccessoryView = leftButton
+			view.rightCalloutAccessoryView = rightButton
+            
 			view.pinTintColor = annotation.color
 
 			return view
@@ -193,6 +236,21 @@ extension MapViewController: MKMapViewDelegate {
 
 		return nil
 	}
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? Annotation else {
+            print("Annotation selected could not be cast as an Annotation.")
+            return
+        }
+        
+        //TODO: if annotation hasnt fetched locationInfo yet, display loading circle
+        
+        self.selectedAnnotation = annotation
+    }
+    
+    @objc func disclosure(_ : UIButton) {
+        print("Aqui!!")
+    }
 }
 
 
@@ -235,19 +293,17 @@ extension MapViewController: LocationUpdateProtocol {
 				}
 			}
 
-			let annotation = Annotation.init(identifier: identifier, protectedId: protectedId, title: name, subtitle: "", coordinate: someLoc2D, address: "")
+            let annotation = Annotation(identifier: identifier, protectedId: protectedId, title: name, subtitle: "", coordinate: someLoc2D, locationInfo: nil)
 			self.map.addAnnotation(annotation)
 
 			protectedsAnnotationArray.append(annotation)
+		} else {
+            let annotation = Annotation(identifier: identifier, protectedId: "", title: name, subtitle: "", coordinate: someLoc2D, locationInfo: nil)
+            
+            print("Place annotation created.")
+            
+            self.map.addAnnotation(annotation)
 		}
-		else {
-			/// TODO: Get the address of the annotation
-			let annotation = Annotation.init(identifier: identifier, protectedId: "", title: name, subtitle: "", coordinate: someLoc2D, address: "")
-
-
-			self.map.addAnnotation(annotation)
-		}
-
     }
 
 }
