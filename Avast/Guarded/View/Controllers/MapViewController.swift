@@ -89,9 +89,12 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
                 return
             }
 
+			/// only display location if it`s allowed
+			if protected?.allowedToFollow == true {
+				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id)
+			}
 
-            self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id)
-        }
+		}
 
         /// get all places of the current user and display on the map
         for place in (AppSettings.mainUser?.places)!{

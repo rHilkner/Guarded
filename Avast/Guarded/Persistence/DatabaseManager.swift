@@ -104,6 +104,17 @@ class DatabaseManager {
         usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(true)
         usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(true)
     }
+
+	///Deactivate the protector turning its value false
+	static func deactivateProtector(_ protector: Protector, completionHandler: @escaping (Error?) -> Void) {
+
+		let usersRef = ref.child("users")
+
+		//TODO: transaction block without downloading the whole "users" json
+
+		usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(false)
+		usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(false)
+	}
     
     ///Removes protector to user's protectors list and also removes user as protector's protected list
     static func removeProtector(_ protector: Protector, completionHandler: @escaping (Error?) -> Void) {
@@ -215,11 +226,11 @@ class DatabaseManager {
                 return
             }
             
-            guard let placeCity = placeDict.value["city"] as? String else {
+          /*  guard let placeCity = placeDict.value["city"] as? String else {
                 print("Fetching user's places from DB returns a place with city nil.")
                 completionHandler(false)
                 return
-            }
+            } */
             
             guard let placeCoordinatesDict = placeDict.value["coordinates"] as? [String : AnyObject] else {
                 print("Fetching user's places from DB returns a place with coordinates nil.")
@@ -256,6 +267,12 @@ class DatabaseManager {
         
         for protectorDict in protectorsDict {
             let protectorID = protectorDict.key
+
+			guard let protectorStatus = protectorDict.value as? Bool else {
+				print("Fetching user's protectors' status (on/off) from DB returns nil.")
+				completionHandler(false)
+				return
+			}
             
             dispatchGroup.enter()
                         
@@ -267,7 +284,9 @@ class DatabaseManager {
                     completionHandler(false)
                     return
                 }
-                
+
+				protector.protectingYou = protectorStatus
+
                 userProtectors.append(protector)
                 
                 dispatchGroup.leave()
@@ -284,11 +303,11 @@ class DatabaseManager {
             let protectedID = protectedDict.key
             
             guard let protectedStatus = protectedDict.value as? Bool else {
-                print("Fetching user's protectors' status (on/off) from DB returns nil.")
+                print("Fetching user's protecteds' status (on/off) from DB returns nil.")
                 completionHandler(false)
                 return
             }
-            
+
             dispatchGroup.enter()
             
             fetchProtected(protectedID: protectedID) {

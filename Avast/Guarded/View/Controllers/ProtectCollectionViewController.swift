@@ -89,7 +89,7 @@ class ProtectCollectionViewController: UICollectionViewController {
         }
     }
     
-    func showActionSheet() {
+	func showActionSheet(protector: Protector?) {
         // 1
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -104,7 +104,49 @@ class ProtectCollectionViewController: UICollectionViewController {
                     self.present(alert, animated: true, completion: nil)
 
             })
-            optionMenu.addAction(sendLocationAction)
+
+			/// Show in the alert if the protector is currently able to follow you or not
+			var title  = "Protecting you: "
+			if protector?.protectingYou == true {
+				title = title + "ON"
+			}
+			else {
+				title = title + "OFF"
+			}
+
+
+			let changeStatusAction = UIAlertAction(title: title, style: .default, handler: {
+				(alert: UIAlertAction!) -> Void in
+
+				/// Change status of protector in local variable and in DB
+				if protector?.protectingYou == true {
+					protector?.protectingYou = false
+					DatabaseManager.deactivateProtector(protector!, completionHandler: {
+						(error) in
+
+						guard error == nil else{
+							print("Error in deactivating protector")
+							return
+						}
+					})
+				}
+				else {
+					protector?.protectingYou = true
+					DatabaseManager.addProtector(protector!, completionHandler: {
+						(error) in
+
+						guard error == nil else{
+							print("Error in deactivating protector")
+							return
+						}
+					})
+				}
+			})
+
+			/// id do protector - protected - seu id - change status
+			optionMenu.addAction(changeStatusAction)
+			optionMenu.addAction(sendLocationAction)
+
             
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -121,8 +163,18 @@ class ProtectCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        showActionSheet()
+
+		/// if clicked in a protector, give a option to activate or deactivate
+		/// else, no option
+		if segmentedControl.selectedSegmentIndex == 0 {
+			showActionSheet(protector: protectors[indexPath.row])
+		}
+		else {
+			showActionSheet(protector: nil)
+		}
+
+
+
     }
 
     func loadActors(){

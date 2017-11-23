@@ -107,7 +107,7 @@ extension LocationServices {
     static func addressToLocation(address: String, completionHandler: @escaping (Coordinate?) -> Void) {
         let geocoder = CLGeocoder()
         
-        let address: String = "Rua da Conceição, 663, Juazeiro do Norte"
+        //let address: String = "Rua da Conceição, 663, Juazeiro do Norte"
         
         geocoder.geocodeAddressString(address) {
             (_placemarks, error) in
