@@ -23,6 +23,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     var location: CLLocation?
     var locationServices: LocationServices?
     var timerService: TimerServices?
+	
+	var displayInCenter: String = ""
+
 	var launched: Bool = false
     var selectedAnnotation : Annotation?
 	var protectedsAnnotationArray : [Annotation] = []
@@ -46,6 +49,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		self.displayInCenter = ""
         
         self.timerButton.isHidden = true
 		self.map.delegate = self
@@ -70,7 +75,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 			NotificationServices.sendHelpNotification()
 			self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.helpButton, protectedId: "")
-			print(coordinate)
+			print(coordinate!)
 		}
 
 		/// Receive all protected`s last location
@@ -253,10 +258,9 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
-
 extension MapViewController: LocationUpdateProtocol {
 
-	func centerInLocation(location: Coordinate){
+	func centerInLocation(location: Coordinate) {
 
 		let location2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 		/// defining zoom scale
@@ -280,7 +284,6 @@ extension MapViewController: LocationUpdateProtocol {
 	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String) {
 
         let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
-
 
 		if identifier == annotationIdentifiers.protected {
 

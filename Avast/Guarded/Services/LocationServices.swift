@@ -10,6 +10,7 @@ import CoreLocation
 
 
 protocol LocationUpdateProtocol {
+	func centerInLocation(location: Coordinate)
     func displayCurrentLocation()
 	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String)
 }
