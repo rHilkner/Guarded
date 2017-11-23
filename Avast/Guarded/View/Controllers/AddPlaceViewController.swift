@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddPlaceViewController: UIViewController {
+class AddPlaceViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var placeAddress: UITextField!
     @IBOutlet weak var placeName: UITextField!
@@ -22,6 +22,9 @@ class AddPlaceViewController: UIViewController {
             placeAddress.text = locationInfo.address
             placeName.text = locationInfo.name
         }
+
+		self.placeName.delegate = self
+		self.placeAddress.delegate = self
     }
 
     @IBAction func addPlace() {
@@ -50,4 +53,19 @@ class AddPlaceViewController: UIViewController {
             print("Place \(placeName) added to user's places.")
         }
     }
+
+	// MARK - Textfield
+
+	//hide keyboard when user hit return
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+		textField.resignFirstResponder()
+
+		return(true)
+	}
+
+	//hide keyboard when user touches outside keyboard
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
+	}
 }

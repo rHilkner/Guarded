@@ -8,12 +8,14 @@
 
 import UIKit
 
-class AddProtectorViewController: UIViewController {
+class AddProtectorViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var protectorTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		self.protectorTextField.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -45,6 +47,21 @@ class AddProtectorViewController: UIViewController {
             }
         }
     }
+
+	// MARK - Textfield
+
+	//hide keyboard when user hit return
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+		textField.resignFirstResponder()
+
+		return(true)
+	}
+
+	//hide keyboard when user touches outside keyboard
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
+	}
     
     
 }
