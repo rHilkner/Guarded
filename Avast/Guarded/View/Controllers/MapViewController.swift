@@ -197,70 +197,52 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
 
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if annotation is MKUserLocation {
+//            //return nil so map view draws "blue dot" for standard user location
+//            return nil
+//        }
+//
+//        if let annotation = annotation as? Annotation {
+//
+//            let identifier = annotation.identifier
+//            var view: MKPinAnnotationView
+//
+//
+//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            view.canShowCallout = true
+//            view.calloutOffset = CGPoint(x: -5, y: 5)
+//            view.animatesDrop = false
+//            view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
+//            view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
+//            view.pinTintColor = annotation.color
+//
+//            return view
+//        }
+//
+//        return nil
+//    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
             return nil
         }
-
+        
         if let annotation = annotation as? Annotation {
-            
-            let latitude = annotation.coordinate.latitude
-            let longitude = annotation.coordinate.longitude
-            
-            let coordinate = Coordinate(latitude: latitude, longitude: longitude)
-            
-            LocationServices.coordinateToAddress(coordinate: coordinate) {
-                (locationInfo) in
-                
-                guard let locationInfo = locationInfo else {
-                    print("Problem on fetching location information.")
-                    return
-                }
-                
-                annotation.locationInfo = locationInfo
-                
-                print("Annotation address: \(self.selectedAnnotation?.locationInfo?.address)")
-            }
-
             let identifier = annotation.identifier
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
             
-            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.animatesDrop = false
-            
-            let leftButton = UIButton(type: UIButtonType.detailDisclosure)
-            leftButton.addTarget(self, action: #selector(MapViewController.disclosure(_:)), for: UIControlEvents.touchUpInside)
-            
-            let rightButton = UIButton(type: UIButtonType.contactAdd)
-            rightButton.addTarget(self, action: #selector(MapViewController.addPlace(_:)), for: UIControlEvents.touchUpInside)
-            
-            view.leftCalloutAccessoryView = leftButton
-            view.rightCalloutAccessoryView = rightButton
-            
-            view.pinTintColor = annotation.color
-
-            return view
+            if annotationView == nil {
+                annotationView = PersonPinView(annotation: annotation, reuseIdentifier: identifier)
+            } else {
+                annotationView!.annotation = annotation
+            }
+            return annotationView
         }
-
+        
         return nil
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation as? Annotation else {
-            print("Annotation selected could not be cast as an Annotation.")
-            return
-        }
-        
-        //TODO: if annotation hasnt fetched locationInfo yet, display loading circle
-        
-        self.selectedAnnotation = annotation
-    }
-    
-    @objc func disclosure(_ : UIButton) {
-        print("Aqui!!")
-    }
 }
 
 extension MapViewController: LocationUpdateProtocol {
