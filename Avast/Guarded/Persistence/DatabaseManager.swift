@@ -207,6 +207,8 @@ class DatabaseManager {
         return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber)
     }
     
+    
+    
     ///Fetches user's detailed profile information (places, protectors, protected) from dictionary built by database snapshot.
     ///Returns true if successfull and false otherwise.
     static func fetchUserDetailedInfo(user: MainUser, userDictionary: [String : AnyObject], completionHandler: @escaping (Bool) -> Void) {
@@ -215,46 +217,10 @@ class DatabaseManager {
 
         //Reading user's places
         
-        var userPlaces: [Place] = []
-        
-        for placeDict in placesDict {
-            let placeName: String = placeDict.key
-            
-            guard let placeAddress = placeDict.value["address"] as? String else {
-                print("Fetching user's places from DB returns a place with address nil.")
-                completionHandler(false)
-                return
-            }
-            
-          /*  guard let placeCity = placeDict.value["city"] as? String else {
-                print("Fetching user's places from DB returns a place with city nil.")
-                completionHandler(false)
-                return
-            } */
-            
-            guard let placeCoordinatesDict = placeDict.value["coordinates"] as? [String : AnyObject] else {
-                print("Fetching user's places from DB returns a place with coordinates nil.")
-                completionHandler(false)
-                return
-            }
-            
-            guard let placeLatitude = placeCoordinatesDict["latitude"] as? Double else {
-                print("Fetching user's places from DB returns a place with latitude nil.")
-                completionHandler(false)
-                return
-            }
-            
-            guard let placeLongitude = placeCoordinatesDict["longitude"] as? Double else {
-                print("Fetching user's places from DB returns a place with longitude nil.")
-                completionHandler(false)
-                return
-            }
-            
-            let placeCoordinates = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
-            
-            let place = Place(name: placeName, address: placeAddress, coordinate: placeCoordinates)
-            
-            userPlaces.append(place)
+        guard let userPlaces = readPlaces(placesDict: placesDict) else {
+            print("Fetching user's places from DB returns nil.")
+            completionHandler(false)
+            return
         }
 
         //Reading user's protectors
@@ -337,6 +303,34 @@ class DatabaseManager {
         }
     }
     
+    static func fetchUserPlaces(completionHandler: @escaping ([Place]?) -> Void) {
+        
+        let userRef = ref.child("users/\(String(describing: AppSettings.mainUser?.id))")
+        
+        userRef.observeSingleEvent(of: .value) {
+            (userSnapshot) in
+            
+            //Getting user's information dictionary
+            guard var userDictionary = userSnapshot.value as? [String: AnyObject] else {
+                print("User ID fetched returned a nil snapshot from DB.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placesDict = userDictionary["places"] as? [String : AnyObject] ?? [:]
+            
+            //Reading user's places
+            
+            guard let userPlaces = readPlaces(placesDict: placesDict) else {
+                print("Fetching user's places from DB returns nil.")
+                completionHandler(nil)
+                return
+            }
+            
+            completionHandler(userPlaces)
+        }
+    }
+    
     ///Builds main user object from users' database information
     static func fetchUser(userID: String, completionHandler: @escaping (MainUser?) -> Void) {
         
@@ -345,7 +339,7 @@ class DatabaseManager {
         userRef.observeSingleEvent(of: .value) {
             (userSnapshot) in
             
-            //Getting protector's information dictionary
+            //Getting user's information dictionary
             guard var userDictionary = userSnapshot.value as? [String: AnyObject] else {
                 print("User ID fetched returned a nil snapshot from DB.")
                 completionHandler(nil)
@@ -561,6 +555,48 @@ class DatabaseManager {
                 completionHandler(protected)
             }
         }
+    }
+    
+    static func readPlaces(placesDict: [String : AnyObject]) -> [Place]? {
+        var userPlaces: [Place] = []
+        
+        for placeDict in placesDict {
+            let placeName: String = placeDict.key
+            
+            guard let placeAddress = placeDict.value["address"] as? String else {
+                print("Fetching user's places from DB returns a place with address nil.")
+                return nil
+            }
+            
+            /*  guard let placeCity = placeDict.value["city"] as? String else {
+             print("Fetching user's places from DB returns a place with city nil.")
+             completionHandler(false)
+             return
+             } */
+            
+            guard let placeCoordinatesDict = placeDict.value["coordinates"] as? [String : AnyObject] else {
+                print("Fetching user's places from DB returns a place with coordinates nil.")
+                return nil
+            }
+            
+            guard let placeLatitude = placeCoordinatesDict["latitude"] as? Double else {
+                print("Fetching user's places from DB returns a place with latitude nil.")
+                return nil
+            }
+            
+            guard let placeLongitude = placeCoordinatesDict["longitude"] as? Double else {
+                print("Fetching user's places from DB returns a place with longitude nil.")
+                return nil
+            }
+            
+            let placeCoordinates = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
+            
+            let place = Place(name: placeName, address: placeAddress, coordinate: placeCoordinates)
+            
+            userPlaces.append(place)
+        }
+        
+        return userPlaces
     }
     
     ///Fetches user's protecteds last location

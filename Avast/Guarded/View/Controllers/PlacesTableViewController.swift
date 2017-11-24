@@ -8,16 +8,12 @@
 
 import UIKit
 
-protocol RecenterMapProtocol {
-	func centerInLocation(location: Coordinate)
-}
-
 class PlacesTableViewController: UITableViewController {
 
-    var places = [Place]()
+    @IBOutlet var placesTableView: UITableView!
+    var places: [Place] = []
     
     override func viewDidLoad() {
-        loadPlaces()
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -25,6 +21,15 @@ class PlacesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //Loading current user places
+        loadPlaces()
+        
+        self.placesTableView.reloadData()
+        
+        print("User places: \(self.places.count)")
     }
 
     // MARK: - Table view data source
@@ -57,8 +62,8 @@ class PlacesTableViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
 
-		let navigatioController = tabBarController?.viewControllers?.first
-		let mapViewController = navigatioController?.childViewControllers[0] as! MapViewController
+		let navigationController = tabBarController?.viewControllers?.first
+		let mapViewController = navigationController?.childViewControllers[0] as! MapViewController
 
 		
 		mapViewController.centerInLocation(location: places[indexPath.row].coordinate)
@@ -69,8 +74,6 @@ class PlacesTableViewController: UITableViewController {
     func loadPlaces() {
         if let userPlaces = AppSettings.mainUser?.places {
             self.places = userPlaces
-        } else {
-            self.places = [Place]()
         }
     }
 }
