@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol RecenterMapProtocol {
+	func centerInLocation(location: Coordinate)
+}
+
 class PlacesTableViewController: UITableViewController {
 
     var places = [Place]()
@@ -21,11 +25,6 @@ class PlacesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -54,6 +53,18 @@ class PlacesTableViewController: UITableViewController {
         
         return cell
     }
+
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+
+		let navigatioController = tabBarController?.viewControllers?.first
+		let mapViewController = navigatioController?.childViewControllers[0] as! MapViewController
+
+		
+		mapViewController.centerInLocation(location: places[indexPath.row].coordinate)
+		self.tabBarController?.selectedIndex = 0
+
+	}
     
     func loadPlaces() {
         if let userPlaces = AppSettings.mainUser?.places {

@@ -17,16 +17,16 @@ class Annotation: NSObject, MKAnnotation {
 	let subtitle: String?
 	let coordinate: CLLocationCoordinate2D
 	let color: UIColor
-	let address: String?
+    var locationInfo: LocationInfo?
 
-	init(identifier: String, protectedId: String?, title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, address: String?) {
+	init(identifier: String, protectedId: String?, title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, locationInfo: LocationInfo?) {
 
 		self.identifier = identifier
 		self.protectedId = protectedId
 		self.title = title
 		self.subtitle = subtitle
 		self.coordinate = coordinate
-		self.address = address
+        self.locationInfo = locationInfo
 
 		if identifier  == annotationIdentifiers.helpButton {
 			self.color = .red

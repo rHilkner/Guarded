@@ -14,6 +14,7 @@
 		8946E7371FB0E11B0066D1B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */; };
 		8946E7391FB121FA0066D1B3 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7381FB121FA0066D1B3 /* NotificationServices.swift */; };
 		8946E73B1FB237660066D1B3 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E73A1FB237660066D1B3 /* HelpViewController.swift */; };
+		C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C230201D1FC4AF7700A099BE /* Help.storyboard */; };
 		C60EEC571FA83642001E2194 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC531FA83642001E2194 /* Protected.swift */; };
 		C60EEC581FA83642001E2194 /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC541FA83642001E2194 /* Protector.swift */; };
 		C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF31FA292DA00CC4F76 /* Place.swift */; };
@@ -41,6 +42,8 @@
 		C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153EC1FA82C21004BAFE4 /* ViewController.swift */; };
 		C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */; };
 		C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C070C1FA39C830087D613 /* LoginServices.swift */; };
+		C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */; };
+		C6A0AFA81FC4B5C500BF74D4 /* AddPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */; };
 		C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2532F1FAA626C00853CA8 /* MainUser.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,7 @@
 		8946E7381FB121FA0066D1B3 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		8946E73A1FB237660066D1B3 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
+		C230201D1FC4AF7700A099BE /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		C60EEC531FA83642001E2194 /* Protected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		C60EEC541FA83642001E2194 /* Protector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
 		C6152DF31FA292DA00CC4F76 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 		C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProtectorViewController.swift; sourceTree = "<group>"; };
 		C69A72F11F9ABBE3006B002B /* Guarded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guarded.entitlements; sourceTree = "<group>"; };
 		C69C070C1FA39C830087D613 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
+		C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
+		C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceViewController.swift; sourceTree = "<group>"; };
 		C6F2532F1FAA626C00853CA8 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +157,7 @@
 			children = (
 				C6152DF31FA292DA00CC4F76 /* Place.swift */,
 				C6152DF61FA2A03700CC4F76 /* Coordinate.swift */,
+				C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */,
 				891934851FBB6D86004AFD4E /* Annotation.swift */,
 			);
 			path = Objects;
@@ -279,6 +286,7 @@
 				C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */,
 				8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */,
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
+				C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -288,6 +296,7 @@
 			children = (
 				C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */,
 				C69153DA1FA82B86004BAFE4 /* Main.storyboard */,
+				C230201D1FC4AF7700A099BE /* Help.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -364,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
+				C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
 				C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
 				C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */,
@@ -454,7 +464,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6A0AFA81FC4B5C500BF74D4 /* AddPlaceViewController.swift in Sources */,
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
+				C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */,
 				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
 				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
 				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,

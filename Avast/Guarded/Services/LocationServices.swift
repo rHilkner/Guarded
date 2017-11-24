@@ -10,6 +10,7 @@ import CoreLocation
 
 
 protocol LocationUpdateProtocol {
+	func centerInLocation(location: Coordinate)
     func displayCurrentLocation()
 	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String)
 }
@@ -49,32 +50,6 @@ class LocationServices: NSObject {
 
         }
         
-    }
-
-
-    /// Receive address and display its location
-    func addressToLocation(address: String) {
-        
-        let address: String = "Rua da Conceição, 663, Juazeiro do Norte"
-
-        self.geocoder.geocodeAddressString(address) {
-            (placemarks, error) in
-            
-            guard (error == nil) else {
-                print("Error on finding given address.")
-                return
-            }
-            
-            if let placemark = placemarks?.first {
-                let latitude = placemark.location!.coordinate.latitude
-                let longitude = placemark.location!.coordinate.longitude
-                
-                let coordinates = Coordinate(latitude: latitude, longitude: longitude)
-
-				self.delegate.displayLocation(location: coordinates, name: address, identifier: "Address", protectedId: "")
-
-            }
-        }
     }
     
     
@@ -125,3 +100,107 @@ extension LocationServices: CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
 }
+
+extension LocationServices {
+    
+    /// Receive address and display its location
+    static func addressToLocation(address: String, completionHandler: @escaping (Coordinate?) -> Void) {
+        let geocoder = CLGeocoder()
+        
+        //let address: String = "Rua da Conceição, 663, Juazeiro do Norte"
+        
+        geocoder.geocodeAddressString(address) {
+            (_placemarks, error) in
+            
+            guard (error == nil) else {
+                print("Error on finding coordinate to given address.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placemarks = _placemarks! as [CLPlacemark]
+            
+            guard placemarks.count > 0 else {
+                print("Problem receiving data from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placemark: CLPlacemark = placemarks[0]
+            
+            guard let coord = placemark.location?.coordinate else {
+                print("Problem on getting coordinate from placemark location.")
+                completionHandler(nil)
+                return
+            }
+            
+            let coordinates = Coordinate(latitude: coord.latitude, longitude: coord.longitude)
+            
+            completionHandler(coordinates)
+        }
+    }
+    
+    
+    static func coordinateToAddress(coordinate: Coordinate, completionHandler: @escaping (LocationInfo?) -> Void) {
+        let geocoder = CLGeocoder()
+        
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        geocoder.reverseGeocodeLocation(location) {
+            (_placemarks, error) in
+            
+            guard error == nil else {
+                print("Error on reversing given coordinate to address.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placemarks = _placemarks! as [CLPlacemark]
+            
+            guard placemarks.count > 0 else {
+                print("Problem receiving data from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placemark: CLPlacemark = placemarks[0]
+            
+            guard let placeName = placemark.name else {
+                print("Problem receiving name from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            guard let placeAddress = placemark.thoroughfare else {
+                print("Problem receiving address from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            guard let placeCity = placemark.locality else {
+                print("Problem receiving city from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            guard let placeState = placemark.administrativeArea else {
+                print("Problem receiving state from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            guard let placeCountry = placemark.country else {
+                print("Problem receiving country from geocoder.")
+                completionHandler(nil)
+                return
+            }
+            
+            let placeInfo = LocationInfo(name: placeName, address: placeAddress, city: placeCity, state: placeState, country: placeCountry)
+            
+            print(placeInfo)
+            
+            completionHandler(placeInfo)
+        }
+    }
+}
+
