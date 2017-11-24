@@ -23,13 +23,26 @@ class PersonPinView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
-        self.image = greenPin
+        if self.reuseIdentifier == annotationIdentifiers.protected {
+            self.image = greenPin
+        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
+            self.image = redPin
+        } else {
+            self.image = yellowPin
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false // 1
-        self.image = greenPin
+        if self.reuseIdentifier == annotationIdentifiers.protected {
+            self.image = greenPin
+        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
+            self.image = redPin
+        } else {
+            self.image = yellowPin
+        }
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,7 +68,7 @@ class PersonPinView: MKAnnotationView {
                     })
                 }
             }
-        } else { // 3
+        } else {
             if customCalloutView != nil {
                 if animated { // fade out animation, then remove it.
                     UIView.animate(withDuration: 0.3, animations: {
@@ -74,7 +87,7 @@ class PersonPinView: MKAnnotationView {
             if let person = annotation as? Annotation, let protected = AppSettings.mainUser?.protecteds {
                 for p in protected {
                     if p.id == person.protectedId {
-                        personDetailMapView.configureWithPerson(person: p)
+                        personDetailMapView.configureWithPerson(person: p, identifier: reuseIdentifier!)
                         return personDetailMapView
                     }
                 }
@@ -83,7 +96,7 @@ class PersonPinView: MKAnnotationView {
         return nil
     }
 
-    override func prepareForReuse() { // 5
+    override func prepareForReuse() {
         super.prepareForReuse()
         self.customCalloutView?.removeFromSuperview()
     }

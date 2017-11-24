@@ -19,37 +19,59 @@ class PersonStatusCalloutView: UIView {
     @IBOutlet weak var personStatus: UILabel!
     
     var person:Protected!
+    var status:String!
+    var calloutColor:UIColor! = UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0)
+    {
+        didSet{
+            self.backgroundColor = calloutColor
+            self.addTriangleTip(withColor: calloutColor)
+        }
+    }
+    
+    fileprivate var shapeLayer = CAShapeLayer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.height)/2
         
-        addTriangleTip(toView: self, withColor: green)
-        self.backgroundColor = green
+        self.backgroundColor = calloutColor
+        
         self.layer.cornerRadius = 8
-        //self.layer.borderWidth = 2
-        //self.layer.borderColor = UIColor(red: 0/255, green: 160/255, blue: 0/255, alpha: 1.0).cgColor
     }
     
-    func configureWithPerson(person: Protected){
+    func configureWithPerson(person: Protected, identifier:String){
         self.person = person
+        self.status = identifier
         
         //TODO: Unmock this line
+        
         self.profilePicture.image = UIImage(named:"collectionview_placeholder_image")
         
-        self.personName.text = person.name
+        var names = person.name.components(separatedBy: " ")
+        
+        self.personName.text = String(names.removeFirst())
         
         //TODO: get person Status
-        self.personStatus.text = "Safe"
+        switch status {
+            case annotationIdentifiers.protected:
+                self.personStatus.text = "Safe"
+                self.calloutColor = green
+            case annotationIdentifiers.helpButton:
+                self.personStatus.text = "In Danger!"
+                self.calloutColor = red
+            default:
+                self.personStatus.text = "Arriving in"
+                self.calloutColor = yellow
+        }
     }
     
-    func addTriangleTip(toView view:UIView, withColor color:UIColor) {
+    func addTriangleTip(withColor color:UIColor) {
         
-        let xInit = 7*(view.frame.width)/16
-        let yInit = view.frame.height
-        let width = (view.frame.width)/8
-        let height = (view.frame.width)/12
+        let xInit = 7*(self.frame.width)/16
+        let yInit = self.frame.height
+        let width = (self.frame.width)/8
+        let height = (self.frame.width)/12
         
         let tip = UIView(frame: CGRect(x: xInit, y: yInit, width: width, height: height))
         let rect = tip.frame
@@ -60,13 +82,17 @@ class PersonStatusCalloutView: UIView {
         path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
         path.close()
         
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.cgPath
+        self.shapeLayer.removeFromSuperlayer()
+        
+        self.shapeLayer = CAShapeLayer()
+        self.shapeLayer.path = path.cgPath
         
         // apply other properties related to the path
-        shapeLayer.fillColor = color.cgColor
+        self.shapeLayer.fillColor = color.cgColor
+        
+        
         // add the new layer to our custom view
-        view.layer.addSublayer(shapeLayer)
+        self.layer.addSublayer(self.shapeLayer)
 
     }
 

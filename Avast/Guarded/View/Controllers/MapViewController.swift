@@ -228,12 +228,26 @@ extension MapViewController: MKMapViewDelegate {
             return nil
         }
         
+        
+        
         if let annotation = annotation as? Annotation {
             let identifier = annotation.identifier
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
             
             if annotationView == nil {
-                annotationView = PersonPinView(annotation: annotation, reuseIdentifier: identifier)
+                if identifier != annotationIdentifiers.myPlace {
+                    annotationView = PersonPinView(annotation: annotation, reuseIdentifier: identifier)
+                } else {
+                    let view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                    view.canShowCallout = true
+                    view.calloutOffset = CGPoint(x: -5, y: 5)
+                    //view.animatesDrop = false
+                    view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as UIView
+                    view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as UIView
+                    view.image = UIImage(named: "pin_blue")
+                    
+                    return view
+                }
             } else {
                 annotationView!.annotation = annotation
             }
