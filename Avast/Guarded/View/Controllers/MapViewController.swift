@@ -157,7 +157,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func addPlace(_: UIButton) {
-        print("Addr: \(self.selectedAnnotation?.locationInfo?.address)")
+        print("Addr: \(String(describing: self.selectedAnnotation?.locationInfo?.address))")
         performSegue(withIdentifier: "AddPlaceViewController", sender: nil)
     }
     

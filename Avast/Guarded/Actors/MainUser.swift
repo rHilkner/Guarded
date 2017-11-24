@@ -71,6 +71,21 @@ class MainUser: User {
         }
     }
     
+    func fetchPlaces(completionHandler: @escaping (Bool) -> Void) {
+        DatabaseManager.fetchUserPlaces() {
+            (userPlaces) in
+            
+            guard let userPlaces = userPlaces else {
+                print("Fetching user places returned nil.")
+                completionHandler(false)
+                return
+            }
+            
+            self.places = userPlaces
+            completionHandler(true)
+        }
+    }
+    
     ///Adds protector to user's protectors on DB
     func addProtector(_ protector: Protector) {
         DatabaseManager.addProtector(protector) {
