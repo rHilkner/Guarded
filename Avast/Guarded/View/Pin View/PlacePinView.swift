@@ -1,63 +1,46 @@
 //
-//  PersonPinView.swift
+//  PlacePinView.swift
 //  Guarded
 //
-//  Created by Filipe Marques on 24/11/17.
+//  Created by Filipe Marques on 28/11/17.
 //  Copyright © 2017 Rodrigo Hilkner. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-
-
-class PersonPinView: MKAnnotationView {
-    
-    weak var customCalloutView: PersonStatusCalloutView?
+class PlacePinView: MKAnnotationView {
+    weak var customCalloutView: PlaceCalloutView?
     override var annotation: MKAnnotation? {
         willSet { customCalloutView?.removeFromSuperview() }
     }
-    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.protected {
-            self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
-            self.image = Pin.red.image
-        } else {
-            self.image = Pin.yellow.image
-        }
+        self.image = Pin.blue.image
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.protected {
-            self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
-            self.image = Pin.red.image
-        } else {
-            self.image = Pin.yellow.image
-        }
-
+        self.image = Pin.blue.image
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         if selected {
             self.customCalloutView?.removeFromSuperview()
-            
-            if let newCustomCalloutView = loadPersonDetailMapView() {
+
+            if let newCustomCalloutView = loadPlaceMapView() {
                 // fix location from top-left to its right place.
                 newCustomCalloutView.frame.origin.x -= newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0)
                 newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
-                
+
                 // set custom callout view
                 self.addSubview(newCustomCalloutView)
                 self.customCalloutView = newCustomCalloutView
-                
+
                 // animate presentation
                 if animated {
                     self.customCalloutView!.alpha = 0.0
@@ -78,22 +61,19 @@ class PersonPinView: MKAnnotationView {
             }
         }
     }
-    
-    func loadPersonDetailMapView() -> PersonStatusCalloutView? {
-        if let views = Bundle.main.loadNibNamed("PersonStatusCalloutView", owner: self, options: nil) as? [PersonStatusCalloutView], views.count > 0 {
+
+    func loadPlaceMapView() -> PlaceCalloutView? {
+        if let views = Bundle.main.loadNibNamed("PlaceCalloutView", owner: self, options: nil) as? [PlaceCalloutView], views.count > 0 {
             let personDetailMapView = views.first!
-            
+
             let person = annotation as? Annotation
             let protected = AppSettings.mainUser?.protecteds
             guard let p = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: protected!) else { return nil }
             personDetailMapView.configureWithPerson(person: p as! Protected, identifier: reuseIdentifier!)
+
             return personDetailMapView
         }
         return nil
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.customCalloutView?.removeFromSuperview()
-    }
 }

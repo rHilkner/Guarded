@@ -14,21 +14,26 @@ protocol PlaceCalloutDelegate {
 }
 
 class PlaceCalloutView: UIView {
-
+    
     @IBOutlet weak var placeAddress: UILabel!
     @IBOutlet weak var placeCityAndState: UILabel!
     
+    
+    var delegate: PlaceCalloutDelegate?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
     @IBAction func setDestinationAction(_ sender: UIButton) {
-        
+        delegate?.setDestination()
     }
     
     
     @IBAction func addToPlacesAction(_ sender: UIButton) {
+        delegate?.addToPlaces()
     }
     
     
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
 
 }

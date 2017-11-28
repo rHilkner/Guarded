@@ -10,10 +10,6 @@ import UIKit
 
 class PersonStatusCalloutView: UIView {
     
-    let green = UIColor(red: 0/255, green: 160/255, blue: 0/255, alpha: 1.0)
-    let yellow = UIColor(red: 160/255, green: 160/255, blue: 0/255, alpha: 1.0)
-    let red = UIColor(red: 160/255, green: 0/255, blue: 0/255, alpha: 1.0)
-
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var personName: UILabel!
     @IBOutlet weak var personStatus: UILabel!
@@ -56,13 +52,13 @@ class PersonStatusCalloutView: UIView {
         switch status {
             case annotationIdentifiers.protected:
                 self.personStatus.text = "Safe"
-                self.calloutColor = green
+                self.calloutColor = Pin.green.dark
             case annotationIdentifiers.helpButton:
                 self.personStatus.text = "In Danger!"
-                self.calloutColor = red
+                self.calloutColor = Pin.red.dark
             default:
                 self.personStatus.text = "Arriving in"
-                self.calloutColor = yellow
+                self.calloutColor = Pin.yellow.dark
         }
     }
     

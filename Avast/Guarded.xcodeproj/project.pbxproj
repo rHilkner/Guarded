@@ -50,6 +50,8 @@
 		D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */; };
 		D499F9091FC8371F00C9EA86 /* PlaceCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D499F9081FC8371F00C9EA86 /* PlaceCalloutView.xib */; };
 		D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */; };
+		D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */; };
+		D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +111,8 @@
 		D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonStatusCalloutView.xib; sourceTree = "<group>"; };
 		D499F9081FC8371F00C9EA86 /* PlaceCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceCalloutView.xib; sourceTree = "<group>"; };
 		D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCalloutView.swift; sourceTree = "<group>"; };
+		D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnumerations.swift; sourceTree = "<group>"; };
+		D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePinView.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -274,6 +278,7 @@
 		C67B4D541F87CF8B006415CF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */,
 				D48231B71FA4469D0027EC1F /* Storyboards */,
 				C67B4D551F87CF93006415CF /* Controllers */,
 				D4622CF31FC4FA8B00E3CB4A /* Pin View */,
@@ -308,6 +313,7 @@
 				D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */,
 				D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */,
 				D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */,
+				D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */,
 				D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */,
 				D499F9081FC8371F00C9EA86 /* PlaceCalloutView.xib */,
 			);
@@ -490,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6A0AFA81FC4B5C500BF74D4 /* AddPlaceViewController.swift in Sources */,
+				D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */,
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
 				C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */,
 				D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */,
@@ -509,6 +516,7 @@
 				8946E73B1FB237660066D1B3 /* HelpViewController.swift in Sources */,
 				C69153D91FA82B77004BAFE4 /* TimerServices.swift in Sources */,
 				C69153F31FA82C21004BAFE4 /* PlaceCell.swift in Sources */,
+				D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */,
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,

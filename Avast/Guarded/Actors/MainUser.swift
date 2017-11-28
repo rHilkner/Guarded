@@ -99,4 +99,16 @@ class MainUser: User {
             self.protectors.append(protector)
         }
     }
+    
+    func getUser(byId id: String, fromList list: [User]) -> User? {
+        for p in list {
+            if p.id == id {
+                print ("Found user from id")
+                return p
+            }
+        }
+        print ("Couldn't get user from list")
+        return nil
+    }
+    
 }
