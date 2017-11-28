@@ -14,6 +14,7 @@ class MainUser: User {
     var places: [Place] = []
     var protectors: [Protector] = []
     var protecteds: [Protected] = []
+    var timer: TimerObject?
     
     //_updateMapContinuously: true if AppSettings.mainUser is on MapViewController
     private var _updateMapContinuously: Bool = false
