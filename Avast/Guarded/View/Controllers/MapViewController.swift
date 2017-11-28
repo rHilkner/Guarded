@@ -234,16 +234,44 @@ extension MapViewController: MKMapViewDelegate {
             let identifier = annotation.identifier
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
             
+            let latitude = annotation.coordinate.latitude
+            let longitude = annotation.coordinate.longitude
+            
+            let coordinate = Coordinate(latitude: latitude, longitude: longitude)
+            
+            LocationServices.coordinateToAddress(coordinate: coordinate) {
+                (locationInfo) in
+                
+                guard let locationInfo = locationInfo else {
+                    print("Problem on fetching location information.")
+                    return
+                }
+                
+                annotation.locationInfo = locationInfo
+                
+                print("Annotation address: \(String(describing: self.selectedAnnotation?.locationInfo?.address))")
+            }
+            
             if annotationView == nil {
                 if identifier != annotationIdentifiers.myPlace {
                     annotationView = PersonPinView(annotation: annotation, reuseIdentifier: identifier)
                 } else {
+
                     let view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                     view.canShowCallout = true
                     view.calloutOffset = CGPoint(x: -5, y: 5)
                     //view.animatesDrop = false
-                    view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as UIView
-                    view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as UIView
+                    
+                    let leftButton = UIButton(type: UIButtonType.detailDisclosure)
+                    leftButton.addTarget(self, action: #selector(MapViewController.disclosure(_:)), for: UIControlEvents.touchUpInside)
+                    
+                    let rightButton = UIButton(type: UIButtonType.contactAdd)
+                    rightButton.addTarget(self, action: #selector(MapViewController.addPlace(_:)), for: UIControlEvents.touchUpInside)
+                    
+                    view.leftCalloutAccessoryView = leftButton
+                    view.rightCalloutAccessoryView = rightButton
+
+                    
                     view.image = UIImage(named: "pin_blue")
                     
                     return view
@@ -255,6 +283,10 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         return nil
+    }
+    
+    @objc func disclosure(_ : UIButton) {
+        print("Aqui!!")
     }
     
 }

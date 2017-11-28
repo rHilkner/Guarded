@@ -8,14 +8,27 @@
 
 import UIKit
 
+protocol PlaceCalloutDelegate {
+    func setDestination()
+    func addToPlaces()
+}
+
 class PlaceCalloutView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    @IBOutlet weak var placeAddress: UILabel!
+    @IBOutlet weak var placeCityAndState: UILabel!
+    
+    @IBAction func setDestinationAction(_ sender: UIButton) {
+        
+    }
+    
+    
+    @IBAction func addToPlacesAction(_ sender: UIButton) {
+    }
+    
+    
     override func draw(_ rect: CGRect) {
         // Drawing code
     }
-    */
 
 }
