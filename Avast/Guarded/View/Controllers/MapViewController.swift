@@ -152,7 +152,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @IBAction func setTimer() {
-        performSegue(withIdentifier: "SetTimerViewController", sender: nil)
+        performSegue(withIdentifier: "SetDestinationTableViewController", sender: nil)
     }
     
     @objc func addPlace(_: UIButton) {
@@ -175,9 +175,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
                 
                 addPlaceViewController.locationInfo = locationInfo
                 break
-            case "SetTimerViewController":
-                let timerViewController = segue.destination as! TimerViewController
-                timerViewController.delegate = self
+            case "SetDestinationTableViewController":
+                let setDestinationTableViewController = segue.destination as! SetDestinationTableViewController
                 break
             case "TimerDetailsViewController":
                 let timerDetailsViewController = segue.destination as! TimerDetailsViewController

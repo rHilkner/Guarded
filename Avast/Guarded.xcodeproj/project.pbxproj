@@ -18,6 +18,11 @@
 		89B00E341FCDB5680030DC2C /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E331FCDB5680030DC2C /* UserAnnotation.swift */; };
 		89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */; };
 		C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C230201D1FC4AF7700A099BE /* Help.storyboard */; };
+		C24E9B101FCDF3730086C68F /* SetDestinationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */; };
+		C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */; };
+		C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */; };
+		C24E9B161FCE01E70086C68F /* TimerCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */; };
+		C24E9B181FCE026F0086C68F /* ProtectorCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */; };
 		C60EEC571FA83642001E2194 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC531FA83642001E2194 /* Protected.swift */; };
 		C60EEC581FA83642001E2194 /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC541FA83642001E2194 /* Protector.swift */; };
 		C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF31FA292DA00CC4F76 /* Place.swift */; };
@@ -68,6 +73,11 @@
 		89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAnnotation.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
 		C230201D1FC4AF7700A099BE /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
+		C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDestinationTableViewController.swift; sourceTree = "<group>"; };
+		C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetDestinationStoryboard.storyboard; sourceTree = "<group>"; };
+		C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationTableViewCell.swift; sourceTree = "<group>"; };
+		C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCellTableViewCell.swift; sourceTree = "<group>"; };
+		C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectorCellTableViewCell.swift; sourceTree = "<group>"; };
 		C60EEC531FA83642001E2194 /* Protected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		C60EEC541FA83642001E2194 /* Protector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
 		C6152DF31FA292DA00CC4F76 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -301,7 +311,9 @@
 		C67B4D551F87CF93006415CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */,
 				C69153EA1FA82C21004BAFE4 /* CustomTabBarController.swift */,
+				C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */,
 				C69153E71FA82C20004BAFE4 /* MapViewController.swift */,
 				C69153E91FA82C21004BAFE4 /* PlaceCell.swift */,
 				C69153E51FA82C20004BAFE4 /* PlacesTableViewController.swift */,
@@ -315,6 +327,8 @@
 				8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */,
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
 				C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */,
+				C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */,
+				C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -337,6 +351,7 @@
 				C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */,
 				C69153DA1FA82B86004BAFE4 /* Main.storyboard */,
 				C230201D1FC4AF7700A099BE /* Help.storyboard */,
+				C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -417,6 +432,7 @@
 				C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
 				D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */,
+				C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */,
 				C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
 				C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */,
 				C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */,
@@ -514,8 +530,10 @@
 				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
 				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
 				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,
+				C24E9B181FCE026F0086C68F /* ProtectorCellTableViewCell.swift in Sources */,
 				C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */,
 				C60EEC581FA83642001E2194 /* Protector.swift in Sources */,
+				C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */,
 				C65358281FB22D1E00301A3E /* DatabaseManager.swift in Sources */,
 				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
 				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
@@ -524,6 +542,7 @@
 				C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */,
 				D45A5BCF1FC7D05400FACE2E /* PersonPinView.swift in Sources */,
 				C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */,
+				C24E9B101FCDF3730086C68F /* SetDestinationTableViewController.swift in Sources */,
 				8946E73B1FB237660066D1B3 /* HelpViewController.swift in Sources */,
 				89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */,
 				C69153D91FA82B77004BAFE4 /* TimerServices.swift in Sources */,
@@ -531,6 +550,7 @@
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,
+				C24E9B161FCE01E70086C68F /* TimerCellTableViewCell.swift in Sources */,
 				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
 				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
 				C69153ED1FA82C21004BAFE4 /* TimerViewController.swift in Sources */,
@@ -683,7 +703,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = ET334MYK42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -705,7 +725,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xpt.Avast;
+				PRODUCT_BUNDLE_IDENTIFIER = br.org.eldorado.bepid.Guarded;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -720,7 +740,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = ET334MYK42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -742,7 +762,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Guarded/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xpt.Avast;
+				PRODUCT_BUNDLE_IDENTIFIER = br.org.eldorado.bepid.Guarded;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
