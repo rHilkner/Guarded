@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,19 +24,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="iXU-CO-CZS">
-                                <rect key="frame" x="95" y="237" width="186" height="194"/>
+                                <rect key="frame" x="83" y="219.5" width="210" height="229"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="iXU-CO-CZS" secondAttribute="height" multiplier="210:229" id="lpg-Bw-uq4"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9pd-Kl-SYo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="5Vm-Op-ttF"/>
                             <constraint firstItem="9pd-Kl-SYo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="H3X-P3-MsW"/>
-                            <constraint firstItem="iXU-CO-CZS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="I4W-5c-slb"/>
-                            <constraint firstItem="iXU-CO-CZS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="217" id="JBI-BX-gtr"/>
                             <constraint firstItem="9pd-Kl-SYo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Sx2-FH-uod"/>
+                            <constraint firstItem="iXU-CO-CZS" firstAttribute="centerX" secondItem="9pd-Kl-SYo" secondAttribute="centerX" id="Uuv-2B-8HR"/>
                             <constraint firstItem="9pd-Kl-SYo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="V9a-0z-Ihw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iXU-CO-CZS" secondAttribute="trailing" constant="94" id="o9f-at-Yvf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="iXU-CO-CZS" secondAttribute="bottom" constant="236" id="qkj-cS-aQR"/>
+                            <constraint firstItem="iXU-CO-CZS" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.56" id="YvF-nA-8Nd"/>
+                            <constraint firstItem="iXU-CO-CZS" firstAttribute="centerY" secondItem="9pd-Kl-SYo" secondAttribute="centerY" id="nMw-Ov-9XW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -46,6 +50,6 @@
     </scenes>
     <resources>
         <image name="LaunchBG" width="375" height="667"/>
-        <image name="LaunchLogo" width="186" height="194"/>
+        <image name="LaunchLogo" width="211" height="229"/>
     </resources>
 </document>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceCalloutView" customModule="Guarded" customModuleProvider="target">
+            <connections>
+                <outlet property="placeAddress" destination="Dt0-pD-MtQ" id="Wob-DB-Ll8"/>
+                <outlet property="placeCityAndState" destination="vMZ-zE-Cq6" id="lEC-13-NQP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ZCu-Ju-2aY">
+            <rect key="frame" x="0.0" y="0.0" width="265" height="91"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dt0-pD-MtQ">
+                    <rect key="frame" x="16" y="9" width="233" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMZ-zE-Cq6">
+                    <rect key="frame" x="16" y="30.5" width="233" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byB-Vs-1VD">
+                    <rect key="frame" x="0.0" y="55" width="265" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJn-Ox-VpJ">
+                            <rect key="frame" x="0.0" y="0.0" width="132" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Set Destination">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="setDestinationAction:" destination="-1" eventType="touchUpInside" id="Deo-MO-FV4"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWq-x9-IjH">
+                            <rect key="frame" x="132" y="0.0" width="1" height="36"/>
+                            <color key="backgroundColor" red="0.86657208200000002" green="0.86672115329999999" blue="0.86656266449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="m68-7H-fcX"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iF-gb-MgI">
+                            <rect key="frame" x="133" y="0.0" width="132" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="Add to Places">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="addToPlacesAction:" destination="-1" eventType="touchUpInside" id="k9C-1d-dzc"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="LJn-Ox-VpJ" firstAttribute="width" secondItem="8iF-gb-MgI" secondAttribute="width" id="6Un-fU-gsq"/>
+                        <constraint firstAttribute="height" constant="36" id="WbU-PS-sZe"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="501-0p-1Yy">
+                    <rect key="frame" x="0.0" y="54" width="265" height="1"/>
+                    <color key="backgroundColor" red="0.83529411760000005" green="0.83529411760000005" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="VdU-Gm-UBe"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="501-0p-1Yy" secondAttribute="trailing" id="3nj-xU-CSY"/>
+                <constraint firstItem="vMZ-zE-Cq6" firstAttribute="leading" secondItem="6Q8-V5-vSL" secondAttribute="leading" constant="16" id="HZN-Al-4g7"/>
+                <constraint firstItem="vMZ-zE-Cq6" firstAttribute="top" secondItem="Dt0-pD-MtQ" secondAttribute="bottom" constant="1" id="JZ0-3B-ukL"/>
+                <constraint firstItem="6Q8-V5-vSL" firstAttribute="trailing" secondItem="byB-Vs-1VD" secondAttribute="trailing" id="K7c-ce-7mh"/>
+                <constraint firstItem="Dt0-pD-MtQ" firstAttribute="top" secondItem="6Q8-V5-vSL" secondAttribute="top" constant="9" id="M8j-LK-AdZ"/>
+                <constraint firstItem="6Q8-V5-vSL" firstAttribute="trailing" secondItem="Dt0-pD-MtQ" secondAttribute="trailing" constant="16" id="OWw-QY-Dp8"/>
+                <constraint firstItem="byB-Vs-1VD" firstAttribute="top" secondItem="501-0p-1Yy" secondAttribute="bottom" id="bbH-vW-hFg"/>
+                <constraint firstItem="6Q8-V5-vSL" firstAttribute="bottom" secondItem="byB-Vs-1VD" secondAttribute="bottom" id="hpE-ZJ-LiL"/>
+                <constraint firstItem="Dt0-pD-MtQ" firstAttribute="leading" secondItem="6Q8-V5-vSL" secondAttribute="leading" constant="16" id="ln2-IF-pfW"/>
+                <constraint firstItem="501-0p-1Yy" firstAttribute="leading" secondItem="6Q8-V5-vSL" secondAttribute="leading" id="pUX-SS-3Xv"/>
+                <constraint firstItem="6Q8-V5-vSL" firstAttribute="trailing" secondItem="vMZ-zE-Cq6" secondAttribute="trailing" constant="16" id="qv9-I2-LmE"/>
+                <constraint firstItem="byB-Vs-1VD" firstAttribute="leading" secondItem="6Q8-V5-vSL" secondAttribute="leading" id="yPE-ec-jyh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="6Q8-V5-vSL"/>
+            <point key="canvasLocation" x="-148" y="585"/>
+        </view>
+    </objects>
+</document>
