@@ -36,7 +36,7 @@ class LoginServices {
                 }
 
                 //creating main user object
-                let mainUser = MainUser(id: userID!, name: userName!, email: userEmail, phoneNumber: nil)
+				let mainUser = MainUser(id: userID!, name: userName!, email: userEmail, phoneNumber: nil, status: userStatus.safe)
                 
                 //adding new main user object to database
                 DatabaseManager.addUser(mainUser) {

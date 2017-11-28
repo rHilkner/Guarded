@@ -25,7 +25,7 @@ class PersonPinView: MKAnnotationView {
         self.canShowCallout = false
         if self.reuseIdentifier == annotationIdentifiers.protected {
             self.image = greenPin
-        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
+        } else if self.reuseIdentifier == annotationIdentifiers.help {
             self.image = redPin
         } else {
             self.image = yellowPin
@@ -37,7 +37,7 @@ class PersonPinView: MKAnnotationView {
         self.canShowCallout = false // 1
         if self.reuseIdentifier == annotationIdentifiers.protected {
             self.image = greenPin
-        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
+        } else if self.reuseIdentifier == annotationIdentifiers.help {
             self.image = redPin
         } else {
             self.image = yellowPin
@@ -84,7 +84,7 @@ class PersonPinView: MKAnnotationView {
     func loadPersonDetailMapView() -> PersonStatusCalloutView? {
         if let views = Bundle.main.loadNibNamed("PersonStatusCalloutView", owner: self, options: nil) as? [PersonStatusCalloutView], views.count > 0 {
             let personDetailMapView = views.first!
-            if let person = annotation as? Annotation, let protected = AppSettings.mainUser?.protecteds {
+            if let person = annotation as? UserAnnotation, let protected = AppSettings.mainUser?.protecteds {
                 for p in protected {
                     if p.id == person.protectedId {
                         personDetailMapView.configureWithPerson(person: p, identifier: reuseIdentifier!)

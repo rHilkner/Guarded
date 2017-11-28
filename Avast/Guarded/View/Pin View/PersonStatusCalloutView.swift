@@ -57,7 +57,7 @@ class PersonStatusCalloutView: UIView {
             case annotationIdentifiers.protected:
                 self.personStatus.text = "Safe"
                 self.calloutColor = green
-            case annotationIdentifiers.helpButton:
+            case annotationIdentifiers.help:
                 self.personStatus.text = "In Danger!"
                 self.calloutColor = red
             default:
