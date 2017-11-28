@@ -262,8 +262,6 @@ extension MapViewController: MKMapViewDelegate {
                     return view
                 }
                 
-                annotation.locationInfo = locationInfo
-                
                 print("Annotation address: \(String(describing: self.selectedAnnotation?.locationInfo?.address))")
             }
             return annotationView
