@@ -10,7 +10,7 @@ import UIKit
 
 class PlacesTableViewController: UITableViewController {
 
-    @IBOutlet var placesTableView: UITableView!
+    
     var places: [Place] = []
     
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class PlacesTableViewController: UITableViewController {
         //Loading current user places
         loadPlaces()
         
-        self.placesTableView.reloadData()
+        self.tableView.reloadData()
         
         print("User places: \(self.places.count)")
     }

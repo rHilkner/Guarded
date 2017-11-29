@@ -14,14 +14,13 @@ import GooglePlaces
 struct annotationIdentifiers {
     static let place = "My Place"
     static let help = "Help Button Occurrence"
-    static let protected = "Protected"
+    static let user = "Protected"
 }
 
 class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var location: CLLocation?
     var locationServices: LocationServices?
-    var timerService: TimerServices?
     
     var displayInCenter: String = ""
 
@@ -45,7 +44,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         //longPressGestureRecognizer.numberOfTapsRequired = 1
 
         map.addGestureRecognizer(longPressGestureRecognizer)
-
+        
+        if let userTimer = AppSettings.mainUser?.timer {
+            userTimer.delegate = self
+            setTimerText(timeString: userTimer.timeString)
+        } else {
+            timerButton.isHidden = true
+        }
     }
     
     override func viewDidLoad() {
@@ -66,7 +71,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
       //  AppSettings.mainUser?.updateMapContinuously = true
 
         /// Receive the coordinate of a new protected`s occurence
-        DatabaseManager.addObserverToProtectedsHelpOccurrences(){
+        DatabaseManager.addObserverToProtectedsHelpOccurrences() {
             (coordinate) in
 
             guard (coordinate != nil) else {
@@ -90,7 +95,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 			/// only display location if it`s allowed
 			if protected?.allowedToFollow == true {
-				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id)
+				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.user, protectedId: protected!.id)
 			}
 
 		}
@@ -105,14 +110,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             launched = true
             self.displayCurrentLocation()
         }
-
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
        // AppSettings.mainUser?.updateMapContinuously = false
         
         self.locationServices = nil
+        
+        if let userTimer = AppSettings.mainUser?.timer {
+            userTimer.delegate = nil
+        }
     }
 
     /// add long press gesture to create an annotation and peforme action in the location pressed
@@ -169,19 +176,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
                     return
                 }
                 
-                print("Addr: \(locationInfo.address) -- WTF")
+                let addPlaceTableViewController = segue.destination as? AddPlaceTableViewController
                 
-                let addPlaceViewController = segue.destination as! AddPlaceViewController
-                
-                addPlaceViewController.locationInfo = locationInfo
+                addPlaceTableViewController?.locationInfo = locationInfo
                 break
             case "SetDestinationTableViewController":
                 let setDestinationTableViewController = segue.destination as! SetDestinationTableViewController
                 break
             case "TimerDetailsViewController":
                 let timerDetailsViewController = segue.destination as! TimerDetailsViewController
-                timerDetailsViewController.timerService = self.timerService
-                timerDetailsViewController.delegate = self
                 break
             default:
                 break
@@ -194,32 +197,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
 
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation {
-//            //return nil so map view draws "blue dot" for standard user location
-//            return nil
-//        }
-//
-//        if let annotation = annotation as? Annotation {
-//
-//            let identifier = annotation.identifier
-//            var view: MKPinAnnotationView
-//
-//
-//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//            view.canShowCallout = true
-//            view.calloutOffset = CGPoint(x: -5, y: 5)
-//            view.animatesDrop = false
-//            view.leftCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure) as! UIView
-//            view.rightCalloutAccessoryView = UIButton(type: UIButtonType.contactAdd) as! UIView
-//            view.pinTintColor = annotation.color
-//
-//            return view
-//        }
-//
-//        return nil
-//    }
-
 	/// function called when addAnottation is fired
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
@@ -230,34 +207,16 @@ extension MapViewController: MKMapViewDelegate {
         if let annotation = annotation as? Annotation {
             let identifier = annotation.identifier
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            
             if annotationView == nil {
 
 				if let personAnnotation = annotation as? UserAnnotation {
                     annotationView = PersonPinView(annotation: personAnnotation, reuseIdentifier: identifier)
                 } else if let placeAnnotation = annotation as? PlaceAnnotation {
-					
-                    let view = MKAnnotationView(annotation: placeAnnotation, reuseIdentifier: identifier)
-                    view.canShowCallout = true
-                    view.calloutOffset = CGPoint(x: -5, y: 5)
-                    //view.animatesDrop = false
-                    
-                    let leftButton = UIButton(type: UIButtonType.detailDisclosure)
-                    leftButton.addTarget(self, action: #selector(MapViewController.disclosure(_:)), for: UIControlEvents.touchUpInside)
-                    
-                    let rightButton = UIButton(type: UIButtonType.contactAdd)
-                    rightButton.addTarget(self, action: #selector(MapViewController.addPlace(_:)), for: UIControlEvents.touchUpInside)
-                    
-                    view.leftCalloutAccessoryView = leftButton
-                    view.rightCalloutAccessoryView = rightButton
-
-                    
-                    view.image = UIImage(named: "pin_blue")
-                    
-                    return view
+					annotationView = PlacePinView(annotation: placeAnnotation, reuseIdentifier: identifier)
+                    (annotationView as! PlacePinView).placeDelegate = self
                 }
-            } else {
-                annotationView!.annotation = annotation
+                
+                print("Annotation address: \(String(describing: self.selectedAnnotation?.locationInfo?.address))")
             }
             return annotationView
         }
@@ -265,9 +224,22 @@ extension MapViewController: MKMapViewDelegate {
         return nil
     }
     
-    @objc func disclosure(_ : UIButton) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let view = view as? PlacePinView {
+            self.selectedAnnotation = (view.annotation as! PlaceAnnotation)
+        }
+    }
+}
+
+extension MapViewController: PlaceCalloutDelegate {
+    func setDestination() {
         print("Aqui!!")
     }
+    
+    func addToPlaces() {
+        performSegue(withIdentifier: "AddPlaceViewController", sender: nil)
+    }
+    
     
 }
 
@@ -298,11 +270,7 @@ extension MapViewController: LocationUpdateProtocol {
 
         let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 
-        if identifier == annotationIdentifiers.protected {
-
-            /// check if already is a annotation to this protected
-            /// if true, remove old annotation
-            /// this prevents the creation of a path full of annotation
+        if identifier == annotationIdentifiers.user {
             for i in protectedsAnnotationArray {
                 if protectedId == i.protectedId {
                     self.map.removeAnnotation(i)
@@ -327,29 +295,25 @@ extension MapViewController: LocationUpdateProtocol {
 				}
 
 				placeAnnotation.locationInfo = locationInfo
+                self.map.addAnnotation(placeAnnotation)
 
 			}
             
-			self.map.addAnnotation(placeAnnotation)
+			//self.map.addAnnotation(placeAnnotation)
         }
     }
 
 }
 
-
-extension MapViewController: TimerViewControllerDelegate {
+extension MapViewController: TimerObjectDelegate {
     
-    func timerReady(timerService: TimerServices) {
-        timerButton.isHidden = false
+    func setTimerText(timeString: String) {
+        if timerButton.isHidden == true {
+            timerButton.isHidden = false
+        }
         
-        self.timerService = timerService
-        self.timerService!.start()
-        timerButton.setTitle(timerService.timeString, for: .normal)
+        timerButton.setTitle(timeString, for: .normal)
     }
-    
-}
-
-extension MapViewController: TimerServicesDelegate {
     
     func updateTimerText(timeString: String) {
         timerButton.setTitle(timeString, for: .normal)
@@ -364,13 +328,13 @@ extension MapViewController: TimerServicesDelegate {
         alertController.addAction(UIAlertAction(title: "Já cheguei",
                                                 style: UIAlertActionStyle.cancel,
                                                 handler: { action in
-                                                    self.timerService?.stop()
+                                                    AppSettings.mainUser!.timer!.end()
                                                 }))
         
         alertController.addAction(UIAlertAction(title: "+5 min",
                                                 style: UIAlertActionStyle.default,
                                                 handler: { action in
-                                                    self.timerService?.snooze()
+                                                    AppSettings.mainUser!.timer!.snooze()
                                                 }))
         
         self.present(alertController, animated: true, completion: nil)
@@ -379,7 +343,6 @@ extension MapViewController: TimerServicesDelegate {
     
     func dismissTimer() {
         timerButton.isHidden = true
-        self.timerService = nil
     }
 }
 
