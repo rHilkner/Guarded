@@ -72,6 +72,20 @@ class SetDestinationTableViewController: UITableViewController {
         return sections[section]
     }
 
+	func getCurrentDate(){
+
+		let date = Date()
+		let calendar = Calendar.current
+		let components = calendar.dateComponents([.year, .month, .day], from: date)
+
+		let year =  components.year
+		let month = components.month
+		let day = components.day
+
+		print(year)
+		print(month)
+		print(day)
+	}
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
