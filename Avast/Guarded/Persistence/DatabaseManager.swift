@@ -98,11 +98,39 @@ class DatabaseManager {
     static func addProtector(_ protector: Protector, completionHandler: @escaping (Error?) -> Void) {
         
         let usersRef = ref.child("users")
+        let dispatchGroup = DispatchGroup()
         
         //TODO: transaction block without downloading the whole "users" json
         
-        usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(true)
-        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(true)
+        dispatchGroup.enter()
+        
+        usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(true) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        
+        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(true) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completionHandler(nil)
+        }
     }
 
 	///Deactivate the protector turning its value false
@@ -112,8 +140,27 @@ class DatabaseManager {
 
 		//TODO: transaction block without downloading the whole "users" json
 
-		usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(false)
-		usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(false)
+        usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(false) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            completionHandler(nil)
+        }
+        
+        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(false) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            completionHandler(nil)
+        }
 	}
     
     ///Removes protector to user's protectors list and also removes user as protector's protected list

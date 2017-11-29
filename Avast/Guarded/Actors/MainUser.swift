@@ -82,6 +82,7 @@ class MainUser: User {
                 return
             }
             
+            print("User Places[] fetched successfully.")
             self.places = userPlaces
             completionHandler(true)
         }
@@ -97,6 +98,7 @@ class MainUser: User {
                 return
             }
             
+            print("Protector \(protector.name) added to user's database.")
             self.protectors.append(protector)
         }
     }

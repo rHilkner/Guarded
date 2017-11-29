@@ -20,13 +20,27 @@ class ProtectCollectionViewController: UICollectionViewController {
     var protected = [Protected]()
     
     override func viewDidLoad() {
-        loadActors()
         super.viewDidLoad()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadActors()
+        print(AppSettings.mainUser?.protectors.count)
+    }
+    
+    func loadActors(){
+        if let userProtectors = AppSettings.mainUser?.protectors {
+            self.protectors = userProtectors
+        } else {
+            self.protectors = [Protector]()
+        }
+        
+        if let userProtected = AppSettings.mainUser?.protecteds {
+            self.protected = userProtected
+        } else {
+            self.protected = [Protected]()
+        }
+        
     }
 
     /*
@@ -174,21 +188,6 @@ class ProtectCollectionViewController: UICollectionViewController {
 		}
 
 
-
-    }
-
-    func loadActors(){
-        if let userProtectors = AppSettings.mainUser?.protectors {
-            self.protectors = userProtectors
-        } else {
-            self.protectors = [Protector]()
-        }
-        
-        if let userProtected = AppSettings.mainUser?.protecteds {
-            self.protected = userProtected
-        } else {
-            self.protected = [Protected]()
-        }
 
     }
     
