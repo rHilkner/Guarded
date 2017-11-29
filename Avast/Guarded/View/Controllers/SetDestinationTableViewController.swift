@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class SetDestinationTableViewController: UITableViewController {
     
@@ -101,9 +102,9 @@ class SetDestinationTableViewController: UITableViewController {
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
         
         var id = [String]()
-        
         let section = 2
         let rows = tableView.numberOfRows(inSection: section)
+        
         for i in 0..<rows {
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: section)) as! ProtectorCellTableViewCell
             if cell.protectorOnOff.isOn {
@@ -115,7 +116,7 @@ class SetDestinationTableViewController: UITableViewController {
 			print("Error in getting the current date")
 			return
 		}
-
+        
 		let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: self.timerValue, protectorsId: id)
 
 		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation: arrivalInformation){
@@ -127,6 +128,12 @@ class SetDestinationTableViewController: UITableViewController {
 			}
 			
 		}
+        
+        let timer = TimerObject(seconds: Int(timerValue),
+                                destination: CLLocation(latitude: 37.2, longitude: 22.9),
+                                delegate: nil)
+        AppSettings.mainUser?.timer = timer
+        AppSettings.mainUser?.timer?.start()
         
         self.navigationController?.popViewController(animated: true)
     }

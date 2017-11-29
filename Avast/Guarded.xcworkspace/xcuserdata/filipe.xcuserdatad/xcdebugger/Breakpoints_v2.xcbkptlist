@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guarded/View/Controllers/SetDestinationTableViewController.swift"
-            timestampString = "533672809.061868"
+            timestampString = "533675327.391008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "didChangeValue(cell:picker:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Guarded/View/Controllers/SetDestinationTableViewController.swift"
-            timestampString = "533672809.062215"
+            filePath = "Guarded/View/Cells/TimerCellTableViewCell.swift"
+            timestampString = "533675327.39109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "didChangeValue(cell:picker:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "didChangeValue(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
