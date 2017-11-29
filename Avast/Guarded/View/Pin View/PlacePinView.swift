@@ -1,46 +1,32 @@
 //
-//  PersonPinView.swift
+//  PlacePinView.swift
 //  Guarded
 //
-//  Created by Filipe Marques on 24/11/17.
+//  Created by Filipe Marques on 28/11/17.
 //  Copyright © 2017 Rodrigo Hilkner. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-
-
-class PersonPinView: MKAnnotationView {
+class PlacePinView: MKAnnotationView {
     
-    weak var customCalloutView: PersonStatusCalloutView?
+    weak var customCalloutView: PlaceCalloutView?
     override var annotation: MKAnnotation? {
         willSet { customCalloutView?.removeFromSuperview() }
     }
+    var placeDelegate:PlaceCalloutDelegate!
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.user {
-            self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.help {
-            self.image = Pin.red.image
-        } else {
-            self.image = Pin.yellow.image
-        }
+        self.image = Pin.blue.image
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.user {
-            self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.help {
-            self.image = Pin.red.image
-        } else {
-            self.image = Pin.yellow.image
-        }
-
+        self.image = Pin.blue.image
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,7 +35,7 @@ class PersonPinView: MKAnnotationView {
         if selected {
             self.customCalloutView?.removeFromSuperview()
             
-            if let newCustomCalloutView = loadPersonDetailMapView() {
+            if let newCustomCalloutView = loadPlaceDetails() {
                 // fix location from top-left to its right place.
                 newCustomCalloutView.frame.origin.x -= newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0)
                 newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
@@ -78,22 +64,33 @@ class PersonPinView: MKAnnotationView {
             }
         }
     }
-    
-    func loadPersonDetailMapView() -> PersonStatusCalloutView? {
-        if let views = Bundle.main.loadNibNamed("PersonStatusCalloutView", owner: self, options: nil) as? [PersonStatusCalloutView], views.count > 0 {
-            let personDetailMapView = views.first!
+
+    func loadPlaceDetails() -> PlaceCalloutView? {
+        if let views = Bundle.main.loadNibNamed("PlaceCalloutView", owner: self, options: nil) as? [PlaceCalloutView], views.count > 0 {
+            let placeDetailMapView = views.first!
+            placeDetailMapView.delegate = self.placeDelegate
             
-            let person = annotation as? UserAnnotation
-            let protected = AppSettings.mainUser?.protecteds
-            guard let p = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: protected!) else { return nil }
-            personDetailMapView.configure(withPerson: p as! Protected)
-            return personDetailMapView
+            guard let place = annotation as? PlaceAnnotation else { return nil }
+            placeDetailMapView.configure(withInfo: place.locationInfo!)
+            return placeDetailMapView
         }
         return nil
     }
-
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if let parentHitView = super.hitTest(point, with: event) {
+            return parentHitView
+            
+        } else { // test in our custom callout.
+            if customCalloutView != nil {
+                return customCalloutView!.hitTest(convert(point, to: customCalloutView!), with: event)
+            } else { return nil }
+        }
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.customCalloutView?.removeFromSuperview()
     }
+
 }

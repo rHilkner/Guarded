@@ -10,16 +10,12 @@ import UIKit
 
 class PersonStatusCalloutView: UIView {
     
-    let green = UIColor(red: 0/255, green: 160/255, blue: 0/255, alpha: 1.0)
-    let yellow = UIColor(red: 160/255, green: 160/255, blue: 0/255, alpha: 1.0)
-    let red = UIColor(red: 160/255, green: 0/255, blue: 0/255, alpha: 1.0)
-
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var personName: UILabel!
     @IBOutlet weak var personStatus: UILabel!
     
     var person:Protected!
-    var status:String!
+    
     var calloutColor:UIColor! = UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0)
     {
         didSet{
@@ -34,35 +30,32 @@ class PersonStatusCalloutView: UIView {
         super.awakeFromNib()
         
         self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.height)/2
-        
         self.backgroundColor = calloutColor
-        
         self.layer.cornerRadius = 8
     }
     
-    func configureWithPerson(person: Protected, identifier:String){
+    func configure(withPerson person: Protected){
         self.person = person
-        self.status = identifier
-        
-        //TODO: Unmock this line
-        
+
+        //TODO: Unmock this line        
         self.profilePicture.image = UIImage(named:"collectionview_placeholder_image")
         
         var names = person.name.components(separatedBy: " ")
         
         self.personName.text = String(names.removeFirst())
         
-        //TODO: get person Status
-        switch status {
-            case annotationIdentifiers.protected:
-                self.personStatus.text = "Safe"
-                self.calloutColor = green
-            case annotationIdentifiers.help:
-                self.personStatus.text = "In Danger!"
-                self.calloutColor = red
-            default:
-                self.personStatus.text = "Arriving in"
-                self.calloutColor = yellow
+        switch person.status {
+        case userStatus.safe:
+            self.personStatus.text = "Safe"
+            self.calloutColor = Pin.green.dark
+        case userStatus.arriving:
+            self.personStatus.text = "In Danger!"
+            self.calloutColor = Pin.red.dark
+        case userStatus.danger:
+            self.personStatus.text = "Arriving in"
+            self.calloutColor = Pin.yellow.dark
+        default:
+            self.personStatus.text = ""
         }
     }
     
