@@ -12,6 +12,7 @@ class SetDestinationTableViewController: UITableViewController {
     
     var locationInfo: LocationInfo!
     var sections = ["Endereço","Tempo Esperado","Protetores"]
+    var timerValue:TimeInterval!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,9 @@ class SetDestinationTableViewController: UITableViewController {
             return cell
         }else if indexPath.section == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: "timercell", for: indexPath) as! TimerCellTableViewCell
+            cell.delegate = self
             cell.timer.countDownDuration = TimeInterval(0.0)
+            self.timerValue = cell.timer.countDownDuration
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "protectorcell", for: indexPath) as! ProtectorCellTableViewCell
@@ -125,3 +128,10 @@ class SetDestinationTableViewController: UITableViewController {
     }
 
 }
+
+extension SetDestinationTableViewController: TimerCellTableViewCellDelegate {
+    func didChangeValue(cell: TimerCellTableViewCell, picker: UIDatePicker) {
+        self.timerValue = cell.timer.countDownDuration
+    }
+}
+
