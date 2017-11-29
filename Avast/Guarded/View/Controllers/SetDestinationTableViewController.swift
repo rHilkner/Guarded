@@ -17,14 +17,6 @@ class SetDestinationTableViewController: UITableViewController {
         super.viewDidLoad()
 
 
-		/*let year =  components.year
-		let month = components.month
-		let day = components.day
-		let hours = components.hour*/
-
-
-		//print("\(day!) - \(month!) - \(year!)")
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -88,8 +80,9 @@ class SetDestinationTableViewController: UITableViewController {
         } else {
             return 44
         }
+	}
 
-	func getCurrentDate(){
+	func getCurrentDate() -> String {
 
 		let date = Date()
 
@@ -98,16 +91,9 @@ class SetDestinationTableViewController: UITableViewController {
 
 		let dateString = dateFormatter.string(from: date)
 
-		print(dateString)
+		return dateString
 	}
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
-
-        return cell
-    }
     
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
         
@@ -121,6 +107,19 @@ class SetDestinationTableViewController: UITableViewController {
                 id.append(cell.protectorId)
             }
         }
+
+		guard let date = self.getCurrentDate() as? String else {
+			print("Error in getting the current date")
+			return
+		}
+
+	/*	let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: <#T##Int#>, protectorsId: id)
+
+		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation){
+			(error) in
+
+			
+		}*/
         
         self.navigationController?.popViewController(animated: true)
     }

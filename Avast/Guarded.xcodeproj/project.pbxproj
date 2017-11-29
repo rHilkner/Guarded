@@ -17,7 +17,7 @@
 		89B00E321FCDB5550030DC2C /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E311FCDB5550030DC2C /* PlaceAnnotation.swift */; };
 		89B00E341FCDB5680030DC2C /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E331FCDB5680030DC2C /* UserAnnotation.swift */; };
 		89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */; };
-		89B00E3B1FCF21E30030DC2C /* ArrivalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E3A1FCF21E30030DC2C /* ArrivalInformation.swift */; };
+		89DE136D1FCF2DD6003D009C /* ArrivalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */; };
 		C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C230201D1FC4AF7700A099BE /* Help.storyboard */; };
 		C24E9B101FCDF3730086C68F /* SetDestinationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */; };
 		C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */; };
@@ -78,6 +78,7 @@
 		89B00E331FCDB5680030DC2C /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAnnotation.swift; sourceTree = "<group>"; };
 		89B00E3A1FCF21E30030DC2C /* ArrivalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInformation.swift; sourceTree = "<group>"; };
+		89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInformation.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
 		C230201D1FC4AF7700A099BE /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDestinationTableViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +210,7 @@
 				891934851FBB6D86004AFD4E /* Annotation.swift */,
 				C69153D71FA82B77004BAFE4 /* TimerObject.swift */,
 				89B00E301FCDB5220030DC2C /* AnnotaionSubClasses */,
+				89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				C69153F71FA82C37004BAFE4 /* LoginViewController.swift */,
+				89B00E3A1FCF21E30030DC2C /* ArrivalInformation.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -564,8 +567,8 @@
 				C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */,
 				C65358281FB22D1E00301A3E /* DatabaseManager.swift in Sources */,
 				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
-				89B00E3B1FCF21E30030DC2C /* ArrivalInformation.swift in Sources */,
 				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
+				89DE136D1FCF2DD6003D009C /* ArrivalInformation.swift in Sources */,
 				C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */,
 				D4BC71F51FCE5A18004504EC /* EditInformationCell.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
@@ -734,7 +737,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WW6YH2P93;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -771,7 +774,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WW6YH2P93;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
