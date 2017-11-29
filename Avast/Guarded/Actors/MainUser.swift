@@ -14,6 +14,7 @@ class MainUser: User {
     var places: [Place] = []
     var protectors: [Protector] = []
     var protecteds: [Protected] = []
+    var timer: TimerObject?
     
     //_updateMapContinuously: true if AppSettings.mainUser is on MapViewController
     private var _updateMapContinuously: Bool = false
@@ -99,4 +100,16 @@ class MainUser: User {
             self.protectors.append(protector)
         }
     }
+    
+    func getUser(byId id: String, fromList list: [User]) -> User? {
+        for p in list {
+            if p.id == id {
+                print ("Found user from id")
+                return p
+            }
+        }
+        print ("Couldn't get user from list")
+        return nil
+    }
+    
 }

@@ -35,7 +35,7 @@
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D401F87C58F006415CF /* Assets.xcassets */; };
 		C69153D81FA82B77004BAFE4 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D61FA82B77004BAFE4 /* LocationServices.swift */; };
-		C69153D91FA82B77004BAFE4 /* TimerServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D71FA82B77004BAFE4 /* TimerServices.swift */; };
+		C69153D91FA82B77004BAFE4 /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D71FA82B77004BAFE4 /* TimerObject.swift */; };
 		C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C69153DA1FA82B86004BAFE4 /* Main.storyboard */; };
 		C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */; };
 		C69153ED1FA82C21004BAFE4 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153E31FA82C20004BAFE4 /* TimerViewController.swift */; };
@@ -51,13 +51,18 @@
 		C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */; };
 		C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69C070C1FA39C830087D613 /* LoginServices.swift */; };
 		C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */; };
-		C6A0AFA81FC4B5C500BF74D4 /* AddPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */; };
 		C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2532F1FAA626C00853CA8 /* MainUser.swift */; };
 		D45A5BCF1FC7D05400FACE2E /* PersonPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */; };
 		D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */; };
 		D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */; };
-		D499F9091FC8371F00C9EA86 /* PlaceCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D499F9081FC8371F00C9EA86 /* PlaceCalloutView.xib */; };
 		D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */; };
+		D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */; };
+		D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */; };
+		D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BC71ED1FCE39D2004504EC /* PlaceCalloutView.xib */; };
+		D4BC71F01FCE5667004504EC /* AddPlace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BC71EF1FCE5667004504EC /* AddPlace.storyboard */; };
+		D4BC71F21FCE576A004504EC /* AddPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */; };
+		D4BC71F51FCE5A18004504EC /* EditInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */; };
+		D4BC71F71FCE5AC3004504EC /* ShowInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,7 +105,7 @@
 		C67B4D401F87C58F006415CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C67B4D451F87C58F006415CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C69153D61FA82B77004BAFE4 /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
-		C69153D71FA82B77004BAFE4 /* TimerServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerServices.swift; sourceTree = "<group>"; };
+		C69153D71FA82B77004BAFE4 /* TimerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerObject.swift; sourceTree = "<group>"; };
 		C69153DB1FA82B86004BAFE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C69153DD1FA82B86004BAFE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C69153E31FA82C20004BAFE4 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -118,13 +123,18 @@
 		C69A72F11F9ABBE3006B002B /* Guarded.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Guarded.entitlements; sourceTree = "<group>"; };
 		C69C070C1FA39C830087D613 /* LoginServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServices.swift; sourceTree = "<group>"; };
 		C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
-		C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceViewController.swift; sourceTree = "<group>"; };
 		C6F2532F1FAA626C00853CA8 /* MainUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUser.swift; sourceTree = "<group>"; };
 		D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPinView.swift; sourceTree = "<group>"; };
 		D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStatusCalloutView.swift; sourceTree = "<group>"; };
 		D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonStatusCalloutView.xib; sourceTree = "<group>"; };
-		D499F9081FC8371F00C9EA86 /* PlaceCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceCalloutView.xib; sourceTree = "<group>"; };
 		D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCalloutView.swift; sourceTree = "<group>"; };
+		D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnumerations.swift; sourceTree = "<group>"; };
+		D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePinView.swift; sourceTree = "<group>"; };
+		D4BC71ED1FCE39D2004504EC /* PlaceCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceCalloutView.xib; sourceTree = "<group>"; };
+		D4BC71EF1FCE5667004504EC /* AddPlace.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddPlace.storyboard; sourceTree = "<group>"; };
+		D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceTableViewController.swift; sourceTree = "<group>"; };
+		D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInformationCell.swift; sourceTree = "<group>"; };
+		D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInformationCell.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +205,7 @@
 				C6152DF61FA2A03700CC4F76 /* Coordinate.swift */,
 				C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */,
 				891934851FBB6D86004AFD4E /* Annotation.swift */,
+				C69153D71FA82B77004BAFE4 /* TimerObject.swift */,
 				89B00E301FCDB5220030DC2C /* AnnotaionSubClasses */,
 			);
 			path = Objects;
@@ -284,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				C69153D61FA82B77004BAFE4 /* LocationServices.swift */,
-				C69153D71FA82B77004BAFE4 /* TimerServices.swift */,
 				C69C070C1FA39C830087D613 /* LoginServices.swift */,
 				8946E7381FB121FA0066D1B3 /* NotificationServices.swift */,
 			);
@@ -301,8 +311,10 @@
 		C67B4D541F87CF8B006415CF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */,
 				D48231B71FA4469D0027EC1F /* Storyboards */,
 				C67B4D551F87CF93006415CF /* Controllers */,
+				D4BC71F31FCE5971004504EC /* Cells */,
 				D4622CF31FC4FA8B00E3CB4A /* Pin View */,
 			);
 			path = View;
@@ -315,11 +327,8 @@
 				C69153EA1FA82C21004BAFE4 /* CustomTabBarController.swift */,
 				C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */,
 				C69153E71FA82C20004BAFE4 /* MapViewController.swift */,
-				C69153E91FA82C21004BAFE4 /* PlaceCell.swift */,
 				C69153E51FA82C20004BAFE4 /* PlacesTableViewController.swift */,
 				C69153E61FA82C20004BAFE4 /* ProtectCollectionViewController.swift */,
-				C69153E41FA82C20004BAFE4 /* ProtectedCollectionViewCell.swift */,
-				C69153E81FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift */,
 				C69153EB1FA82C21004BAFE4 /* TimerDetailsViewController.swift */,
 				C69153E31FA82C20004BAFE4 /* TimerViewController.swift */,
 				C69153EC1FA82C21004BAFE4 /* ViewController.swift */,
@@ -329,6 +338,7 @@
 				C6A0AFA71FC4B5C500BF74D4 /* AddPlaceViewController.swift */,
 				C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */,
 				C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */,
+				D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -339,8 +349,9 @@
 				D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */,
 				D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */,
 				D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */,
+				D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */,
 				D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */,
-				D499F9081FC8371F00C9EA86 /* PlaceCalloutView.xib */,
+				D4BC71ED1FCE39D2004504EC /* PlaceCalloutView.xib */,
 			);
 			path = "Pin View";
 			sourceTree = "<group>";
@@ -351,9 +362,22 @@
 				C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */,
 				C69153DA1FA82B86004BAFE4 /* Main.storyboard */,
 				C230201D1FC4AF7700A099BE /* Help.storyboard */,
+				D4BC71EF1FCE5667004504EC /* AddPlace.storyboard */,
 				C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D4BC71F31FCE5971004504EC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C69153E91FA82C21004BAFE4 /* PlaceCell.swift */,
+				C69153E41FA82C20004BAFE4 /* ProtectedCollectionViewCell.swift */,
+				C69153E81FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift */,
+				D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */,
+				D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,7 +452,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
-				D499F9091FC8371F00C9EA86 /* PlaceCalloutView.xib in Resources */,
+				D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */,
+				D4BC71F01FCE5667004504EC /* AddPlace.storyboard in Resources */,
 				C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
 				D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */,
@@ -523,7 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89B00E321FCDB5550030DC2C /* PlaceAnnotation.swift in Sources */,
-				C6A0AFA81FC4B5C500BF74D4 /* AddPlaceViewController.swift in Sources */,
+				D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */,
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
 				C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */,
 				D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */,
@@ -533,20 +558,24 @@
 				C24E9B181FCE026F0086C68F /* ProtectorCellTableViewCell.swift in Sources */,
 				C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */,
 				C60EEC581FA83642001E2194 /* Protector.swift in Sources */,
+				D4BC71F71FCE5AC3004504EC /* ShowInformationCell.swift in Sources */,
+				D4BC71F21FCE576A004504EC /* AddPlaceTableViewController.swift in Sources */,
 				C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */,
 				C65358281FB22D1E00301A3E /* DatabaseManager.swift in Sources */,
 				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
 				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
 				C691FF561FAA51B6007CFD44 /* AddProtectorViewController.swift in Sources */,
+				D4BC71F51FCE5A18004504EC /* EditInformationCell.swift in Sources */,
 				C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */,
 				C69153F61FA82C21004BAFE4 /* ViewController.swift in Sources */,
 				D45A5BCF1FC7D05400FACE2E /* PersonPinView.swift in Sources */,
 				C6152DF71FA2A03700CC4F76 /* Coordinate.swift in Sources */,
 				C24E9B101FCDF3730086C68F /* SetDestinationTableViewController.swift in Sources */,
 				8946E73B1FB237660066D1B3 /* HelpViewController.swift in Sources */,
+				C69153D91FA82B77004BAFE4 /* TimerObject.swift in Sources */,
 				89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */,
-				C69153D91FA82B77004BAFE4 /* TimerServices.swift in Sources */,
 				C69153F31FA82C21004BAFE4 /* PlaceCell.swift in Sources */,
+				D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */,
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,

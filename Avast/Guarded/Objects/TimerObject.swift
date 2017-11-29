@@ -9,46 +9,48 @@
 import Foundation
 import CoreLocation
 
-protocol TimerServicesDelegate {
+protocol TimerObjectDelegate {
+    func setTimerText(timeString: String)
     func updateTimerText(timeString: String)
     func displayAlert()
     func dismissTimer()
 }
 
-class TimerServices {
+class TimerObject {
     
-    var delegate: TimerServicesDelegate
+    var delegate: TimerObjectDelegate?
     var timer: Timer?
     var seconds: Int
     var destination: CLLocation
     var timerRunning = false
-    var timeString: String
+    var timeString: String {
+        get {
+            return TimerObject.timeToString(timeInSecs: self.seconds)
+        }
+    }
     
     //setting snooze time to 5 minutes
     let snoozeTime = 300
     
-    init(seconds: Int, destination: CLLocation, delegate: TimerServicesDelegate) {
+    init(seconds: Int, destination: CLLocation, delegate: TimerObjectDelegate?) {
         self.seconds = seconds
         self.destination = destination
         self.delegate = delegate
         self.timerRunning = false
-        self.timeString = TimerServices.timeToString(timeInSecs: self.seconds)
     }
     
     ///Starts timer
     func start() {
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(self.update),
+                                     userInfo: nil,
+                                     repeats: true)
+        
         timerRunning = true
-        set()
-    }
-    
-    ///Creates timer object
-    func set() {
-        if (timer == nil) {
-            timer = Timer.scheduledTimer(timeInterval: 1,
-                                         target: self,
-                                         selector: #selector(self.update),
-                                         userInfo: nil,
-                                         repeats: true)
+        
+        if let deleg = self.delegate {
+            deleg.setTimerText(timeString: self.timeString)
         }
     }
     
@@ -67,13 +69,17 @@ class TimerServices {
         
         if (seconds <= 0) {
             stop()
-            delegate.displayAlert()
+            if let deleg = self.delegate {
+                deleg.displayAlert()
+            }
             return
         }
         
         seconds = seconds-1
-        timeString = TimerServices.timeToString(timeInSecs: self.seconds)
-        delegate.updateTimerText(timeString: timeString)
+        print("seg--")
+        if let deleg = self.delegate {
+            deleg.updateTimerText(timeString: self.timeString)
+        }
     }
     
     ///Stops timer and sets timer object to nil
@@ -83,8 +89,18 @@ class TimerServices {
             timer = nil
             seconds = 0
             timerRunning = false
-            delegate.dismissTimer()
+            if let deleg = self.delegate {
+                deleg.dismissTimer()
+            }
         }
+    }
+    
+    ///Dismisses timer on delegate and sets mainUser.timer to nil
+    func end() {
+        if let deleg = self.delegate {
+            deleg.dismissTimer()
+        }
+        AppSettings.mainUser!.timer = nil
     }
     
     ///Adds 5 more minutes to timer
@@ -92,13 +108,16 @@ class TimerServices {
         self.seconds += snoozeTime
         start()
     }
-    
+}
+
+//Static functions of timer
+extension TimerObject {
     ///Returns a string "mm:ss" given a number of seconds
     static func timeToString(timeInSecs: Int) -> String {
         let hours = timeInSecs/3600
         let minutes = (timeInSecs/60)%60
         let secs = timeInSecs%60
-
+        
         return String(format: "%02d:%02d:%02d", hours, minutes, secs)
     }
 }
