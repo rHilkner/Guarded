@@ -21,6 +21,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var location: CLLocation?
     var locationServices: LocationServices?
+
+	var placeCalloutView: PlaceCalloutView?
     
     var displayInCenter: String = ""
 
@@ -95,7 +97,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 			/// only display location if it`s allowed
 			if protected?.allowedToFollow == true {
-				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id, showCallout: false)
+				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.user, protectedId: protected!.id, showCallout: false)
 			}
 
 		}
@@ -161,14 +163,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func setTimer() {
         performSegue(withIdentifier: "SetDestinationTableViewController", sender: nil)
     }
-    
-    @objc func addPlace(_: UIButton) {
-        performSegue(withIdentifier: "AddPlaceViewController", sender: nil)
-    }
-
-	@objc func setDestination(_ : UIButton) {
-		performSegue(withIdentifier: "SetTimerViewController", sender: nil)
-	}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -237,14 +231,16 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 extension MapViewController: PlaceCalloutDelegate {
-    func setDestination() {
-        print("Aqui!!")
+
+	func setDestination() {
+		print("set destination")
+        performSegue(withIdentifier: "SetDestinationTableViewController", sender: nil)
     }
     
     func addToPlaces() {
+		print("add place")
         performSegue(withIdentifier: "AddPlaceViewController", sender: nil)
     }
-    
     
 }
 
@@ -301,13 +297,12 @@ extension MapViewController: LocationUpdateProtocol {
 
 				placeAnnotation.locationInfo = locationInfo
                 self.map.addAnnotation(placeAnnotation)
+				if showCallout {
+					self.map.selectAnnotation(placeAnnotation, animated: true)
+				}
 
 			}
-            
-			self.map.addAnnotation(placeAnnotation)
-			if showCallout {
-				self.map.selectAnnotation(placeAnnotation, animated: true)
-			} 
+
 
         }
     }
@@ -401,5 +396,3 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     }
 
 }
-
-
