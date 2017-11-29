@@ -795,12 +795,18 @@ class DatabaseManager {
 
 		let userRef = ref.child("users/\(AppSettings.mainUser!.id)/ETA")
 
+		var protectorsDict : [String : Any] = [:]
+
+		for protector in arrivalInformation.protectorsId {
+			protectorsDict[protector] = "true"
+		}
+
 		let arrivalDict = [
 			"date": arrivalInformation.date,
 			"destination": arrivalInformation.destination.address,
-			"time of arrival": String(arrivalInformation.expectedTimeOfArrival)
-
-		]
+			"time of arrival": String(arrivalInformation.expectedTimeOfArrival),
+			"protectors": protectorsDict
+			] as [String : Any]
 
 		userRef.setValue(arrivalDict){
 			(error, _) in
