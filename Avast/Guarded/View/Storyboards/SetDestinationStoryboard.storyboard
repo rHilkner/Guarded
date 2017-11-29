@@ -58,6 +58,9 @@
                                             <date key="date" timeIntervalSinceReferenceDate="533594177.11478698">
                                                 <!--2017-11-28 20:36:17 +0000-->
                                             </date>
+                                            <connections>
+                                                <action selector="didChangeValue:" destination="T9D-i2-5qM" eventType="valueChanged" id="k29-Ve-QdK"/>
+                                            </connections>
                                         </datePicker>
                                     </subviews>
                                     <constraints>

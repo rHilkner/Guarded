@@ -9,10 +9,6 @@
 import UIKit
 import MapKit
 
-protocol TimerViewControllerDelegate {
-    func timerReady(timerService: TimerObject)
-}
-
 class TimerViewController: UIViewController {
     
     @IBOutlet weak var timeSelection: UIDatePicker!
