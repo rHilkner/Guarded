@@ -174,15 +174,20 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
                     return
                 }
                 
-                let addPlaceTableViewController = segue.destination as? AddPlaceTableViewController
+                let segueDestination = segue.destination as? AddPlaceTableViewController
                 
-                addPlaceTableViewController?.locationInfo = locationInfo
+                segueDestination?.locationInfo = locationInfo
                 break
             case "SetDestinationTableViewController":
-                let setDestinationTableViewController = segue.destination as! SetDestinationTableViewController
+                guard let locationInfo = self.selectedAnnotation?.locationInfo else {
+                    print("Error on sending location information to AddPlaceViewController.")
+                    return
+                }
+                let segueDestination = segue.destination as! SetDestinationTableViewController
+                segueDestination.locationInfo = locationInfo
                 break
             case "TimerDetailsViewController":
-                let timerDetailsViewController = segue.destination as! TimerDetailsViewController
+                let segueDestination = segue.destination as! TimerDetailsViewController
                 break
             default:
                 break
@@ -231,9 +236,7 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 extension MapViewController: PlaceCalloutDelegate {
-
-	func setDestination() {
-		print("set destination")
+    func setDestination() {
         performSegue(withIdentifier: "SetDestinationTableViewController", sender: nil)
     }
     

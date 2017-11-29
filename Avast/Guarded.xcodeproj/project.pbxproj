@@ -206,9 +206,8 @@
 				C6152DF31FA292DA00CC4F76 /* Place.swift */,
 				C6152DF61FA2A03700CC4F76 /* Coordinate.swift */,
 				C6A0AFA51FC481BA00BF74D4 /* LocationInfo.swift */,
-				C69153D71FA82B77004BAFE4 /* TimerObject.swift */,
-				89B00E3A1FCF21E30030DC2C /* ArrivalInformation.swift */,
 				891934851FBB6D86004AFD4E /* Annotation.swift */,
+				C69153D71FA82B77004BAFE4 /* TimerObject.swift */,
 				89B00E301FCDB5220030DC2C /* AnnotaionSubClasses */,
 			);
 			path = Objects;
@@ -328,7 +327,6 @@
 			children = (
 				C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */,
 				C69153EA1FA82C21004BAFE4 /* CustomTabBarController.swift */,
-				C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */,
 				C69153E71FA82C20004BAFE4 /* MapViewController.swift */,
 				C69153E51FA82C20004BAFE4 /* PlacesTableViewController.swift */,
 				C69153E61FA82C20004BAFE4 /* ProtectCollectionViewController.swift */,
@@ -338,8 +336,6 @@
 				C691FF551FAA51B6007CFD44 /* AddProtectorViewController.swift */,
 				8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */,
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
-				C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */,
-				C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */,
 				D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */,
 			);
 			path = Controllers;
@@ -378,6 +374,9 @@
 				C69153E81FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift */,
 				D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */,
 				D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */,
+				C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */,
+				C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */,
+				C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -735,7 +734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -772,7 +771,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",

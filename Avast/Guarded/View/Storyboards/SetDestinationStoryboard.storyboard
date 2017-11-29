@@ -9,11 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Set Destination Table View Controller-->
+        <!--Set Destination-->
         <scene sceneID="IdN-9f-Kkk">
             <objects>
                 <tableViewController id="ndq-S1-aOS" customClass="SetDestinationTableViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="h3d-bl-K5S">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="h3d-bl-K5S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -107,6 +107,13 @@
                             <outlet property="delegate" destination="ndq-S1-aOS" id="wiq-vc-QNY"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Set Destination" id="IP4-SF-qY4">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Lu7-mN-q1J">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="ndq-S1-aOS" id="GU1-v0-jP4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HcM-Bs-0g7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
