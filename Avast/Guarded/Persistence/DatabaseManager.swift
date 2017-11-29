@@ -202,9 +202,9 @@ class DatabaseManager {
             return nil
         }
         
-        let user = User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber)
+        let user = User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus.safe)
         print("User (\(user.name)) fetched successfully.")
-        return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber)
+		return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus.safe)
     }
     
     
@@ -358,7 +358,7 @@ class DatabaseManager {
             
             //TODO: why cant I polymorph User -> MainUser?
             
-            let mainUser = MainUser(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber)
+			let mainUser = MainUser(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber, status: userStatus.safe)
             
             fetchUserDetailedInfo(user: mainUser, userDictionary: userDictionary) {
                 (success) in
@@ -401,7 +401,7 @@ class DatabaseManager {
                 return
             }
             
-            let protector = Protector(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber)
+			let protector = Protector(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber, status: userStatus.safe)
             
             completionHandler(protector)
         }
@@ -448,7 +448,7 @@ class DatabaseManager {
                     return
                 }
                 
-                let protector = Protector(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber)
+				let protector = Protector(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber, status: userStatus.safe)
                 
                 completionHandler(protector)
             }
@@ -479,7 +479,7 @@ class DatabaseManager {
                 return
             }
             
-            let protected = Protected(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber)
+			let protected = Protected(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber, status: userStatus.safe)
             
             //Fetching protected's last location
             

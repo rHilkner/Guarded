@@ -11,33 +11,40 @@ import MapKit
 
 class Annotation: NSObject, MKAnnotation {
 
-	let identifier : String
-	let protectedId: String?
 	let title: String?
-	let subtitle: String?
-	let coordinate: CLLocationCoordinate2D
-	let color: UIColor
-    var locationInfo: LocationInfo?
+	let identifier : String
+	let coordinate: CLLocationCoordinate2D    
 
-	init(identifier: String, protectedId: String?, title: String?, subtitle: String?, coordinate: CLLocationCoordinate2D, locationInfo: LocationInfo?) {
+	init(title: String, identifier: String, coordinate: CLLocationCoordinate2D) {
 
+		/// TODO: define wich title will appear in each type of annotation
+		self.title = nil
 		self.identifier = identifier
-		self.protectedId = protectedId
-		self.title = title
-		self.subtitle = subtitle
 		self.coordinate = coordinate
-        self.locationInfo = locationInfo
-
-		if identifier  == annotationIdentifiers.helpButton {
-			self.color = .red
-		} else if identifier  == annotationIdentifiers.protected {
-			self.color = .green
-		} else {
-			self.color = .darkGray
-		}
-
 		super.init()
 	}
 
 
 }
+/*
+Super:
+	local
+	identifier
+
+Ocorrencia
+	data
+	userID
+
+Local
+	endereço/bairro/cidade
+	set destination(botao)
+	addplace(botao)
+
+Pessoa
+	user
+	status(setar identifier pelo status)
+
+	foto
+	timer?
+
+	*/

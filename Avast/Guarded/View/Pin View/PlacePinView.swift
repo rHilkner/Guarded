@@ -10,10 +10,13 @@ import UIKit
 import MapKit
 
 class PlacePinView: MKAnnotationView {
+    
     weak var customCalloutView: PlaceCalloutView?
     override var annotation: MKAnnotation? {
         willSet { customCalloutView?.removeFromSuperview() }
     }
+    var placeDelegate:PlaceCalloutDelegate!
+    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
@@ -28,19 +31,19 @@ class PlacePinView: MKAnnotationView {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         if selected {
             self.customCalloutView?.removeFromSuperview()
-
-            if let newCustomCalloutView = loadPlaceMapView() {
+            
+            if let newCustomCalloutView = loadPlaceDetails() {
                 // fix location from top-left to its right place.
                 newCustomCalloutView.frame.origin.x -= newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0)
                 newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
-
+                
                 // set custom callout view
                 self.addSubview(newCustomCalloutView)
                 self.customCalloutView = newCustomCalloutView
-
+                
                 // animate presentation
                 if animated {
                     self.customCalloutView!.alpha = 0.0
@@ -62,18 +65,32 @@ class PlacePinView: MKAnnotationView {
         }
     }
 
-    func loadPlaceMapView() -> PlaceCalloutView? {
+    func loadPlaceDetails() -> PlaceCalloutView? {
         if let views = Bundle.main.loadNibNamed("PlaceCalloutView", owner: self, options: nil) as? [PlaceCalloutView], views.count > 0 {
-            let personDetailMapView = views.first!
-
-            let person = annotation as? Annotation
-            let protected = AppSettings.mainUser?.protecteds
-            guard let p = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: protected!) else { return nil }
-            personDetailMapView.configureWithPerson(person: p as! Protected, identifier: reuseIdentifier!)
-
-            return personDetailMapView
+            let placeDetailMapView = views.first!
+            placeDetailMapView.delegate = self.placeDelegate
+            
+            guard let place = annotation as? PlaceAnnotation else { return nil }
+            placeDetailMapView.configure(withInfo: place.locationInfo!)
+            return placeDetailMapView
         }
         return nil
+    }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if let parentHitView = super.hitTest(point, with: event) {
+            return parentHitView
+            
+        } else { // test in our custom callout.
+            if customCalloutView != nil {
+                return customCalloutView!.hitTest(convert(point, to: customCalloutView!), with: event)
+            } else { return nil }
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.customCalloutView?.removeFromSuperview()
     }
 
 }

@@ -21,9 +21,9 @@ class PersonPinView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.protected {
+        if self.reuseIdentifier == annotationIdentifiers.user {
             self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
+        } else if self.reuseIdentifier == annotationIdentifiers.help {
             self.image = Pin.red.image
         } else {
             self.image = Pin.yellow.image
@@ -33,9 +33,9 @@ class PersonPinView: MKAnnotationView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.protected {
+        if self.reuseIdentifier == annotationIdentifiers.user {
             self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.helpButton {
+        } else if self.reuseIdentifier == annotationIdentifiers.help {
             self.image = Pin.red.image
         } else {
             self.image = Pin.yellow.image
@@ -83,10 +83,10 @@ class PersonPinView: MKAnnotationView {
         if let views = Bundle.main.loadNibNamed("PersonStatusCalloutView", owner: self, options: nil) as? [PersonStatusCalloutView], views.count > 0 {
             let personDetailMapView = views.first!
             
-            let person = annotation as? Annotation
+            let person = annotation as? UserAnnotation
             let protected = AppSettings.mainUser?.protecteds
             guard let p = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: protected!) else { return nil }
-            personDetailMapView.configureWithPerson(person: p as! Protected, identifier: reuseIdentifier!)
+            personDetailMapView.configure(withPerson: p as! Protected)
             return personDetailMapView
         }
         return nil

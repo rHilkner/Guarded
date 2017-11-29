@@ -9,6 +9,12 @@
 import Foundation
 import CoreLocation
 
+struct userStatus {
+	static let safe = "Safe"
+	static let arriving = "Arriving in"
+	static let danger = "Needing help"
+}
+
 //TODO: abtract class (?)
 class User {
 
@@ -16,10 +22,12 @@ class User {
     var name: String
     var email: String
     var phoneNumber: String
+	var status: String
 
-    init(id: String, name: String, email: String?, phoneNumber: String?) {
+	init(id: String, name: String, email: String?, phoneNumber: String?, status: String) {
         self.id = id
         self.name = name
+		self.status = status
         
         if let email = email {
             self.email = email
