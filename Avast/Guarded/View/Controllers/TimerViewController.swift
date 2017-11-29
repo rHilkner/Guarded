@@ -10,15 +10,13 @@ import UIKit
 import MapKit
 
 protocol TimerViewControllerDelegate {
-    func timerReady(timerService: TimerServices)
+    func timerReady(timerService: TimerObject)
 }
 
 class TimerViewController: UIViewController {
     
     @IBOutlet weak var timeSelection: UIDatePicker!
     @IBOutlet weak var addressTextField: UITextField!
-    //delegate is set in prepare(for segue) from MapViewController
-    var delegate: TimerViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +27,12 @@ class TimerViewController: UIViewController {
         
         // FIXME: Find out why timeSelection starts with a larger value than it should
         // Currently fixed by subtracting the unknown added value
-        let timerService = TimerServices(seconds: Int(timeSelection.countDownDuration)-Int(timeSelection.countDownDuration)%60,
+        let timer = TimerObject(seconds: Int(timeSelection.countDownDuration) - 55,
                                          destination: CLLocation(latitude: 37.2, longitude: 22.9),
-                                         delegate: delegate as! TimerServicesDelegate)
-        self.delegate?.timerReady(timerService: timerService)
+                                         delegate: nil)
         
-        //self.dismiss(animated: true, completion: nil)
+        AppSettings.mainUser?.timer = timer
+        AppSettings.mainUser?.timer?.start()
         
         self.navigationController?.popViewController(animated: true)
     }

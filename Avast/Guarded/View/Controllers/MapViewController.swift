@@ -21,7 +21,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var location: CLLocation?
     var locationServices: LocationServices?
-    var timerService: TimerServices?
     
     var displayInCenter: String = ""
 
@@ -45,7 +44,13 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         //longPressGestureRecognizer.numberOfTapsRequired = 1
 
         map.addGestureRecognizer(longPressGestureRecognizer)
-
+        
+        if let userTimer = AppSettings.mainUser?.timer {
+            userTimer.delegate = self
+            setTimerText(timeString: userTimer.timeString)
+        } else {
+            timerButton.isHidden = true
+        }
     }
     
     override func viewDidLoad() {
@@ -66,7 +71,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
       //  AppSettings.mainUser?.updateMapContinuously = true
 
         /// Receive the coordinate of a new protected`s occurence
-        DatabaseManager.addObserverToProtectedsHelpOccurrences(){
+        DatabaseManager.addObserverToProtectedsHelpOccurrences() {
             (coordinate) in
 
             guard (coordinate != nil) else {
@@ -105,14 +110,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             launched = true
             self.displayCurrentLocation()
         }
-
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
        // AppSettings.mainUser?.updateMapContinuously = false
         
         self.locationServices = nil
+        
+        if let userTimer = AppSettings.mainUser?.timer {
+            userTimer.delegate = nil
+        }
     }
 
     /// add long press gesture to create an annotation and peforme action in the location pressed
@@ -175,12 +182,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
                 break
             case "SetTimerViewController":
                 let timerViewController = segue.destination as! TimerViewController
-                timerViewController.delegate = self
                 break
             case "TimerDetailsViewController":
                 let timerDetailsViewController = segue.destination as! TimerDetailsViewController
-                timerDetailsViewController.timerService = self.timerService
-                timerDetailsViewController.delegate = self
                 break
             default:
                 break
@@ -211,8 +215,8 @@ extension MapViewController: MKMapViewDelegate {
 					annotationView = PlacePinView(annotation: placeAnnotation, reuseIdentifier: identifier)
                     (annotationView as! PlacePinView).placeDelegate = self
                 }
-            } else {
-                annotationView!.annotation = annotation
+                
+                print("Annotation address: \(String(describing: self.selectedAnnotation?.locationInfo?.address))")
             }
             return annotationView
         }
@@ -301,20 +305,15 @@ extension MapViewController: LocationUpdateProtocol {
 
 }
 
-
-extension MapViewController: TimerViewControllerDelegate {
+extension MapViewController: TimerObjectDelegate {
     
-    func timerReady(timerService: TimerServices) {
-        timerButton.isHidden = false
+    func setTimerText(timeString: String) {
+        if timerButton.isHidden == true {
+            timerButton.isHidden = false
+        }
         
-        self.timerService = timerService
-        self.timerService!.start()
-        timerButton.setTitle(timerService.timeString, for: .normal)
+        timerButton.setTitle(timeString, for: .normal)
     }
-    
-}
-
-extension MapViewController: TimerServicesDelegate {
     
     func updateTimerText(timeString: String) {
         timerButton.setTitle(timeString, for: .normal)
@@ -329,13 +328,13 @@ extension MapViewController: TimerServicesDelegate {
         alertController.addAction(UIAlertAction(title: "Já cheguei",
                                                 style: UIAlertActionStyle.cancel,
                                                 handler: { action in
-                                                    self.timerService?.stop()
+                                                    AppSettings.mainUser!.timer!.end()
                                                 }))
         
         alertController.addAction(UIAlertAction(title: "+5 min",
                                                 style: UIAlertActionStyle.default,
                                                 handler: { action in
-                                                    self.timerService?.snooze()
+                                                    AppSettings.mainUser!.timer!.snooze()
                                                 }))
         
         self.present(alertController, animated: true, completion: nil)
@@ -344,7 +343,6 @@ extension MapViewController: TimerServicesDelegate {
     
     func dismissTimer() {
         timerButton.isHidden = true
-        self.timerService = nil
     }
 }
 
