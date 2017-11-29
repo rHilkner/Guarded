@@ -1,10 +1,10 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 48;
-	objects = {
+    archiveVersion = 1;
+    classes = {
+    };
+    objectVersion = 48;
+    objects = {
 
 /* Begin PBXBuildFile section */
 		0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */; };
@@ -142,15 +142,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C67B4D331F87C58F006415CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */,
-				0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        C67B4D331F87C58F006415CF /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */,
+                0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -387,163 +387,163 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C67B4D351F87C58F006415CF /* Guarded */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C67B4D481F87C590006415CF /* Build configuration list for PBXNativeTarget "Guarded" */;
-			buildPhases = (
-				05E944EE1DADE1A9D7AD887B /* [CP] Check Pods Manifest.lock */,
-				C67B4D321F87C58F006415CF /* Sources */,
-				C67B4D331F87C58F006415CF /* Frameworks */,
-				C67B4D341F87C58F006415CF /* Resources */,
-				98411CAC40429D4B05F645CF /* [CP] Embed Pods Frameworks */,
-				CEA9321B91B333EF93AC88C4 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Guarded;
-			productName = Avast;
-			productReference = C67B4D361F87C58F006415CF /* Guarded.app */;
-			productType = "com.apple.product-type.application";
-		};
+        C67B4D351F87C58F006415CF /* Guarded */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = C67B4D481F87C590006415CF /* Build configuration list for PBXNativeTarget "Guarded" */;
+            buildPhases = (
+                05E944EE1DADE1A9D7AD887B /* [CP] Check Pods Manifest.lock */,
+                C67B4D321F87C58F006415CF /* Sources */,
+                C67B4D331F87C58F006415CF /* Frameworks */,
+                C67B4D341F87C58F006415CF /* Resources */,
+                98411CAC40429D4B05F645CF /* [CP] Embed Pods Frameworks */,
+                CEA9321B91B333EF93AC88C4 /* [CP] Copy Pods Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+            );
+            name = Guarded;
+            productName = Avast;
+            productReference = C67B4D361F87C58F006415CF /* Guarded.app */;
+            productType = "com.apple.product-type.application";
+        };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C67B4D2E1F87C58F006415CF /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Rodrigo Hilkner";
-				TargetAttributes = {
-					C67B4D351F87C58F006415CF = {
-						CreatedOnToolsVersion = 9.0;
-						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-							com.apple.Push = {
-								enabled = 0;
-							};
-						};
-					};
-				};
-			};
-			buildConfigurationList = C67B4D311F87C58F006415CF /* Build configuration list for PBXProject "Guarded" */;
-			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = C67B4D2D1F87C58F006415CF;
-			productRefGroup = C67B4D371F87C58F006415CF /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				C67B4D351F87C58F006415CF /* Guarded */,
-			);
-		};
+        C67B4D2E1F87C58F006415CF /* Project object */ = {
+            isa = PBXProject;
+            attributes = {
+                LastSwiftUpdateCheck = 0900;
+                LastUpgradeCheck = 0900;
+                ORGANIZATIONNAME = "Rodrigo Hilkner";
+                TargetAttributes = {
+                    C67B4D351F87C58F006415CF = {
+                        CreatedOnToolsVersion = 9.0;
+                        LastSwiftMigration = 0900;
+                        ProvisioningStyle = Automatic;
+                        SystemCapabilities = {
+                            com.apple.Keychain = {
+                                enabled = 1;
+                            };
+                            com.apple.Push = {
+                                enabled = 0;
+                            };
+                        };
+                    };
+                };
+            };
+            buildConfigurationList = C67B4D311F87C58F006415CF /* Build configuration list for PBXProject "Guarded" */;
+            compatibilityVersion = "Xcode 8.0";
+            developmentRegion = en;
+            hasScannedForEncodings = 0;
+            knownRegions = (
+                en,
+                Base,
+            );
+            mainGroup = C67B4D2D1F87C58F006415CF;
+            productRefGroup = C67B4D371F87C58F006415CF /* Products */;
+            projectDirPath = "";
+            projectRoot = "";
+            targets = (
+                C67B4D351F87C58F006415CF /* Guarded */,
+            );
+        };
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C67B4D341F87C58F006415CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
-				D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */,
-				D4BC71F01FCE5667004504EC /* AddPlace.storyboard in Resources */,
-				C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
-				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
-				D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */,
-				C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */,
-				C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
-				C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */,
-				C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        C67B4D341F87C58F006415CF /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
+                D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */,
+                D4BC71F01FCE5667004504EC /* AddPlace.storyboard in Resources */,
+                C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
+                89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
+                D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */,
+                C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */,
+                C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
+                C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */,
+                C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05E944EE1DADE1A9D7AD887B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Guarded-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		98411CAC40429D4B05F645CF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CEA9321B91B333EF93AC88C4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
+        05E944EE1DADE1A9D7AD887B /* [CP] Check Pods Manifest.lock */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputPaths = (
+                "${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+                "${PODS_ROOT}/Manifest.lock",
+            );
+            name = "[CP] Check Pods Manifest.lock";
+            outputPaths = (
+                "$(DERIVED_FILE_DIR)/Pods-Guarded-checkManifestLockResult.txt",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+            showEnvVarsInLog = 0;
+        };
+        98411CAC40429D4B05F645CF /* [CP] Embed Pods Frameworks */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputPaths = (
+                "${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-frameworks.sh",
+                "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+                "${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+                "${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+                "${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+                "${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+                "${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+                "${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+                "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+                "${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+                "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+            );
+            name = "[CP] Embed Pods Frameworks";
+            outputPaths = (
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+                "${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-frameworks.sh\"\n";
+            showEnvVarsInLog = 0;
+        };
+        CEA9321B91B333EF93AC88C4 /* [CP] Copy Pods Resources */ = {
+            isa = PBXShellScriptBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            inputPaths = (
+                "${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-resources.sh",
+                "${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+                "${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+            );
+            name = "[CP] Copy Pods Resources";
+            outputPaths = (
+                "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+            shellPath = /bin/sh;
+            shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Guarded/Pods-Guarded-resources.sh\"\n";
+            showEnvVarsInLog = 0;
+        };
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -602,22 +602,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C69153DA1FA82B86004BAFE4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C69153DB1FA82B86004BAFE4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C69153DD1FA82B86004BAFE4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
+        C69153DA1FA82B86004BAFE4 /* Main.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                C69153DB1FA82B86004BAFE4 /* Base */,
+            );
+            name = Main.storyboard;
+            sourceTree = "<group>";
+        };
+        C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                C69153DD1FA82B86004BAFE4 /* Base */,
+            );
+            name = LaunchScreen.storyboard;
+            sourceTree = "<group>";
+        };
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -806,25 +806,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C67B4D311F87C58F006415CF /* Build configuration list for PBXProject "Guarded" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C67B4D461F87C58F006415CF /* Debug */,
-				C67B4D471F87C58F006415CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C67B4D481F87C590006415CF /* Build configuration list for PBXNativeTarget "Guarded" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C67B4D491F87C590006415CF /* Debug */,
-				C67B4D4A1F87C590006415CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+        C67B4D311F87C58F006415CF /* Build configuration list for PBXProject "Guarded" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                C67B4D461F87C58F006415CF /* Debug */,
+                C67B4D471F87C58F006415CF /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        C67B4D481F87C590006415CF /* Build configuration list for PBXNativeTarget "Guarded" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                C67B4D491F87C590006415CF /* Debug */,
+                C67B4D4A1F87C590006415CF /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
 /* End XCConfigurationList section */
-	};
-	rootObject = C67B4D2E1F87C58F006415CF /* Project object */;
+    };
+    rootObject = C67B4D2E1F87C58F006415CF /* Project object */;
 }

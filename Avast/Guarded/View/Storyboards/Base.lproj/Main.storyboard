@@ -120,41 +120,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wma-oE-Gla">
-                                <rect key="frame" x="0.0" y="64" width="375" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bg-F3-3rT">
-                                <rect key="frame" x="0.0" y="588" width="375" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="RTm-Wf-aY7"/>
-                                </constraints>
-                                <state key="normal" title="Set Timer"/>
-                                <connections>
-                                    <action selector="setTimer" destination="1iy-gm-vn2" eventType="touchUpInside" id="yHz-J3-rTw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMr-Gt-frn">
-                                <rect key="frame" x="0.0" y="64" width="90" height="40"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMr-Gt-frn">
+                                <rect key="frame" x="8" y="72" width="90" height="42"/>
                                 <color key="backgroundColor" red="0.45098039220000002" green="0.66666666669999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3xm-W4-OQ2"/>
+                                    <constraint firstAttribute="height" constant="42" id="3xm-W4-OQ2"/>
                                     <constraint firstAttribute="width" constant="90" id="K95-3b-9hv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Timer"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="gXe-Ri-jvv" kind="show" identifier="TimerDetailsViewController" id="6nj-4c-zaG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHs-rB-znu">
-                                <rect key="frame" x="284" y="64" width="91" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHs-rB-znu">
+                                <rect key="frame" x="325" y="72" width="42" height="42"/>
                                 <color key="backgroundColor" red="0.51696306467056274" green="0.70824325084686279" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Zoom">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="cwP-uo-Z8H"/>
+                                    <constraint firstAttribute="width" constant="42" id="gGC-IM-Vrr"/>
+                                </constraints>
+                                <state key="normal" image="recenter_button">
                                     <color key="titleColor" red="0.99203723669052124" green="0.9921455979347229" blue="0.9961208701133728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.51696306467056274" green="0.70824325084686279" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="zoomInUserLocation:" destination="1iy-gm-vn2" eventType="touchUpInside" id="vzT-HB-4cd"/>
                                 </connections>
@@ -162,15 +164,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4Bg-F3-3rT" firstAttribute="top" secondItem="wma-oE-Gla" secondAttribute="bottom" id="46V-f2-iAS"/>
-                            <constraint firstItem="wma-oE-Gla" firstAttribute="trailing" secondItem="qx5-XY-gQr" secondAttribute="trailing" id="BWK-TG-qQP"/>
-                            <constraint firstItem="wma-oE-Gla" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" id="EUl-cS-TW9"/>
-                            <constraint firstItem="4Bg-F3-3rT" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" id="KhX-Eg-nzy"/>
-                            <constraint firstItem="qx5-XY-gQr" firstAttribute="bottom" secondItem="4Bg-F3-3rT" secondAttribute="bottom" id="R68-r3-3PP"/>
-                            <constraint firstItem="qx5-XY-gQr" firstAttribute="trailing" secondItem="4Bg-F3-3rT" secondAttribute="trailing" id="VwT-ng-iHg"/>
-                            <constraint firstItem="lMr-Gt-frn" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" id="byZ-8E-1hU"/>
-                            <constraint firstItem="lMr-Gt-frn" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" id="hnA-V4-7eY"/>
-                            <constraint firstItem="wma-oE-Gla" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" id="pCz-IK-Jhd"/>
+                            <constraint firstItem="wma-oE-Gla" firstAttribute="trailing" secondItem="qx5-XY-gQr" secondAttribute="trailing" id="6tX-z4-IkS"/>
+                            <constraint firstItem="wma-oE-Gla" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" id="9fi-Kh-6g9"/>
+                            <constraint firstItem="wma-oE-Gla" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" id="Bjb-t4-pS9"/>
+                            <constraint firstItem="eHs-rB-znu" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" constant="8" id="J1B-yK-goH"/>
+                            <constraint firstItem="qx5-XY-gQr" firstAttribute="bottom" secondItem="wma-oE-Gla" secondAttribute="bottom" id="PAy-n9-WrU"/>
+                            <constraint firstItem="lMr-Gt-frn" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" constant="8" id="byZ-8E-1hU"/>
+                            <constraint firstItem="lMr-Gt-frn" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" constant="8" id="hnA-V4-7eY"/>
+                            <constraint firstItem="qx5-XY-gQr" firstAttribute="trailing" secondItem="eHs-rB-znu" secondAttribute="trailing" constant="8" id="m3n-eG-vf5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qx5-XY-gQr"/>
                     </view>
@@ -649,6 +650,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="recenter_button" width="42" height="42"/>
         <image name="tabbar_help_selected" width="25" height="25"/>
         <image name="tabbar_help_unselected" width="25" height="25"/>
         <image name="tabbar_navigate_selected" width="25" height="25"/>

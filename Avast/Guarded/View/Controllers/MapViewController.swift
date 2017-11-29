@@ -100,7 +100,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.user, protectedId: protected!.id, showCallout: false)
 			}
 
-		}
+        }
 
         /// get all places of the current user and display on the map
         for place in (AppSettings.mainUser?.places)!{
@@ -200,10 +200,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
 
-	/// function called when addAnottation is fired
+    /// function called when addAnottation is fired
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
-		if annotation is MKUserLocation {
+        if annotation is MKUserLocation {
             return nil
         }
         
@@ -212,10 +212,10 @@ extension MapViewController: MKMapViewDelegate {
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
             if annotationView == nil {
 
-				if let personAnnotation = annotation as? UserAnnotation {
+                if let personAnnotation = annotation as? UserAnnotation {
                     annotationView = PersonPinView(annotation: personAnnotation, reuseIdentifier: identifier)
                 } else if let placeAnnotation = annotation as? PlaceAnnotation {
-					annotationView = PlacePinView(annotation: placeAnnotation, reuseIdentifier: identifier)
+                    annotationView = PlacePinView(annotation: placeAnnotation, reuseIdentifier: identifier)
                     (annotationView as! PlacePinView).placeDelegate = self
                 }
                 
@@ -281,7 +281,7 @@ extension MapViewController: LocationUpdateProtocol {
                 }
             }
 
-			let userAnnotation = UserAnnotation(protectedId: protectedId, status: "", photo: nil, timer: nil, identifier: identifier, coordinate: someLoc2D)
+            let userAnnotation = UserAnnotation(protectedId: protectedId, status: "", photo: nil, timer: nil, identifier: identifier, coordinate: someLoc2D)
 
             self.map.addAnnotation(userAnnotation)
 
@@ -290,15 +290,15 @@ extension MapViewController: LocationUpdateProtocol {
 
 			let placeAnnotation = PlaceAnnotation(locationInfo: nil, name: name, identifier: identifier, coordinate: someLoc2D)
 
-			LocationServices.coordinateToAddress(coordinate: location) {
-				(locationInfo) in
+            LocationServices.coordinateToAddress(coordinate: location) {
+                (locationInfo) in
 
-				guard let locationInfo = locationInfo else {
-					print("Problem on fetching location information.")
-					return
-				}
+                guard let locationInfo = locationInfo else {
+                    print("Problem on fetching location information.")
+                    return
+                }
 
-				placeAnnotation.locationInfo = locationInfo
+                placeAnnotation.locationInfo = locationInfo
                 self.map.addAnnotation(placeAnnotation)
 				if showCallout {
 					self.map.selectAnnotation(placeAnnotation, animated: true)
