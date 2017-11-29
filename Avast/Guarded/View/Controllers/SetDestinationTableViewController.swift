@@ -12,7 +12,7 @@ class SetDestinationTableViewController: UITableViewController {
     
     var locationInfo: LocationInfo!
     var sections = ["Endereço","Tempo Esperado","Protetores"]
-    var timerValue:TimeInterval!
+    var timerValue: TimeInterval!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,13 +116,17 @@ class SetDestinationTableViewController: UITableViewController {
 			return
 		}
 
-	/*	let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: <#T##Int#>, protectorsId: id)
+		let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: self.timerValue, protectorsId: id)
 
-		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation){
+		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation: arrivalInformation){
 			(error) in
 
+			guard (error == nil) else {
+				print("Error on adding new arrival time on DB.")
+				return
+			}
 			
-		}*/
+		}
         
         self.navigationController?.popViewController(animated: true)
     }

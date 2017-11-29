@@ -13,16 +13,16 @@ class ArrivalInformation: NSObject {
 	var date: String
 	var destination: LocationInfo
 	var startPoint: Coordinate
-	var expectedTimeOfArrival: Int
+	var expectedTimeOfArrival: TimeInterval
 	var protectorsId: [String]
 
-	init(date: String, destination: LocationInfo, startPoint: Coordinate, expectedTimeOfArrival: Int, protectorsId: [String]){
+	init(date: String, destination: LocationInfo, startPoint: Coordinate, expectedTimeOfArrival: TimeInterval, protectorsId: [String]){
 
 		self.date = date
 		self.destination = destination
 		self.startPoint = startPoint
 		self.expectedTimeOfArrival = expectedTimeOfArrival
-		self.protectors = protectors
+		self.protectorsId = protectorsId
 
 	}
 }

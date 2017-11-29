@@ -791,7 +791,7 @@ class DatabaseManager {
         }
     }
 
-	static func addExpectedTimeOfArrival (arrivalInformation: ArrivalInformation) {
+	static func addExpectedTimeOfArrival (arrivalInformation: ArrivalInformation, completionHandler: @escaping (Error?) -> Void) {
 
 		let userRef = ref.child("users/\(AppSettings.mainUser!.id)/ETA")
 
@@ -805,12 +805,12 @@ class DatabaseManager {
 		userRef.setValue(arrivalDict){
 			(error, _) in
 
-			/*guard (error == nil) else {
+			guard (error == nil) else {
 				completionHandler(error)
 				return
 			}
 
-			completionHandler(nil)*/
+			completionHandler(nil)
 
 		}
 	}

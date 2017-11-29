@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guarded/View/Controllers/SetDestinationTableViewController.swift"
+            timestampString = "533673651.814513"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "doneButtonAction(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guarded.SetDestinationTableViewController.doneButtonAction(__ObjC.UIBarButtonItem) -&gt; ()"
+                  moduleName = "Guarded"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/View/Controllers/SetDestinationTableViewController.swift"
+                  timestampString = "533673652.410607"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "1444">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Guarded.SetDestinationTableViewController.doneButtonAction(__ObjC.UIBarButtonItem) -&gt; ()"
+                  moduleName = "Guarded"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/View/Controllers/SetDestinationTableViewController.swift"
+                  timestampString = "533673652.414501"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "2428">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
