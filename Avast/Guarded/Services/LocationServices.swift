@@ -12,7 +12,7 @@ import CoreLocation
 protocol LocationUpdateProtocol {
 	func centerInLocation(location: Coordinate)
     func displayCurrentLocation()
-	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String)
+	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String, showCallout: Bool)
 }
 
 class LocationServices: NSObject {
@@ -20,6 +20,7 @@ class LocationServices: NSObject {
     var manager = CLLocationManager()
     var geocoder = CLGeocoder()
     var delegate: LocationUpdateProtocol!
+	let ratio: Double = 30
 
     override init() {
         super.init()
@@ -139,7 +140,6 @@ extension LocationServices {
             completionHandler(coordinates)
         }
     }
-    
     
     static func coordinateToAddress(coordinate: Coordinate, completionHandler: @escaping (LocationInfo?) -> Void) {
         let geocoder = CLGeocoder()

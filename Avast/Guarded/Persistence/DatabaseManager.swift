@@ -48,6 +48,7 @@ class DatabaseManager {
             let userDict: [String : AnyObject] = [
                 "name": user.name as AnyObject,
                 "email": user.email as AnyObject,
+				"status": user.status as AnyObject,
                 "phoneNumber": user.phoneNumber as AnyObject,
                 "lastLocation": lastLocationDict as AnyObject,
                 "helpButtonOccurrences": "" as AnyObject,
@@ -77,6 +78,7 @@ class DatabaseManager {
         let userDict: [AnyHashable: Any] = [
             "name": user.name,
             "email": user.email,
+			"status": user.status,
             "phoneNumber": user.phoneNumber,
             "lastLocation/latitude": user.lastLocation!.latitude as Double,
             "lastLocation/longitude": user.lastLocation!.longitude as Double
@@ -98,11 +100,39 @@ class DatabaseManager {
     static func addProtector(_ protector: Protector, completionHandler: @escaping (Error?) -> Void) {
         
         let usersRef = ref.child("users")
+        let dispatchGroup = DispatchGroup()
         
         //TODO: transaction block without downloading the whole "users" json
         
-        usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(true)
-        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(true)
+        dispatchGroup.enter()
+        
+        usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(true) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        
+        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(true) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completionHandler(nil)
+        }
     }
 
 	///Deactivate the protector turning its value false
@@ -112,8 +142,27 @@ class DatabaseManager {
 
 		//TODO: transaction block without downloading the whole "users" json
 
-		usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(false)
-		usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(false)
+        usersRef.child(AppSettings.mainUser!.id).child("protectors").child(protector.id).setValue(false) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            completionHandler(nil)
+        }
+        
+        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(false) {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(error)
+                return
+            }
+            
+            completionHandler(nil)
+        }
 	}
     
     ///Removes protector to user's protectors list and also removes user as protector's protected list
@@ -196,15 +245,20 @@ class DatabaseManager {
             print("Fetching user's email from DB returns nil.")
             return nil
         }
+
+		guard let userStatus = userDictionary["status"] as? String else {
+			print("Fetching user's status from DB returns nil.")
+			return nil
+		}
         
         guard let userPhoneNumber = userDictionary["phoneNumber"] as? String else {
             print("Fetching user's phone number from DB returns nil.")
             return nil
         }
         
-        let user = User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus.safe)
+        let user = User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus)
         print("User (\(user.name)) fetched successfully.")
-		return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus.safe)
+		return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus)
     }
     
     
@@ -358,7 +412,7 @@ class DatabaseManager {
             
             //TODO: why cant I polymorph User -> MainUser?
             
-			let mainUser = MainUser(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber, status: userStatus.safe)
+			let mainUser = MainUser(id: user.id, name: user.name, email: user.email, phoneNumber: user.phoneNumber, status: user.status)
             
             fetchUserDetailedInfo(user: mainUser, userDictionary: userDictionary) {
                 (success) in
@@ -617,7 +671,7 @@ class DatabaseManager {
 
 	static func addHelpOccurrence(location: Coordinate, date: Int, completionHandler: @escaping (Error?) -> Void){
 
-		let helpRef = ref.child("users").child(AppSettings.mainUser!.id).child("helpButtonOccurences")
+		let helpRef = ref.child("users").child(AppSettings.mainUser!.id).child("helpButtonOccurrences")
 
 		let helpDict: [String : Any] = [
 			"\(date)": [
@@ -642,13 +696,13 @@ class DatabaseManager {
 
 		//print("hmm: \(AppSettings.mainUser!.protecteds.count)")
 		for protected in AppSettings.mainUser!.protecteds {
-			let protectedHelpButtonOccurrencesRef = ref.child("users/\(protected.id)/helpButtonOccurences")
+			let protectedHelpButtonOccurrencesRef = ref.child("users/\(protected.id)/helpButtonOccurrences")
 
 			protectedHelpButtonOccurrencesRef.observe(.childAdded){
 				(helpButtonOccurrencesSnap) in
 
 				guard let helpOccurrenceDict = helpButtonOccurrencesSnap.value as? [String:Double] else {
-					print("Add observer returned help occurencces nil snapshot from DB.")
+					print("Add observer returned help occurrencces nil snapshot from DB.")
 					completionHandler(nil)
 					return
 				}
