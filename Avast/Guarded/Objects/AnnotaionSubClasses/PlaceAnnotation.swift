@@ -12,11 +12,13 @@ import CoreLocation
 class PlaceAnnotation: Annotation {
 
 	var locationInfo: LocationInfo?
+	var name: String
 
-	init (locationInfo: LocationInfo?, identifier: String, coordinate: CLLocationCoordinate2D) {
+	init (locationInfo: LocationInfo?, name: String, identifier: String, coordinate: CLLocationCoordinate2D) {
 
+		self.name = name
 		self.locationInfo = locationInfo
 
-		super.init(title: "", identifier: identifier, coordinate: coordinate)
+		super.init(title: name, identifier: identifier, coordinate: coordinate)
 	}
 }

@@ -27,7 +27,7 @@ class TimerViewController: UIViewController {
         
         // FIXME: Find out why timeSelection starts with a larger value than it should
         // Currently fixed by subtracting the unknown added value
-        let timer = TimerObject(seconds: Int(timeSelection.countDownDuration) - 55,
+        let timer = TimerObject(seconds: Int(timeSelection.countDownDuration),
                                          destination: CLLocation(latitude: 37.2, longitude: 22.9),
                                          delegate: nil)
         
@@ -35,6 +35,9 @@ class TimerViewController: UIViewController {
         AppSettings.mainUser?.timer?.start()
         
         self.navigationController?.popViewController(animated: true)
+
+		/// Change user status
+		AppSettings.mainUser?.status = userStatus.arriving
     }
     
 }

@@ -12,7 +12,7 @@ import CoreLocation
 struct userStatus {
 	static let safe = "Safe"
 	static let arriving = "Arriving in"
-	static let danger = "Needing help"
+	static let danger = "In Danger!"
 }
 
 //TODO: abtract class (?)
