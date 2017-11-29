@@ -16,6 +16,15 @@ class SetDestinationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
+		/*let year =  components.year
+		let month = components.month
+		let day = components.day
+		let hours = components.hour*/
+
+
+		//print("\(day!) - \(month!) - \(year!)")
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -75,16 +84,13 @@ class SetDestinationTableViewController: UITableViewController {
 	func getCurrentDate(){
 
 		let date = Date()
-		let calendar = Calendar.current
-		let components = calendar.dateComponents([.year, .month, .day], from: date)
 
-		let year =  components.year
-		let month = components.month
-		let day = components.day
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
 
-		print(year)
-		print(month)
-		print(day)
+		let dateString = dateFormatter.string(from: date)
+
+		print(dateString)
 	}
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

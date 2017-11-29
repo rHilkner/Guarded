@@ -778,7 +778,8 @@ class DatabaseManager {
     static func getLastLocation(user: User, completionHandler: @escaping (Coordinate?) -> Void) {
         
         let lastLocationRef = ref.child(user.id).child("lastLocation")
-        
+
+		
         lastLocationRef.observeSingleEvent(of: .value) {
             (snapshot) in
             
@@ -789,5 +790,28 @@ class DatabaseManager {
             completionHandler(userLocation)
         }
     }
-    
+
+	static func addExpectedTimeOfArrival (arrivalInformation: ArrivalInformation) {
+
+		let userRef = ref.child("users/\(AppSettings.mainUser!.id)/ETA")
+
+		let arrivalDict = [
+			"date": arrivalInformation.date,
+			"destination": arrivalInformation.destination.address,
+			"time of arrival": String(arrivalInformation.expectedTimeOfArrival)
+
+		]
+
+		userRef.setValue(arrivalDict){
+			(error, _) in
+
+			/*guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)*/
+
+		}
+	}
 }
