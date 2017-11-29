@@ -11,7 +11,6 @@ import UIKit
 class SetDestinationTableViewController: UITableViewController {
     
     var sections = ["Endereço","Tempo Esperado","Protetores"]
-    @IBOutlet weak var letras: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
