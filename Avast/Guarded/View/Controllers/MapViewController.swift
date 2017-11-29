@@ -80,7 +80,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             }
 
             NotificationServices.sendHelpNotification()
-            self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.help, protectedId: "")
+            self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.help, protectedId: "", showCallout: false)
             print(coordinate!)
         }
 
@@ -95,14 +95,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 			/// only display location if it`s allowed
 			if protected?.allowedToFollow == true {
-				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.user, protectedId: protected!.id)
+				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.protected, protectedId: protected!.id, showCallout: false)
 			}
 
 		}
 
         /// get all places of the current user and display on the map
         for place in (AppSettings.mainUser?.places)!{
-            self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.place, protectedId: "")
+			self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.place, protectedId: "", showCallout: false)
 
         }
 
@@ -131,7 +131,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             let tapPoint = map.convert(point, toCoordinateFrom: map)
             let coordinate = Coordinate(latitude: tapPoint.latitude, longitude: tapPoint.longitude)
 
-            self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.place, protectedId: "")
+			self.displayLocation(location: coordinate, name: "New local", identifier: annotationIdentifiers.place, protectedId: "", showCallout: true)
             print("Long Press Gesture: \(coordinate)")
         }
 
@@ -165,6 +165,10 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc func addPlace(_: UIButton) {
         performSegue(withIdentifier: "AddPlaceViewController", sender: nil)
     }
+
+	@objc func setDestination(_ : UIButton) {
+		performSegue(withIdentifier: "SetTimerViewController", sender: nil)
+	}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -223,6 +227,7 @@ extension MapViewController: MKMapViewDelegate {
         
         return nil
     }
+
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let view = view as? PlacePinView {
@@ -266,7 +271,7 @@ extension MapViewController: LocationUpdateProtocol {
 
     }
 
-    func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String) {
+	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String, showCallout: Bool) {
 
         let someLoc2D = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
 
@@ -284,7 +289,7 @@ extension MapViewController: LocationUpdateProtocol {
             protectedsAnnotationArray.append(userAnnotation)
         } else {
 
-			let placeAnnotation = PlaceAnnotation(locationInfo: nil, identifier: identifier, coordinate: someLoc2D)
+			let placeAnnotation = PlaceAnnotation(locationInfo: nil, name: name, identifier: identifier, coordinate: someLoc2D)
 
 			LocationServices.coordinateToAddress(coordinate: location) {
 				(locationInfo) in
@@ -299,7 +304,11 @@ extension MapViewController: LocationUpdateProtocol {
 
 			}
             
-			//self.map.addAnnotation(placeAnnotation)
+			self.map.addAnnotation(placeAnnotation)
+			if showCallout {
+				self.map.selectAnnotation(placeAnnotation, animated: true)
+			} 
+
         }
     }
 
@@ -365,7 +374,7 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
         let coordinate = Coordinate(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 
-        self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.place, protectedId: "")
+		self.displayLocation(location: coordinate, name: place.name, identifier: annotationIdentifiers.place, protectedId: "", showCallout: true)
 
         self.centerInLocation(location: coordinate)
 

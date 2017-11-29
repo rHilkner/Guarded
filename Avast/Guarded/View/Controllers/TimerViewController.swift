@@ -35,6 +35,9 @@ class TimerViewController: UIViewController {
         AppSettings.mainUser?.timer?.start()
         
         self.navigationController?.popViewController(animated: true)
+
+		/// Change user status
+		AppSettings.mainUser?.status = userStatus.arriving
     }
     
 }
