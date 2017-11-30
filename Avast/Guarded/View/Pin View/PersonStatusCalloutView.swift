@@ -86,10 +86,10 @@ class PersonStatusCalloutView: UIView {
         case userStatus.safe:
             self.personStatus.text = "Safe"
             self.calloutColor = Pin.green.dark
-        case userStatus.arriving:
+        case userStatus.danger:
             self.personStatus.text = "In Danger!"
             self.calloutColor = Pin.red.dark
-        case userStatus.danger:
+        case userStatus.arriving:
             if let arrInfo = self.person.arrivalInformation {
                 self.setTimerText(timeString: arrInfo.timer.timeString)
             } else {

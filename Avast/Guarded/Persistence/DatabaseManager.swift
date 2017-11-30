@@ -717,7 +717,7 @@ class DatabaseManager {
 
 	}
 
-	static func addObserverToProtectedsETA(completionHandler: @escaping (ArrivalInformation?) -> Void){
+	static func addObserverToProtectedsETA(completionHandler: @escaping (String?, ArrivalInformation?) -> Void){
 
 		for protected in (AppSettings.mainUser?.protecteds)! {
 
@@ -760,7 +760,7 @@ class DatabaseManager {
 					/// If it isn`t, just return, because the protector don`t have permission to see this information
 
 					if protectorIsOn == false {
-						completionHandler(nil)
+						completionHandler(nil, nil)
 						return
 					}
 
@@ -783,9 +783,15 @@ class DatabaseManager {
 
 					let locationInfo = LocationInfo(name: "Destination of ////////insert id/////////", address: destination, city: "", state: "", country: "")
 
-					let arrivalInformation = ArrivalInformation(date: date, destination: locationInfo, startPoint: nil, expectedTimeOfArrival: Double(timeOfArrival)!, protectorsId: protectorsId)
+					let timeOfArrivalInt = Int(Double(timeOfArrival)!)
 
-					completionHandler(arrivalInformation)
+					let timer = TimerObject(seconds: timeOfArrivalInt,
+											destination: CLLocation(latitude: 37.2, longitude: 22.9),
+											delegate: nil)
+
+					let arrivalInformation = ArrivalInformation(date: date, destination: locationInfo, startPoint: nil, expectedTimeOfArrival: timeOfArrivalInt, protectorsId: protectorsId, timer: timer)
+
+					completionHandler(protected.id, arrivalInformation)
 				})
 
 			})

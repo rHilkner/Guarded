@@ -72,12 +72,19 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
       //  AppSettings.mainUser?.updateMapContinuously = true
 
 		DatabaseManager.addObserverToProtectedsETA() {
-			(ETA) in
+			(protectedId, ETA) in
 
 			guard let arrivalInformation = ETA else {
 				print("Error on adding observer to protecteds ETA")
 				return
 			}
+
+			let pArray = AppSettings.mainUser?.protecteds
+			var protected = AppSettings.mainUser?.getUser(byId: (protectedId)!, fromList: pArray!) as! Protected
+
+			protected.arrivalInformation = arrivalInformation
+			protected.arrivalInformation?.timer.start()
+			protected.status = userStatus.arriving
 			
 		}
 
