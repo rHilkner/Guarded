@@ -13,7 +13,9 @@ import MapKit
 
 class PersonPinView: MKAnnotationView {
     
+    var protected: Protected!
     weak var customCalloutView: PersonStatusCalloutView?
+    
     override var annotation: MKAnnotation? {
         willSet { customCalloutView?.removeFromSuperview() }
     }
@@ -21,25 +23,24 @@ class PersonPinView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.user {
-            self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.help {
-            self.image = Pin.red.image
-        } else {
-            self.image = Pin.yellow.image
-        }
+        
+        let person = annotation as? UserAnnotation
+        let pArray = AppSettings.mainUser?.protecteds
+        protected = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: pArray!) as! Protected
+        
+        self.protected.statusDelegate = self
+        
+        setPinImage()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false
-        if self.reuseIdentifier == annotationIdentifiers.user {
-            self.image = Pin.green.image
-        } else if self.reuseIdentifier == annotationIdentifiers.help {
-            self.image = Pin.red.image
-        } else {
-            self.image = Pin.yellow.image
-        }
+        let person = annotation as? UserAnnotation
+        let pArray = AppSettings.mainUser?.protecteds
+        protected = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: pArray!) as! Protected
+        
+        setPinImage()
 
     }
     
@@ -82,11 +83,7 @@ class PersonPinView: MKAnnotationView {
     func loadPersonDetailMapView() -> PersonStatusCalloutView? {
         if let views = Bundle.main.loadNibNamed("PersonStatusCalloutView", owner: self, options: nil) as? [PersonStatusCalloutView], views.count > 0 {
             let personDetailMapView = views.first!
-            
-            let person = annotation as? UserAnnotation
-            let protected = AppSettings.mainUser?.protecteds
-            guard let p = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: protected!) else { return nil }
-            personDetailMapView.configure(withPerson: p as! Protected)
+            personDetailMapView.configure(withPerson: protected)
             return personDetailMapView
         }
         return nil
@@ -95,5 +92,31 @@ class PersonPinView: MKAnnotationView {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.customCalloutView?.removeFromSuperview()
+        self.setNeedsDisplay()
+        self.setNeedsLayout()
+    }
+    
+    func setPinImage() {
+        switch self.protected.status{
+        case userStatus.safe:
+            self.image = Pin.green.image
+        case userStatus.arriving:
+            self.image = Pin.yellow.image
+        case userStatus.danger:
+            self.image = Pin.red.image
+        default:
+            print("defaultCase")
+        }
+    }
+}
+
+extension PersonPinView: UserStatusDelegate {
+    func refreshStatus() {
+        self.setNeedsDisplay()
+        self.setPinImage()
+        
+        if self.customCalloutView != nil {
+            self.customCalloutView?.setCalloutInfo()
+        }
     }
 }

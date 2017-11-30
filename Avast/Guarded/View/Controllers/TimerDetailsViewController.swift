@@ -17,19 +17,19 @@ class TimerDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setTimerText(timeString: AppSettings.mainUser!.timer!.timeString)
-        AppSettings.mainUser?.timer?.delegate = self
+        setTimerText(timeString: AppSettings.mainUser!.arrivalInformation!.timer.timeString)
+        AppSettings.mainUser!.arrivalInformation!.timer.delegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if let userTimer = AppSettings.mainUser?.timer {
+        if let userTimer = AppSettings.mainUser!.arrivalInformation?.timer {
             userTimer.delegate = nil
         }
     }
     
     @IBAction func dismissTimerButton() {
-        if AppSettings.mainUser!.timer != nil {
-            AppSettings.mainUser!.timer = nil
+        if AppSettings.mainUser!.arrivalInformation != nil {
+            AppSettings.mainUser!.arrivalInformation = nil
         }
         
         dismissTimer()
@@ -37,8 +37,8 @@ class TimerDetailsViewController: UIViewController {
     }
     
     @IBAction func snoozeButton() {
-        if let userTimer = AppSettings.mainUser?.timer {
-            userTimer.snooze()
+        if let userTimer = AppSettings.mainUser!.arrivalInformation?.timer {
+            userTimer.addTime(timeInSecs: 5*60)
         }
     }
     
@@ -66,13 +66,13 @@ extension TimerDetailsViewController: TimerObjectDelegate {
         alertController.addAction(UIAlertAction(title: "Já cheguei",
                                                 style: UIAlertActionStyle.cancel,
                                                 handler: { action in
-                                                    AppSettings.mainUser!.timer!.end()
+                                                    AppSettings.mainUser!.arrived()
         }))
         
         alertController.addAction(UIAlertAction(title: "+5 min",
                                                 style: UIAlertActionStyle.default,
                                                 handler: { action in
-                                                    AppSettings.mainUser!.timer!.snooze()
+                                                    AppSettings.mainUser!.arrivalInformation!.timer.addTime(timeInSecs: 5*60)
         }))
         
         self.present(alertController, animated: true, completion: nil)

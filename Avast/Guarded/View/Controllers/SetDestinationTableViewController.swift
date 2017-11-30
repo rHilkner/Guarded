@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import MapKit
+
+
+protocol DestinationArrivalTimeDataSource: NSObjectProtocol {
+    func getDestinationTime()->TimeInterval
+}
 
 class SetDestinationTableViewController: UITableViewController {
     
@@ -14,15 +20,10 @@ class SetDestinationTableViewController: UITableViewController {
     var sections = ["Endereço","Tempo Esperado","Protetores"]
     var timerValue: TimeInterval!
     
+    weak var destinationTimeDataSource: DestinationArrivalTimeDataSource?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,9 +61,12 @@ class SetDestinationTableViewController: UITableViewController {
             return cell
         }else if indexPath.section == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: "timercell", for: indexPath) as! TimerCellTableViewCell
-            cell.delegate = self
+            //cell.delegate = self
             cell.timer.countDownDuration = TimeInterval(0.0)
             self.timerValue = cell.timer.countDownDuration
+            
+            self.destinationTimeDataSource = cell
+            
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "protectorcell", for: indexPath) as! ProtectorCellTableViewCell
@@ -101,9 +105,13 @@ class SetDestinationTableViewController: UITableViewController {
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
         
         var id = [String]()
-        
         let section = 2
         let rows = tableView.numberOfRows(inSection: section)
+        
+        let etaValue = destinationTimeDataSource?.getDestinationTime() ?? 0
+        
+        
+        
         for i in 0..<rows {
             let cell = tableView.cellForRow(at: IndexPath(row: i, section: section)) as! ProtectorCellTableViewCell
             if cell.protectorOnOff.isOn {
@@ -115,8 +123,14 @@ class SetDestinationTableViewController: UITableViewController {
 			print("Error in getting the current date")
 			return
 		}
-
-		let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: self.timerValue, protectorsId: id)
+        
+        let timer = TimerObject(seconds: Int(etaValue),
+                                destination: CLLocation(latitude: 37.2, longitude: 22.9),
+                                delegate: nil)
+        
+        let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: etaValue, protectorsId: id, timer: timer)
+        AppSettings.mainUser!.arrivalInformation = arrivalInformation
+        AppSettings.mainUser!.arrivalInformation?.timer.start()
 
 		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation: arrivalInformation){
 			(error) in
@@ -125,17 +139,9 @@ class SetDestinationTableViewController: UITableViewController {
 				print("Error on adding new arrival time on DB.")
 				return
 			}
-			
 		}
         
         self.navigationController?.popViewController(animated: true)
     }
 
 }
-
-extension SetDestinationTableViewController: TimerCellTableViewCellDelegate {
-    func didChangeValue(cell: TimerCellTableViewCell, picker: UIDatePicker) {
-        self.timerValue = cell.timer.countDownDuration
-    }
-}
-

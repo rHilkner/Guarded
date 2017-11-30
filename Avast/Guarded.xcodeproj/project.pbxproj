@@ -285,7 +285,6 @@
 				C6152E031FA2DB5200CC4F76 /* AppSettings */,
 				C6152DF51FA2933900CC4F76 /* Objects */,
 				C62DF0FA1FA6B44500DC956F /* Errors */,
-				C67B4D501F87CB0F006415CF /* Protocols */,
 				C60EEC511FA83642001E2194 /* Actors */,
 				C6152DFE1FA2A8D000CC4F76 /* Persistence */,
 				C67B4D4F1F87CB01006415CF /* Services */,
@@ -304,13 +303,6 @@
 				8946E7381FB121FA0066D1B3 /* NotificationServices.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		C67B4D501F87CB0F006415CF /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C67B4D541F87CF8B006415CF /* View */ = {
@@ -737,7 +729,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -774,7 +766,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",

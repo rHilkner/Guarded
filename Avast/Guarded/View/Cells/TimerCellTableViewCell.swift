@@ -2,22 +2,21 @@
 //  TimerCellTableViewCell.swift
 //  Guarded
 //
-//  Created by Paulo Henrique Fonseca on 28/11/17.
+//  Created by Paulo
+//Henrique Fonseca on 28/11/17.
 //  Copyright © 2017 Rodrigo Hilkner. All rights reserved.
 //
 
 import UIKit
 
-protocol TimerCellTableViewCellDelegate: NSObjectProtocol
-{
-    func didChangeValue(cell: TimerCellTableViewCell, picker: UIDatePicker)
-}
-
-class TimerCellTableViewCell: UITableViewCell {
+class TimerCellTableViewCell: UITableViewCell, DestinationArrivalTimeDataSource {
+    
+    func getDestinationTime() -> TimeInterval {
+        return self.timer.countDownDuration
+    }
+    
 
     @IBOutlet weak var timer: UIDatePicker!
-    
-    var delegate : TimerCellTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,15 +24,19 @@ class TimerCellTableViewCell: UITableViewCell {
         
     }
 
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+    {
+        return true
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-
-    @IBAction func didChangeValue(_ sender: UIDatePicker) {
-        if let delegate = self.delegate {
-            delegate.didChangeValue(cell: self, picker: sender)
-        }
-    }
+    
+//    @objc func pickerTapped(gesture:UITapGestureRecognizer)
+//    {
+//        didChangeValue(self.timer)
+//    }
     
 }

@@ -23,7 +23,7 @@ class PlaceCalloutView: UIView {
     
     fileprivate var shapeLayer = CAShapeLayer()
     
-    var placeInfo:LocationInfo!
+    var placeInfo: LocationInfo!
     var delegate: PlaceCalloutDelegate?
     
     override func awakeFromNib() {

@@ -9,6 +9,7 @@
 import UIKit
 
 class ProtectorCellTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var protectorPic: UIImageView!
     @IBOutlet weak var protectorName: UILabel!
     @IBOutlet weak var protectorOnOff: UISwitch!
