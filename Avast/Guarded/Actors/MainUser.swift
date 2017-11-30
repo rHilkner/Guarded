@@ -14,7 +14,7 @@ class MainUser: User {
     var places: [Place] = []
     var protectors: [Protector] = []
     var protecteds: [Protected] = []
-    var timer: TimerObject?
+    var arrivalInformation: ArrivalInformation?
     
     //_updateMapContinuously: true if AppSettings.mainUser is on MapViewController
     private var _updateMapContinuously: Bool = false
@@ -114,4 +114,10 @@ class MainUser: User {
         return nil
     }
     
+    func arrived() {
+        if let timerDelegate = self.arrivalInformation?.timer.delegate {
+            timerDelegate.dismissTimer()
+        }
+        self.arrivalInformation = nil
+    }
 }

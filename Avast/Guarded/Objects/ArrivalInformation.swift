@@ -15,15 +15,17 @@ class ArrivalInformation: NSObject {
 	var startPoint: Coordinate
 	var expectedTimeOfArrival: TimeInterval
 	var protectorsId: [String]
+    
+    var timer: TimerObject
 
-	init(date: String, destination: LocationInfo, startPoint: Coordinate, expectedTimeOfArrival: TimeInterval, protectorsId: [String]){
+    init(date: String, destination: LocationInfo, startPoint: Coordinate, expectedTimeOfArrival: TimeInterval, protectorsId: [String], timer: TimerObject) {
 
 		self.date = date
 		self.destination = destination
 		self.startPoint = startPoint
 		self.expectedTimeOfArrival = expectedTimeOfArrival
 		self.protectorsId = protectorsId
-
+        self.timer = timer
 	}
 }
 

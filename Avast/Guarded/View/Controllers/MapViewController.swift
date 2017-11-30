@@ -26,7 +26,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var displayInCenter: String = ""
 
-    var launched: Bool = false
     var selectedAnnotation : PlaceAnnotation?
     var showPlace: Int?
 
@@ -47,7 +46,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         map.addGestureRecognizer(longPressGestureRecognizer)
         
-        if let userTimer = AppSettings.mainUser?.timer {
+        if let userTimer = AppSettings.mainUser!.arrivalInformation?.timer {
             userTimer.delegate = self
             setTimerText(timeString: userTimer.timeString)
         } else {
@@ -103,14 +102,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         }
 
         /// get all places of the current user and display on the map
-        for place in (AppSettings.mainUser?.places)!{
-			self.displayLocation(location: place.coordinate, name: place.name, identifier: annotationIdentifiers.place, protectedId: "", showCallout: false)
+        for place in AppSettings.mainUser!.places {
+			self.displayLocation(place: place, showCallout: true)
 
-        }
-
-        if(!launched) {
-            launched = true
-            self.displayCurrentLocation()
         }
     }
     
@@ -119,7 +113,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.locationServices = nil
         
-        if let userTimer = AppSettings.mainUser?.timer {
+        if let userTimer = AppSettings.mainUser!.arrivalInformation?.timer {
             userTimer.delegate = nil
         }
     }
@@ -305,8 +299,19 @@ extension MapViewController: LocationUpdateProtocol {
 				}
 
 			}
-
-
+        }
+    }
+    
+    func displayLocation(place: Place, showCallout: Bool) {
+        
+        let someLoc2D = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        let locationInfo = LocationInfo(name: place.address, address: place.address, city: "", state: "", country: "")
+        let placeAnnotation = PlaceAnnotation(locationInfo: locationInfo, name: place.name, identifier: annotationIdentifiers.place, coordinate: someLoc2D)
+        
+        placeAnnotation.locationInfo = locationInfo
+        self.map.addAnnotation(placeAnnotation)
+        if showCallout {
+            self.map.selectAnnotation(placeAnnotation, animated: true)
         }
     }
 
@@ -335,13 +340,13 @@ extension MapViewController: TimerObjectDelegate {
         alertController.addAction(UIAlertAction(title: "Já cheguei",
                                                 style: UIAlertActionStyle.cancel,
                                                 handler: { action in
-                                                    AppSettings.mainUser!.timer!.end()
+                                                    AppSettings.mainUser!.arrived()
                                                 }))
         
         alertController.addAction(UIAlertAction(title: "+5 min",
                                                 style: UIAlertActionStyle.default,
                                                 handler: { action in
-                                                    AppSettings.mainUser!.timer!.snooze()
+                                                    AppSettings.mainUser!.arrivalInformation!.timer.addTime(timeInSecs: 5*60)
                                                 }))
         
         self.present(alertController, animated: true, completion: nil)

@@ -15,14 +15,26 @@ struct userStatus {
 	static let danger = "In Danger!"
 }
 
-//TODO: abtract class (?)
+protocol UserStatusDelegate {
+    func refreshStatus()
+}
+
+
 class User {
 
     var id: String
     var name: String
     var email: String
     var phoneNumber: String
-	var status: String
+    
+    var statusDelegate: UserStatusDelegate?
+    var status: String {
+        didSet {
+            if self.statusDelegate != nil {
+                self.statusDelegate?.refreshStatus()
+            }
+        }
+    }
 
 	init(id: String, name: String, email: String?, phoneNumber: String?, status: String) {
         self.id = id

@@ -13,7 +13,7 @@ import MapKit
 
 class PersonPinView: MKAnnotationView {
     
-    var protected:Protected!
+    var protected: Protected!
     weak var customCalloutView: PersonStatusCalloutView?
     
     override var annotation: MKAnnotation? {
@@ -27,6 +27,8 @@ class PersonPinView: MKAnnotationView {
         let person = annotation as? UserAnnotation
         let pArray = AppSettings.mainUser?.protecteds
         protected = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: pArray!) as! Protected
+        
+        self.protected.statusDelegate = self
         
         setPinImage()
     }
@@ -104,6 +106,17 @@ class PersonPinView: MKAnnotationView {
             self.image = Pin.red.image
         default:
             print("defaultCase")
+        }
+    }
+}
+
+extension PersonPinView: UserStatusDelegate {
+    func refreshStatus() {
+        self.setNeedsDisplay()
+        self.setPinImage()
+        
+        if self.customCalloutView != nil {
+            self.customCalloutView?.setCalloutInfo()
         }
     }
 }

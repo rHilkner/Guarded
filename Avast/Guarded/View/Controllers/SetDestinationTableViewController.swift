@@ -124,7 +124,13 @@ class SetDestinationTableViewController: UITableViewController {
 			return
 		}
         
-		let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: etaValue, protectorsId: id)
+        let timer = TimerObject(seconds: Int(etaValue),
+                                destination: CLLocation(latitude: 37.2, longitude: 22.9),
+                                delegate: nil)
+        
+        let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: etaValue, protectorsId: id, timer: timer)
+        AppSettings.mainUser!.arrivalInformation = arrivalInformation
+        AppSettings.mainUser!.arrivalInformation?.timer.start()
 
 		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation: arrivalInformation){
 			(error) in
@@ -133,14 +139,7 @@ class SetDestinationTableViewController: UITableViewController {
 				print("Error on adding new arrival time on DB.")
 				return
 			}
-			
 		}
-        
-        let timer = TimerObject(seconds: Int(etaValue),
-                                destination: CLLocation(latitude: 37.2, longitude: 22.9),
-                                delegate: nil)
-        AppSettings.mainUser?.timer = timer
-        AppSettings.mainUser?.timer?.start()
         
         self.navigationController?.popViewController(animated: true)
     }

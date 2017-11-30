@@ -22,7 +22,7 @@ class TimerObject {
     var timer: Timer?
     var seconds: Int
     var destination: CLLocation
-    var timerRunning = false
+    
     var timeString: String {
         get {
             return TimerObject.timeToString(timeInSecs: self.seconds)
@@ -36,7 +36,6 @@ class TimerObject {
         self.seconds = seconds
         self.destination = destination
         self.delegate = delegate
-        self.timerRunning = false
     }
     
     ///Starts timer
@@ -46,8 +45,6 @@ class TimerObject {
                                      selector: #selector(self.update),
                                      userInfo: nil,
                                      repeats: true)
-        
-        timerRunning = true
         
         if let deleg = self.delegate {
             deleg.setTimerText(timeString: self.timeString)
@@ -68,10 +65,14 @@ class TimerObject {
 //        }
         
         if (seconds <= 0) {
-            stop()
+            timer!.invalidate()
+            timer = nil
+            seconds = 0
+            
             if let deleg = self.delegate {
                 deleg.displayAlert()
             }
+            
             return
         }
         
@@ -82,31 +83,17 @@ class TimerObject {
         }
     }
     
-    ///Stops timer and sets timer object to nil
-    func stop() {
-        if timer != nil {
-            timer!.invalidate()
-            timer = nil
-            seconds = 0
-            timerRunning = false
-            if let deleg = self.delegate {
-                deleg.dismissTimer()
-            }
-        }
-    }
-    
-    ///Dismisses timer on delegate and sets mainUser.timer to nil
-    func end() {
-        if let deleg = self.delegate {
-            deleg.dismissTimer()
-        }
-        AppSettings.mainUser!.timer = nil
-    }
-    
     ///Adds 5 more minutes to timer
-    func snooze() {
-        self.seconds += snoozeTime
-        start()
+    func addTime(timeInSecs: Int) {
+        self.seconds += timeInSecs
+        
+        if timer == nil {
+            start()
+        }
+        
+        if let deleg = self.delegate {
+            deleg.setTimerText(timeString: self.timeString)
+        }
     }
 }
 

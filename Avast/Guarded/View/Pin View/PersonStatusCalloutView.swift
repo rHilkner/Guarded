@@ -43,18 +43,11 @@ class PersonStatusCalloutView: UIView {
         
         self.personName.text = String(names.removeFirst())
         
-        switch person.status {
-        case userStatus.safe:
-            self.personStatus.text = "Safe"
-            self.calloutColor = Pin.green.dark
-        case userStatus.arriving:
-            self.personStatus.text = "In Danger!"
-            self.calloutColor = Pin.red.dark
-        case userStatus.danger:
-            self.personStatus.text = "Arriving in"
-            self.calloutColor = Pin.yellow.dark
-        default:
-            self.personStatus.text = ""
+        self.setCalloutInfo()
+        
+        if let protectedTimer = self.person.arrivalInformation?.timer {
+            protectedTimer.delegate = self
+            self.setTimerText(timeString: protectedTimer.timeString)
         }
     }
     
@@ -87,7 +80,43 @@ class PersonStatusCalloutView: UIView {
         self.layer.addSublayer(self.shapeLayer)
 
     }
+    
+    func setCalloutInfo() {
+        switch self.person.status {
+        case userStatus.safe:
+            self.personStatus.text = "Safe"
+            self.calloutColor = Pin.green.dark
+        case userStatus.arriving:
+            self.personStatus.text = "In Danger!"
+            self.calloutColor = Pin.red.dark
+        case userStatus.danger:
+            if let arrInfo = self.person.arrivalInformation {
+                self.setTimerText(timeString: arrInfo.timer.timeString)
+            } else {
+                self.personStatus.text = "Arring..."
+            }
+            self.calloutColor = Pin.yellow.dark
+        default:
+            self.personStatus.text = ""
+        }
+    }
 
 }
 
-
+extension PersonStatusCalloutView: TimerObjectDelegate {
+    func setTimerText(timeString: String) {
+        self.personStatus.text = "Arriving in \(timeString)"
+    }
+    
+    func updateTimerText(timeString: String) {
+        self.personStatus.text = "Arriving in \(timeString)"
+    }
+    
+    func displayAlert() {
+        print("Protected arrived in location.")
+    }
+    
+    func dismissTimer() {
+        self.personStatus.text = "Arring..."
+    }
+}
