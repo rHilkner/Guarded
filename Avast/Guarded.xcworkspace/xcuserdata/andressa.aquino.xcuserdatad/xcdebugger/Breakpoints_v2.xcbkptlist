@@ -26,7 +26,7 @@
                   moduleName = "Guarded"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/View/Controllers/SetDestinationTableViewController.swift"
-                  timestampString = "533674704.025128"
+                  timestampString = "533776200.292171"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
@@ -41,14 +41,94 @@
                   moduleName = "Guarded"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/View/Controllers/SetDestinationTableViewController.swift"
-                  timestampString = "533674704.026783"
+                  timestampString = "533776200.294583"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "119"
                   endingLineNumber = "119"
-                  offsetFromSymbolStart = "2428">
+                  offsetFromSymbolStart = "2360">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guarded/Persistence/DatabaseManager.swift"
+            timestampString = "533776200.041828"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "737"
+            endingLineNumber = "737"
+            landmarkName = "addObserverToProtectedsETA(completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guarded/Persistence/DatabaseManager.swift"
+            timestampString = "533776200.041916"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "729"
+            endingLineNumber = "729"
+            landmarkName = "addObserverToProtectedsETA(completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in static Guarded.DatabaseManager.addObserverToProtectedsETA(completionHandler: (Swift.Optional&lt;Guarded.ArrivalInformation&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Guarded"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/Persistence/DatabaseManager.swift"
+                  timestampString = "533776200.304307"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "734"
+                  endingLineNumber = "734"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in static Guarded.DatabaseManager.addObserverToProtectedsETA(completionHandler: (Swift.Optional&lt;Guarded.ArrivalInformation&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Guarded"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/Persistence/DatabaseManager.swift"
+                  timestampString = "533776200.306611"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "737"
+                  endingLineNumber = "737"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guarded/Persistence/DatabaseManager.swift"
+            timestampString = "533776200.042363"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "784"
+            endingLineNumber = "784"
+            landmarkName = "addObserverToProtectedsETA(completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

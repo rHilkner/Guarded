@@ -716,6 +716,81 @@ class DatabaseManager {
 
 
 	}
+
+	static func addObserverToProtectedsETA(completionHandler: @escaping (ArrivalInformation?) -> Void){
+
+		for protected in (AppSettings.mainUser?.protecteds)! {
+
+			var ETARef = ref.child("users").child(protected.id).child("ETA")
+
+			ETARef.observe(.childChanged, with: {
+				(ETASnap) in
+
+				/*guard let ETADict = ETASnap.value as? [ String : Any ] else {
+					print("Add observer to ETA returned nil snapshot from DB")
+					return
+				}*/
+
+				ETARef.observe(.value, with: {
+					(ETASnap) in
+
+					guard let ETADict = ETASnap.value as? [String : Any] else {
+						print("Add observer to ETA returned nil snapshot from DB")
+						return
+					}
+
+					guard let protectorsDict = ETADict["protectors"] as? [String:Any] else {
+						print("Error on fetching protectorsDict from given ETA dictionary.")
+						return
+					}
+
+					var protectorsId: [String] = []
+					var protectorIsOn: Bool = false
+
+					for i in Array(protectorsDict.keys) {
+
+						if i == AppSettings.mainUser?.id {
+							protectorIsOn = true
+						}
+
+						protectorsId.append(i)
+					}
+
+					/// Check if the main user is on the list of protectors
+					/// If it isn`t, just return, because the protector don`t have permission to see this information
+
+					if protectorIsOn == false {
+						completionHandler(nil)
+						return
+					}
+
+					/// If the protector is on, fetch complete arrival information
+
+					guard let date = ETADict["date"] as? String else {
+						print("Error on fetching date from given ETA dictionary.")
+						return
+					}
+
+					guard let destination = ETADict["destination"] as? String else {
+						print("Error on fetching destination from given ETA dictionary.")
+						return
+					}
+
+					guard let timeOfArrival = ETADict["time of arrival"] as? String else {
+						print("Error on fetching time of arrival from given ETA dictionary.")
+						return
+					}
+
+					let locationInfo = LocationInfo(name: "Destination of ////////insert id/////////", address: destination, city: "", state: "", country: "")
+
+					let arrivalInformation = ArrivalInformation(date: date, destination: locationInfo, startPoint: nil, expectedTimeOfArrival: Double(timeOfArrival)!, protectorsId: protectorsId)
+
+					completionHandler(arrivalInformation)
+				})
+
+			})
+		}
+	}
     
     ///Adds observer to all of the main user's protecteds' last location
     static func addObserverToProtectedsLocations(completionHandler: @escaping (Protected?) -> Void) {
@@ -803,7 +878,7 @@ class DatabaseManager {
 
 		let arrivalDict = [
 			"date": arrivalInformation.date,
-			"destination": arrivalInformation.destination.address,
+			"destination": arrivalInformation.destination?.address,
 			"time of arrival": String(arrivalInformation.expectedTimeOfArrival),
 			"protectors": protectorsDict
 			] as [String : Any]

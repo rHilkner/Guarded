@@ -11,12 +11,12 @@ import UIKit
 class ArrivalInformation: NSObject {
 
 	var date: String
-	var destination: LocationInfo
-	var startPoint: Coordinate
+	var destination: LocationInfo?
+	var startPoint: Coordinate?
 	var expectedTimeOfArrival: TimeInterval
 	var protectorsId: [String]
 
-	init(date: String, destination: LocationInfo, startPoint: Coordinate, expectedTimeOfArrival: TimeInterval, protectorsId: [String]){
+	init(date: String, destination: LocationInfo?, startPoint: Coordinate?, expectedTimeOfArrival: TimeInterval, protectorsId: [String]){
 
 		self.date = date
 		self.destination = destination

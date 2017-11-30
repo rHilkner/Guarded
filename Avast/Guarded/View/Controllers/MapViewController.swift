@@ -72,6 +72,16 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
       //  AppSettings.mainUser?.updateMapContinuously = true
 
+		DatabaseManager.addObserverToProtectedsETA() {
+			(ETA) in
+
+			guard let arrivalInformation = ETA else {
+				print("Error on adding observer to protecteds ETA")
+				return
+			}
+			
+		}
+
         /// Receive the coordinate of a new protected`s occurence
         DatabaseManager.addObserverToProtectedsHelpOccurrences() {
             (coordinate) in

@@ -11,4 +11,5 @@ import Foundation
 class Protected: User {
     var lastLocation: Coordinate?
     var allowedToFollow: Bool = true
+	var arrivalInformation: ArrivalInformation?
 }
