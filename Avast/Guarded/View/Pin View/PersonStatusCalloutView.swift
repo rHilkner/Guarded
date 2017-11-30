@@ -14,10 +14,9 @@ class PersonStatusCalloutView: UIView {
     @IBOutlet weak var personName: UILabel!
     @IBOutlet weak var personStatus: UILabel!
     
-    var person:Protected!
+    var person: Protected!
     
-    var calloutColor:UIColor! = UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0)
-    {
+    var calloutColor: UIColor! = UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0) {
         didSet{
             self.backgroundColor = calloutColor
             self.addTriangleTip(withColor: calloutColor)
@@ -34,7 +33,7 @@ class PersonStatusCalloutView: UIView {
         self.layer.cornerRadius = 8
     }
     
-    func configure(withPerson person: Protected){
+    func configure(withPerson person: Protected) {
         self.person = person
 
         //TODO: Unmock this line        
@@ -59,7 +58,7 @@ class PersonStatusCalloutView: UIView {
         }
     }
     
-    func addTriangleTip(withColor color:UIColor) {
+    func addTriangleTip(withColor color: UIColor) {
         
         let xInit = 7*(self.frame.width)/16
         let yInit = self.frame.height
