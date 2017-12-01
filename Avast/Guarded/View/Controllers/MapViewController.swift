@@ -71,6 +71,36 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
       //  AppSettings.mainUser?.updateMapContinuously = true
 
+		DatabaseManager.addObserverToProtectedsETA() {
+			(protectedId, ETA) in
+
+			guard let arrivalInformation = ETA else {
+				print("Error on adding observer to protecteds ETA")
+				return
+			}
+
+			let pArray = AppSettings.mainUser?.protecteds
+			var protected = AppSettings.mainUser?.getUser(byId: (protectedId)!, fromList: pArray!) as! Protected
+
+			/// if expected time equals zero, then the protected arrived safely
+			if arrivalInformation.expectedTimeOfArrival == 0 {
+				if let arrInfo = protected.arrivalInformation {
+					if let timerDelegate = arrInfo.timer.delegate {
+						timerDelegate.dismissTimer()
+					}
+					protected.arrivalInformation = nil
+				}
+				protected.status = userStatus.safe
+				return
+			}
+
+			/// else, start the timer
+			protected.arrivalInformation = arrivalInformation
+			protected.arrivalInformation?.timer.start()
+			protected.status = userStatus.arriving
+			
+		}
+
         /// Receive the coordinate of a new protected`s occurence
         DatabaseManager.addObserverToProtectedsHelpOccurrences() {
             (coordinate) in
@@ -355,6 +385,19 @@ extension MapViewController: TimerObjectDelegate {
     
     func dismissTimer() {
         timerButton.isHidden = true
+
+		AppSettings.mainUser?.arrivalInformation?.expectedTimeOfArrival = 0
+
+		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation: (AppSettings.mainUser?.arrivalInformation)!, completionHandler: {
+			(error) in
+
+			if error != nil {
+				print("Error on dismissing timer")
+				return
+			}
+
+			AppSettings.mainUser?.status = userStatus.safe
+		})
     }
 }
 
