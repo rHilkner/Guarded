@@ -95,6 +95,19 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 					protected.arrivalInformation = nil
 				}
 				protected.status = userStatus.safe
+
+				let alertController = UIAlertController(title: "\(protected.name) chegou em segurança",
+														message: nil,
+														preferredStyle: UIAlertControllerStyle.alert)
+
+				alertController.addAction(UIAlertAction(title: "Ok",
+														style: UIAlertActionStyle.cancel,
+														handler: { action in
+															AppSettings.mainUser!.arrived()
+				}))
+
+				self.present(alertController, animated: true, completion: nil)
+
 				return
 			}
 
