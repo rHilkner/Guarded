@@ -128,7 +128,7 @@ class SetDestinationTableViewController: UITableViewController {
                                 destination: CLLocation(latitude: 37.2, longitude: 22.9),
                                 delegate: nil)
         
-        let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: etaValue, protectorsId: id, timer: timer)
+        let arrivalInformation = ArrivalInformation(date: date, destination: self.locationInfo, startPoint: (AppSettings.mainUser?.lastLocation)!, expectedTimeOfArrival: Int(etaValue), protectorsId: id, timer: timer)
         AppSettings.mainUser!.arrivalInformation = arrivalInformation
         AppSettings.mainUser!.arrivalInformation?.timer.start()
 
