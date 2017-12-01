@@ -88,6 +88,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 			/// if expected time equals zero, then the protected arrived safely
 			if arrivalInformation.expectedTimeOfArrival == 0 {
+
 				if let arrInfo = protected.arrivalInformation {
 					if let timerDelegate = arrInfo.timer.delegate {
 						timerDelegate.dismissTimer()
@@ -154,7 +155,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         }
 
-		if !launched {
+		if !launched && locationServices?.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse {
 			self.displayCurrentLocation()
 			launched = true
 		}
