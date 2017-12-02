@@ -91,6 +91,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 			/// if expected time equals zero, then the protected arrived safely
 			if arrivalInformation.expectedTimeOfArrival == 0 {
+
 				if let arrInfo = protected.arrivalInformation {
 					if let timerDelegate = arrInfo.timer.delegate {
 						timerDelegate.dismissTimer()
@@ -98,6 +99,19 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 					protected.arrivalInformation = nil
 				}
 				protected.status = userStatus.safe
+
+				let alertController = UIAlertController(title: "\(protected.name) chegou em segurança",
+														message: nil,
+														preferredStyle: UIAlertControllerStyle.alert)
+
+				alertController.addAction(UIAlertAction(title: "Ok",
+														style: UIAlertActionStyle.cancel,
+														handler: { action in
+															AppSettings.mainUser!.arrived()
+				}))
+
+				self.present(alertController, animated: true, completion: nil)
+
 				return
 			}
 
@@ -143,6 +157,11 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			self.displayLocation(place: place, showCallout: false)
 
         }
+
+		if !launched && locationServices?.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse {
+			self.displayCurrentLocation()
+			launched = true
+		}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
