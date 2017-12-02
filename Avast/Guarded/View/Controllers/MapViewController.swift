@@ -31,6 +31,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var protectedsAnnotationArray : [UserAnnotation] = []
 
+	var launched: Bool = false
+
     @IBOutlet weak var timerButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var currentLocationLabel: UILabel!
@@ -69,6 +71,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.map.showsCompass = false
         
+
+		self.launched = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,11 +140,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         /// get all places of the current user and display on the map
         for place in AppSettings.mainUser!.places {
-			self.displayLocation(place: place, showCallout: true)
+			self.displayLocation(place: place, showCallout: false)
 
         }
-        
-        self.displayCurrentLocation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -378,11 +380,13 @@ extension MapViewController: TimerObjectDelegate {
                                                     AppSettings.mainUser!.arrived()
                                                 }))
         
-        alertController.addAction(UIAlertAction(title: "+5 min",
+        /*alertController.addAction(UIAlertAction(title: "+5 min",
                                                 style: UIAlertActionStyle.default,
                                                 handler: { action in
-                                                    AppSettings.mainUser!.arrivalInformation!.timer.addTime(timeInSecs: 5*60)
-                                                }))
+
+													AppSettings.mainUser?.arrivalInformation?.timer.addTime(timeInSecs: time)
+													//time)AppSettings.mainUser.arrivalInformation!.timer.addTime(time)!InSecs: 5*60)
+                                                }))*/
         
         self.present(alertController, animated: true, completion: nil)
         
