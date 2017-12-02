@@ -66,6 +66,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         self.locationServices?.delegate = self
         
         self.map.showsUserLocation = true
+        
+        self.map.showsCompass = false
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,6 +139,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			self.displayLocation(place: place, showCallout: true)
 
         }
+        
+        self.displayCurrentLocation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
