@@ -12,30 +12,49 @@ class HelpViewController: UIViewController {
 
 	var contador: Int?
 
-	@IBOutlet weak var rolouLabel: UILabel!
+    @IBOutlet weak var clockView: ClockView!
+    @IBOutlet weak var clock: UILabel!
+    
+    
+    var count:Double = 1000.0
+    var totalTime:Double = 1000.0
+    
+    var countdownTimer:Timer?
+    
+    
+    @IBAction func confirmButtonClicked(_ sender: Any) {
+        DatabaseManager.addHelpOccurrence(location: AppSettings.mainUser!.lastLocation!, date: contador!){
+            (error) in
+            
+            guard (error == nil) else {
+                print("Error on adding a new help occurrence.")
+                return
+            }
+            
+            self.contador = self.contador! + 1
+        }
 
-	@IBAction func helpButtonClicked(_ sender: Any) {
-		DatabaseManager.addHelpOccurrence(location: AppSettings.mainUser!.lastLocation!, date: contador!){
-			(error) in
-
-			guard (error == nil) else {
-				print("Error on adding a new help occurrence.")
-				return
-			}
-
-			self.contador = self.contador! + 1
-		}
-
-	}
+    }
 
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		self.rolouLabel.isHidden = true
-
+        
+        countdownTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateConter), userInfo: nil, repeats: true)
+        
 		self.contador = 0
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func updateConter() {
+        if count >= 0{
+            self.clockView.currentTime = (self.count)/(self.totalTime)
+            self.clock.text = "\(Int(ceil(count/100.0)))"
+            self.count -= 1
+        } else {
+            countdownTimer?.invalidate()
+        }
     }
 
     override func didReceiveMemoryWarning() {

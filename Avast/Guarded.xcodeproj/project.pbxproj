@@ -19,6 +19,7 @@
 		89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */; };
 		89DE136D1FCF2DD6003D009C /* ArrivalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */; };
 		C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C230201D1FC4AF7700A099BE /* Help.storyboard */; };
+		C24394201FD59BF2007CE6CD /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243941F1FD59BF2007CE6CD /* ClockView.swift */; };
 		C24E9B101FCDF3730086C68F /* SetDestinationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */; };
 		C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */; };
 		C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */; };
@@ -81,6 +82,7 @@
 		89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInformation.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
 		C230201D1FC4AF7700A099BE /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
+		C243941F1FD59BF2007CE6CD /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDestinationTableViewController.swift; sourceTree = "<group>"; };
 		C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetDestinationStoryboard.storyboard; sourceTree = "<group>"; };
 		C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationTableViewCell.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 		C67B4D541F87CF8B006415CF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C243941F1FD59BF2007CE6CD /* ClockView.swift */,
 				D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */,
 				D48231B71FA4469D0027EC1F /* Storyboards */,
 				C67B4D551F87CF93006415CF /* Controllers */,
@@ -548,6 +551,7 @@
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
 				C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */,
 				D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */,
+				C24394201FD59BF2007CE6CD /* ClockView.swift in Sources */,
 				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
 				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
 				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,
@@ -729,7 +733,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WW6YH2P93;
+				DEVELOPMENT_TEAM = ET334MYK42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -766,7 +770,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WW6YH2P93;
+				DEVELOPMENT_TEAM = ET334MYK42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
