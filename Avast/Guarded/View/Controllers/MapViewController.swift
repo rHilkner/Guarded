@@ -68,6 +68,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         self.locationServices?.delegate = self
         
         self.map.showsUserLocation = true
+        
+        self.map.showsCompass = false
+        
 
 		self.launched = false
     }
