@@ -12,22 +12,11 @@ import LocalAuthentication
 class HelpViewController: UIViewController {
 
 	var contador: Int?
-
-	@IBOutlet weak var rolouLabel: UILabel!
-    
-    
-    //Botoes: Confirm/Cancel
-    //Confirm/Acabou o tempo do contador: manda pro banco de dados -- dessa
-    //Cancel: Pede TouchID para cancelar truzao -- xpt
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.rolouLabel.isHidden = true
         
         self.contador = 0
-        
-        // Do any additional setup after loading the view.
     }
 
 	@IBAction func helpButtonClicked(_ sender: Any) {
