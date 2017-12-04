@@ -14,7 +14,6 @@ class ClockView: UIView {
     @IBInspectable
     var currentTime:Double = 1.0 {
         didSet{
-            print("\(currentTime)")
             self.setNeedsDisplay()
         }
     }

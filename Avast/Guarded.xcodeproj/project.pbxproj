@@ -65,6 +65,7 @@
 		D4BC71F21FCE576A004504EC /* AddPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */; };
 		D4BC71F51FCE5A18004504EC /* EditInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */; };
 		D4BC71F71FCE5AC3004504EC /* ShowInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */; };
+		D4CAEB211FD5D07C0010ED89 /* LockScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +141,7 @@
 		D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaceTableViewController.swift; sourceTree = "<group>"; };
 		D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInformationCell.swift; sourceTree = "<group>"; };
 		D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInformationCell.swift; sourceTree = "<group>"; };
+		D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewController.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -335,6 +337,7 @@
 				8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */,
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
 				D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */,
+				D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				8946E7391FB121FA0066D1B3 /* NotificationServices.swift in Sources */,
 				891934861FBB6D87004AFD4E /* Annotation.swift in Sources */,
 				D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */,
+				D4CAEB211FD5D07C0010ED89 /* LockScreenViewController.swift in Sources */,
 				C6152E051FA2DB6A00CC4F76 /* AppSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -733,7 +737,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ET334MYK42;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -770,7 +774,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ET334MYK42;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",

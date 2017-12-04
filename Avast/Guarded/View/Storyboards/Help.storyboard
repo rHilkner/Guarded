@@ -73,6 +73,9 @@ notified after the countdown</string>
                                         <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelButtonClicked:" destination="WbZ-cd-ErM" eventType="touchUpInside" id="cKS-ta-4t2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b11-VR-cCv">
                                 <rect key="frame" x="201" y="476" width="157" height="53"/>
@@ -116,17 +119,17 @@ notified after the countdown</string>
                     <connections>
                         <outlet property="clock" destination="7ah-FK-3Lg" id="Aos-qg-N6k"/>
                         <outlet property="clockView" destination="4Nf-7h-Hsr" id="4YR-gK-XFR"/>
-                        <segue destination="ban-rd-U5O" kind="show" identifier="lockModeSegue" id="MXb-3X-WfY"/>
+                        <segue destination="ban-rd-U5O" kind="presentation" identifier="lockModeSegue" modalTransitionStyle="crossDissolve" id="MXb-3X-WfY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fYi-uJ-Oac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3748" y="-388.15592203898052"/>
         </scene>
-        <!--View Controller-->
+        <!--Lock Screen View Controller-->
         <scene sceneID="lgJ-lk-86T">
             <objects>
-                <viewController id="ban-rd-U5O" sceneMemberID="viewController">
+                <viewController id="ban-rd-U5O" customClass="LockScreenViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Drm-xH-WsM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,6 +159,9 @@ ACTIVE</string>
                                         <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="stopLockMode:" destination="ban-rd-U5O" eventType="touchUpInside" id="i7O-TQ-fjX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92032933235168457" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
