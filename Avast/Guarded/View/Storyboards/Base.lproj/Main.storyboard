@@ -119,9 +119,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wma-oE-Gla">
-                                <rect key="frame" x="0.0" y="68" width="375" height="550"/>
-                            </mapView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMr-Gt-frn">
                                 <rect key="frame" x="8" y="72" width="90" height="42"/>
                                 <color key="backgroundColor" red="0.50259602069854736" green="0.64844030141830444" blue="0.18663448095321655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -161,17 +158,20 @@
                                     <action selector="zoomInUserLocation:" destination="1iy-gm-vn2" eventType="touchUpInside" id="vzT-HB-4cd"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wma-oE-Gla">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wma-oE-Gla" firstAttribute="trailing" secondItem="qx5-XY-gQr" secondAttribute="trailing" id="6tX-z4-IkS"/>
-                            <constraint firstItem="wma-oE-Gla" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" id="9fi-Kh-6g9"/>
-                            <constraint firstItem="wma-oE-Gla" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" id="Bjb-t4-pS9"/>
+                            <constraint firstItem="wma-oE-Gla" firstAttribute="bottom" secondItem="qx5-XY-gQr" secondAttribute="bottom" id="9fX-KZ-As2"/>
+                            <constraint firstItem="wma-oE-Gla" firstAttribute="trailing" secondItem="qx5-XY-gQr" secondAttribute="trailing" id="GVo-oD-4JR"/>
                             <constraint firstItem="eHs-rB-znu" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" constant="8" id="J1B-yK-goH"/>
-                            <constraint firstItem="qx5-XY-gQr" firstAttribute="bottom" secondItem="wma-oE-Gla" secondAttribute="bottom" id="PAy-n9-WrU"/>
+                            <constraint firstItem="wma-oE-Gla" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" id="Mxz-wD-g0s"/>
                             <constraint firstItem="lMr-Gt-frn" firstAttribute="top" secondItem="qx5-XY-gQr" secondAttribute="top" constant="8" id="byZ-8E-1hU"/>
                             <constraint firstItem="lMr-Gt-frn" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" constant="8" id="hnA-V4-7eY"/>
                             <constraint firstItem="qx5-XY-gQr" firstAttribute="trailing" secondItem="eHs-rB-znu" secondAttribute="trailing" constant="8" id="m3n-eG-vf5"/>
+                            <constraint firstItem="wma-oE-Gla" firstAttribute="leading" secondItem="qx5-XY-gQr" secondAttribute="leading" id="qGW-Pd-v5m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qx5-XY-gQr"/>
                     </view>
@@ -392,12 +392,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ajE-R7-KR4" kind="relationship" relationship="rootViewController" id="9af-Fa-gjA"/>
+                        <segue destination="AnR-dy-taq" kind="relationship" relationship="rootViewController" id="H15-Kb-Tkl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h3-l5-VTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4782" y="-769"/>
+        </scene>
+        <!--Help-->
+        <scene sceneID="sII-t6-0MO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Help" id="AnR-dy-taq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="D27-va-YQz"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6iT-13-ByN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4781" y="-242"/>
         </scene>
         <!--Protect-->
         <scene sceneID="k3p-vX-KHp">
