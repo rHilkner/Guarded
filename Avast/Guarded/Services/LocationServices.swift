@@ -96,7 +96,6 @@ extension LocationServices: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == .authorizedAlways || status == .authorizedWhenInUse) {
             self.manager.startUpdatingLocation()
-			
         } else if (status == .denied || status == .restricted) {
             self.manager.stopUpdatingLocation()
         }

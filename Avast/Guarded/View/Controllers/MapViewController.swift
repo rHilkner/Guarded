@@ -155,6 +155,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         }
 
+		/// Check if it needs to focus on the user current location
 		if !launched && locationServices?.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse {
 			self.displayCurrentLocation()
 			launched = true
@@ -280,6 +281,38 @@ extension MapViewController: MKMapViewDelegate {
             self.selectedAnnotation = (view.annotation as! PlaceAnnotation)
         }
     }
+
+	func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+
+		if let placeAnnotation = view.annotation as? PlaceAnnotation {
+
+			/// if this annotation is a new annotation, check if it was added to my places
+			/// else, remove annotation
+			if placeAnnotation.name == "New local" {
+
+				var placeAdded = false
+
+				let placeCoordinate = Coordinate(latitude: placeAnnotation.coordinate.latitude, longitude: placeAnnotation.coordinate.longitude)
+
+				for place in (AppSettings.mainUser?.places)! {
+
+					if (placeCoordinate.latitude == place.coordinate.latitude) && (placeCoordinate.longitude == place.coordinate.longitude) {
+						placeAdded = true
+					}
+				}
+
+				if(placeAdded == false){
+					view.removeFromSuperview()
+					self.map.removeAnnotation(placeAnnotation)
+				}
+			}
+
+
+			print(placeAnnotation.name)
+			print(placeAnnotation.locationInfo?.name)
+		}
+	}
+
 }
 
 extension MapViewController: PlaceCalloutDelegate {
