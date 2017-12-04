@@ -7,12 +7,28 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class HelpViewController: UIViewController {
 
 	var contador: Int?
 
 	@IBOutlet weak var rolouLabel: UILabel!
+    
+    
+    //Botoes: Confirm/Cancel
+    //Confirm/Acabou o tempo do contador: manda pro banco de dados -- dessa
+    //Cancel: Pede TouchID para cancelar truzao -- xpt
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.rolouLabel.isHidden = true
+        
+        self.contador = 0
+        
+        // Do any additional setup after loading the view.
+    }
 
 	@IBAction func helpButtonClicked(_ sender: Any) {
 		DatabaseManager.addHelpOccurrence(location: AppSettings.mainUser!.lastLocation!, date: contador!){
@@ -25,33 +41,89 @@ class HelpViewController: UIViewController {
 
 			self.contador = self.contador! + 1
 		}
-
 	}
-
-	
-	override func viewDidLoad() {
-        super.viewDidLoad()
-		self.rolouLabel.isHidden = true
-
-		self.contador = 0
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func cancelButtonPressed() {
+        
+        //Create authentication context
+        let authenticationContext = LAContext()
+        
+        //Check if device has a fingerprint sensor
+        var touchIDError: NSError?
+        
+        guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &touchIDError) else {
+            showAlertWithTitle(title: "Error", message: "This device did not allow authentication.")
+            return
+        }
+        
+        //Check the fingerprint
+        authenticationContext.evaluatePolicy(
+            .deviceOwnerAuthentication,
+            localizedReason: "Only awesome people are allowed") {
+                (success, error) in
+                
+                if let error = error as? LAError {
+                    //TODO: Ask for password
+                    let message = self.errorMessageForLAErrorCode(errorCode: error.code.rawValue)
+                    self.showAlertWithTitle(title: "Error", message: message)
+                    return
+                }
+                
+                print("Authentication recognized.")
+                //TODO: Go to navigation view controller
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func showAlertWithTitle(title: String, message: String) {
+        
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertVC.addAction(okAction)
+        
+        DispatchQueue.main.async() {
+            () -> Void in
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
-    */
-
+    
+    func errorMessageForLAErrorCode(errorCode: Int) -> String {
+        
+        var message = ""
+        
+        switch errorCode {
+            
+        case LAError.appCancel.rawValue:
+            message = "Authentication was cancelled by application"
+            
+        case LAError.authenticationFailed.rawValue:
+            message = "The user failed to provide valid credentials"
+            
+        case LAError.invalidContext.rawValue:
+            message = "The context is invalid"
+            
+        case LAError.passcodeNotSet.rawValue:
+            message = "Passcode is not set on the device"
+            
+        case LAError.systemCancel.rawValue:
+            message = "Authentication was cancelled by the system"
+            
+        case LAError.touchIDLockout.rawValue:
+            message = "Too many failed attempts."
+            
+        case LAError.touchIDNotAvailable.rawValue:
+            message = "TouchID is not available on the device"
+            
+        case LAError.userCancel.rawValue:
+            message = "The user did cancel"
+            
+        case LAError.userFallback.rawValue:
+            message = "The user chose to use the fallback"
+            
+        default:
+            message = "Did not find error code on LAError object"
+        }
+        
+        return message
+    }
 }
