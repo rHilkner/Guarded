@@ -58,9 +58,12 @@ class PlacePinView: MKAnnotationView {
                     UIView.animate(withDuration: 0.3, animations: {
                         self.customCalloutView!.alpha = 0.0
                     }, completion: { (success) in
-                        self.customCalloutView!.removeFromSuperview()
+                        self.customCalloutView?.removeFromSuperview()
                     })
-                } else { self.customCalloutView!.removeFromSuperview() } // just remove it.
+                } else {
+					self.customCalloutView?.removeFromSuperview()
+					
+				} // just remove it.
             }
         }
     }

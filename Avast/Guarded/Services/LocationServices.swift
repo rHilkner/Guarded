@@ -22,6 +22,8 @@ class LocationServices: NSObject {
     var delegate: LocationUpdateProtocol!
 	let ratio: Double = 30
 
+	public var authorizationStatus: CLAuthorizationStatus?
+
     override init() {
         super.init()
 
@@ -35,17 +37,20 @@ class LocationServices: NSObject {
         switch CLLocationManager.authorizationStatus() {
             case .notDetermined:
                 // Request when-in-use authorization initially
+				authorizationStatus = CLAuthorizationStatus.notDetermined
                 self.manager.requestWhenInUseAuthorization()
                 break
 
             case .restricted, .denied:
                 // Disable location features
+				authorizationStatus = CLAuthorizationStatus.denied
                 print("Error: permission denied or restricted")
                 self.manager.stopUpdatingLocation()
                 break
 
             case .authorizedWhenInUse, .authorizedAlways:
                 // Enable location features
+				authorizationStatus = CLAuthorizationStatus.authorizedWhenInUse
                 self.manager.startUpdatingLocation()
                 break
 
@@ -202,5 +207,7 @@ extension LocationServices {
             completionHandler(placeInfo)
         }
     }
+
+
 }
 

@@ -31,6 +31,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var protectedsAnnotationArray : [UserAnnotation] = []
 
+	var launched: Bool = false
+
     @IBOutlet weak var timerButton: UIButton!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var currentLocationLabel: UILabel!
@@ -66,10 +68,59 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         self.locationServices?.delegate = self
         
         self.map.showsUserLocation = true
+        
+        self.map.showsCompass = false
+        
+
+		self.launched = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
       //  AppSettings.mainUser?.updateMapContinuously = true
+
+		DatabaseManager.addObserverToProtectedsETA() {
+			(protectedId, ETA) in
+
+			guard let arrivalInformation = ETA else {
+				print("Error on adding observer to protecteds ETA")
+				return
+			}
+
+			let pArray = AppSettings.mainUser?.protecteds
+			var protected = AppSettings.mainUser?.getUser(byId: (protectedId)!, fromList: pArray!) as! Protected
+
+			/// if expected time equals zero, then the protected arrived safely
+			if arrivalInformation.expectedTimeOfArrival == 0 {
+
+				if let arrInfo = protected.arrivalInformation {
+					if let timerDelegate = arrInfo.timer.delegate {
+						timerDelegate.dismissTimer()
+					}
+					protected.arrivalInformation = nil
+				}
+				protected.status = userStatus.safe
+
+				let alertController = UIAlertController(title: "\(protected.name) chegou em segurança",
+														message: nil,
+														preferredStyle: UIAlertControllerStyle.alert)
+
+				alertController.addAction(UIAlertAction(title: "Ok",
+														style: UIAlertActionStyle.cancel,
+														handler: { action in
+															AppSettings.mainUser!.arrived()
+				}))
+
+				self.present(alertController, animated: true, completion: nil)
+
+				return
+			}
+
+			/// else, start the timer
+			protected.arrivalInformation = arrivalInformation
+			protected.arrivalInformation?.timer.start()
+			protected.status = userStatus.arriving
+			
+		}
 
         /// Receive the coordinate of a new protected`s occurence
         DatabaseManager.addObserverToProtectedsHelpOccurrences() {
@@ -103,9 +154,15 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         /// get all places of the current user and display on the map
         for place in AppSettings.mainUser!.places {
-			self.displayLocation(place: place, showCallout: true)
+			self.displayLocation(place: place, showCallout: false)
 
         }
+
+		/// Check if it needs to focus on the user current location
+		if !launched && locationServices?.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse {
+			self.displayCurrentLocation()
+			launched = true
+		}
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -227,6 +284,38 @@ extension MapViewController: MKMapViewDelegate {
             self.selectedAnnotation = (view.annotation as! PlaceAnnotation)
         }
     }
+
+	func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+
+		if let placeAnnotation = view.annotation as? PlaceAnnotation {
+
+			/// if this annotation is a new annotation, check if it was added to my places
+			/// else, remove annotation
+			if placeAnnotation.name == "New local" {
+
+				var placeAdded = false
+
+				let placeCoordinate = Coordinate(latitude: placeAnnotation.coordinate.latitude, longitude: placeAnnotation.coordinate.longitude)
+
+				for place in (AppSettings.mainUser?.places)! {
+
+					if (placeCoordinate.latitude == place.coordinate.latitude) && (placeCoordinate.longitude == place.coordinate.longitude) {
+						placeAdded = true
+					}
+				}
+
+				if(placeAdded == false){
+					view.removeFromSuperview()
+					self.map.removeAnnotation(placeAnnotation)
+				}
+			}
+
+
+			print(placeAnnotation.name)
+			print(placeAnnotation.locationInfo?.name)
+		}
+	}
+
 }
 
 extension MapViewController: PlaceCalloutDelegate {
@@ -343,11 +432,13 @@ extension MapViewController: TimerObjectDelegate {
                                                     AppSettings.mainUser!.arrived()
                                                 }))
         
-        alertController.addAction(UIAlertAction(title: "+5 min",
+        /*alertController.addAction(UIAlertAction(title: "+5 min",
                                                 style: UIAlertActionStyle.default,
                                                 handler: { action in
-                                                    AppSettings.mainUser!.arrivalInformation!.timer.addTime(timeInSecs: 5*60)
-                                                }))
+
+													AppSettings.mainUser?.arrivalInformation?.timer.addTime(timeInSecs: time)
+													//time)AppSettings.mainUser.arrivalInformation!.timer.addTime(time)!InSecs: 5*60)
+                                                }))*/
         
         self.present(alertController, animated: true, completion: nil)
         
@@ -355,6 +446,19 @@ extension MapViewController: TimerObjectDelegate {
     
     func dismissTimer() {
         timerButton.isHidden = true
+
+		AppSettings.mainUser?.arrivalInformation?.expectedTimeOfArrival = 0
+
+		DatabaseManager.addExpectedTimeOfArrival(arrivalInformation: (AppSettings.mainUser?.arrivalInformation)!, completionHandler: {
+			(error) in
+
+			if error != nil {
+				print("Error on dismissing timer")
+				return
+			}
+
+			AppSettings.mainUser?.status = userStatus.safe
+		})
     }
 }
 
