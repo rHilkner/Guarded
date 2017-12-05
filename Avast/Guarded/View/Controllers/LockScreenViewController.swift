@@ -10,6 +10,8 @@ import UIKit
 
 class LockScreenViewController: UIViewController {
 
+    @IBOutlet weak var stopButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,18 +23,20 @@ class LockScreenViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func stopLockMode(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func stopButtonPressed() {
+        self.stopButton.isEnabled = false
+        
+        AuthenticationServices.askForUserAuth(self) {
+            (success) in
+            
+            if success {
+                //TODO: AppSetting.mainUser!.removeHelpOccurence()
+                self.dismiss(animated: true, completion: nil)
+                //TODO: go to MapViewController
+            }
+            
+            self.stopButton.isEnabled = true
+        }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
