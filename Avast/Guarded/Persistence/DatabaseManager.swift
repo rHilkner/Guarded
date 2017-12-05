@@ -669,14 +669,14 @@ class DatabaseManager {
         return Coordinate(latitude: latitude, longitude: longitude)
     }
 
-	static func addHelpOccurrence(location: Coordinate, date: Int, completionHandler: @escaping (Error?) -> Void){
+	static func addHelpOccurrence(helpOccurrence: HelpOccurrence, completionHandler: @escaping (Error?) -> Void){
 
 		let helpRef = ref.child("users").child(AppSettings.mainUser!.id).child("helpButtonOccurrences")
 
 		let helpDict: [String : Any] = [
-			"\(date)": [
-				"latitude": location.latitude,
-				"longitude": location.longitude
+			"\(helpOccurrence.date)": [
+				"latitude": helpOccurrence.coordinate.latitude,
+				"longitude": helpOccurrence.coordinate.longitude
 				]
 		]
 
@@ -692,7 +692,26 @@ class DatabaseManager {
 		}
 	}
 
-	static func addObserverToProtectedsHelpOccurrences(completionHandler: @escaping (Coordinate?) -> Void){
+	static func removeHelpOccurrence(date: String, completionHandler: @escaping (Error?) -> Void) {
+		let helpRef = ref.child("users").child(AppSettings.mainUser!.id).child("helpButtonOccurrences")
+
+		let helpDict: [String: Any] = [
+			date : ""
+		]
+
+		helpRef.setValue(helpDict) {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)
+		}
+	}
+
+	static func addObserverToProtectedsHelpOccurrences(completionHandler: @escaping (HelpOccurrence?, Protected?) -> Void){
 
 		//print("hmm: \(AppSettings.mainUser!.protecteds.count)")
 		for protected in AppSettings.mainUser!.protecteds {
@@ -703,25 +722,26 @@ class DatabaseManager {
 
 				guard let helpOccurrenceDict = helpButtonOccurrencesSnap.value as? [String:Double] else {
 					print("Add observer returned help occurrencces nil snapshot from DB.")
-					completionHandler(nil)
+					completionHandler(nil, protected)
 					return
 				}
 
+				/// CHECK THIS
+				let date = helpButtonOccurrencesSnap.key as String
+
 				let coordinate = Coordinate(latitude: helpOccurrenceDict["latitude"]!, longitude: helpOccurrenceDict["longitude"]!)
 
-				completionHandler(coordinate)
+				let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate)
+				completionHandler(helpOccurrence, protected)
 			}
 		}
-
-
-
 	}
 
 	static func addObserverToProtectedsETA(completionHandler: @escaping (String?, ArrivalInformation?) -> Void){
 
 		for protected in (AppSettings.mainUser?.protecteds)! {
 
-			var ETARef = ref.child("users").child(protected.id).child("ETA")
+			let ETARef = ref.child("users").child(protected.id).child("ETA")
 
 			ETARef.observe(.childChanged, with: {
 				(ETASnap) in
@@ -901,4 +921,43 @@ class DatabaseManager {
 
 		}
 	}
+
+	static func addObserverToProtectedsStatus(completionHandler: @escaping (String?, String?) -> Void){
+
+		for protected in AppSettings.mainUser!.protecteds {
+
+			let protectedStatusRef = ref.child("users/\(protected.id)/status")
+
+			protectedStatusRef.observe(.value) {
+				(statusSnap) in
+
+				//Getting protected's information dictionary
+				guard let status = statusSnap.value as? String else {
+					print("User fetched returned status nil snapshot from DB.")
+					completionHandler(nil, nil)
+					return
+				}
+
+				completionHandler(status, protected.id)
+			}
+		}
+	}
+
+
+	static func updateUserSatus(completionHandler: @escaping (Error?) -> Void){
+
+		let statusRef = ref.child("users/\(AppSettings.mainUser!.id)/status")
+
+		statusRef.setValue(AppSettings.mainUser?.status) {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)
+		}
+	}
+
 }

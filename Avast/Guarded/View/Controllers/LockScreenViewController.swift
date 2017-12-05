@@ -14,7 +14,19 @@ class LockScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        LockServices.setLockMode()
+		
+		AppSettings.mainUser?.status = userStatus.danger
 
+		DatabaseManager.updateUserSatus() {
+			(error) in
+			if error != nil {
+
+				print("Error on dismissing timer")
+				return
+		}
+			}
         // Do any additional setup after loading the view.
     }
 

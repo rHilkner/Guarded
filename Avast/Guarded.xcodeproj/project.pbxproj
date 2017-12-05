@@ -11,6 +11,7 @@
 		891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891055101F8D01CD004B3AED /* CoreLocation.framework */; };
 		891934861FBB6D87004AFD4E /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891934851FBB6D86004AFD4E /* Annotation.swift */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
+		893A2EA41FD6B9B60061114E /* HelpOccurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893A2EA31FD6B9B60061114E /* HelpOccurrence.swift */; };
 		8946E7371FB0E11B0066D1B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */; };
 		8946E7391FB121FA0066D1B3 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7381FB121FA0066D1B3 /* NotificationServices.swift */; };
 		8946E73B1FB237660066D1B3 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E73A1FB237660066D1B3 /* HelpViewController.swift */; };
@@ -25,6 +26,7 @@
 		C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */; };
 		C24E9B161FCE01E70086C68F /* TimerCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */; };
 		C24E9B181FCE026F0086C68F /* ProtectorCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */; };
+		C2B2574F1FD6F49500B850F2 /* LockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B2574E1FD6F49500B850F2 /* LockServices.swift */; };
 		C60EEC571FA83642001E2194 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC531FA83642001E2194 /* Protected.swift */; };
 		C60EEC581FA83642001E2194 /* Protector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EEC541FA83642001E2194 /* Protector.swift */; };
 		C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6152DF31FA292DA00CC4F76 /* Place.swift */; };
@@ -75,6 +77,7 @@
 		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		891934851FBB6D86004AFD4E /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		893A2EA31FD6B9B60061114E /* HelpOccurrence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOccurrence.swift; sourceTree = "<group>"; };
 		8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8946E7381FB121FA0066D1B3 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		8946E73A1FB237660066D1B3 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		C24E9B131FCDFA680086C68F /* DestinationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationTableViewCell.swift; sourceTree = "<group>"; };
 		C24E9B151FCE01E70086C68F /* TimerCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCellTableViewCell.swift; sourceTree = "<group>"; };
 		C24E9B171FCE026F0086C68F /* ProtectorCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectorCellTableViewCell.swift; sourceTree = "<group>"; };
+		C2B2574E1FD6F49500B850F2 /* LockServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockServices.swift; sourceTree = "<group>"; };
 		C60EEC531FA83642001E2194 /* Protected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		C60EEC541FA83642001E2194 /* Protector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protector.swift; sourceTree = "<group>"; };
 		C6152DF31FA292DA00CC4F76 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				C69153D71FA82B77004BAFE4 /* TimerObject.swift */,
 				89B00E301FCDB5220030DC2C /* AnnotaionSubClasses */,
 				89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */,
+				893A2EA31FD6B9B60061114E /* HelpOccurrence.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */,
 				C24394201FD59BF2007CE6CD /* ClockView.swift in Sources */,
 				C69153F41FA82C21004BAFE4 /* CustomTabBarController.swift in Sources */,
+				893A2EA41FD6B9B60061114E /* HelpOccurrence.swift in Sources */,
 				C6304DCD1FAECBBC00FEED9B /* User.swift in Sources */,
 				C6F253301FAA626C00853CA8 /* MainUser.swift in Sources */,
 				C24E9B181FCE026F0086C68F /* ProtectorCellTableViewCell.swift in Sources */,
@@ -571,6 +577,7 @@
 				D4BC71F71FCE5AC3004504EC /* ShowInformationCell.swift in Sources */,
 				D4BC71F21FCE576A004504EC /* AddPlaceTableViewController.swift in Sources */,
 				C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */,
+				C2B2574F1FD6F49500B850F2 /* LockServices.swift in Sources */,
 				C65358281FB22D1E00301A3E /* DatabaseManager.swift in Sources */,
 				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
 				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
