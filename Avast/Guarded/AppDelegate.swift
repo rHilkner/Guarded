@@ -26,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
 		GMSPlacesClient.provideAPIKey("AIzaSyBJXlwXoEPfuCZrwQ9IAK86mxR5yBfp-Vs")
+        
+        let locked = LockServices.checkLockMode()
+        if locked == true{
+            self.window?.rootViewController = UIStoryboard(name: "Help", bundle: nil).instantiateViewController(withIdentifier: "LockScreen")
+            
+        }
                 
         return true
     }
