@@ -22,19 +22,7 @@ class HelpViewController: UIViewController {
     
     @IBAction func confirmButtonClicked(_ sender: Any) {
         
-        let date = self.getCurrentDate()
-        
-        let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
-        
-        DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
-            (error) in
-            
-            guard (error == nil) else {
-                print("Error on adding a new help occurrence.")
-                return
-            }
-            
-        }
+        self.createHelpOccurrence()
 		
         self.countdownTimer?.invalidate()
         performSegue(withIdentifier: "lockModeSegue", sender: self)
@@ -84,24 +72,41 @@ class HelpViewController: UIViewController {
         }
         
         if count == 0 {
-            
-            let date = self.getCurrentDate()
-            
-            let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
-            
-            DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
-                (error) in
-                
-                guard (error == nil) else {
-                    print("Error on adding a new help occurrence.")
-                    return
-                }
-                
-            }
-            
+
+			self.createHelpOccurrence()
+
             performSegue(withIdentifier: "lockModeSegue", sender: self)
         }
     }
+
+	func createHelpOccurrence () {
+		LockServices.setLockMode()
+
+		let date = self.getCurrentDate()
+
+		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+
+		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+			(error) in
+
+			guard (error == nil) else {
+				print("Error on adding a new help occurrence.")
+				return
+			}
+
+		}
+
+		AppSettings.mainUser?.status = userStatus.danger
+
+		DatabaseManager.updateUserSatus() {
+			(error) in
+			if error != nil {
+
+				print("Error on dismissing timer")
+				return
+			}
+		}
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
