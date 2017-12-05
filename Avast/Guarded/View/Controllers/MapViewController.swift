@@ -172,7 +172,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             }
 
 			/// only display location if it`s allowed
-			if protected?.allowedToFollow == true {
+			if (protected?.allowedToFollow == true) || (protected?.status == userStatus.danger) {
 				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.user, protectedId: protected!.id, showCallout: false)
 			}
 
