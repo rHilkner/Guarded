@@ -669,14 +669,14 @@ class DatabaseManager {
         return Coordinate(latitude: latitude, longitude: longitude)
     }
 
-	static func addHelpOccurrence(location: Coordinate, date: Int, completionHandler: @escaping (Error?) -> Void){
+	static func addHelpOccurrence(helpOccurrence: HelpOccurrence, completionHandler: @escaping (Error?) -> Void){
 
 		let helpRef = ref.child("users").child(AppSettings.mainUser!.id).child("helpButtonOccurrences")
 
 		let helpDict: [String : Any] = [
-			"\(date)": [
-				"latitude": location.latitude,
-				"longitude": location.longitude
+			"\(helpOccurrence.date)": [
+				"latitude": helpOccurrence.coordinate.latitude,
+				"longitude": helpOccurrence.coordinate.longitude
 				]
 		]
 

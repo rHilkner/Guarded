@@ -13,6 +13,19 @@ class LockScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		let date = self.getCurrentDate()
+
+		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+
+		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+			(error) in
+
+			guard (error == nil) else {
+				print("Error on adding a new help occurrence.")
+				return
+			}
+
+		}
         // Do any additional setup after loading the view.
     }
 
@@ -24,6 +37,18 @@ class LockScreenViewController: UIViewController {
     @IBAction func stopLockMode(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+
+	func getCurrentDate() -> String {
+
+		let date = Date()
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+
+		let dateString = dateFormatter.string(from: date)
+
+		return dateString
+	}
     
     /*
     // MARK: - Navigation

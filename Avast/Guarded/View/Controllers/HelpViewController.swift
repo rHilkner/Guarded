@@ -10,8 +10,6 @@ import UIKit
 
 class HelpViewController: UIViewController {
 
-	var contador: Int?
-
     @IBOutlet weak var clockView: ClockView!
     @IBOutlet weak var clock: UILabel!
     
@@ -23,16 +21,7 @@ class HelpViewController: UIViewController {
     
     
     @IBAction func confirmButtonClicked(_ sender: Any) {
-//        DatabaseManager.addHelpOccurrence(location: AppSettings.mainUser!.lastLocation!, date: contador!){
-//            (error) in
-//
-//            guard (error == nil) else {
-//                print("Error on adding a new help occurrence.")
-//                return
-//            }
-//
-//            self.contador = self.contador! + 1
-//        }
+		
         self.countdownTimer?.invalidate()
         performSegue(withIdentifier: "lockModeSegue", sender: self)
 
@@ -44,10 +33,7 @@ class HelpViewController: UIViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-		self.contador = 0
+
 
         // Do any additional setup after loading the view.
     }
