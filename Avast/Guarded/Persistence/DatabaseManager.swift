@@ -901,4 +901,43 @@ class DatabaseManager {
 
 		}
 	}
+
+	static func addObserverToProtectedsStatus(completionHandler: @escaping (String?, String?) -> Void){
+
+		for protected in AppSettings.mainUser!.protecteds {
+
+			let protectedStatusRef = ref.child("users/\(protected.id)/status")
+
+			protectedStatusRef.observe(.value) {
+				(statusSnap) in
+
+				//Getting protected's information dictionary
+				guard let status = statusSnap.value as? String else {
+					print("User fetched returned status nil snapshot from DB.")
+					completionHandler(nil, nil)
+					return
+				}
+
+				completionHandler(status, protected.id)
+			}
+		}
+	}
+
+
+	static func updateUserSatus(completionHandler: @escaping (Error?) -> Void){
+
+		let statusRef = ref.child("users/\(AppSettings.mainUser!.id)/status")
+
+		statusRef.setValue(AppSettings.mainUser?.status) {
+			(error, _) in
+
+			guard (error == nil) else {
+				completionHandler(error)
+				return
+			}
+
+			completionHandler(nil)
+		}
+	}
+
 }

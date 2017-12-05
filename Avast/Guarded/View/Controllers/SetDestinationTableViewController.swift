@@ -140,7 +140,18 @@ class SetDestinationTableViewController: UITableViewController {
 				return
 			}
 		}
-        
+
+		AppSettings.mainUser?.status = userStatus.arriving
+
+		DatabaseManager.updateUserSatus() {
+			(error) in
+
+			if error != nil {
+				print("Error on dismissing timer")
+				return
+			}
+		}
+
         self.navigationController?.popViewController(animated: true)
     }
 

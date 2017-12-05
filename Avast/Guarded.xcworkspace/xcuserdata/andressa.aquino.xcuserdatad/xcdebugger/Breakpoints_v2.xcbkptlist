@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guarded/Persistence/DatabaseManager.swift"
-            timestampString = "534100583.405475"
+            timestampString = "534166076.1869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "737"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guarded/Persistence/DatabaseManager.swift"
-            timestampString = "534100583.40563"
+            timestampString = "534166076.189761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "729"
@@ -42,7 +42,7 @@
                   moduleName = "Guarded"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/Persistence/DatabaseManager.swift"
-                  timestampString = "534100583.746508"
+                  timestampString = "534107178.329466"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "734"
@@ -57,7 +57,7 @@
                   moduleName = "Guarded"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andressa.aquino/Downloads/bepid/Guarded/Avast/Guarded/Persistence/DatabaseManager.swift"
-                  timestampString = "534100583.748909"
+                  timestampString = "534107178.331209"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "737"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guarded/Persistence/DatabaseManager.swift"
-            timestampString = "534100583.406061"
+            timestampString = "534166076.190338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "786"
@@ -89,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Guarded/View/Pin View/PersonStatusCalloutView.swift"
-            timestampString = "533778062.976544"
+            filePath = "Guarded/View/Controllers/SetDestinationTableViewController.swift"
+            timestampString = "534166076.190558"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "setCalloutInfo()"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "doneButtonAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +105,27 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Guarded/View/Pin View/PersonStatusCalloutView.swift"
-            timestampString = "533778062.977076"
+            filePath = "Guarded/View/Controllers/SetDestinationTableViewController.swift"
+            timestampString = "534166076.191178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "setCalloutInfo()"
+            startingLineNumber = "159"
+            endingLineNumber = "159">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guarded/View/Controllers/MapViewController.swift"
+            timestampString = "534166076.191442"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,12 +136,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guarded/View/Controllers/MapViewController.swift"
-            timestampString = "534100583.406197"
+            timestampString = "534166076.192588"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "mapView(_:didDeselect:)"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
+            landmarkName = "displayLocation(location:name:identifier:protectedId:showCallout:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Guarded/Persistence/DatabaseManager.swift"
+            timestampString = "534166076.192729"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "915"
+            endingLineNumber = "915"
+            landmarkName = "addObserverToProtectedsStatus(completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,12 +168,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Guarded/View/Controllers/MapViewController.swift"
-            timestampString = "534100583.406446"
+            timestampString = "534166076.19283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "mapView(_:didDeselect:)"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

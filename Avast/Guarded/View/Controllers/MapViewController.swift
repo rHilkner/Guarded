@@ -152,6 +152,25 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         }
 
+		/// TODO: entender o bug desse trecho
+		/// qnd adiciona o observer para de mostrar os protecteds
+		/*DatabaseManager.addObserverToProtectedsStatus() {
+			(status, protectedId) in
+
+			guard (status != nil) && (protectedId != nil) else {
+				print("Error on adding a observer to protected status.")
+				return
+			}
+
+			for protected in (AppSettings.mainUser?.protecteds)! {
+
+				if protected.id == protectedId {
+					protected.status = status!
+				}
+			}
+
+		}*/
+
         /// get all places of the current user and display on the map
         for place in AppSettings.mainUser!.places {
 			self.displayLocation(place: place, showCallout: false)
@@ -458,6 +477,15 @@ extension MapViewController: TimerObjectDelegate {
 			}
 
 			AppSettings.mainUser?.status = userStatus.safe
+
+			DatabaseManager.updateUserSatus() {
+				(error) in
+
+				if error != nil {
+					print("Error on dismissing timer")
+					return
+				}
+			}
 		})
     }
 }
