@@ -15,6 +15,16 @@ class LockScreenViewController: UIViewController {
         
         LockServices.setLockMode()
 		
+		AppSettings.mainUser?.status = userStatus.danger
+
+		DatabaseManager.updateUserSatus() {
+			(error) in
+			if error != nil {
+
+				print("Error on dismissing timer")
+				return
+		}
+			}
         // Do any additional setup after loading the view.
     }
 
@@ -25,6 +35,31 @@ class LockScreenViewController: UIViewController {
     
     @IBAction func stopLockMode(_ sender: UIButton) {
         LockServices.dismissLockMode()
+
+		let date = self.getCurrentDate()
+
+		DatabaseManager.removeHelpOccurrence(date: date, completionHandler: {
+			(error) in
+
+			if error != nil {
+				print("Error on dismissing timer")
+				return
+			}
+		})
+
+		AppSettings.mainUser?.status = userStatus.safe
+
+		DatabaseManager.updateUserSatus() {
+			(error) in
+
+			if error != nil {
+				print("Error on dismissing timer")
+				return
+			}
+		}
+
+		
+
         self.dismiss(animated: true, completion: nil)
     }
 

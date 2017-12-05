@@ -124,16 +124,42 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
         /// Receive the coordinate of a new protected`s occurence
         DatabaseManager.addObserverToProtectedsHelpOccurrences() {
-            (coordinate) in
+            (helpOccurrence, protected) in
 
-            guard (coordinate != nil) else {
-                print("Error on adding a observer to help occurrences.")
-                return
+            if helpOccurrence == nil {
+				if protected == nil {
+					print("Error on adding a observer to help occurrences.")
+					return
+				} else {
+					protected?.status = userStatus.safe
+					return
+				}
             }
 
-            NotificationServices.sendHelpNotification()
-            self.displayLocation(location: coordinate!, name: "Help", identifier: annotationIdentifiers.help, protectedId: "", showCallout: false)
-            print(coordinate!)
+			/// Change protected status
+			protected?.status = userStatus.danger
+
+			/// show callout == true ??????
+			self.displayHelpOccurrence(helpOccurrence: helpOccurrence!, protectedId: (protected!.id), showCallout: true)
+
+
+			/// display alert
+			let alertController = UIAlertController(title: "\(protected!.name.capitalized) pediu sua ajuda, procure entender a situação e ajudá-lo",
+				message: nil,
+				preferredStyle: UIAlertControllerStyle.alert)
+
+
+			/// TODO: Check if needs action
+			alertController.addAction(UIAlertAction(title: "Ok",
+													style: UIAlertActionStyle.cancel,
+													handler: { action in
+			}))
+
+			self.present(alertController, animated: true, completion: nil)
+
+
+
+
         }
 
         /// Receive all protected`s last location
@@ -267,7 +293,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 }
 
-
 extension MapViewController: MKMapViewDelegate {
 
     /// function called when addAnottation is fired
@@ -388,7 +413,7 @@ extension MapViewController: LocationUpdateProtocol {
             self.map.addAnnotation(userAnnotation)
 
             protectedsAnnotationArray.append(userAnnotation)
-        } else {
+        } else if identifier == annotationIdentifiers.place {
 
 			let placeAnnotation = PlaceAnnotation(locationInfo: nil, name: name, identifier: identifier, coordinate: someLoc2D)
 
@@ -407,7 +432,7 @@ extension MapViewController: LocationUpdateProtocol {
 				}
 
 			}
-        }
+		}
     }
     
     func displayLocation(place: Place, showCallout: Bool) {
@@ -422,6 +447,18 @@ extension MapViewController: LocationUpdateProtocol {
             self.map.selectAnnotation(placeAnnotation, animated: true)
         }
     }
+
+	func displayHelpOccurrence (helpOccurrence: HelpOccurrence, protectedId: String, showCallout: Bool){
+
+		let someLoc2D = CLLocationCoordinate2D(latitude: helpOccurrence.coordinate.latitude, longitude: helpOccurrence.coordinate.longitude)
+		let helpAnnotation = HelpAnnotation(userID: protectedId, date: helpOccurrence.date, identifier: annotationIdentifiers.help, coordinate: someLoc2D)
+
+		self.map.addAnnotation(helpAnnotation)
+
+		if showCallout {
+			self.map.selectAnnotation(helpAnnotation, animated: true)
+		}
+	}
 
 }
 
