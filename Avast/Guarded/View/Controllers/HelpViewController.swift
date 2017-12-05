@@ -23,28 +23,43 @@ class HelpViewController: UIViewController {
     
     
     @IBAction func confirmButtonClicked(_ sender: Any) {
-        DatabaseManager.addHelpOccurrence(location: AppSettings.mainUser!.lastLocation!, date: contador!){
-            (error) in
-            
-            guard (error == nil) else {
-                print("Error on adding a new help occurrence.")
-                return
-            }
-            
-            self.contador = self.contador! + 1
-        }
+//        DatabaseManager.addHelpOccurrence(location: AppSettings.mainUser!.lastLocation!, date: contador!){
+//            (error) in
+//
+//            guard (error == nil) else {
+//                print("Error on adding a new help occurrence.")
+//                return
+//            }
+//
+//            self.contador = self.contador! + 1
+//        }
+        self.countdownTimer?.invalidate()
+        performSegue(withIdentifier: "lockModeSegue", sender: self)
 
     }
 
-	
+    @IBAction func cancelButtonClicked(_ sender: Any) {
+        self.countdownTimer?.invalidate()
+    }
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
         
-        countdownTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateConter), userInfo: nil, repeats: true)
+        
         
 		self.contador = 0
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        count = 1000.0
+        countdownTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateConter), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.countdownTimer?.invalidate()
     }
     
     @objc func updateConter() {
@@ -54,6 +69,10 @@ class HelpViewController: UIViewController {
             self.count -= 1
         } else {
             countdownTimer?.invalidate()
+        }
+        
+        if count == 0 {
+            performSegue(withIdentifier: "lockModeSegue", sender: self)
         }
     }
 
