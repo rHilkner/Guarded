@@ -74,21 +74,34 @@ class HelpViewController: UIViewController {
     }
     
     func createHelpOccurrence () {
-        LockServices.setLockMode()
-        
-        let date = self.getCurrentDate()
-        
-        let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!, protected: nil)
-        
-        DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
-            (error) in
-            
-            guard (error == nil) else {
-                print("Error on adding a new help occurrence.")
-                return
-            }
-            
-        }
+
+
+		LocationServices.coordinateToAddress(coordinate: (AppSettings.mainUser?.lastLocation)!) {
+			(locationInfo) in
+
+			guard let locationInfo = locationInfo else {
+				print("Problem on fetching location information.")
+				return
+			}
+
+			LockServices.setLockMode()
+
+			let date = self.getCurrentDate()
+
+			let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!, protected: nil, locationInfo: locationInfo)
+
+			DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+				(error) in
+
+				guard (error == nil) else {
+					print("Error on adding a new help occurrence.")
+					return
+				}
+
+			}
+
+		}
+
         
         AppSettings.mainUser?.status = userStatus.danger
         

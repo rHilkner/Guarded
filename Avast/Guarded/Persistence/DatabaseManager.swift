@@ -724,14 +724,26 @@ class DatabaseManager {
 					return
 				}
 
-				/// TODO: CHECK THIS
 				let date = helpButtonOccurrencesSnap.key as String
 
 				let coordinate = Coordinate(latitude: helpOccurrenceDict["latitude"]!, longitude: helpOccurrenceDict["longitude"]!)
 
-				let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate, protected: protected)
+				LocationServices.coordinateToAddress(coordinate: coordinate) {
+					(locationInfo) in
 
-				completionHandler(helpOccurrence, protected)
+					guard let locationInfo = locationInfo else {
+						print("Problem on fetching location information.")
+						return
+					}
+
+					let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate, protected: protected, locationInfo: locationInfo)
+
+					completionHandler(helpOccurrence, protected)
+
+
+				}
+
+
 			}
 		}
 	}
