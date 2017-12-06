@@ -140,7 +140,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			protected?.status = userStatus.danger
 
 			/// show callout == true ??????
-			self.displayHelpOccurrence(helpOccurrence: helpOccurrence!, protectedId: (protected!.id), showCallout: false)
+			self.displayHelpOccurrence(helpOccurrence: helpOccurrence!, protected: protected!, showCallout: false)
 
 			if !(self.launched) {
 
@@ -463,16 +463,28 @@ extension MapViewController: LocationUpdateProtocol {
         }
     }
 
-	func displayHelpOccurrence (helpOccurrence: HelpOccurrence, protectedId: String, showCallout: Bool){
+	func displayHelpOccurrence (helpOccurrence: HelpOccurrence, protected: Protected, showCallout: Bool){
 
 		let someLoc2D = CLLocationCoordinate2D(latitude: helpOccurrence.coordinate.latitude, longitude: helpOccurrence.coordinate.longitude)
-		let helpAnnotation = HelpAnnotation(userID: protectedId, date: helpOccurrence.date, identifier: annotationIdentifiers.help, coordinate: someLoc2D)
 
-		self.map.addAnnotation(helpAnnotation)
+		LocationServices.coordinateToAddress(coordinate: helpOccurrence.coordinate) {
+			(locationInfo) in
 
-		if showCallout {
-			self.map.selectAnnotation(helpAnnotation, animated: true)
+			guard let locationInfo = locationInfo else {
+				print("Problem on fetching location information.")
+				return
+			}
+
+			let helpAnnotation = HelpAnnotation(protected: protected, locationInfo: locationInfo, helpOccurrence: helpOccurrence)
+
+			self.map.addAnnotation(helpAnnotation)
+
+			if showCallout {
+				self.map.selectAnnotation(helpAnnotation, animated: true)
+			}
+
 		}
+
 	}
 
 }

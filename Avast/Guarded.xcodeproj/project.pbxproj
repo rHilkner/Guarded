@@ -15,6 +15,7 @@
 		8946E7371FB0E11B0066D1B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */; };
 		8946E7391FB121FA0066D1B3 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7381FB121FA0066D1B3 /* NotificationServices.swift */; };
 		8946E73B1FB237660066D1B3 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E73A1FB237660066D1B3 /* HelpViewController.swift */; };
+		89A6DC181FD86EB40067B426 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A6DC171FD86EB40067B426 /* Login.storyboard */; };
 		89B00E321FCDB5550030DC2C /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E311FCDB5550030DC2C /* PlaceAnnotation.swift */; };
 		89B00E341FCDB5680030DC2C /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E331FCDB5680030DC2C /* UserAnnotation.swift */; };
 		89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */; };
@@ -84,6 +85,7 @@
 		8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8946E7381FB121FA0066D1B3 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		8946E73A1FB237660066D1B3 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		89A6DC171FD86EB40067B426 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		89B00E311FCDB5550030DC2C /* PlaceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		89B00E331FCDB5680030DC2C /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAnnotation.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				C230201D1FC4AF7700A099BE /* Help.storyboard */,
 				D4BC71EF1FCE5667004504EC /* AddPlace.storyboard */,
 				C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */,
+				89A6DC171FD86EB40067B426 /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
 				C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */,
 				C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */,
+				89A6DC181FD86EB40067B426 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

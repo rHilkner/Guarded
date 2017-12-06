@@ -728,21 +728,9 @@ class DatabaseManager {
 
 				let coordinate = Coordinate(latitude: helpOccurrenceDict["latitude"]!, longitude: helpOccurrenceDict["longitude"]!)
 
-				LocationServices.coordinateToAddress(coordinate: coordinate) {
-					(locationInfo) in
+				let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate)
 
-					guard let locationInfo = locationInfo else {
-						print("Problem on fetching location information.")
-						return
-					}
-
-					let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate, protected: protected, locationInfo: locationInfo)
-
-					completionHandler(helpOccurrence, protected)
-
-
-				}
-
+				completionHandler(helpOccurrence, protected)
 
 			}
 		}
