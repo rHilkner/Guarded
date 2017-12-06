@@ -77,7 +77,6 @@ class TimerObject {
         }
         
         seconds = seconds-1
-        print("seg--")
         if let deleg = self.delegate {
             deleg.updateTimerText(timeString: self.timeString)
         }

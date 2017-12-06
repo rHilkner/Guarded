@@ -21,6 +21,9 @@ class HelpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,11 +45,41 @@ class HelpViewController: UIViewController {
         }
         
         if count == 0 {
+            let date = self.getCurrentDate()
+            
+            let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+            
+            DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+                (error) in
+                
+                guard (error == nil) else {
+                    print("Error on adding a new help occurrence.")
+                    return
+                }
+                
+            }
+            
             self.goToLockScreen()
         }
     }
     
     @IBAction func confirmButtonClicked() {
+        self.goToLockScreen()
+        
+        let date = self.getCurrentDate()
+        
+        let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+        
+        DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+            (error) in
+            
+            guard (error == nil) else {
+                print("Error on adding a new help occurrence.")
+                return
+            }
+            
+        }
+        
         self.goToLockScreen()
     }
 
@@ -75,5 +108,17 @@ class HelpViewController: UIViewController {
         }
         
         performSegue(withIdentifier: "lockModeSegue", sender: self)
+    }
+    
+    func getCurrentDate() -> String {
+        
+        let date = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+        
+        let dateString = dateFormatter.string(from: date)
+        
+        return dateString
     }
 }

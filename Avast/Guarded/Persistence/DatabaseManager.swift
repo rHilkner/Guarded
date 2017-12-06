@@ -423,8 +423,6 @@ class DatabaseManager {
                     return
                 }
                 
-                print("aaaaaaaa \(mainUser.protecteds.count)")
-                
                 completionHandler(mainUser)
             }
         }
@@ -839,7 +837,7 @@ class DatabaseManager {
                 protected.lastLocation = protectedLocation
                 
                 completionHandler(protected)
-                print("Protected [\(protected.name)] new location: \(protected.lastLocation!).")
+                print("Protected [\(protected.name)] new location: \(protected.lastLocation!.latitude), \(protected.lastLocation!.longitude)")
             }
         }
     }

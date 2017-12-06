@@ -317,6 +317,7 @@
 				C69C070C1FA39C830087D613 /* LoginServices.swift */,
 				8946E7381FB121FA0066D1B3 /* NotificationServices.swift */,
 				C65F55831FD5E7EF0065CC04 /* AuthenticationServices.swift */,
+				C2B2574E1FD6F49500B850F2 /* LockServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

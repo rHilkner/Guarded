@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
                     return
                 }
                 
-                print("Login successful2.")
+                print("Login successful")
                 self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
             }
         }
