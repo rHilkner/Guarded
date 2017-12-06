@@ -218,7 +218,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 		if locked == true{
 
 			let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
-
+            vc.modalTransitionStyle = .crossDissolve
 			self.present(vc, animated: true)
 		}
     }
