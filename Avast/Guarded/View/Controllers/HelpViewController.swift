@@ -84,7 +84,7 @@ class HelpViewController: UIViewController {
 
 		let date = self.getCurrentDate()
 
-		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!, protected: nil)
 
 		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
 			(error) in
