@@ -10,6 +10,8 @@ import UIKit
 
 class LockScreenViewController: UIViewController {
 
+    weak var helpViewController: HelpViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +40,7 @@ class LockScreenViewController: UIViewController {
 		}
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,8 +71,10 @@ class LockScreenViewController: UIViewController {
 		}
 
 		
-
-        self.dismiss(animated: true, completion: nil)
+        
+        self.dismiss(animated: true, completion: {
+            self.helpViewController?.dismiss(animated: false, completion: nil)
+        })
     }
 
 	func getCurrentDate() -> String {
