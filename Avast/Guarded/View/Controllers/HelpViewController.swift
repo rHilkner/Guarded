@@ -21,9 +21,6 @@ class HelpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +30,12 @@ class HelpViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.countdownTimer?.invalidate()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let lockViewController = segue.destination as? LockScreenViewController {
+            lockViewController.helpViewController = self
+        }
     }
     
     @objc func updateCounter() {
@@ -45,30 +48,37 @@ class HelpViewController: UIViewController {
         }
         
         if count == 0 {
-            let date = self.getCurrentDate()
-            
-            let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
-            
-            DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
-                (error) in
-                
-                guard (error == nil) else {
-                    print("Error on adding a new help occurrence.")
-                    return
-                }
-                
-            }
-            
+            self.createHelpOccurrence()
             self.goToLockScreen()
         }
     }
     
     @IBAction func confirmButtonClicked() {
+        self.createHelpOccurrence()
         self.goToLockScreen()
+    }
+
+    @IBAction func cancelButtonClicked() {
+        self.cancelButton.isEnabled = false
+        
+        AuthenticationServices.askForUserAuth(self) {
+            (success) in
+            
+            guard success else {
+                self.cancelButton.isEnabled = true
+                return
+            }
+            
+            self.dismissView()
+        }
+    }
+    
+    func createHelpOccurrence () {
+        LockServices.setLockMode()
         
         let date = self.getCurrentDate()
         
-        let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+        let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!, protected: nil)
         
         DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
             (error) in
@@ -80,20 +90,15 @@ class HelpViewController: UIViewController {
             
         }
         
-        self.goToLockScreen()
-    }
-
-    @IBAction func cancelButtonClicked() {
-        self.cancelButton.isEnabled = false
+        AppSettings.mainUser?.status = userStatus.danger
         
-        AuthenticationServices.askForUserAuth(self) {
-            (success) in
-            
-            if success {
-                //TODO: go to MapViewController
+        DatabaseManager.updateUserSatus() {
+            (error) in
+            if error != nil {
+                
+                print("Error on dismissing timer")
+                return
             }
-            
-            self.cancelButton.isEnabled = true
         }
     }
     
@@ -108,6 +113,19 @@ class HelpViewController: UIViewController {
         }
         
         performSegue(withIdentifier: "lockModeSegue", sender: self)
+    }
+    
+    func dismissView() {
+        //Force reset of authentication context - stops asking for authentication (TouchID/password) before moving to LockScreen
+        AuthenticationServices.resetAuthContext()
+        
+        //Invalidate timer if it's not nil
+        if countdownTimer != nil {
+            self.countdownTimer?.invalidate()
+            self.countdownTimer = nil
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func getCurrentDate() -> String {
