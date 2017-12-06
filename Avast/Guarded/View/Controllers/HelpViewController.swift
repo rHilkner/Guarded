@@ -146,7 +146,7 @@ class HelpViewController: UIViewController {
         let date = Date()
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+        dateFormatter.dateFormat = "dd/MM/yyyy      HH:mm"
         
         let dateString = dateFormatter.string(from: date)
         

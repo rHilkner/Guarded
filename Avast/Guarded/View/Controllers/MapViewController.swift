@@ -325,6 +325,8 @@ extension MapViewController: MKMapViewDelegate {
                 } else if let placeAnnotation = annotation as? PlaceAnnotation {
                     annotationView = PlacePinView(annotation: placeAnnotation, reuseIdentifier: identifier)
                     (annotationView as! PlacePinView).placeDelegate = self
+                } else if let helpAnnotation = annotation as? HelpAnnotation {
+                    annotationView = OccurrencePinView(annotation: helpAnnotation, reuseIdentifier: identifier)
                 }
                 
                 print("Annotation address: \(String(describing: self.selectedAnnotation?.locationInfo?.address))")

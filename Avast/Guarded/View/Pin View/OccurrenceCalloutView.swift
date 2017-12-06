@@ -13,7 +13,7 @@ class OccurrenceCalloutView: UIView {
     @IBOutlet weak var victimPicture: UIImageView!    
     @IBOutlet weak var victimName: UILabel!
     @IBOutlet weak var occurrenceAddress: UILabel!
-    @IBOutlet weak var occurrenceTime: UILabel!
+    @IBOutlet weak var occurrenceDate: UILabel!
     
     var occurrence: HelpOccurrence!
     
@@ -26,6 +26,22 @@ class OccurrenceCalloutView: UIView {
         self.addTriangleTip(withColor: Pin.red.light)
         self.backgroundColor = Pin.red.light
         self.layer.cornerRadius = 8
+    }
+    
+    func configure(withOccurrence occurrence: HelpOccurrence) {
+        
+        self.occurrence = occurrence
+        let personName = self.occurrence.protected?.name
+        
+        //TODO: Unmock this line
+        self.victimPicture.image = UIImage(named:"collectionview_placeholder_image")
+        
+        var names = personName?.components(separatedBy: " ")
+        self.victimName.text = String(names!.removeFirst())
+        
+        self.occurrenceAddress.text = self.occurrence.locationInfo.address
+        self.occurrenceDate.text = self.occurrence.date
+        
     }
     
     func addTriangleTip(withColor color: UIColor) {
@@ -55,19 +71,6 @@ class OccurrenceCalloutView: UIView {
         
         // add the new layer to our custom view
         self.layer.addSublayer(self.shapeLayer)
-        
-    }
-    
-    func configure(withOccurrence occurrence: HelpOccurrence) {
-        
-        self.occurrence = occurrence
-        let personName = self.occurrence.protected?.name
-        
-        //TODO: Unmock this line
-        self.victimPicture.image = UIImage(named:"collectionview_placeholder_image")
-        
-        var names = personName?.components(separatedBy: " ")
-        self.victimName.text = String(names!.removeFirst())
         
     }
     
