@@ -59,10 +59,8 @@ class LockScreenViewController: UIViewController {
 			}
 		}
 
-		let vc = UIStoryboard(name:"Main", bundle:nil).instantiateViewController(withIdentifier: "NavigateViewController")
 
-		self.present(vc, animated: true)
-        //self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     

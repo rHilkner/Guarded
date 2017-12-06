@@ -213,6 +213,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			self.displayCurrentLocation()
 			launched = true
 		}
+
+		let locked = LockServices.checkLockMode()
+		if locked == true{
+
+			let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
+
+			self.present(vc, animated: true)
+		}
     }
     
     override func viewWillDisappear(_ animated: Bool) {

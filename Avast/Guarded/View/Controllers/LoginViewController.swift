@@ -29,21 +29,6 @@ class LoginViewController: UIViewController {
         loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
     }
 
-	func nextViewController() {
-
-		let locked = LockServices.checkLockMode()
-		if locked == true{
-
-			let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
-
-			self.present(vc, animated: true)
-		} else {
-			self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
-		}
-
-
-	}
-    
     func handleFacebookStatus() {
         //checking if user is already logged in
         if (FBSDKAccessToken.current() != nil) {
@@ -57,8 +42,8 @@ class LoginViewController: UIViewController {
                 }
                 
                 print("Login successful2.")
-
-                self.nextViewController()
+				self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
+               
             }
         }
     }
