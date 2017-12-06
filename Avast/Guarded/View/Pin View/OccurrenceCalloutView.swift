@@ -15,7 +15,7 @@ class OccurrenceCalloutView: UIView {
     @IBOutlet weak var occurrenceAddress: UILabel!
     @IBOutlet weak var occurrenceDate: UILabel!
     
-    var occurrence: HelpOccurrence!
+    var occurrenceAnnotation: HelpAnnotation!
     
     fileprivate var shapeLayer = CAShapeLayer()
     
@@ -23,25 +23,26 @@ class OccurrenceCalloutView: UIView {
         super.awakeFromNib()
         
         self.victimPicture.layer.cornerRadius = (self.victimPicture.frame.height)/2
-        self.addTriangleTip(withColor: Pin.red.light)
-        self.backgroundColor = Pin.red.light
+        self.addTriangleTip(withColor: .white)
+        self.backgroundColor = .white
         self.layer.cornerRadius = 8
     }
     
-    func configure(withOccurrence occurrence: HelpOccurrence) {
+    func configure(withAnnotation annotation: HelpAnnotation) {
         
-        self.occurrence = occurrence
-        let personName = self.occurrence.protected?.name
+        self.occurrenceAnnotation = annotation
+        let occurrence = occurrenceAnnotation.helpOccurrence
+        
+        let personName = occurrenceAnnotation.protected.name
         
         //TODO: Unmock this line
         self.victimPicture.image = UIImage(named:"collectionview_placeholder_image")
         
-        var names = personName?.components(separatedBy: " ")
-        self.victimName.text = String(names!.removeFirst())
+        var names = personName.components(separatedBy: " ")
+        self.victimName.text = String(names.removeFirst())
         
-        self.occurrenceAddress.text = self.occurrence.locationInfo.address
-        self.occurrenceDate.text = self.occurrence.date
-        
+        self.occurrenceAddress.text = occurrenceAnnotation.locationInfo.name
+        self.occurrenceDate.text = occurrence.date
     }
     
     func addTriangleTip(withColor color: UIColor) {
@@ -49,7 +50,7 @@ class OccurrenceCalloutView: UIView {
         let xInit = 7*(self.frame.width)/16
         let yInit = self.frame.height
         let width = (self.frame.width)/8
-        let height = (self.frame.width)/12
+        let height = (self.frame.width)/13
         
         let tip = UIView(frame: CGRect(x: xInit, y: yInit, width: width, height: height))
         let rect = tip.frame

@@ -23,6 +23,7 @@ class OccurrencePinView: MKAnnotationView {
         self.canShowCallout = false
         
         let occAnnotation = annotation as? HelpAnnotation
+        self.occurrence = occAnnotation?.helpOccurrence
         
         setPinImage()
     }
@@ -30,6 +31,10 @@ class OccurrencePinView: MKAnnotationView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false
+        
+        let occAnnotation = annotation as? HelpAnnotation
+        self.occurrence = occAnnotation?.helpOccurrence
+        
         setPinImage()
     }
     
@@ -72,7 +77,7 @@ class OccurrencePinView: MKAnnotationView {
     func loadOccurrenceMapView() -> OccurrenceCalloutView? {
         if let views = Bundle.main.loadNibNamed("OccurrenceCalloutView", owner: self, options: nil) as? [OccurrenceCalloutView], views.count > 0 {
             let occurrenceMapView = views.first!
-            occurrenceMapView.configure(withOccurrence: occurrence)
+            occurrenceMapView.configure(withAnnotation: (annotation as! HelpAnnotation))
             return occurrenceMapView
         }
         return nil
