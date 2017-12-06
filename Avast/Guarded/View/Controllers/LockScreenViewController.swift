@@ -61,7 +61,6 @@ class LockScreenViewController: UIViewController {
 			}
 		}
 
-
         self.dismiss(animated: true, completion: nil)
     }
 
