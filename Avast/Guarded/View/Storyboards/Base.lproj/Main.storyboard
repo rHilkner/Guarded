@@ -27,7 +27,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQu-WM-gj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3866" y="-1622"/>
+            <point key="canvasLocation" x="2902" y="-1622"/>
         </scene>
         <!--SetDestinationStoryboard-->
         <scene sceneID="AZ1-RA-byn">
@@ -205,7 +205,7 @@
         <!--Custom Tab Bar Controller-->
         <scene sceneID="Coi-pa-Hlw">
             <objects>
-                <tabBarController id="fY6-Ze-G4L" customClass="CustomTabBarController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="NavigateViewController" id="fY6-Ze-G4L" customClass="CustomTabBarController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5da-8V-GLa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -332,6 +332,7 @@
         <!--HELP-->
         <scene sceneID="rN7-HN-ik1">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6h3-l5-VTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="HELP" automaticallyAdjustsScrollViewInsets="NO" id="8bu-TS-77R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Help" image="tabbar_help_unselected" selectedImage="tabbar_help_selected" id="cdI-YK-CLv"/>
                     <toolbarItems/>
@@ -340,23 +341,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AnR-dy-taq" kind="relationship" relationship="rootViewController" id="H15-Kb-Tkl"/>
-                    </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6h3-l5-VTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4782" y="-769"/>
-        </scene>
-        <!--Help-->
-        <scene sceneID="sII-t6-0MO">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Help" id="AnR-dy-taq" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="D27-va-YQz"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6iT-13-ByN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4781" y="-242"/>
         </scene>
         <!--Protect-->
         <scene sceneID="k3p-vX-KHp">

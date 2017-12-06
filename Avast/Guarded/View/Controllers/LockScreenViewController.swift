@@ -29,11 +29,23 @@ class LockScreenViewController: UIViewController {
             }
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+	func getCurrentDate() -> String {
+
+		let date = Date()
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+
+		let dateString = dateFormatter.string(from: date)
+
+		return dateString
+	}
     
     @IBAction func stopButtonPressed() {
         self.stopButton.isEnabled = false

@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         //TODO: substituir por constraints
         loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
     }
-    
+
     func handleFacebookStatus() {
         //checking if user is already logged in
         if (FBSDKAccessToken.current() != nil) {
