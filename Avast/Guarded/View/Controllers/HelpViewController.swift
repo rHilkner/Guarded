@@ -25,8 +25,9 @@ class HelpViewController: UIViewController {
         self.createHelpOccurrence()
 		
         self.countdownTimer?.invalidate()
+        //let lowerVC = self
         performSegue(withIdentifier: "lockModeSegue", sender: self)
-
+        //lowerVC.dismiss(animated: false, completion: nil)
     }
     
     func getCurrentDate() -> String {
@@ -43,6 +44,7 @@ class HelpViewController: UIViewController {
 
     @IBAction func cancelButtonClicked(_ sender: Any) {
         self.countdownTimer?.invalidate()
+        self.dismiss(animated: true, completion: nil)
     }
     
 	override func viewDidLoad() {
@@ -114,14 +116,17 @@ class HelpViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let lockViewController = segue.destination as? LockScreenViewController {
+            lockViewController.helpViewController = self
+        }
     }
-    */
+    
 
 }

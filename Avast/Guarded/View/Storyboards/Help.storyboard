@@ -13,7 +13,7 @@
         <!--Help-->
         <scene sceneID="sbJ-xo-VDB">
             <objects>
-                <viewController title="Help" id="WbZ-cd-ErM" customClass="HelpViewController" customModule="Guarded" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="helpScreen" title="Help" id="WbZ-cd-ErM" customClass="HelpViewController" customModule="Guarded" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="njC-Ro-BNu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

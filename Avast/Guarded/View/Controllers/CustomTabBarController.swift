@@ -12,7 +12,7 @@ class CustomTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -36,7 +36,6 @@ class CustomTabBarController: UITabBarController {
             
         }
     }
-    
 
     /*
     // MARK: - Navigation
@@ -65,6 +64,22 @@ extension UIImage {
         UIGraphicsEndImageContext()
         newImage = newImage.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         return newImage
+    }
+}
+
+extension CustomTabBarController:UITabBarControllerDelegate{
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if tabBarController.tabBar.selectedItem == tabBarController.tabBar.items![2] {
+            let storyboard = UIStoryboard(name: "Help", bundle: nil)
+            if let controller = storyboard.instantiateViewController(withIdentifier: "helpScreen") as? HelpViewController {
+                controller.modalPresentationStyle = .fullScreen
+                //controller.modalTransitionStyle = .crossDissolve
+                self.present(controller, animated: true, completion: nil)
+            }
+            return false
+        } else {
+            return true
+        }
     }
 }
 
