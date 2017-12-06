@@ -59,6 +59,8 @@
 		D45A5BCF1FC7D05400FACE2E /* PersonPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */; };
 		D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */; };
 		D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */; };
+		D46B8C971FD866A600CD8EF2 /* OccurrenceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46B8C951FD866A600CD8EF2 /* OccurrenceCalloutView.swift */; };
+		D46B8C981FD866A600CD8EF2 /* OccurrenceCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46B8C961FD866A600CD8EF2 /* OccurrenceCalloutView.xib */; };
 		D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */; };
 		D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */; };
 		D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */; };
@@ -137,6 +139,8 @@
 		D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPinView.swift; sourceTree = "<group>"; };
 		D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStatusCalloutView.swift; sourceTree = "<group>"; };
 		D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonStatusCalloutView.xib; sourceTree = "<group>"; };
+		D46B8C951FD866A600CD8EF2 /* OccurrenceCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccurrenceCalloutView.swift; sourceTree = "<group>"; };
+		D46B8C961FD866A600CD8EF2 /* OccurrenceCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OccurrenceCalloutView.xib; sourceTree = "<group>"; };
 		D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCalloutView.swift; sourceTree = "<group>"; };
 		D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnumerations.swift; sourceTree = "<group>"; };
 		D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePinView.swift; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 		D4622CF31FC4FA8B00E3CB4A /* Pin View */ = {
 			isa = PBXGroup;
 			children = (
+				D46B8C951FD866A600CD8EF2 /* OccurrenceCalloutView.swift */,
+				D46B8C961FD866A600CD8EF2 /* OccurrenceCalloutView.xib */,
 				D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */,
 				D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */,
 				D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */,
@@ -463,6 +469,7 @@
 				D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */,
 				D4BC71F01FCE5667004504EC /* AddPlace.storyboard in Resources */,
 				C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
+				D46B8C981FD866A600CD8EF2 /* OccurrenceCalloutView.xib in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
 				D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */,
 				C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */,
@@ -593,6 +600,7 @@
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,
 				C24E9B161FCE01E70086C68F /* TimerCellTableViewCell.swift in Sources */,
 				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
+				D46B8C971FD866A600CD8EF2 /* OccurrenceCalloutView.swift in Sources */,
 				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
 				C69153ED1FA82C21004BAFE4 /* TimerViewController.swift in Sources */,
 				89B00E341FCDB5680030DC2C /* UserAnnotation.swift in Sources */,
