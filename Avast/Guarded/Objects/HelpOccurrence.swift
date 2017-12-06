@@ -12,12 +12,12 @@ class HelpOccurrence: NSObject {
 
 	var date: String
 	var coordinate: Coordinate
-	var protected: Protected?
+	
 
-	init(date: String, coordinate: Coordinate, protected: Protected?) {
+	init(date: String, coordinate: Coordinate) {
 		self.date = date
 		self.coordinate = coordinate
-		self.protected = protected
+
 	}
 
 }

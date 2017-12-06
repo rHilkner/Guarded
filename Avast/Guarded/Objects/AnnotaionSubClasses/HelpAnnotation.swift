@@ -11,15 +11,19 @@ import CoreLocation
 
 class HelpAnnotation: Annotation {
 
-	var userID: String
-	var date: String //TODO: change to date
+	var protected: Protected
+	var locationInfo: LocationInfo
+	var helpOccurrence: HelpOccurrence
 
-	init (userID: String, date: String, identifier: String, coordinate: CLLocationCoordinate2D) {
+	init (protected: Protected, locationInfo: LocationInfo, helpOccurrence: HelpOccurrence) {
 
-		self.userID = userID
-		self.date = date
+		self.protected = protected
+		self.locationInfo = locationInfo
+		self.helpOccurrence = helpOccurrence
 
-		super.init(title: "", identifier: identifier, coordinate: coordinate)
+		let location2D = CLLocationCoordinate2D(latitude: helpOccurrence.coordinate.latitude, longitude: helpOccurrence.coordinate.longitude)
+
+		super.init(title: "", identifier: annotationIdentifiers.help, coordinate: location2D)
 	}
 }
 

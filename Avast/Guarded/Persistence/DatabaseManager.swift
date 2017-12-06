@@ -724,14 +724,14 @@ class DatabaseManager {
 					return
 				}
 
-				/// TODO: CHECK THIS
 				let date = helpButtonOccurrencesSnap.key as String
 
 				let coordinate = Coordinate(latitude: helpOccurrenceDict["latitude"]!, longitude: helpOccurrenceDict["longitude"]!)
 
-				let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate, protected: protected)
+				let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate)
 
 				completionHandler(helpOccurrence, protected)
+
 			}
 		}
 	}
