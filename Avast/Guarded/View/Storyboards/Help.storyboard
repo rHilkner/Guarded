@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WbZ-cd-ErM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WbZ-cd-ErM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,7 +74,7 @@ notified after the countdown</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="cancelButtonClicked:" destination="WbZ-cd-ErM" eventType="touchUpInside" id="cKS-ta-4t2"/>
+                                    <action selector="cancelButtonClicked" destination="WbZ-cd-ErM" eventType="touchUpInside" id="XeE-Kn-Tf9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b11-VR-cCv">
@@ -94,7 +94,7 @@ notified after the countdown</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="confirmButtonClicked:" destination="WbZ-cd-ErM" eventType="touchUpInside" id="UiF-iG-wVO"/>
+                                    <action selector="confirmButtonClicked" destination="WbZ-cd-ErM" eventType="touchUpInside" id="4oq-Ri-CiV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -117,6 +117,7 @@ notified after the countdown</string>
                         <viewLayoutGuide key="safeArea" id="J01-sc-x2g"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="KQH-ff-cR2" id="lBs-W6-VbE"/>
                         <outlet property="clock" destination="7ah-FK-3Lg" id="Aos-qg-N6k"/>
                         <outlet property="clockView" destination="4Nf-7h-Hsr" id="4YR-gK-XFR"/>
                         <segue destination="ban-rd-U5O" kind="presentation" identifier="lockModeSegue" modalTransitionStyle="crossDissolve" id="MXb-3X-WfY"/>
@@ -160,7 +161,7 @@ ACTIVE</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="stopLockMode:" destination="ban-rd-U5O" eventType="touchUpInside" id="i7O-TQ-fjX"/>
+                                    <action selector="stopButtonPressed" destination="ban-rd-U5O" eventType="touchUpInside" id="doG-eF-bN2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -175,6 +176,9 @@ ACTIVE</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OTc-0A-iLl"/>
                     </view>
+                    <connections>
+                        <outlet property="stopButton" destination="eW9-8o-FL2" id="INt-2P-bO0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Poa-b9-IRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

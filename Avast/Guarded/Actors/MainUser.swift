@@ -106,11 +106,12 @@ class MainUser: User {
     func getUser(byId id: String, fromList list: [User]) -> User? {
         for p in list {
             if p.id == id {
-                print ("Found user from id")
+                print ("User with ID [\(id)] found with name \(p.name)")
                 return p
             }
         }
-        print ("Couldn't get user from list")
+        
+        print ("User with ID (\(id)) not found on list")
         return nil
     }
     

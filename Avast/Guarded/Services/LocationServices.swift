@@ -79,7 +79,7 @@ extension LocationServices: CLLocationManagerDelegate {
         let userLocation = Coordinate(latitude: lastCoordinate.latitude, longitude: lastCoordinate.longitude)
         
         AppSettings.mainUser!.lastLocation = userLocation
-        print("Updating user's location: \(userLocation)")
+        print("Updating main user's location: \(userLocation.latitude), \(userLocation.longitude)")
         
         DatabaseManager.updateLastLocation(userLocation) {
             (error) in
