@@ -129,7 +129,7 @@ notified after the countdown</string>
         <!--Lock Screen View Controller-->
         <scene sceneID="lgJ-lk-86T">
             <objects>
-                <viewController storyboardIdentifier="LockScreenViewController" id="ban-rd-U5O" customClass="LockScreenViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LockScreen" id="ban-rd-U5O" customClass="LockScreenViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Drm-xH-WsM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

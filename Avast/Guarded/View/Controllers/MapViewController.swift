@@ -140,22 +140,27 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			protected?.status = userStatus.danger
 
 			/// show callout == true ??????
-			self.displayHelpOccurrence(helpOccurrence: helpOccurrence!, protectedId: (protected!.id), showCallout: true)
+			self.displayHelpOccurrence(helpOccurrence: helpOccurrence!, protectedId: (protected!.id), showCallout: false)
+
+			if !(self.launched) {
+
+				/// display alert
+				let alertController = UIAlertController(title: "\(protected!.name.capitalized) pediu sua ajuda, procure entender a situação e ajudá-lo",
+					message: nil,
+					preferredStyle: UIAlertControllerStyle.alert)
 
 
-			/// display alert
-			let alertController = UIAlertController(title: "\(protected!.name.capitalized) pediu sua ajuda, procure entender a situação e ajudá-lo",
-				message: nil,
-				preferredStyle: UIAlertControllerStyle.alert)
+				/// TODO: Check if needs action
+				alertController.addAction(UIAlertAction(title: "Ok",
+														style: UIAlertActionStyle.cancel,
+														handler: { action in
+				}))
+
+				self.present(alertController, animated: true, completion: nil)
 
 
-			/// TODO: Check if needs action
-			alertController.addAction(UIAlertAction(title: "Ok",
-													style: UIAlertActionStyle.cancel,
-													handler: { action in
-			}))
+			}
 
-			self.present(alertController, animated: true, completion: nil)
 
 
 
@@ -172,7 +177,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
             }
 
 			/// only display location if it`s allowed
-			if protected?.allowedToFollow == true {
+			if (protected?.allowedToFollow == true) || (protected?.status == userStatus.danger) {
 				self.displayLocation(location: protected!.lastLocation!, name: protected!.name, identifier: annotationIdentifiers.user, protectedId: protected!.id, showCallout: false)
 			}
 
@@ -207,6 +212,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 		if !launched && locationServices?.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse {
 			self.displayCurrentLocation()
 			launched = true
+		}
+
+		let locked = LockServices.checkLockMode()
+		if locked == true{
+
+			let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
+
+			self.present(vc, animated: true)
 		}
     }
     

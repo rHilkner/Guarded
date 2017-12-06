@@ -21,10 +21,25 @@ class HelpViewController: UIViewController {
     
     
     @IBAction func confirmButtonClicked(_ sender: Any) {
+        
+        self.createHelpOccurrence()
+		
         self.countdownTimer?.invalidate()
         //let lowerVC = self
         performSegue(withIdentifier: "lockModeSegue", sender: self)
         //lowerVC.dismiss(animated: false, completion: nil)
+    }
+    
+    func getCurrentDate() -> String {
+        
+        let date = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+        
+        let dateString = dateFormatter.string(from: date)
+        
+        return dateString
     }
 
     @IBAction func cancelButtonClicked(_ sender: Any) {
@@ -59,9 +74,41 @@ class HelpViewController: UIViewController {
         }
         
         if count == 0 {
+
+			self.createHelpOccurrence()
+
             performSegue(withIdentifier: "lockModeSegue", sender: self)
         }
     }
+
+	func createHelpOccurrence () {
+		LockServices.setLockMode()
+
+		let date = self.getCurrentDate()
+
+		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+
+		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+			(error) in
+
+			guard (error == nil) else {
+				print("Error on adding a new help occurrence.")
+				return
+			}
+
+		}
+
+		AppSettings.mainUser?.status = userStatus.danger
+
+		DatabaseManager.updateUserSatus() {
+			(error) in
+			if error != nil {
+
+				print("Error on dismissing timer")
+				return
+			}
+		}
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
