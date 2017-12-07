@@ -73,7 +73,7 @@ extension CustomTabBarController:UITabBarControllerDelegate{
             let storyboard = UIStoryboard(name: "Help", bundle: nil)
             if let controller = storyboard.instantiateViewController(withIdentifier: "helpScreen") as? HelpViewController {
                 controller.modalPresentationStyle = .fullScreen
-                //controller.modalTransitionStyle = .crossDissolve
+                controller.modalTransitionStyle = .crossDissolve
                 self.present(controller, animated: true, completion: nil)
             }
             return false
