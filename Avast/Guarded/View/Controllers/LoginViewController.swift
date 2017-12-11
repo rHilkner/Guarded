@@ -11,6 +11,8 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var bannerImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +28,7 @@ class LoginViewController: UIViewController {
         
         view.addSubview(loginButton)
         //TODO: substituir por constraints
-        loginButton.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
+        loginButton.frame = CGRect(x: 16, y: bannerImageView.frame.maxY + 16, width: view.frame.width - 32, height: 42)
     }
 
     func handleFacebookStatus() {
