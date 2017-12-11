@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aZt-wd-Fsr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aZt-wd-Fsr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +19,32 @@
                     <view key="view" contentMode="scaleToFill" id="cpp-qV-gRG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchBG" translatesAutoresizingMaskIntoConstraints="NO" id="uk0-Fy-bny">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uk0-Fy-bny" secondAttribute="height" multiplier="375:145" id="k1y-nw-DFY"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProtectTypo" translatesAutoresizingMaskIntoConstraints="NO" id="3aX-hP-Es7">
+                                <rect key="frame" x="93" y="62" width="189" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3aX-hP-Es7" secondAttribute="height" multiplier="47:10" id="p5n-vG-FoB"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="leading" secondItem="aiF-8c-ePx" secondAttribute="leading" id="9c5-gx-pUp"/>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="top" secondItem="cpp-qV-gRG" secondAttribute="top" id="RGi-4H-ukh"/>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="bottom" secondItem="3aX-hP-Es7" secondAttribute="bottom" multiplier="206:145" id="SMp-E0-78R"/>
+                            <constraint firstItem="3aX-hP-Es7" firstAttribute="centerX" secondItem="aiF-8c-ePx" secondAttribute="centerX" id="ZHJ-2m-g0O"/>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="trailing" secondItem="aiF-8c-ePx" secondAttribute="trailing" id="ylx-98-PnF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aiF-8c-ePx"/>
                     </view>
                     <connections>
+                        <outlet property="bannerImageView" destination="uk0-Fy-bny" id="Dgb-k9-yFn"/>
                         <segue destination="fY6-Ze-G4L" kind="show" identifier="NavigateViewController" id="KPc-zu-PNT"/>
                     </connections>
                 </viewController>
@@ -332,7 +355,6 @@
         <!--HELP-->
         <scene sceneID="rN7-HN-ik1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6h3-l5-VTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="HELP" automaticallyAdjustsScrollViewInsets="NO" id="8bu-TS-77R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Help" image="tabbar_help_unselected" selectedImage="tabbar_help_selected" id="cdI-YK-CLv"/>
                     <toolbarItems/>
@@ -342,6 +364,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6h3-l5-VTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4782" y="-769"/>
         </scene>
@@ -608,6 +631,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LaunchBG" width="375" height="667"/>
+        <image name="ProtectTypo" width="189" height="40"/>
         <image name="recenter_button" width="42" height="42"/>
         <image name="tabbar_help_selected" width="25" height="25"/>
         <image name="tabbar_help_unselected" width="25" height="25"/>
