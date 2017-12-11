@@ -13,19 +13,19 @@
         <!--Help-->
         <scene sceneID="sbJ-xo-VDB">
             <objects>
-                <viewController title="Help" id="WbZ-cd-ErM" customClass="HelpViewController" customModule="Guarded" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="helpScreen" title="Help" id="WbZ-cd-ErM" customClass="HelpViewController" customModule="Guarded" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="njC-Ro-BNu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have activated the   Help Button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZV0-Ta-ST0">
-                                <rect key="frame" x="51" y="62" width="273" height="55"/>
+                                <rect key="frame" x="51" y="80" width="273" height="55"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Nf-7h-Hsr" customClass="ClockView" customModule="Guarded">
-                                <rect key="frame" x="92" y="155" width="190" height="190"/>
+                                <rect key="frame" x="92" y="185" width="190" height="190"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ah-FK-3Lg">
                                         <rect key="frame" x="0.0" y="0.0" width="190" height="190"/>
@@ -50,7 +50,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fk0-EU-ja3">
-                                <rect key="frame" x="16" y="383" width="344" height="55"/>
+                                <rect key="frame" x="16" y="425" width="344" height="55"/>
                                 <string key="text">Your Protectors will be
 notified after the countdown</string>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="23"/>
@@ -58,7 +58,7 @@ notified after the countdown</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KQH-ff-cR2">
-                                <rect key="frame" x="17" y="476" width="157" height="53"/>
+                                <rect key="frame" x="17" y="540" width="157" height="53"/>
                                 <color key="backgroundColor" red="0.92156862745098034" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="FC0-p6-c0e"/>
@@ -74,11 +74,11 @@ notified after the countdown</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="cancelButtonClicked:" destination="WbZ-cd-ErM" eventType="touchUpInside" id="cKS-ta-4t2"/>
+                                    <action selector="cancelButtonClicked" destination="WbZ-cd-ErM" eventType="touchUpInside" id="XeE-Kn-Tf9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b11-VR-cCv">
-                                <rect key="frame" x="201" y="476" width="157" height="53"/>
+                                <rect key="frame" x="201" y="540" width="157" height="53"/>
                                 <color key="backgroundColor" red="0.50196078431372548" green="0.6470588235294118" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="FyB-qf-4d2"/>
@@ -94,7 +94,7 @@ notified after the countdown</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="confirmButtonClicked:" destination="WbZ-cd-ErM" eventType="touchUpInside" id="UiF-iG-wVO"/>
+                                    <action selector="confirmButtonClicked" destination="WbZ-cd-ErM" eventType="touchUpInside" id="4oq-Ri-CiV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -103,20 +103,20 @@ notified after the countdown</string>
                             <constraint firstItem="KQH-ff-cR2" firstAttribute="leading" secondItem="J01-sc-x2g" secondAttribute="leading" constant="17" id="Bxn-dR-IYJ"/>
                             <constraint firstItem="ZV0-Ta-ST0" firstAttribute="leading" secondItem="J01-sc-x2g" secondAttribute="leading" constant="51" id="FbT-wn-425"/>
                             <constraint firstItem="J01-sc-x2g" firstAttribute="trailing" secondItem="ZV0-Ta-ST0" secondAttribute="trailing" constant="51" id="HTz-au-Zvu"/>
+                            <constraint firstItem="4Nf-7h-Hsr" firstAttribute="centerX" secondItem="J01-sc-x2g" secondAttribute="centerX" id="M9Q-YC-teC"/>
                             <constraint firstItem="Fk0-EU-ja3" firstAttribute="leading" secondItem="J01-sc-x2g" secondAttribute="leading" constant="16" id="T0H-Pm-Nkf"/>
-                            <constraint firstItem="4Nf-7h-Hsr" firstAttribute="leading" secondItem="J01-sc-x2g" secondAttribute="leading" constant="92" id="UPy-mq-7kF"/>
                             <constraint firstItem="b11-VR-cCv" firstAttribute="leading" secondItem="KQH-ff-cR2" secondAttribute="trailing" constant="27" id="Wdj-yY-bRa"/>
-                            <constraint firstItem="KQH-ff-cR2" firstAttribute="top" secondItem="Fk0-EU-ja3" secondAttribute="bottom" constant="38" id="Wpp-ef-gb2"/>
+                            <constraint firstItem="KQH-ff-cR2" firstAttribute="top" secondItem="Fk0-EU-ja3" secondAttribute="bottom" constant="60" id="Wpp-ef-gb2"/>
                             <constraint firstItem="J01-sc-x2g" firstAttribute="trailing" secondItem="Fk0-EU-ja3" secondAttribute="trailing" constant="15" id="hf4-lr-WeQ"/>
-                            <constraint firstItem="J01-sc-x2g" firstAttribute="trailing" secondItem="4Nf-7h-Hsr" secondAttribute="trailing" constant="93" id="jec-O6-eoe"/>
-                            <constraint firstItem="b11-VR-cCv" firstAttribute="top" secondItem="Fk0-EU-ja3" secondAttribute="bottom" constant="38" id="rGq-Ra-BCP"/>
-                            <constraint firstItem="ZV0-Ta-ST0" firstAttribute="top" secondItem="J01-sc-x2g" secondAttribute="top" constant="42" id="suQ-jG-K36"/>
-                            <constraint firstItem="Fk0-EU-ja3" firstAttribute="top" secondItem="4Nf-7h-Hsr" secondAttribute="bottom" constant="38" id="uTc-Za-Y2o"/>
-                            <constraint firstItem="4Nf-7h-Hsr" firstAttribute="top" secondItem="ZV0-Ta-ST0" secondAttribute="bottom" constant="38" id="xng-XM-lwu"/>
+                            <constraint firstItem="b11-VR-cCv" firstAttribute="top" secondItem="Fk0-EU-ja3" secondAttribute="bottom" constant="60" id="rGq-Ra-BCP"/>
+                            <constraint firstItem="ZV0-Ta-ST0" firstAttribute="top" secondItem="J01-sc-x2g" secondAttribute="top" constant="60" id="suQ-jG-K36"/>
+                            <constraint firstItem="Fk0-EU-ja3" firstAttribute="top" secondItem="4Nf-7h-Hsr" secondAttribute="bottom" constant="50" id="uTc-Za-Y2o"/>
+                            <constraint firstItem="4Nf-7h-Hsr" firstAttribute="top" secondItem="ZV0-Ta-ST0" secondAttribute="bottom" constant="50" id="xng-XM-lwu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J01-sc-x2g"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="KQH-ff-cR2" id="lBs-W6-VbE"/>
                         <outlet property="clock" destination="7ah-FK-3Lg" id="Aos-qg-N6k"/>
                         <outlet property="clockView" destination="4Nf-7h-Hsr" id="4YR-gK-XFR"/>
                         <segue destination="ban-rd-U5O" kind="presentation" identifier="lockModeSegue" modalTransitionStyle="crossDissolve" id="MXb-3X-WfY"/>
@@ -144,7 +144,7 @@ ACTIVE</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW9-8o-FL2">
-                                <rect key="frame" x="109" y="476" width="157" height="53"/>
+                                <rect key="frame" x="109" y="472" width="157" height="53"/>
                                 <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="157" id="9tI-lg-ycT"/>
@@ -160,7 +160,7 @@ ACTIVE</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="stopLockMode:" destination="ban-rd-U5O" eventType="touchUpInside" id="i7O-TQ-fjX"/>
+                                    <action selector="stopButtonPressed" destination="ban-rd-U5O" eventType="touchUpInside" id="doG-eF-bN2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -168,13 +168,16 @@ ACTIVE</string>
                         <constraints>
                             <constraint firstItem="k6u-QB-qjL" firstAttribute="top" secondItem="OTc-0A-iLl" secondAttribute="top" constant="141" id="13r-sY-sw0"/>
                             <constraint firstItem="k6u-QB-qjL" firstAttribute="leading" secondItem="OTc-0A-iLl" secondAttribute="leading" constant="93" id="FCx-gR-cXn"/>
-                            <constraint firstItem="eW9-8o-FL2" firstAttribute="top" secondItem="k6u-QB-qjL" secondAttribute="bottom" constant="143" id="MP6-KG-bdm"/>
+                            <constraint firstItem="eW9-8o-FL2" firstAttribute="top" secondItem="k6u-QB-qjL" secondAttribute="bottom" constant="139" id="MP6-KG-bdm"/>
                             <constraint firstItem="eW9-8o-FL2" firstAttribute="leading" secondItem="OTc-0A-iLl" secondAttribute="leading" constant="109" id="NJ8-6u-3yc"/>
                             <constraint firstItem="OTc-0A-iLl" firstAttribute="trailing" secondItem="eW9-8o-FL2" secondAttribute="trailing" constant="109" id="RZj-uX-2AN"/>
                             <constraint firstItem="OTc-0A-iLl" firstAttribute="trailing" secondItem="k6u-QB-qjL" secondAttribute="trailing" constant="93" id="XH9-UG-uUu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OTc-0A-iLl"/>
                     </view>
+                    <connections>
+                        <outlet property="stopButton" destination="eW9-8o-FL2" id="INt-2P-bO0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Poa-b9-IRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

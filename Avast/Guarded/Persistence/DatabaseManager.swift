@@ -423,8 +423,6 @@ class DatabaseManager {
                     return
                 }
                 
-                print("aaaaaaaa \(mainUser.protecteds.count)")
-                
                 completionHandler(mainUser)
             }
         }
@@ -726,13 +724,14 @@ class DatabaseManager {
 					return
 				}
 
-				/// CHECK THIS
 				let date = helpButtonOccurrencesSnap.key as String
 
 				let coordinate = Coordinate(latitude: helpOccurrenceDict["latitude"]!, longitude: helpOccurrenceDict["longitude"]!)
 
 				let helpOccurrence = HelpOccurrence(date: date, coordinate: coordinate)
+
 				completionHandler(helpOccurrence, protected)
+
 			}
 		}
 	}
@@ -839,7 +838,7 @@ class DatabaseManager {
                 protected.lastLocation = protectedLocation
                 
                 completionHandler(protected)
-                print("Protected [\(protected.name)] new location: \(protected.lastLocation!).")
+                print("Protected [\(protected.name)] new location: \(protected.lastLocation!.latitude), \(protected.lastLocation!.longitude)")
             }
         }
     }

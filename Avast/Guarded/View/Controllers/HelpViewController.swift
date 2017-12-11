@@ -7,63 +7,57 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class HelpViewController: UIViewController {
 
     @IBOutlet weak var clockView: ClockView!
     @IBOutlet weak var clock: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     
+    var count: Double = 1500.0
+    var totalTime: Double = 1500.0
+    var countdownTimer: Timer?
     
-    var count:Double = 1000.0
-    var totalTime:Double = 1000.0
-    
-    var countdownTimer:Timer?
-    
-    
-    @IBAction func confirmButtonClicked(_ sender: Any) {
-        
-        self.createHelpOccurrence()
-		
-        self.countdownTimer?.invalidate()
-        performSegue(withIdentifier: "lockModeSegue", sender: self)
-
-    }
-    
-    func getCurrentDate() -> String {
-        
-        let date = Date()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
-        
-        let dateString = dateFormatter.string(from: date)
-        
-        return dateString
-    }
-
-    @IBAction func cancelButtonClicked(_ sender: Any) {
-        self.countdownTimer?.invalidate()
-    }
-    
-	override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        count = 1000.0
-        countdownTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateConter), userInfo: nil, repeats: true)
+        count = 1500.0
+        countdownTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.countdownTimer?.invalidate()
+        
+        let locked = LockServices.checkLockMode()
+        if locked == true {
+            let storyboard = UIStoryboard(name: "Help", bundle: nil)
+            if let controller = storyboard.instantiateViewController(withIdentifier: "LockScreen") as? LockScreenViewController {
+                controller.modalPresentationStyle = .fullScreen
+                controller.modalTransitionStyle = .crossDissolve
+                self.present(controller, animated: true, completion: nil)
+            }
+        }
+        
     }
     
-    @objc func updateConter() {
-        if count >= 0{
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let lockViewController = segue.destination as? LockScreenViewController {
+            lockViewController.helpViewController = self
+        }
+    }
+    
+    @objc func updateCounter() {
+        if count >= 0 {
             self.clockView.currentTime = (self.count)/(self.totalTime)
             self.clock.text = "\(Int(ceil(count/100.0)))"
             self.count -= 1
@@ -72,14 +66,33 @@ class HelpViewController: UIViewController {
         }
         
         if count == 0 {
-
-			self.createHelpOccurrence()
-
-            performSegue(withIdentifier: "lockModeSegue", sender: self)
+            self.createHelpOccurrence()
+            self.goToLockScreen()
         }
     }
+    
+    @IBAction func confirmButtonClicked() {
+        self.createHelpOccurrence()
+        self.goToLockScreen()
+    }
 
-	func createHelpOccurrence () {
+    @IBAction func cancelButtonClicked() {
+        self.cancelButton.isEnabled = false
+        
+        AuthenticationServices.askForUserAuth(self) {
+            (success) in
+            
+            guard success else {
+                self.cancelButton.isEnabled = true
+                return
+            }
+            
+            self.dismissView()
+        }
+    }
+    
+    func createHelpOccurrence () {
+
 		LockServices.setLockMode()
 
 		let date = self.getCurrentDate()
@@ -96,32 +109,54 @@ class HelpViewController: UIViewController {
 
 		}
 
-		AppSettings.mainUser?.status = userStatus.danger
-
-		DatabaseManager.updateUserSatus() {
-			(error) in
-			if error != nil {
-
-				print("Error on dismissing timer")
-				return
-			}
-		}
-	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        AppSettings.mainUser?.status = userStatus.danger
+        
+        DatabaseManager.updateUserSatus() {
+            (error) in
+            if error != nil {
+                
+                print("Error on dismissing timer")
+                return
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func goToLockScreen() {
+        //Force reset of authentication context - stops asking for authentication (TouchID/password) before moving to LockScreen
+        AuthenticationServices.resetAuthContext()
+        
+        //Invalidate timer if it's not nil
+        if countdownTimer != nil {
+            self.countdownTimer?.invalidate()
+            self.countdownTimer = nil
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    func dismissView() {
+        //Force reset of authentication context - stops asking for authentication (TouchID/password) before moving to LockScreen
+        AuthenticationServices.resetAuthContext()
+        
+        //Invalidate timer if it's not nil
+        if countdownTimer != nil {
+            self.countdownTimer?.invalidate()
+            self.countdownTimer = nil
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getCurrentDate() -> String {
+        
+        let date = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy   HH:mm:ss"
+        
+        let dateString = dateFormatter.string(from: date)
+        
+        return dateString
+    }
 }

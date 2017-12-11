@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +19,32 @@
                     <view key="view" contentMode="scaleToFill" id="cpp-qV-gRG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchBG" translatesAutoresizingMaskIntoConstraints="NO" id="uk0-Fy-bny">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uk0-Fy-bny" secondAttribute="height" multiplier="375:145" id="k1y-nw-DFY"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProtectTypo" translatesAutoresizingMaskIntoConstraints="NO" id="3aX-hP-Es7">
+                                <rect key="frame" x="93" y="62" width="189" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3aX-hP-Es7" secondAttribute="height" multiplier="47:10" id="p5n-vG-FoB"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="leading" secondItem="aiF-8c-ePx" secondAttribute="leading" id="9c5-gx-pUp"/>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="top" secondItem="cpp-qV-gRG" secondAttribute="top" id="RGi-4H-ukh"/>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="bottom" secondItem="3aX-hP-Es7" secondAttribute="bottom" multiplier="206:145" id="SMp-E0-78R"/>
+                            <constraint firstItem="3aX-hP-Es7" firstAttribute="centerX" secondItem="aiF-8c-ePx" secondAttribute="centerX" id="ZHJ-2m-g0O"/>
+                            <constraint firstItem="uk0-Fy-bny" firstAttribute="trailing" secondItem="aiF-8c-ePx" secondAttribute="trailing" id="ylx-98-PnF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aiF-8c-ePx"/>
                     </view>
                     <connections>
+                        <outlet property="bannerImageView" destination="uk0-Fy-bny" id="Dgb-k9-yFn"/>
                         <segue destination="fY6-Ze-G4L" kind="show" identifier="NavigateViewController" id="KPc-zu-PNT"/>
                     </connections>
                 </viewController>
@@ -119,8 +142,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wma-oE-Gla">
-                                <rect key="frame" x="0.0" y="68" width="375" height="550"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wma-oE-Gla">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </mapView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMr-Gt-frn">
                                 <rect key="frame" x="8" y="72" width="90" height="42"/>
@@ -330,45 +353,6 @@
             <point key="canvasLocation" x="3201" y="-771"/>
         </scene>
         <!--HELP-->
-        <scene sceneID="WGB-6i-6BM">
-            <objects>
-                <viewController id="ajE-R7-KR4" customClass="HelpViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5v2-vA-5By">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9d-CS-d0N">
-                                <rect key="frame" x="82" y="243" width="211" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                <state key="normal" title="Help">
-                                    <color key="titleColor" red="0.99559134244918823" green="0.005286692176014185" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="helpButtonClicked:" destination="ajE-R7-KR4" eventType="touchUpInside" id="piT-Ra-Dej"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rolooooooouuuuu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpO-Lp-A95">
-                                <rect key="frame" x="55" y="450" width="264" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="BkP-Fx-Ail"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="HELP" id="YBu-dX-fWf"/>
-                    <connections>
-                        <outlet property="rolouLabel" destination="tpO-Lp-A95" id="SUl-6t-hAZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aWF-KC-Wio" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4782" y="736"/>
-        </scene>
-        <!--HELP-->
         <scene sceneID="rN7-HN-ik1">
             <objects>
                 <navigationController title="HELP" automaticallyAdjustsScrollViewInsets="NO" id="8bu-TS-77R" sceneMemberID="viewController">
@@ -379,23 +363,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AnR-dy-taq" kind="relationship" relationship="rootViewController" id="H15-Kb-Tkl"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h3-l5-VTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4782" y="-769"/>
-        </scene>
-        <!--Help-->
-        <scene sceneID="sII-t6-0MO">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Help" id="AnR-dy-taq" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="D27-va-YQz"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6iT-13-ByN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4781" y="-242"/>
         </scene>
         <!--Protect-->
         <scene sceneID="k3p-vX-KHp">
@@ -660,6 +631,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LaunchBG" width="375" height="667"/>
+        <image name="ProtectTypo" width="189" height="40"/>
         <image name="recenter_button" width="42" height="42"/>
         <image name="tabbar_help_selected" width="25" height="25"/>
         <image name="tabbar_help_unselected" width="25" height="25"/>
