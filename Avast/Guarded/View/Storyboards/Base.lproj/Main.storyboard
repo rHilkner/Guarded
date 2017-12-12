@@ -76,7 +76,11 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MyU-5Y-QiU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.92146831750869751" green="0.92162626981735229" blue="0.92145836353302002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="7Bz-AB-uCV">
+                            <rect key="frame" x="0.0" y="72" width="375" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="placeCell" id="RBD-hF-O0P" customClass="PlaceCell" customModule="Guarded" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -116,7 +120,7 @@
                                         <constraint firstAttribute="trailing" secondItem="uUt-Wx-4am" secondAttribute="trailing" constant="14" id="xRa-UP-6DX"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <inset key="separatorInset" minX="59" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="58" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="placeAddress" destination="GuV-n5-f4F" id="rSR-Cr-Ol8"/>
                                     <outlet property="placeLabel" destination="uUt-Wx-4am" id="rPW-AB-g2G"/>
@@ -561,22 +565,6 @@
             </objects>
             <point key="canvasLocation" x="5570" y="-770"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="9Bq-Rs-YNC">
-            <objects>
-                <viewController id="Sen-Wb-emZ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4r8-Hq-Cgn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="TsE-zJ-fDR"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="pXX-mf-sQd"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5u8-lp-au9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6350" y="0.0"/>
-        </scene>
         <!--AddProtector-->
         <scene sceneID="dwD-lQ-a8K">
             <objects>
@@ -631,12 +619,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Sen-Wb-emZ" kind="relationship" relationship="rootViewController" id="5uq-Ol-AdB"/>
+                        <segue destination="NDX-Ib-tXl" kind="relationship" relationship="rootViewController" id="O9O-2y-eN6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNK-up-sRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6351" y="-770"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="uii-qa-SDC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="NDX-Ib-tXl" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ePR-ci-dql"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E2J-zb-LDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6350" y="-287"/>
         </scene>
     </scenes>
     <resources>

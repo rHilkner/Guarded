@@ -61,6 +61,8 @@
 		D45A5BCF1FC7D05400FACE2E /* PersonPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */; };
 		D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */; };
 		D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */; };
+		D49557C51FE00A2F00A3FF8C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D49557C41FE00A2F00A3FF8C /* Settings.storyboard */; };
+		D49557C71FE00C0400A3FF8C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */; };
 		D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */; };
 		D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */; };
 		D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */; };
@@ -144,6 +146,8 @@
 		D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPinView.swift; sourceTree = "<group>"; };
 		D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStatusCalloutView.swift; sourceTree = "<group>"; };
 		D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonStatusCalloutView.xib; sourceTree = "<group>"; };
+		D49557C41FE00A2F00A3FF8C /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCalloutView.swift; sourceTree = "<group>"; };
 		D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnumerations.swift; sourceTree = "<group>"; };
 		D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePinView.swift; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 				D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */,
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
 				D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */,
+				D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 		D48231B71FA4469D0027EC1F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				D49557C41FE00A2F00A3FF8C /* Settings.storyboard */,
 				C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */,
 				C69153DA1FA82B86004BAFE4 /* Main.storyboard */,
 				C230201D1FC4AF7700A099BE /* Help.storyboard */,
@@ -478,6 +484,7 @@
 				C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
 				D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */,
 				D4BC71F01FCE5667004504EC /* AddPlace.storyboard in Resources */,
+				D49557C51FE00A2F00A3FF8C /* Settings.storyboard in Resources */,
 				C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
 				D4CD87151FD86D7F00A19152 /* OccurrenceCalloutView.xib in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
@@ -610,6 +617,7 @@
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,
+				D49557C71FE00C0400A3FF8C /* SettingsTableViewController.swift in Sources */,
 				C24E9B161FCE01E70086C68F /* TimerCellTableViewCell.swift in Sources */,
 				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
 				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
