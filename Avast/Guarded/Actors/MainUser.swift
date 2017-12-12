@@ -72,6 +72,25 @@ class MainUser: User {
         }
     }
     
+    func removePlace(_ place: Place) {
+        DatabaseManager.removePlace(place) {
+            (success) in
+            
+            guard success else {
+                print("ERROR: Could not remove place \(place.name) from user's DB.")
+                return
+            }
+            
+            for i in 0..<self.places.count {
+                if self.places[i].name == place.name {
+                    self.places.remove(at: i)
+                    print("Place \(place.name) removed successfully.")
+                    return
+                }
+            }
+        }
+    }
+    
     func fetchPlaces(completionHandler: @escaping (Bool) -> Void) {
         DatabaseManager.fetchUserPlaces() {
             (userPlaces) in
@@ -100,6 +119,25 @@ class MainUser: User {
             
             print("Protector \(protector.name) added to user's database.")
             self.protectors.append(protector)
+        }
+    }
+    
+    func removeProtector(_ protector: Protector) {
+        DatabaseManager.removeProtector(protector) {
+            (success) in
+            
+            guard success else {
+                print("ERROR: Could not remove protector \(protector.name) from user's DB.")
+                return
+            }
+            
+            for i in 0..<self.protectors.count {
+                if self.protectors[i].id == protector.id {
+                    print("Protector \(self.protectors[i].name) removed successfully.")
+                    self.protectors.remove(at: i)
+                    return
+                }
+            }
         }
     }
     
