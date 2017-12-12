@@ -8,10 +8,15 @@
 
 import UIKit
 
-class PhoneTableViewController: UITableViewController {
 
+class PhoneTableViewController: UITableViewController {
+    
+    let names = ["Polícia Militar", "Samu", "Bombeiros", "Guarda Municipal", "Defesa Civil", "Disque Denúncia"]
+    let numbers = ["190", "192", "193", "153", "199", "181"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,23 +34,44 @@ class PhoneTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.names.count
+    }
+    
+    //override func viewDidAppear(_ animated: Bool) {
+        
+        
+    //}
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
+        let  phoneAlertController = UIAlertController(title: "\(self.numbers[indexPath.row])", message: "\(self.names[indexPath.row])", preferredStyle: UIAlertControllerStyle.alert)
+        
+        phoneAlertController.addAction(UIAlertAction(title: "Ligar", style: UIAlertActionStyle.default, handler: {action in
+            let phone  = URL(string: "tel://\(self.numbers[indexPath.row])")
+            UIApplication.shared.open(phone!)
+        }))
+        phoneAlertController.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        self.present(phoneAlertController, animated: true, completion: nil)
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "phoneCell", for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = self.names[indexPath.row]
+        cell.detailTextLabel?.text = self.numbers[indexPath.row]
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
