@@ -13,22 +13,46 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var bannerImageView: UIImageView!
     
+    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var logoTypo: UIImageView!
+    
+    @IBOutlet weak var topImageConstraint: NSLayoutConstraint!
+    
+    var loginButton:FBSDKLoginButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setFBLoginButton()
-        
         self.handleFacebookStatus()
+        
+        logoTypo.alpha = 0.0
+        UIView.animate(withDuration: 1.0, animations: {
+            self.logoImage.center.y -= 81
+        }, completion: {(success) in
+            UIView.animate(withDuration: 0.7, animations: {
+                self.logoTypo.alpha = 1.0
+            }, completion: {(success) in
+                
+                self.loginButton.fadeIn(withDuration: 0.7)
+            })
+        })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     func setFBLoginButton() {
-        let loginButton = FBSDKLoginButton()
-        loginButton.readPermissions = ["public_profile", "email"]
-        loginButton.delegate = self
         
-        view.addSubview(loginButton)
+        self.loginButton = FBSDKLoginButton()
+        self.loginButton.readPermissions = ["public_profile", "email"]
+        self.loginButton.delegate = self
+        loginButton.alpha = 0.0
+        view.addSubview(self.loginButton)
+        
         //TODO: substituir por constraints
-        loginButton.frame = CGRect(x: 16, y: bannerImageView.frame.maxY + 16, width: view.frame.width - 32, height: 42)
+        loginButton.frame = CGRect(x: 16, y: logoTypo.frame.maxY + 116, width: view.frame.width - 32, height: 42)
     }
 
     func handleFacebookStatus() {
@@ -86,3 +110,16 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
     }
 }
 
+extension UIView {
+    func fadeIn(withDuration duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    func fadeOut(withDuration duration: TimeInterval = 1.0) {
+        UIView.animate(withDuration: duration, animations: {
+            self.alpha = 0.0
+        })
+    }
+}
