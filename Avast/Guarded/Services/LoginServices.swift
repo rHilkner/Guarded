@@ -103,29 +103,29 @@ class LoginServices {
     ///Download picture given URL
 //    static func downloadImage(imageURL: URL, userID: Int) {
 //        print("Download of \(imageURL) started")
-//        
+//
 //        var urlStr = imageURL.absoluteString
 //        print(urlStr)
 //        urlStr = urlStr.replacingOccurrences(of: "http", with: "https")
 //        print(urlStr)
-//        
+//
 //        //TODO: implement cache shit below
 //        let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
 //        let fileName = documentsDirectory.appendingPathComponent(String(format: "%@ProfilePicture.jpg", userID))
-//        
+//
 //        let request = URLRequest(url: URL(string: urlStr)!)
-//        
+//
 //        URLSession.shared.dataTask(with: request) {
 //            (data, response, error) in
-//            
+//
 //            guard let data = data, error == nil else {
 //                print("Error downloading user profile picture -> \(String(describing: error?.localizedDescription))")
 //                //                completionHandler(nil, error)
 //                return
 //            }
-//            
+//
 //            DispatchQueue.main.async {
-//                
+//
 //                do {
 //                    try data.write(to: fileName)
 //                    print("User \(userID)'s profile picture saved successfully")
