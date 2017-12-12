@@ -52,7 +52,7 @@ class PlacesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath) as! PlaceCell
         // Configure the cell...
-        cell.placePin.image = UIImage(named:"Orange Pin")
+        cell.placePin.image = UIImage(named:"cell_others")
         cell.placeLabel.text = self.places[indexPath.row].name
         cell.placeAddress.text = self.places[indexPath.row].address
         

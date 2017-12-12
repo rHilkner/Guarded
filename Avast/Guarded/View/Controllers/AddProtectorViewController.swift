@@ -14,10 +14,19 @@ class AddProtectorViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
 		self.protectorTextField.delegate = self
-
-        // Do any additional setup after loading the view.
+        
+        // TODO: Change placeholder text
+        self.protectorTextField.placeholder = "Insert user name on DB pls"
+        
+        self.protectorTextField.dropShadow()
+        
+        self.protectorTextField.setLeftPaddingPoints(8)
+        self.protectorTextField.setRightPaddingPoints(8)
+        
+        
+        
     }
     
     @IBAction func addProtector() {
@@ -46,6 +55,8 @@ class AddProtectorViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        
+        self.navigationController?.popViewController(animated: true)
     }
 
 	// MARK - Textfield
@@ -65,3 +76,32 @@ class AddProtectorViewController: UIViewController, UITextFieldDelegate {
     
     
 }
+
+extension UIView {
+    func dropShadow(scale: Bool = true) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowRadius = 1.5
+        
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+}
+
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+}
+
