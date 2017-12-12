@@ -67,7 +67,7 @@
                 <viewControllerPlaceholder storyboardName="SetDestinationStoryboard" id="G6B-bf-DJ7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPc-5A-Bt6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3163" y="487"/>
+            <point key="canvasLocation" x="3167" y="636"/>
         </scene>
         <!--Places-->
         <scene sceneID="FX6-q2-iQn">
@@ -137,7 +137,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQV-g6-DF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3977" y="1"/>
+            <point key="canvasLocation" x="3978" y="31"/>
         </scene>
         <!--AddPlace-->
         <scene sceneID="ImL-hZ-SCT">
@@ -236,7 +236,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3200.8000000000002" y="-1.3493253373313345"/>
+            <point key="canvasLocation" x="3201" y="31"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="Coi-pa-Hlw">
@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U15-TZ-Ht6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4023" y="752"/>
+            <point key="canvasLocation" x="4000" y="876"/>
         </scene>
         <!--Places-->
         <scene sceneID="cz8-ve-Cze">
@@ -605,17 +605,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X46-CA-9g3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5568.8000000000002" y="752.47376311844084"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="hCe-AA-BQ8">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="VCq-WQ-r1y" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="uGT-9r-Qex"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="04K-uG-JrH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6350" y="-311"/>
+            <point key="canvasLocation" x="5570" y="912"/>
         </scene>
         <!--Settings-->
         <scene sceneID="zPP-qd-oBB">
@@ -644,7 +634,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2J-zb-LDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6350" y="-287"/>
+            <point key="canvasLocation" x="6350" y="-289"/>
         </scene>
     </scenes>
     <resources>
