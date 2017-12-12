@@ -64,6 +64,8 @@
 		D45A5BCF1FC7D05400FACE2E /* PersonPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */; };
 		D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */; };
 		D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */; };
+		D49557C51FE00A2F00A3FF8C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D49557C41FE00A2F00A3FF8C /* Settings.storyboard */; };
+		D49557C71FE00C0400A3FF8C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */; };
 		D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */; };
 		D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */; };
 		D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */; };
@@ -150,6 +152,8 @@
 		D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPinView.swift; sourceTree = "<group>"; };
 		D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStatusCalloutView.swift; sourceTree = "<group>"; };
 		D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonStatusCalloutView.xib; sourceTree = "<group>"; };
+		D49557C41FE00A2F00A3FF8C /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCalloutView.swift; sourceTree = "<group>"; };
 		D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnumerations.swift; sourceTree = "<group>"; };
 		D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePinView.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
 				D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */,
 				C21BF8CA1FDF0F9A006418BE /* PhoneTableViewController.swift */,
+				D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -622,6 +627,7 @@
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,
+				D49557C71FE00C0400A3FF8C /* SettingsTableViewController.swift in Sources */,
 				C24E9B161FCE01E70086C68F /* TimerCellTableViewCell.swift in Sources */,
 				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
 				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
