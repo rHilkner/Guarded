@@ -166,24 +166,41 @@ class DatabaseManager {
 	}
     
     ///Removes protector to user's protectors list and also removes user as protector's protected list
-    static func removeProtector(_ protector: Protector, completionHandler: @escaping (Error?) -> Void) {
+    static func removeProtector(_ protector: Protector, completionHandler: @escaping (Bool) -> Void) {
         
-        let usersRef = ref.child("users")
+        let mainUserRef = ref.child("users/\(protector.id)/protected/\(AppSettings.mainUser!.id)")
+        let protectorRef = ref.child("users/\(AppSettings.mainUser!.id)/protectors/\(protector.id)")
         
-        let valuesToSet: [String : Any] = [
-            "\(AppSettings.mainUser!.id)/protectors/\(protector.id)": NSNull(),
-            "\(protector.id)/protected/\(AppSettings.mainUser!.id)": NSNull()
-        ]
+        let dispatchGroup = DispatchGroup()
         
-        usersRef.setValue(valuesToSet) {
+        dispatchGroup.enter()
+        
+        mainUserRef.removeValue() {
             (error, _) in
             
             guard (error == nil) else {
-                completionHandler(error)
+                completionHandler(false)
                 return
             }
             
-            completionHandler(nil)
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        
+        protectorRef.removeValue() {
+            (error, _) in
+            
+            guard (error == nil) else {
+                completionHandler(false)
+                return
+            }
+            
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completionHandler(true)
         }
     }
     
@@ -213,18 +230,18 @@ class DatabaseManager {
     }
     
     ///Removes place from user's places list
-    static func removePlace(_ place: Place, completionHandler: @escaping (Error?) -> Void) {
+    static func removePlace(_ place: Place, completionHandler: @escaping (Bool) -> Void) {
         
         let placeRef = ref.child("users/\(AppSettings.mainUser!.id)/places/\(place.name)")
         
         placeRef.removeValue {
             (error, _) in
             guard (error == nil) else {
-                completionHandler(error)
+                completionHandler(false)
                 return
             }
             
-            completionHandler(nil)
+            completionHandler(true)
         }
     }
     

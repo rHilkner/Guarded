@@ -6,8 +6,39 @@
   Copyright © 2017 Rodrigo Hilkner. All rights reserved.
 
 
-TODO:
-- Implementar database persistence classes
+BUGS:
+ 
+ IZI FIX:
+ - Settar local como destino + mudar de tela + timer chegar em zero -> nada acontece e quando volta para o mapVC o timer ainda está lá com 00:00:00... o usuário deveria receber o alerta de "Já chegou?" independentemente do local do app que ele esteja (exceto LockScreen). O timer será invalidado se o usuário marcar que já chegou e o 00:00:00 sumirá.
+ - Dismiss na TimerDetailedVC não envia para o BD
+ - Busca endereço específico -> Cria pin para o local procurado -> Clica fora do pin -> Pin deveria sumir, mas continua plotado
+ - Explorar bugs sobre: Settar place como destino + Help button occurence antes de chegar no destino (+ stop help occurence antes de chegar no destino)
+ - Long Press no mapa -> Add to Places -> Após adicionar a place, a visão do Pin/Callout deveria mudar para mostrar o local da place adicionada e não continuar mostrando a place do long press
+ - Busca endereço específico -> O mapa deveria mostrar o pin/callout com o endereço específico que foi buscado e não mostrar a range do endereço, como está acontecendo (o mapa deve estar plotando o pin de acordo com a coordenada do endereço)
+ - Setta local como destino + clica em buscar local específico -> vai para tela de buscar local -> quando volta para MapVC o timer está com o mesmo tempo que tinha antes de ir para a tela de busca de local (timer continua rodando, mas aparentemente o delegate se perdeu aí no meio - explorar como é feito o aparecimento da view de busca de local e se isso afeta viewDidAppear/Disappear)
+ - Settar local como destino + mudar de tela + voltar para mapVC -> durante 1 picosegundo da pra ver o tempo que o timer tinha antes de mudar de tela (mexer com viewWillAppear ao invés de viewDidAppear)
+ 
+ MEDIO FIX:
+ - Setta local como destino + finaliza o app + abre o app -> nenhum destino settado... Precisa puxar isso do BD no login (e já mandar o alerta se for preciso).
+ - Colocar "Cidade, Estado, País" nas callouts de lugares
+ 
+ UNKNOWN:
+ - No celular do Farol eu (xpt) estava safe, porém "Arriving" (pin estava verde, escrito "arriving in 00:40" e decrementando o contador). Zero ideia do que pode ter acontecido... explorar melhor.
+ 
+ WTF:
+ - Timer travou assim que settei destino para uma place cadastrada. Não consegui fazer acontecer de novo... explorar melhor
+ 
+ NOT REALLY A BUG, BUT...
+ - Settar um local como destino -> se esse local não estiver cadastrado o Pin desse local some (se vc clicar fora dele). Não é exatamente um bug, mas seria bom o usuário conseguir ver constantemente o destino dele. Explorar melhor o problema, considerar deixar um Pin amarelo no local de destino (apenas para o usuário, não para seus protetores).
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
