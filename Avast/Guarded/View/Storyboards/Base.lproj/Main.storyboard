@@ -608,6 +608,16 @@
             <point key="canvasLocation" x="5568.8000000000002" y="752.47376311844084"/>
         </scene>
         <!--Settings-->
+        <scene sceneID="hCe-AA-BQ8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="VCq-WQ-r1y" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uGT-9r-Qex"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04K-uG-JrH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6350" y="-311"/>
+        </scene>
+        <!--Settings-->
         <scene sceneID="zPP-qd-oBB">
             <objects>
                 <navigationController title="Settings" automaticallyAdjustsScrollViewInsets="NO" id="hzG-hx-iia" sceneMemberID="viewController">
