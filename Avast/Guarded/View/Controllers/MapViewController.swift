@@ -30,6 +30,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
     var showPlace: Int?
 
     var protectedsAnnotationArray : [UserAnnotation] = []
+    var placesAnnotationArray: [PlaceAnnotation] = []
 
 	var launched: Bool = false
 
@@ -160,11 +161,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 
 			}
-
-
-
-
-
         }
 
         /// Receive all protected`s last location
@@ -205,8 +201,9 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         /// get all places of the current user and display on the map
         for place in AppSettings.mainUser!.places {
 			self.displayLocation(place: place, showCallout: false)
-
         }
+        
+        print("User places: \(AppSettings.mainUser!.places.count)")
 
 		/// Check if it needs to focus on the user current location
 		if !launched && locationServices?.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse {
@@ -458,12 +455,15 @@ extension MapViewController: LocationUpdateProtocol {
         
         placeAnnotation.locationInfo = locationInfo
         self.map.addAnnotation(placeAnnotation)
+        
+        self.placesAnnotationArray.append(placeAnnotation)
+        
         if showCallout {
             self.map.selectAnnotation(placeAnnotation, animated: true)
         }
     }
 
-	func displayHelpOccurrence (helpOccurrence: HelpOccurrence, protected: Protected, showCallout: Bool){
+	func displayHelpOccurrence (helpOccurrence: HelpOccurrence, protected: Protected, showCallout: Bool) {
 
 		let someLoc2D = CLLocationCoordinate2D(latitude: helpOccurrence.coordinate.latitude, longitude: helpOccurrence.coordinate.longitude)
 

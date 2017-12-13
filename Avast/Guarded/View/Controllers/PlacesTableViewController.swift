@@ -50,10 +50,11 @@ class PlacesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             AppSettings.mainUser!.removePlace(places[indexPath.row])
             self.places.remove(at: indexPath.row)
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
     }
     
