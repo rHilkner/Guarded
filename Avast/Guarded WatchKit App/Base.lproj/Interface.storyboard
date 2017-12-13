@@ -9,12 +9,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Protect-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Guarded_WatchKit_App" customModuleProvider="target">
+                <controller identifier="Protect" title="Protect" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Guarded_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <button width="1" alignment="center" verticalAlignment="center" title="Help" id="VCK-co-pBT">
+                        <button width="100" height="100" alignment="center" verticalAlignment="center" backgroundImage="Help" id="VCK-co-pBT">
                             <color key="titleColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="backgroundColor" red="0.93222230672836304" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="font" type="system" pointSize="22"/>
