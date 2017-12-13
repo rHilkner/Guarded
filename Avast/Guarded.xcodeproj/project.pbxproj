@@ -16,7 +16,6 @@
 		8946E7371FB0E11B0066D1B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */; };
 		8946E7391FB121FA0066D1B3 /* NotificationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E7381FB121FA0066D1B3 /* NotificationServices.swift */; };
 		8946E73B1FB237660066D1B3 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8946E73A1FB237660066D1B3 /* HelpViewController.swift */; };
-		89A6DC181FD86EB40067B426 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A6DC171FD86EB40067B426 /* Login.storyboard */; };
 		89A6DC641FD971690067B426 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A6DC621FD971690067B426 /* Interface.storyboard */; };
 		89A6DC661FD971690067B426 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89A6DC651FD971690067B426 /* Assets.xcassets */; };
 		89A6DC6D1FD971690067B426 /* Guarded WatchKit App Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 89A6DC6C1FD971690067B426 /* Guarded WatchKit App Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -143,7 +142,6 @@
 		8946E7361FB0E11B0066D1B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8946E7381FB121FA0066D1B3 /* NotificationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServices.swift; sourceTree = "<group>"; };
 		8946E73A1FB237660066D1B3 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
-		89A6DC171FD86EB40067B426 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		89A6DC601FD971680067B426 /* Guarded WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Guarded WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A6DC631FD971690067B426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		89A6DC651FD971690067B426 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1072,7 +1070,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WW6YH2P93;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -1109,7 +1107,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9WW6YH2P93;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
