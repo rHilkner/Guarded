@@ -22,6 +22,11 @@
                                 <action selector="helpButtonPressed" destination="AgC-eL-Hgc" id="ONf-qp-fFM"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" title="Button" id="zJJ-HI-ZxC">
+                            <connections>
+                                <action selector="dismissLockMode" destination="AgC-eL-Hgc" id="2Wh-pa-qD4"/>
+                            </connections>
+                        </button>
                     </items>
                 </controller>
             </objects>

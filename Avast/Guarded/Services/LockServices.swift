@@ -10,13 +10,6 @@ import UIKit
 
 class LockServices: NSObject {
     
-	override init() {
-		super.init()
-		UserDefaults.standard.set(false, forKey: "lock")
-		UserDefaults.standard.addObserver(self, forKeyPath: "lock", options: NSKeyValueObservingOptions.new, context: nil)
-
-	}
-    
     static func setLockMode(){
         UserDefaults.standard.set(true, forKey: "lock")
     }
@@ -42,37 +35,40 @@ class LockServices: NSObject {
 		return dateString
 	}
 
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+	/*override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 
-		if object is UserDefaults {
-			print("Rolou")
-		}
+		print("Rolou")
 
-		/*let date = self.getCurrentDate()
+		let lock = LockServices.checkLockMode()
 
-		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+		if keypath == "lock" && lock == true {
 
-		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
-			(error) in
+			let date = self.getCurrentDate()
 
-			guard (error == nil) else {
-				print("Error on adding a new help occurrence.")
-				return
+			let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+
+			DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+				(error) in
+
+				guard (error == nil) else {
+					print("Error on adding a new help occurrence.")
+					return
+				}
+
 			}
 
-		}
+			AppSettings.mainUser?.status = userStatus.danger
 
-		AppSettings.mainUser?.status = userStatus.danger
+			DatabaseManager.updateUserSatus() {
+				(error) in
+				if error != nil {
 
-		DatabaseManager.updateUserSatus() {
-			(error) in
-			if error != nil {
-
-				print("Error on dismissing timer")
-				return
+					print("Error on dismissing timer")
+					return
+				}
 			}
-		}*/
-	}
+		}
+	}*/
 
     static func dismissLockMode(){
         UserDefaults.standard.set(false, forKey: "lock")

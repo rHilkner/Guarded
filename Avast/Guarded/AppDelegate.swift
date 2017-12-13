@@ -27,7 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		GMSPlacesClient.provideAPIKey("AIzaSyBJXlwXoEPfuCZrwQ9IAK86mxR5yBfp-Vs")
         
-        
+		/*WatchSessionManager.sharedManager.startSession(){
+			(error) in
+			if error {
+				print("Não foi possível criar uma sessão com o watch")
+			}
+		}*/
                 
         return true
     }
