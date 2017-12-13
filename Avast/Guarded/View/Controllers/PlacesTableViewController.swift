@@ -17,6 +17,7 @@ class PlacesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
 		self.watchSessionManager = WatchSessionManager()
 		self.watchSessionManager?.delegate = self
@@ -49,15 +50,23 @@ class PlacesTableViewController: UITableViewController {
         return self.places.count
     }
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//    }
-
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            AppSettings.mainUser!.removePlace(places[indexPath.row])
+            self.places.remove(at: indexPath.row)
+//            self.tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell", for: indexPath) as! PlaceCell
         // Configure the cell...
-        cell.placePin.image = UIImage(named:"Orange Pin")
+        cell.placePin.image = UIImage(named:"cell_others")
         cell.placeLabel.text = self.places[indexPath.row].name
         cell.placeAddress.text = self.places[indexPath.row].address
         

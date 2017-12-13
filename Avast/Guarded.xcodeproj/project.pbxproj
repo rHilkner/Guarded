@@ -30,6 +30,9 @@
 		89B00E341FCDB5680030DC2C /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E331FCDB5680030DC2C /* UserAnnotation.swift */; };
 		89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */; };
 		89DE136D1FCF2DD6003D009C /* ArrivalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */; };
+		C21BF8C71FDF070D006418BE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C21BF8C61FDF070D006418BE /* Settings.storyboard */; };
+		C21BF8C91FDF0864006418BE /* Phones.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C21BF8C81FDF0864006418BE /* Phones.storyboard */; };
+		C21BF8CB1FDF0F9A006418BE /* PhoneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21BF8CA1FDF0F9A006418BE /* PhoneTableViewController.swift */; };
 		C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C230201D1FC4AF7700A099BE /* Help.storyboard */; };
 		C24394201FD59BF2007CE6CD /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C243941F1FD59BF2007CE6CD /* ClockView.swift */; };
 		C24E9B101FCDF3730086C68F /* SetDestinationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */; };
@@ -72,7 +75,9 @@
 		D45A5BCF1FC7D05400FACE2E /* PersonPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */; };
 		D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */; };
 		D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */; };
+		D49557C71FE00C0400A3FF8C /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */; };
 		D499F90B1FC8375500C9EA86 /* PlaceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */; };
+		D4AAB19F1FE0399000543560 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAB19E1FE0399000543560 /* AboutUsViewController.swift */; };
 		D4BC71EA1FCDCECF004504EC /* ViewEnumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */; };
 		D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */; };
 		D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BC71ED1FCE39D2004504EC /* PlaceCalloutView.xib */; };
@@ -81,6 +86,9 @@
 		D4BC71F51FCE5A18004504EC /* EditInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */; };
 		D4BC71F71FCE5AC3004504EC /* ShowInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */; };
 		D4CAEB211FD5D07C0010ED89 /* LockScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */; };
+		D4CD87141FD86D7F00A19152 /* OccurrenceCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD87121FD86D7E00A19152 /* OccurrenceCalloutView.swift */; };
+		D4CD87151FD86D7F00A19152 /* OccurrenceCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CD87131FD86D7F00A19152 /* OccurrenceCalloutView.xib */; };
+		D4CD87171FD86F8D00A19152 /* OccurrencePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CD87161FD86F8D00A19152 /* OccurrencePinView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +162,9 @@
 		89B00E3A1FCF21E30030DC2C /* ArrivalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInformation.swift; sourceTree = "<group>"; };
 		89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInformation.swift; sourceTree = "<group>"; };
 		9AF55D66836C237B0EE10683 /* Pods-Guarded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.debug.xcconfig"; sourceTree = "<group>"; };
+		C21BF8C61FDF070D006418BE /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		C21BF8C81FDF0864006418BE /* Phones.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Phones.storyboard; sourceTree = "<group>"; };
+		C21BF8CA1FDF0F9A006418BE /* PhoneTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTableViewController.swift; sourceTree = "<group>"; };
 		C230201D1FC4AF7700A099BE /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		C243941F1FD59BF2007CE6CD /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		C24E9B0F1FCDF3730086C68F /* SetDestinationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDestinationTableViewController.swift; sourceTree = "<group>"; };
@@ -208,7 +219,9 @@
 		D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonPinView.swift; sourceTree = "<group>"; };
 		D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStatusCalloutView.swift; sourceTree = "<group>"; };
 		D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonStatusCalloutView.xib; sourceTree = "<group>"; };
+		D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D499F90A1FC8375500C9EA86 /* PlaceCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCalloutView.swift; sourceTree = "<group>"; };
+		D4AAB19E1FE0399000543560 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		D4BC71E91FCDCECF004504EC /* ViewEnumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEnumerations.swift; sourceTree = "<group>"; };
 		D4BC71EB1FCDDC65004504EC /* PlacePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePinView.swift; sourceTree = "<group>"; };
 		D4BC71ED1FCE39D2004504EC /* PlaceCalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceCalloutView.xib; sourceTree = "<group>"; };
@@ -217,6 +230,9 @@
 		D4BC71F41FCE5A18004504EC /* EditInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInformationCell.swift; sourceTree = "<group>"; };
 		D4BC71F61FCE5AC3004504EC /* ShowInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInformationCell.swift; sourceTree = "<group>"; };
 		D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewController.swift; sourceTree = "<group>"; };
+		D4CD87121FD86D7E00A19152 /* OccurrenceCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccurrenceCalloutView.swift; sourceTree = "<group>"; };
+		D4CD87131FD86D7F00A19152 /* OccurrenceCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OccurrenceCalloutView.xib; sourceTree = "<group>"; };
+		D4CD87161FD86F8D00A19152 /* OccurrencePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccurrencePinView.swift; sourceTree = "<group>"; };
 		E7D14AF15F8482F11A74401B /* Pods-Guarded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Guarded.release.xcconfig"; path = "Pods/Target Support Files/Pods-Guarded/Pods-Guarded.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -462,6 +478,9 @@
 				D4BC71F11FCE576A004504EC /* AddPlaceTableViewController.swift */,
 				8946E73A1FB237660066D1B3 /* HelpViewController.swift */,
 				D4CAEB201FD5D07C0010ED89 /* LockScreenViewController.swift */,
+				C21BF8CA1FDF0F9A006418BE /* PhoneTableViewController.swift */,
+				D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */,
+				D4AAB19E1FE0399000543560 /* AboutUsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -469,6 +488,9 @@
 		D4622CF31FC4FA8B00E3CB4A /* Pin View */ = {
 			isa = PBXGroup;
 			children = (
+				D4CD87161FD86F8D00A19152 /* OccurrencePinView.swift */,
+				D4CD87121FD86D7E00A19152 /* OccurrenceCalloutView.swift */,
+				D4CD87131FD86D7F00A19152 /* OccurrenceCalloutView.xib */,
 				D45A5BCE1FC7D05400FACE2E /* PersonPinView.swift */,
 				D45A5BD01FC7D0B200FACE2E /* PersonStatusCalloutView.swift */,
 				D45A5BD21FC7D19500FACE2E /* PersonStatusCalloutView.xib */,
@@ -482,12 +504,13 @@
 		D48231B71FA4469D0027EC1F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				C21BF8C61FDF070D006418BE /* Settings.storyboard */,
 				C69153DC1FA82B86004BAFE4 /* LaunchScreen.storyboard */,
 				C69153DA1FA82B86004BAFE4 /* Main.storyboard */,
 				C230201D1FC4AF7700A099BE /* Help.storyboard */,
 				D4BC71EF1FCE5667004504EC /* AddPlace.storyboard */,
 				C24E9B111FCDF3A90086C68F /* SetDestinationStoryboard.storyboard */,
-				89A6DC171FD86EB40067B426 /* Login.storyboard */,
+				C21BF8C81FDF0864006418BE /* Phones.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -645,14 +668,16 @@
 				C647A8041F8C29A9006E53FA /* infos admin.strings in Resources */,
 				D4BC71EE1FCE39D2004504EC /* PlaceCalloutView.xib in Resources */,
 				D4BC71F01FCE5667004504EC /* AddPlace.storyboard in Resources */,
+				C21BF8C71FDF070D006418BE /* Settings.storyboard in Resources */,
 				C230201E1FC4AF7700A099BE /* Help.storyboard in Resources */,
+				D4CD87151FD86D7F00A19152 /* OccurrenceCalloutView.xib in Resources */,
 				89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */,
 				D45A5BD31FC7D19500FACE2E /* PersonStatusCalloutView.xib in Resources */,
 				C24E9B121FCDF3A90086C68F /* SetDestinationStoryboard.storyboard in Resources */,
 				C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */,
 				C69153DF1FA82B86004BAFE4 /* LaunchScreen.storyboard in Resources */,
+				C21BF8C91FDF0864006418BE /* Phones.storyboard in Resources */,
 				C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */,
-				89A6DC181FD86EB40067B426 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +776,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89B00E321FCDB5550030DC2C /* PlaceAnnotation.swift in Sources */,
+				D4CD87171FD86F8D00A19152 /* OccurrencePinView.swift in Sources */,
 				D4BC71EC1FCDDC65004504EC /* PlacePinView.swift in Sources */,
 				C60EEC571FA83642001E2194 /* Protected.swift in Sources */,
 				C6A0AFA61FC481BA00BF74D4 /* LocationInfo.swift in Sources */,
@@ -763,10 +789,13 @@
 				C24E9B181FCE026F0086C68F /* ProtectorCellTableViewCell.swift in Sources */,
 				C69C070D1FA39C830087D613 /* LoginServices.swift in Sources */,
 				C60EEC581FA83642001E2194 /* Protector.swift in Sources */,
+				D4CD87141FD86D7F00A19152 /* OccurrenceCalloutView.swift in Sources */,
 				D4BC71F71FCE5AC3004504EC /* ShowInformationCell.swift in Sources */,
+				C21BF8CB1FDF0F9A006418BE /* PhoneTableViewController.swift in Sources */,
 				D4BC71F21FCE576A004504EC /* AddPlaceTableViewController.swift in Sources */,
 				C24E9B141FCDFA680086C68F /* DestinationTableViewCell.swift in Sources */,
 				C2B2574F1FD6F49500B850F2 /* LockServices.swift in Sources */,
+				D4AAB19F1FE0399000543560 /* AboutUsViewController.swift in Sources */,
 				C65358281FB22D1E00301A3E /* DatabaseManager.swift in Sources */,
 				C69153F01FA82C21004BAFE4 /* ProtectCollectionViewController.swift in Sources */,
 				C69153F21FA82C21004BAFE4 /* ProtectorCollectionViewCell.swift in Sources */,
@@ -787,6 +816,7 @@
 				C69153EE1FA82C21004BAFE4 /* ProtectedCollectionViewCell.swift in Sources */,
 				C62DF0FC1FA6B47500DC956F /* DatabaseError.swift in Sources */,
 				C6152DF41FA292DA00CC4F76 /* Place.swift in Sources */,
+				D49557C71FE00C0400A3FF8C /* SettingsTableViewController.swift in Sources */,
 				C24E9B161FCE01E70086C68F /* TimerCellTableViewCell.swift in Sources */,
 				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
 				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
@@ -1042,7 +1072,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -1079,7 +1109,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8522V23J27;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
