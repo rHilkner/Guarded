@@ -12,9 +12,14 @@ class PlacesTableViewController: UITableViewController {
 
     
     var places: [Place] = []
+
+	var watchSessionManager: WatchSessionManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		self.watchSessionManager = WatchSessionManager()
+		self.watchSessionManager?.delegate = self
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -76,4 +81,53 @@ class PlacesTableViewController: UITableViewController {
             self.places = userPlaces
         }
     }
+}
+
+extension PlacesTableViewController: LockProtocol {
+	func showLockScreen() {
+		LockServices.setLockMode()
+
+		let date = self.getCurrentDate()
+
+		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+
+		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+			(error) in
+
+			guard (error == nil) else {
+				print("Error on adding a new help occurrence.")
+				return
+			}
+
+		}
+
+		AppSettings.mainUser?.status = userStatus.danger
+
+		DatabaseManager.updateUserSatus() {
+			(error) in
+			if error != nil {
+
+				print("Error on dismissing timer")
+				return
+			}
+		}
+
+		let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
+
+		vc.modalTransitionStyle = .crossDissolve
+
+		self.present(vc, animated: true)
+	}
+
+	func getCurrentDate() -> String {
+
+		let date = Date()
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+
+		let dateString = dateFormatter.string(from: date)
+
+		return dateString
+	}
 }

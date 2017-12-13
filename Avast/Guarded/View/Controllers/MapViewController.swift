@@ -80,14 +80,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 		self.launched = false
 
-		/*self.startSession(completionHandler: {
-			(error) in
-
-			if(error) {
-				print("Error in watch/iOs communication")
-			}
-		})*/
-
 		self.watchSessionManager = WatchSessionManager()
 		self.watchSessionManager?.delegate = self
 
@@ -320,42 +312,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 }
 
-/*extension MapViewController: WCSessionDelegate {
-
-	// Activate Session
-	// This needs to be called to activate the session before first use!
-	func startSession(completionHandler: @escaping (Bool) -> Void) {
-
-		guard WCSession.isSupported() else {
-			completionHandler(false)
-			return
-		}
-
-		session.delegate = self
-		session.activate()
-		completionHandler(true)
-	}
-
-	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-		print("Session became active")
-	}
-
-	func sessionDidBecomeInactive(_ session: WCSession) {
-		print("Watch session did become inactive")
-	}
-
-	func sessionDidDeactivate(_ session: WCSession) {
-		print("Watch session did deactivate")
-	}
-
-	func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-		let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
-		vc.modalTransitionStyle = .crossDissolve
-		self.present(vc, animated: true)
-	}
-}*/
-
 extension MapViewController: LockProtocol {
+
 	func showLockScreen() {
 		LockServices.setLockMode()
 

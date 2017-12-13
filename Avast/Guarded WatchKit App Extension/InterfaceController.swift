@@ -29,18 +29,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // Configure interface objects here.
     }
 
-	@IBAction func dismissLockMode() {
-		let message = ["lock": false]
-
-		WCSession.default.sendMessage(message, replyHandler: {
-			(replyMessage) in
-			print("Reply receive: \(replyMessage)")
-		}, errorHandler: {
-			(error) in
-			print("Error in sending message from watch to iphone")
-		})
-	}
-
 	@IBAction func helpButtonPressed() {
 
 		let message = ["lock": true]
@@ -50,10 +38,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 			print("Error in sending message from watch to iphone")
 		})
 
-
-	/*	let islock = UserDefaults.standard.object(forKey: "lock") as? Bool
-		print(islock)
-		UserDefaults.standard.set(true, forKey: "lock")*/
 	}
 
     override func willActivate() {
