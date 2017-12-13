@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Nuke
 
 class ProtectCollectionViewController: UICollectionViewController {
     
@@ -67,6 +68,8 @@ class ProtectCollectionViewController: UICollectionViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectorCell", for: indexPath) as! ProtectorCollectionViewCell
             cell.personName.text = protectors[indexPath.row].name
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
+            Manager.shared.loadImage(with: protectors[indexPath.row].profilePictureURL, into: cell.profilePicture)
+            
             return cell
             
         } else {
@@ -74,6 +77,7 @@ class ProtectCollectionViewController: UICollectionViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectedCell", for: indexPath) as! ProtectedCollectionViewCell
             cell.personName.text = protected[indexPath.row].name
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
+            Manager.shared.loadImage(with: protected[indexPath.row].profilePictureURL, into: cell.profilePicture)
             cell.pin.image = UIImage(named:"Orange Pin")
             return cell
             

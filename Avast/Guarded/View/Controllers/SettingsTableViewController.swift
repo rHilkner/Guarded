@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class SettingsTableViewController: UITableViewController {
 
@@ -23,6 +24,7 @@ class SettingsTableViewController: UITableViewController {
         self.mainUserPicture.layer.cornerRadius = (self.mainUserPicture.frame.height)/2
         self.mainUserPicture.backgroundColor = Pin.green.dark
         self.mainUserPicture.image = UIImage(named: "collectionview_placeholder_image")
+        Manager.shared.loadImage(with: AppSettings.mainUser!.profilePictureURL, into: self.mainUserPicture)
     }
 
     override func didReceiveMemoryWarning() {
