@@ -70,7 +70,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>11</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
