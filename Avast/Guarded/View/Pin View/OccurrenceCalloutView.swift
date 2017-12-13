@@ -23,6 +23,7 @@ class OccurrenceCalloutView: UIView {
         super.awakeFromNib()
         
         self.victimPicture.layer.cornerRadius = (self.victimPicture.frame.height)/2
+        self.victimPicture.backgroundColor = UIColor.lightGray
         self.addTriangleTip(withColor: .white)
         self.backgroundColor = .white
         self.layer.cornerRadius = 8

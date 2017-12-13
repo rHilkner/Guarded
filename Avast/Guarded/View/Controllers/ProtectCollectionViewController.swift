@@ -25,10 +25,9 @@ class ProtectCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadActors()
-        print(AppSettings.mainUser?.protectors.count)
     }
     
-    func loadActors(){
+    func loadActors() {
         if let userProtectors = AppSettings.mainUser?.protectors {
             self.protectors = userProtectors
         } else {
@@ -43,20 +42,10 @@ class ProtectCollectionViewController: UICollectionViewController {
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        //Return the number of sections
         return 1
     }
 
@@ -76,16 +65,33 @@ class ProtectCollectionViewController: UICollectionViewController {
         if (reuseIndex == 0) {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectorCell", for: indexPath) as! ProtectorCollectionViewCell
-            cell.personName.text = protectors[indexPath.row].name
+            var name = protectors[indexPath.row].name.components(separatedBy: " ")
+            cell.personName.text = name.removeFirst()
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
+            cell.layer.cornerRadius = 5.0
+            
             return cell
             
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectedCell", for: indexPath) as! ProtectedCollectionViewCell
-            cell.personName.text = protected[indexPath.row].name
+            
+            var name = protected[indexPath.row].name.components(separatedBy: " ")
+            cell.personName.text = name.removeFirst()
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
-            cell.pin.image = UIImage(named:"Orange Pin")
+            cell.layer.cornerRadius = 5.0
+            
+            let status = protected[indexPath.row].status
+            switch status {
+            case userStatus.safe:
+                cell.pin.image = Pin.green.image
+            case userStatus.arriving:
+                cell.pin.image = Pin.yellow.image
+            case userStatus.danger:
+                cell.pin.image = Pin.red.image
+            default:
+                cell.pin.image = UIImage(named: "cell_others")
+            }
             return cell
             
         }
@@ -103,92 +109,87 @@ class ProtectCollectionViewController: UICollectionViewController {
         }
     }
     
-	func showActionSheet(protector: Protector?) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.row
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if segmentedControl.selectedSegmentIndex == 0 {
-            let sendLocationAction = UIAlertAction(title: "Send Location", style: .default, handler: {
-                (alert: UIAlertAction!) -> Void in
-                    let location = AppSettings.mainUser!.lastLocation
-                    let alert = UIAlertController(title: "Send Location", message: "latitude: \(location!.latitude) longitude: \(location!.longitude)", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true, completion: nil)
-
-            })
-
-			/// Show in the alert if the protector is currently able to follow you or not
-			var title  = "Protecting you: "
-			if protector?.protectingYou == true {
-				title = title + "ON"
-			}
-			else {
-				title = title + "OFF"
-			}
-
-
-			let changeStatusAction = UIAlertAction(title: title, style: .default, handler: {
-				(alert: UIAlertAction!) -> Void in
-
-				/// Change status of protector in local variable and in DB
-				if protector?.protectingYou == true {
-					protector?.protectingYou = false
-					DatabaseManager.deactivateProtector(protector!, completionHandler: {
-						(error) in
-
-						guard error == nil else{
-							print("Error in deactivating protector")
-							return
-						}
-					})
-				}
-				else {
-					protector?.protectingYou = true
-					DatabaseManager.addProtector(protector!, completionHandler: {
-						(error) in
-
-						guard error == nil else{
-							print("Error in deactivating protector")
-							return
-						}
-					})
-				}
-			})
-
-			/// id do protector - protected - seu id - change status
-			optionMenu.addAction(changeStatusAction)
-			optionMenu.addAction(sendLocationAction)
-
             
+            /// Show in the alert if the protector is currently able to follow you or not
+            var title  = "Protecting you: "
+            if protectors[index].protectingYou == true {
+                title = title + "ON"
+            }
+            else {
+                title = title + "OFF"
+            }
+            
+            
+            let changeStatusAction = UIAlertAction(title: title, style: .default) {
+                (alert: UIAlertAction!) -> Void in
+                
+                /// Change status of protector in local variable and in DB
+                if self.protectors[index].protectingYou == true {
+                    self.protectors[index].protectingYou = false
+                    
+                    DatabaseManager.deactivateProtector(self.protectors[index]) {
+                        (error) in
+                        
+                        guard error == nil else{
+                            print("Error in deactivating protector")
+                            return
+                        }
+                    }
+                }
+                else {
+                    self.protectors[index].protectingYou = true
+                    DatabaseManager.addProtector(self.protectors[index]) {
+                        (error) in
+                        
+                        guard error == nil else {
+                            print("Error in deactivating protector")
+                            return
+                        }
+                    }
+                }
+            }
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) {
+                (alert: UIAlertAction!) -> Void in
+                AppSettings.mainUser!.removeProtector(self.protectors[index])
+                self.protectors.remove(at: index)
+                self.collectionView?.reloadData()
+            }
+            
+            /// id do protector - protected - seu id - change status
+            optionMenu.addAction(changeStatusAction)
+            optionMenu.addAction(deleteAction)
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            let seeOnMapAction = UIAlertAction(title: "See on map", style: .default) {
+                (alert: UIAlertAction!) -> Void in
+                self.findUser(atIndex: index)
+            }
+            optionMenu.addAction(seeOnMapAction)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
-        })
-        
-        
+        }
         
         optionMenu.addAction(cancelAction)
         
-        // 5
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-		/// if clicked in a protector, give a option to activate or deactivate
-		/// else, no option
-		if segmentedControl.selectedSegmentIndex == 0 {
-			showActionSheet(protector: protectors[indexPath.row])
-		}
-		else {
-			showActionSheet(protector: nil)
-		}
-
-
-
+    func findUser(atIndex index: Int) {
+        let protected = self.protected[index]
+        
+        let navigationController = tabBarController?.viewControllers?.first
+        let mapViewController = navigationController?.childViewControllers[0] as! MapViewController
+        mapViewController.centerInLocation(location: protected.lastLocation!)
+        self.tabBarController?.selectedIndex = 0
     }
-    
     
 }

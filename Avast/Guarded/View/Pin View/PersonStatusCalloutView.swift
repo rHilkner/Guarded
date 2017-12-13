@@ -29,6 +29,7 @@ class PersonStatusCalloutView: UIView {
         super.awakeFromNib()
         
         self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.height)/2
+        self.profilePicture.backgroundColor = UIColor.lightGray
         self.backgroundColor = calloutColor
         self.layer.cornerRadius = 8
     }
