@@ -29,6 +29,17 @@ class SettingsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if indexPath.row == 1{
+            
+            let text = "Melhore a sua segurança e de todos ao seu redor, confira Protect para o seu smartphone. Baixe:"
+            let activityViewController = UIActivityViewController(activityItems: [text as NSString], applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+
+        }
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

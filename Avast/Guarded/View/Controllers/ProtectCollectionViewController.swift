@@ -104,7 +104,6 @@ class ProtectCollectionViewController: UICollectionViewController {
     }
     
 	func showActionSheet(protector: Protector?) {
-        // 1
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
