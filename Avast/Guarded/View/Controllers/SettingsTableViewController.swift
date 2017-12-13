@@ -21,7 +21,7 @@ class SettingsTableViewController: UITableViewController {
         self.mainUserName.text = mainUser?.name
         self.mainUserEmail.text = mainUser?.email
         self.mainUserPicture.layer.cornerRadius = (self.mainUserPicture.frame.height)/2
-        self.mainUserPicture.backgroundColor = Pin.green.dark
+        self.mainUserPicture.backgroundColor = UIColor.lightGray
         self.mainUserPicture.image = UIImage(named: "collectionview_placeholder_image")
     }
 
