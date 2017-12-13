@@ -34,6 +34,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 	var launched: Bool = false
 
+	var watchSessionManager: WatchSessionManager?
+
 	// Keep a reference for the session,
 	// which will be used later for sending / receiving data
 	private let session = WCSession.default
@@ -78,17 +80,17 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 		self.launched = false
 
-		self.startSession(completionHandler: {
+		/*self.startSession(completionHandler: {
 			(error) in
 
 			if(error) {
 				print("Error in watch/iOs communication")
 			}
-		})
+		})*/
 
-		/*self.lockObserver = LockObserver()
-		self.lockObserver?.addObserver()
-		self.lockObserver?.delegate = self*/
+		self.watchSessionManager = WatchSessionManager()
+		self.watchSessionManager?.delegate = self
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -216,7 +218,6 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         /// get all places of the current user and display on the map
         for place in AppSettings.mainUser!.places {
 			self.displayLocation(place: place, showCallout: false)
-
         }
 
 		/// Check if it needs to focus on the user current location
@@ -225,14 +226,14 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			launched = true
 		}
 
-		/*
+
 		let locked = LockServices.checkLockMode()
 		if locked == true{
 
 			let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
             vc.modalTransitionStyle = .crossDissolve
 			self.present(vc, animated: true)
-		}*/
+		}
 
     }
     
@@ -319,7 +320,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 
 }
 
-extension MapViewController: WCSessionDelegate {
+/*extension MapViewController: WCSessionDelegate {
 
 	// Activate Session
 	// This needs to be called to activate the session before first use!
@@ -352,21 +353,56 @@ extension MapViewController: WCSessionDelegate {
 		vc.modalTransitionStyle = .crossDissolve
 		self.present(vc, animated: true)
 	}
-}
+}*/
 
-/*extension MapViewController: LockProtocol {
+extension MapViewController: LockProtocol {
 	func showLockScreen() {
+		LockServices.setLockMode()
+
+		let date = self.getCurrentDate()
+
+		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+
+		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+			(error) in
+
+			guard (error == nil) else {
+				print("Error on adding a new help occurrence.")
+				return
+			}
+
+		}
+
+		AppSettings.mainUser?.status = userStatus.danger
+
+		DatabaseManager.updateUserSatus() {
+			(error) in
+			if error != nil {
+
+				print("Error on dismissing timer")
+				return
+			}
+		}
+
 		let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
+
 		vc.modalTransitionStyle = .crossDissolve
+		
 		self.present(vc, animated: true)
 	}
 
-	func dismissLockScreen() {
-		print("dismissed")
+	func getCurrentDate() -> String {
+
+		let date = Date()
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+
+		let dateString = dateFormatter.string(from: date)
+
+		return dateString
 	}
-
-
-}*/
+}
 
 extension MapViewController: MKMapViewDelegate {
 

@@ -35,41 +35,6 @@ class LockServices: NSObject {
 		return dateString
 	}
 
-	/*override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-
-		print("Rolou")
-
-		let lock = LockServices.checkLockMode()
-
-		if keypath == "lock" && lock == true {
-
-			let date = self.getCurrentDate()
-
-			let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
-
-			DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
-				(error) in
-
-				guard (error == nil) else {
-					print("Error on adding a new help occurrence.")
-					return
-				}
-
-			}
-
-			AppSettings.mainUser?.status = userStatus.danger
-
-			DatabaseManager.updateUserSatus() {
-				(error) in
-				if error != nil {
-
-					print("Error on dismissing timer")
-					return
-				}
-			}
-		}
-	}*/
-
     static func dismissLockMode(){
         UserDefaults.standard.set(false, forKey: "lock")
     }

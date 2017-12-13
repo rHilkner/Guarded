@@ -6,12 +6,11 @@
 //  Copyright © 2017 Rodrigo Hilkner. All rights reserved.
 //
 
-/*import UIKit
+import UIKit
 import WatchConnectivity
 
 protocol LockProtocol {
 	func showLockScreen()
-	func dismissLockScreen()
 }
 
 class WatchSessionManager: NSObject, WCSessionDelegate {
@@ -21,14 +20,32 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 
 	// Keep a reference for the session,
 	// which will be used later for sending / receiving data
-	private let session = WCSession.default
+	let session = WCSession.default
 	var delegate: LockProtocol!
 
-	private override init() {
+	override init() {
 		super.init()
+
+		if WCSession.isSupported() {
+			session.delegate = self
+			session.activate()
+		}
 	}
 
+	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		print("Session became active")
+	}
 
+	func sessionDidBecomeInactive(_ session: WCSession) {
+		print("Watch session did become inactive")
+	}
 
+	func sessionDidDeactivate(_ session: WCSession) {
+		print("Watch session did deactivate")
+	}
 
-}*/
+	func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+		self.delegate.showLockScreen()
+	}
+
+}

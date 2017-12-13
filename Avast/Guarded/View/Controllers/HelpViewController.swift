@@ -77,7 +77,7 @@ class HelpViewController: UIViewController {
 
 		LockServices.setLockMode()
 
-		/*let date = self.getCurrentDate()
+		let date = self.getCurrentDate()
 
 		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
 
@@ -101,7 +101,7 @@ class HelpViewController: UIViewController {
                 print("Error on dismissing timer")
                 return
             }
-        }*/
+        }
     }
     
     func goToLockScreen() {
