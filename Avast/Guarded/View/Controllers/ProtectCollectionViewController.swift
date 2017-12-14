@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Nuke
 
 class ProtectCollectionViewController: UICollectionViewController {
     

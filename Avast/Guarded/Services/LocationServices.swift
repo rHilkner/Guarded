@@ -202,8 +202,6 @@ extension LocationServices {
             
             let placeInfo = LocationInfo(name: placeName, address: placeAddress, city: placeCity, state: placeState, country: placeCountry)
             
-            print(placeInfo)
-            
             completionHandler(placeInfo)
         }
     }

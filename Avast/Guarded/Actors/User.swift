@@ -6,7 +6,7 @@
 //  Copyright © 2017 Rodrigo Hilkner. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 
 struct userStatus {
@@ -26,6 +26,7 @@ class User {
     var name: String
     var email: String
     var phoneNumber: String
+    var profilePictureURL: URL
     
     var statusDelegate: UserStatusDelegate?
     var status: String {
@@ -52,6 +53,8 @@ class User {
         } else {
             self.phoneNumber = ""
         }
+        
+        self.profilePictureURL = URL(string: "https://graph.facebook.com/\(id)/picture?type=large&return_ssl_resources=1")!
     }
     
 }

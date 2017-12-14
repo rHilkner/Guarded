@@ -275,7 +275,8 @@ class DatabaseManager {
         
         let user = User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus)
         print("User (\(user.name)) fetched successfully.")
-		return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus)
+        
+		return user
     }
     
     
