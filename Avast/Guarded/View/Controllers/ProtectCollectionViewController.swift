@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Nuke
 
 class ProtectCollectionViewController: UICollectionViewController {
     
@@ -19,13 +20,13 @@ class ProtectCollectionViewController: UICollectionViewController {
     var protectors = [Protector]()
     var protected = [Protected]()
 
-	var watchSessionManager: WatchSessionManager?
+    var watchSessionManager: WatchSessionManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		self.watchSessionManager = WatchSessionManager()
-		self.watchSessionManager?.delegate = self
+        self.watchSessionManager = WatchSessionManager()
+        self.watchSessionManager?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +74,7 @@ class ProtectCollectionViewController: UICollectionViewController {
             var name = protectors[indexPath.row].name.components(separatedBy: " ")
             cell.personName.text = name.removeFirst()
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
+            Manager.shared.loadImage(with: protectors[indexPath.row].profilePictureURL, into: cell.profilePicture)
             cell.layer.cornerRadius = 5.0
             
             return cell
@@ -84,6 +86,7 @@ class ProtectCollectionViewController: UICollectionViewController {
             var name = protected[indexPath.row].name.components(separatedBy: " ")
             cell.personName.text = name.removeFirst()
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
+            Manager.shared.loadImage(with: protected[indexPath.row].profilePictureURL, into: cell.profilePicture)
             cell.layer.cornerRadius = 5.0
             
             let status = protected[indexPath.row].status
@@ -97,9 +100,9 @@ class ProtectCollectionViewController: UICollectionViewController {
             default:
                 cell.pin.image = UIImage(named: "cell_others")
             }
-            return cell
-            
         }
+        return cell
+            
     }
     
     @IBAction func segControlChanged(_ sender: UISegmentedControl) {
@@ -200,51 +203,51 @@ class ProtectCollectionViewController: UICollectionViewController {
 }
 
 extension ProtectCollectionViewController: LockProtocol {
-	func showLockScreen() {
-		LockServices.setLockMode()
+    func showLockScreen() {
+        LockServices.setLockMode()
 
-		let date = self.getCurrentDate()
+        let date = self.getCurrentDate()
 
-		let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+        let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
 
-		DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
-			(error) in
+        DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+            (error) in
 
-			guard (error == nil) else {
-				print("Error on adding a new help occurrence.")
-				return
-			}
+            guard (error == nil) else {
+                print("Error on adding a new help occurrence.")
+                return
+            }
 
-		}
+        }
 
-		AppSettings.mainUser?.status = userStatus.danger
+        AppSettings.mainUser?.status = userStatus.danger
 
-		DatabaseManager.updateUserSatus() {
-			(error) in
-			if error != nil {
+        DatabaseManager.updateUserSatus() {
+            (error) in
+            if error != nil {
 
-				print("Error on dismissing timer")
-				return
-			}
-		}
+                print("Error on dismissing timer")
+                return
+            }
+        }
 
-		let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
+        let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
 
-		vc.modalTransitionStyle = .crossDissolve
+        vc.modalTransitionStyle = .crossDissolve
 
-		self.present(vc, animated: true)
-	}
+        self.present(vc, animated: true)
+    }
 
-	func getCurrentDate() -> String {
+    func getCurrentDate() -> String {
 
-		let date = Date()
+        let date = Date()
 
-		let dateFormatter = DateFormatter()
-		dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
 
-		let dateString = dateFormatter.string(from: date)
+        let dateString = dateFormatter.string(from: date)
 
-		return dateString
-	}
+        return dateString
+    }
 }
 
