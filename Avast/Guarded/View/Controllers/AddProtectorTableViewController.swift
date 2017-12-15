@@ -134,19 +134,34 @@ class AddProtectorTableViewController: UITableViewController {
 				return
 			}
 
-			if let protector = protector {
-				DatabaseManager.addProtector(protector) {
-					(error) in
+			if let protector = protector{
 
-					guard error == nil else {
-						print("Error on adding protector to user's database object.")
-						return
+				if !(AppSettings.mainUser?.protectors.contains(where: {$0.id == protector.id}))! {
+					DatabaseManager.addProtector(protector) {
+						(error) in
+
+						guard error == nil else {
+							print("Error on adding protector to user's database object.")
+							return
+						}
+
+						AppSettings.mainUser?.protectors.append(protector)
+
+						self.navigationController?.popViewController(animated: true)
 					}
+				} else {
+					let alertController = UIAlertController(title: "Escolha outra pessoa.",
+						message: "Essa pessoa já é seu protetor.",
+						preferredStyle: UIAlertControllerStyle.alert)
 
-					AppSettings.mainUser?.protectors.append(protector)
-                    
-                    self.navigationController?.popViewController(animated: true) 
+					alertController.addAction(UIAlertAction(title: "Ok",
+															style: UIAlertActionStyle.cancel,
+															handler: { action in
+					}))
+
+					self.present(alertController, animated: true, completion: nil)
 				}
+
 			}
 		}
 
