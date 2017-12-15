@@ -8,11 +8,16 @@ use_frameworks!
 # Pods for Guarded
 pod 'Firebase/Core'
 pod 'Firebase/Database'
+pod 'FirebaseUI/Auth'
+pod 'FirebaseUI/Facebook'
+
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
+
 pod 'GooglePlaces'
 pod 'GoogleMaps'
+
 pod 'Nuke', '~> 5.0'
 
 end
