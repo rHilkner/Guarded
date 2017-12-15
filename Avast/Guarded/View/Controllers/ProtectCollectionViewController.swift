@@ -102,7 +102,7 @@ class ProtectCollectionViewController: UICollectionViewController {
                 cell.pin.image = UIImage(named: "cell_others")
             }
 
-			return cell
+            return cell
         }
 
             

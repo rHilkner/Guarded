@@ -512,7 +512,7 @@ extension MapViewController: LocationUpdateProtocol {
     func displayLocation(place: Place, showCallout: Bool) {
         
         let someLoc2D = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-        let locationInfo = LocationInfo(name: place.address, address: place.address, city: "", state: "", country: "")
+        let locationInfo = LocationInfo(name: place.address, address: place.address, city: place.city, state: place.state, country: place.country, coordinate: place.coordinate)
         let placeAnnotation = PlaceAnnotation(locationInfo: locationInfo, name: place.name, identifier: annotationIdentifiers.place, coordinate: someLoc2D)
         
         placeAnnotation.locationInfo = locationInfo
