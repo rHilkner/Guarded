@@ -101,8 +101,11 @@ class ProtectCollectionViewController: UICollectionViewController {
             default:
                 cell.pin.image = UIImage(named: "cell_others")
             }
+
             return cell
         }
+
+            
     }
     
     @IBAction func segControlChanged(_ sender: UISegmentedControl) {
