@@ -111,8 +111,8 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 				}
 				protected.status = userStatus.safe
 
-				let alertController = UIAlertController(title: "\(protected.name) chegou em segurança",
-														message: nil,
+				let alertController = UIAlertController(title: "Alerta",
+														message: "\(protected.name) chegou em segurança",
 														preferredStyle: UIAlertControllerStyle.alert)
 
 				alertController.addAction(UIAlertAction(title: "Ok",
@@ -156,7 +156,7 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
 			if !(self.launched) {
 
 				/// display alert
-				let alertController = UIAlertController(title: "\(protected!.name.capitalized) pediu sua ajuda, procure entender a situação e ajudá-lo",
+				let alertController = UIAlertController(title: "\(protected!.name.capitalized) asked for your help. Try to understand what's happening and help him.",
 					message: nil,
 					preferredStyle: UIAlertControllerStyle.alert)
 
@@ -567,23 +567,22 @@ extension MapViewController: TimerObjectDelegate {
     
     func displayAlert() {
         
-        let alertController = UIAlertController(title: "Já chegou?",
+        let alertController = UIAlertController(title: "Have you arrived?",
                                                 message: nil,
                                                 preferredStyle: UIAlertControllerStyle.alert)
         
-        alertController.addAction(UIAlertAction(title: "Já cheguei",
+        alertController.addAction(UIAlertAction(title: "Yes",
                                                 style: UIAlertActionStyle.cancel,
                                                 handler: { action in
                                                     AppSettings.mainUser!.arrived()
                                                 }))
         
-        /*alertController.addAction(UIAlertAction(title: "+5 min",
+        alertController.addAction(UIAlertAction(title: "+5 min",
                                                 style: UIAlertActionStyle.default,
                                                 handler: { action in
 
-													AppSettings.mainUser?.arrivalInformation?.timer.addTime(timeInSecs: time)
-													//time)AppSettings.mainUser.arrivalInformation!.timer.addTime(time)!InSecs: 5*60)
-                                                }))*/
+													AppSettings.mainUser!.arrivalInformation!.timer.addTime(timeInSecs: 5*60)
+                                                }))
         
         self.present(alertController, animated: true, completion: nil)
         

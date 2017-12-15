@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C01123E492EF0F7D1738291 /* Pods_Guarded.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */; };
 		8903D6A01FE046FD00177729 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903D69F1FE046FD00177729 /* WatchSessionManager.swift */; };
+		8903D6A41FE1C2CC00177729 /* AddProtectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903D6A31FE1C2CC00177729 /* AddProtectorTableViewController.swift */; };
 		891055111F8D01CD004B3AED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891055101F8D01CD004B3AED /* CoreLocation.framework */; };
 		891934861FBB6D87004AFD4E /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891934851FBB6D86004AFD4E /* Annotation.swift */; };
 		89219E7B1F8C02A500D4BBD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */; };
@@ -135,6 +136,7 @@
 /* Begin PBXFileReference section */
 		6BE0ED1C320505C6445E3859 /* Pods_Guarded.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Guarded.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8903D69F1FE046FD00177729 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		8903D6A31FE1C2CC00177729 /* AddProtectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProtectorTableViewController.swift; sourceTree = "<group>"; };
 		891055101F8D01CD004B3AED /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		891934851FBB6D86004AFD4E /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		89219E7A1F8C02A500D4BBD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				C21BF8CA1FDF0F9A006418BE /* PhoneTableViewController.swift */,
 				D49557C61FE00C0400A3FF8C /* SettingsTableViewController.swift */,
 				D4AAB19E1FE0399000543560 /* AboutUsViewController.swift */,
+				8903D6A31FE1C2CC00177729 /* AddProtectorTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 				891934861FBB6D87004AFD4E /* Annotation.swift in Sources */,
 				D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */,
 				D4CAEB211FD5D07C0010ED89 /* LockScreenViewController.swift in Sources */,
+				8903D6A41FE1C2CC00177729 /* AddProtectorTableViewController.swift in Sources */,
 				C6152E051FA2DB6A00CC4F76 /* AppSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -921,7 +925,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				IBSC_MODULE = Guarded_WatchKit_App_Extension;
 				INFOPLIST_FILE = "Guarded WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -945,7 +949,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				IBSC_MODULE = Guarded_WatchKit_App_Extension;
 				INFOPLIST_FILE = "Guarded WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -1077,7 +1081,7 @@
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -1116,7 +1120,7 @@
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 9WW6YH2P93;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",

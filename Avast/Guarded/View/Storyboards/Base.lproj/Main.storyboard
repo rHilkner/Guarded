@@ -533,7 +533,7 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="mqq-o9-Xk4">
                             <connections>
-                                <segue destination="D7c-mp-oBu" kind="show" id="KGo-ks-hdr"/>
+                                <segue destination="CtQ-3Q-qWN" kind="show" id="Io7-vy-ijY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -566,46 +566,51 @@
             <point key="canvasLocation" x="5570" y="-770"/>
         </scene>
         <!--AddProtector-->
-        <scene sceneID="dwD-lQ-a8K">
+        <scene sceneID="eHH-ya-RtM">
             <objects>
-                <viewController title="AddProtector" id="D7c-mp-oBu" customClass="AddProtectorViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="m1k-d0-3QQ">
+                <tableViewController title="AddProtector" id="CtQ-3Q-qWN" customClass="AddProtectorTableViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OtR-Z1-rWt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="slJ-um-jGS">
-                                <rect key="frame" x="0.0" y="64" width="375" height="40"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="w2f-4p-s7P"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="yeO-4F-mzM" firstAttribute="trailing" secondItem="slJ-um-jGS" secondAttribute="trailing" id="FSD-yJ-uSY"/>
-                            <constraint firstItem="slJ-um-jGS" firstAttribute="leading" secondItem="yeO-4F-mzM" secondAttribute="leading" id="NgL-H5-AhL"/>
-                            <constraint firstItem="slJ-um-jGS" firstAttribute="top" secondItem="yeO-4F-mzM" secondAttribute="top" id="OZ7-ma-XOz"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="yeO-4F-mzM"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add Protector" id="z6P-nW-CO2">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="wmo-2B-iOf">
-                            <connections>
-                                <action selector="addProtector" destination="D7c-mp-oBu" id="WnH-sY-811"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                        <color key="backgroundColor" red="0.9370916485786438" green="0.93694382905960083" blue="0.95754462480545044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="eiW-dd-jq3">
+                            <rect key="frame" x="0.0" y="72" width="375" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addProtectorCell" textLabel="efl-7h-a4Y" style="IBUITableViewCellStyleDefault" id="Bn0-6h-ofx">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bn0-6h-ofx" id="yyw-vp-ag4">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="efl-7h-a4Y">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CtQ-3Q-qWN" id="Xu7-PD-9AP"/>
+                            <outlet property="delegate" destination="CtQ-3Q-qWN" id="JLE-xI-sDm"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Add Protector" id="rdt-3X-cVX"/>
                     <connections>
-                        <outlet property="protectorTextField" destination="slJ-um-jGS" id="9ZC-Ui-9fp"/>
+                        <outlet property="addProtectorTableView" destination="OtR-Z1-rWt" id="45r-Eo-28x"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X46-CA-9g3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vcd-1e-6OA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5570" y="912"/>
+            <point key="canvasLocation" x="5569" y="810"/>
         </scene>
         <!--Settings-->
         <scene sceneID="zPP-qd-oBB">
