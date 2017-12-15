@@ -211,6 +211,9 @@ class DatabaseManager {
 
         let placeDict: [String : Any] = [
             "address": place.address,
+            "city": place.city,
+            "state": place.state,
+            "country": place.country,
             "coordinates": [
                 "latitude": place.coordinate.latitude,
                 "longitude": place.coordinate.longitude
@@ -275,7 +278,8 @@ class DatabaseManager {
         
         let user = User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus)
         print("User (\(user.name)) fetched successfully.")
-		return User(id: userID, name: userName, email: userEmail, phoneNumber: userPhoneNumber, status: userStatus)
+        
+		return user
     }
     
     
@@ -637,11 +641,20 @@ class DatabaseManager {
                 return nil
             }
             
-            /*  guard let placeCity = placeDict.value["city"] as? String else {
-             print("Fetching user's places from DB returns a place with city nil.")
-             completionHandler(false)
-             return
-             } */
+            guard let placeCity = placeDict.value["city"] as? String else {
+                print("Fetching user's places from DB returns a place with city nil.")
+                return nil
+            }
+            
+            guard let placeState = placeDict.value["state"] as? String else {
+                print("Fetching user's places from DB returns a place with state nil.")
+                return nil
+            }
+            
+            guard let placeCountry = placeDict.value["country"] as? String else {
+                print("Fetching user's places from DB returns a place with country nil.")
+                return nil
+            }
             
             guard let placeCoordinatesDict = placeDict.value["coordinates"] as? [String : AnyObject] else {
                 print("Fetching user's places from DB returns a place with coordinates nil.")
@@ -660,7 +673,7 @@ class DatabaseManager {
             
             let placeCoordinates = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
             
-            let place = Place(name: placeName, address: placeAddress, coordinate: placeCoordinates)
+            let place = Place(name: placeName, address: placeAddress, city: placeCity, state: placeState, country: placeCountry, coordinate: placeCoordinates)
             
             userPlaces.append(place)
         }
@@ -817,7 +830,7 @@ class DatabaseManager {
 						return
 					}
 
-					let locationInfo = LocationInfo(name: "Destination of ////////insert id/////////", address: destination, city: "", state: "", country: "")
+                    let locationInfo = LocationInfo(name: "Destination of ////////insert id/////////", address: destination, city: "", state: "", country: "", coordinate: protected.lastLocation!)
 
 					let timeOfArrivalInt = Int(Double(timeOfArrival)!)
 

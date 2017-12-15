@@ -8,29 +8,35 @@
 
 import UIKit
 
-class AddProtectorViewController: UIViewController, UITextFieldDelegate {
-    
-    @IBOutlet weak var protectorTextField: UITextField!
+class AddProtectorViewController: UITableViewController, UITextFieldDelegate {
+
+	let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-		self.protectorTextField.delegate = self
-        
-        // TODO: Change placeholder text
-        self.protectorTextField.placeholder = "Insert user name on DB pls"
-        
-        self.protectorTextField.dropShadow()
-        
-        self.protectorTextField.setLeftPaddingPoints(8)
-        self.protectorTextField.setRightPaddingPoints(8)
-        
-        
-        
+
+		/// allows the class to know when the text inside the search bar has changed
+        searchController.searchResultsUpdater = self
+
+		searchController.dimsBackgroundDuringPresentation = false
+
+		/// display the search bar only in this view controller
+        definesPresentationContext = true
+		tableView.tableHeaderView = searchController.searchBar
     }
+
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		// #warning Incomplete implementation, return the number of sections
+		return 0
+	}
+
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		// #warning Incomplete implementation, return the number of rows
+		return 0
+	}
     
     @IBAction func addProtector() {
-        guard let protectorName = protectorTextField.text else {
+       /* guard let protectorName = protectorTextField.text else {
             return
         }
         
@@ -54,7 +60,7 @@ class AddProtectorViewController: UIViewController, UITextFieldDelegate {
                     AppSettings.mainUser?.protectors.append(protector)
                 }
             }
-        }
+        }*/
         
         self.navigationController?.popViewController(animated: true)
     }
@@ -75,6 +81,14 @@ class AddProtectorViewController: UIViewController, UITextFieldDelegate {
 	}
     
     
+}
+
+extension AddProtectorViewController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+		// update the search results
+	}
+
+
 }
 
 extension UIView {
