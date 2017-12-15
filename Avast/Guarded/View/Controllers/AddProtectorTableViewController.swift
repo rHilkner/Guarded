@@ -40,10 +40,11 @@ class AddProtectorTableViewController: UITableViewController {
 			if userName != AppSettings.mainUser?.name {
 				self.usersArray.append(userName)
 
+				// insert rows, only if search has begun
+				if self.searchController.isActive && self.searchController.searchBar.text != ""{
 
-				// insert rows
-				self.addProtectorTableView.insertRows(at: [IndexPath.init(row: self.usersArray.count-1, section: 0)], with: UITableViewRowAnimation.automatic)
-
+					self.addProtectorTableView.insertRows(at: [IndexPath.init(row: self.usersArray.count-1, section: 0)], with: UITableViewRowAnimation.automatic)
+				}
 			}
 
 
@@ -91,8 +92,6 @@ class AddProtectorTableViewController: UITableViewController {
 			return filteredUsers.count
 		}
 
-		return self.usersArray.count
-
 		return 0
     }
 
@@ -104,11 +103,9 @@ class AddProtectorTableViewController: UITableViewController {
 
 		if searchController.isActive && searchController.searchBar.text != "" {
 			user = filteredUsers[indexPath.row]
-		} else {
-			user = self.usersArray[indexPath.row]
-		}
+			cell.textLabel?.text = user
 
-		cell.textLabel?.text = user
+		}
 
         return cell
     }
