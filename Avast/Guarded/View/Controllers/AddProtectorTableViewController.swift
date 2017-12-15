@@ -27,6 +27,12 @@ class AddProtectorTableViewController: UITableViewController {
 		searchController.searchResultsUpdater = self
 
 		searchController.dimsBackgroundDuringPresentation = false
+        
+        searchController.hidesNavigationBarDuringPresentation = false;
+        
+        searchController.searchBar.searchBarStyle = UISearchBarStyle.minimal
+
+        searchController.searchBar.tintColor = UIApplication.shared.keyWindow?.tintColor
 
 		/// display the search bar only in this view controller
 		definesPresentationContext = true
@@ -93,7 +99,7 @@ class AddProtectorTableViewController: UITableViewController {
 
 		return self.usersArray.count
 
-		return 0
+		//return 0
     }
 
 
@@ -105,8 +111,8 @@ class AddProtectorTableViewController: UITableViewController {
 		if searchController.isActive && searchController.searchBar.text != "" {
 			user = filteredUsers[indexPath.row]
 		} else {
-			user = self.usersArray[indexPath.row]
-		}
+            user = self.usersArray[indexPath.row]
+        }
 
 		cell.textLabel?.text = user
 
@@ -141,8 +147,8 @@ class AddProtectorTableViewController: UITableViewController {
 					}
 
 					AppSettings.mainUser?.protectors.append(protector)
-
-					self.navigationController?.popViewController(animated: true)
+                    
+                    self.navigationController?.popViewController(animated: true) 
 				}
 			}
 		}

@@ -42,6 +42,8 @@ class PersonStatusCalloutView: UIView {
         self.profilePicture.image = UIImage(named:"collectionview_placeholder_image")
         Manager.shared.loadImage(with: person.profilePictureURL, into: self.profilePicture)
         
+        self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.height)/2
+        
         var names = person.name.components(separatedBy: " ")
         
         self.personName.text = String(names.removeFirst())

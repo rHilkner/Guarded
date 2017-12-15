@@ -568,12 +568,16 @@
         <!--AddProtector-->
         <scene sceneID="eHH-ya-RtM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vcd-1e-6OA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="AddProtector" id="CtQ-3Q-qWN" customClass="AddProtectorTableViewController" customModule="Guarded" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OtR-Z1-rWt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.9370916485786438" green="0.93694382905960083" blue="0.95754462480545044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="eiW-dd-jq3">
+                            <rect key="frame" x="0.0" y="72" width="375" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addProtectorCell" textLabel="efl-7h-a4Y" style="IBUITableViewCellStyleDefault" id="Bn0-6h-ofx">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -604,6 +608,7 @@
                         <outlet property="addProtectorTableView" destination="OtR-Z1-rWt" id="45r-Eo-28x"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vcd-1e-6OA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5569" y="810"/>
         </scene>

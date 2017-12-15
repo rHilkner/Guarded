@@ -31,6 +31,7 @@ class ProtectCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadActors()
+        self.collectionView?.reloadData()
     }
     
     func loadActors() {
@@ -100,8 +101,9 @@ class ProtectCollectionViewController: UICollectionViewController {
             default:
                 cell.pin.image = UIImage(named: "cell_others")
             }
+            return cell
         }
-        return cell
+        
             
     }
     
