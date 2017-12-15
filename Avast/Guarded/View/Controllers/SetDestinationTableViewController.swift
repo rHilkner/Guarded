@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Nuke
 
 
 protocol DestinationArrivalTimeDataSource: NSObjectProtocol {
@@ -70,7 +71,12 @@ class SetDestinationTableViewController: UITableViewController {
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "protectorcell", for: indexPath) as! ProtectorCellTableViewCell
-            cell.protectorPic.image = UIImage(named: "Orange Pin")
+            
+            cell.protectorPic.layer.cornerRadius = cell.protectorPic.frame.height/2
+            cell.protectorPic.image = UIImage(named: "collectionview_placeholder_image")
+            Manager.shared.loadImage(with: protectors![indexPath.row].profilePictureURL, into: cell.protectorPic)
+            cell.protectorPic.clipsToBounds = true
+            
             cell.protectorName.text = protectors![indexPath.row].name
             cell.protectorId = protectors![indexPath.row].id
             return cell
