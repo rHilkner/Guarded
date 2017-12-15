@@ -31,6 +31,7 @@ class ProtectCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadActors()
+        self.collectionView?.reloadData()
     }
     
     func loadActors() {
