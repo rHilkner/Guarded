@@ -200,12 +200,10 @@ extension LocationServices {
                 return
             }
             
-            let placeInfo = LocationInfo(name: placeName, address: placeAddress, city: placeCity, state: placeState, country: placeCountry)
+            let placeInfo = LocationInfo(name: placeName, address: placeAddress, city: placeCity, state: placeState, country: placeCountry, coordinate: coordinate)
             
             completionHandler(placeInfo)
         }
     }
-
-
 }
 

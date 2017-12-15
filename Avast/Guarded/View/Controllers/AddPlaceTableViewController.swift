@@ -35,7 +35,7 @@ class AddPlaceTableViewController: UITableViewController {
                 return
             }
             
-            let place = Place(name: placeName, address: placeAddress, coordinate: placeCoordinate)
+            let place = Place(name: placeName, address: placeAddress, city: self.locationInfo.city, state: self.locationInfo.state, country: self.locationInfo.country, coordinate: placeCoordinate)
             
             AppSettings.mainUser?.addPlace(place)
             
@@ -43,7 +43,6 @@ class AddPlaceTableViewController: UITableViewController {
             
             self.navigationController?.popViewController(animated: true)
         }
-
     }
     
     override func viewDidLoad() {
