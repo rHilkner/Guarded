@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class PersonStatusCalloutView: UIView {
     
@@ -17,7 +18,7 @@ class PersonStatusCalloutView: UIView {
     var person: Protected!
     
     var calloutColor: UIColor! = UIColor(red: 160/255, green: 160/255, blue: 160/255, alpha: 1.0) {
-        didSet{
+        didSet {
             self.backgroundColor = calloutColor
             self.addTriangleTip(withColor: calloutColor)
         }
@@ -29,6 +30,7 @@ class PersonStatusCalloutView: UIView {
         super.awakeFromNib()
         
         self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.height)/2
+        self.profilePicture.backgroundColor = UIColor.lightGray
         self.backgroundColor = calloutColor
         self.layer.cornerRadius = 8
     }
@@ -38,6 +40,9 @@ class PersonStatusCalloutView: UIView {
 
         //TODO: Unmock this line        
         self.profilePicture.image = UIImage(named:"collectionview_placeholder_image")
+        Manager.shared.loadImage(with: person.profilePictureURL, into: self.profilePicture)
+        
+        self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.height)/2
         
         var names = person.name.components(separatedBy: " ")
         

@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Nuke
 
 class ProtectCollectionViewController: UICollectionViewController {
     
@@ -18,13 +19,19 @@ class ProtectCollectionViewController: UICollectionViewController {
     
     var protectors = [Protector]()
     var protected = [Protected]()
+
+    var watchSessionManager: WatchSessionManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.watchSessionManager = WatchSessionManager()
+        self.watchSessionManager?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadActors()
+        self.collectionView?.reloadData()
     }
     
     func loadActors() {
@@ -65,19 +72,40 @@ class ProtectCollectionViewController: UICollectionViewController {
         if (reuseIndex == 0) {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectorCell", for: indexPath) as! ProtectorCollectionViewCell
-            cell.personName.text = protectors[indexPath.row].name
+            var name = protectors[indexPath.row].name.components(separatedBy: " ")
+            cell.personName.text = name.removeFirst()
             cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
+            Manager.shared.loadImage(with: protectors[indexPath.row].profilePictureURL, into: cell.profilePicture)
+            cell.layer.cornerRadius = 5.0
+            
             return cell
             
         } else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protectedCell", for: indexPath) as! ProtectedCollectionViewCell
-            cell.personName.text = protected[indexPath.row].name
-            cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
-            cell.pin.image = UIImage(named:"Orange Pin")
-            return cell
             
+            var name = protected[indexPath.row].name.components(separatedBy: " ")
+            cell.personName.text = name.removeFirst()
+            cell.profilePicture.image = UIImage(named: "collectionview_placeholder_image")
+            Manager.shared.loadImage(with: protected[indexPath.row].profilePictureURL, into: cell.profilePicture)
+            cell.layer.cornerRadius = 5.0
+            
+            let status = protected[indexPath.row].status
+            switch status {
+            case userStatus.safe:
+                cell.pin.image = Pin.green.image
+            case userStatus.arriving:
+                cell.pin.image = Pin.yellow.image
+            case userStatus.danger:
+                cell.pin.image = Pin.red.image
+            default:
+                cell.pin.image = UIImage(named: "cell_others")
+            }
+
+			return cell
         }
+
+            
     }
     
     @IBAction func segControlChanged(_ sender: UISegmentedControl) {
@@ -148,6 +176,12 @@ class ProtectCollectionViewController: UICollectionViewController {
             /// id do protector - protected - seu id - change status
             optionMenu.addAction(changeStatusAction)
             optionMenu.addAction(deleteAction)
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            let seeOnMapAction = UIAlertAction(title: "See on map", style: .default) {
+                (alert: UIAlertAction!) -> Void in
+                self.findUser(atIndex: index)
+            }
+            optionMenu.addAction(seeOnMapAction)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {
@@ -160,4 +194,63 @@ class ProtectCollectionViewController: UICollectionViewController {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
+    func findUser(atIndex index: Int) {
+        let protected = self.protected[index]
+        
+        let navigationController = tabBarController?.viewControllers?.first
+        let mapViewController = navigationController?.childViewControllers[0] as! MapViewController
+        mapViewController.centerInLocation(location: protected.lastLocation!)
+        self.tabBarController?.selectedIndex = 0
+    }
+    
 }
+
+extension ProtectCollectionViewController: LockProtocol {
+    func showLockScreen() {
+        LockServices.setLockMode()
+
+        let date = self.getCurrentDate()
+
+        let helpOccurrence = HelpOccurrence(date: date, coordinate: (AppSettings.mainUser?.lastLocation)!)
+
+        DatabaseManager.addHelpOccurrence(helpOccurrence: helpOccurrence){
+            (error) in
+
+            guard (error == nil) else {
+                print("Error on adding a new help occurrence.")
+                return
+            }
+
+        }
+
+        AppSettings.mainUser?.status = userStatus.danger
+
+        DatabaseManager.updateUserSatus() {
+            (error) in
+            if error != nil {
+
+                print("Error on dismissing timer")
+                return
+            }
+        }
+
+        let vc = UIStoryboard(name:"Help", bundle:nil).instantiateViewController(withIdentifier: "LockScreen")
+
+        vc.modalTransitionStyle = .crossDissolve
+
+        self.present(vc, animated: true)
+    }
+
+    func getCurrentDate() -> String {
+
+        let date = Date()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
+
+        let dateString = dateFormatter.string(from: date)
+
+        return dateString
+    }
+}
+

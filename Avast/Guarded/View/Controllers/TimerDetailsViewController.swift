@@ -59,11 +59,11 @@ extension TimerDetailsViewController: TimerObjectDelegate {
     
     func displayAlert() {
         
-        let alertController = UIAlertController(title: "Já chegou?",
+        let alertController = UIAlertController(title: "Have you arrived?",
                                                 message: nil,
                                                 preferredStyle: UIAlertControllerStyle.alert)
         
-        alertController.addAction(UIAlertAction(title: "Já cheguei",
+        alertController.addAction(UIAlertAction(title: "Yes",
                                                 style: UIAlertActionStyle.cancel,
                                                 handler: { action in
                                                     AppSettings.mainUser!.arrived()
