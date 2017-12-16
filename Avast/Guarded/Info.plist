@@ -16,11 +16,15 @@
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>br.org.aspis.bepid.Guarded</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb1998636510459758</string>

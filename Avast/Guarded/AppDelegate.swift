@@ -7,9 +7,13 @@
 //
 
 import UIKit
+
 import Firebase
-import CoreLocation
+import FirebaseAuthUI
+import FirebaseFacebookAuthUI
+
 import FBSDKCoreKit
+import CoreLocation
 import GooglePlaces
 
 @UIApplicationMain
@@ -20,9 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-
-		UIApplication.shared.registerForRemoteNotifications()
+        UIApplication.shared.registerForRemoteNotifications()
+        
         FirebaseApp.configure()
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
 		GMSPlacesClient.provideAPIKey("AIzaSyBJXlwXoEPfuCZrwQ9IAK86mxR5yBfp-Vs")
@@ -39,9 +44,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        //Handling Facebook authentication
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
+        let annotation = options[UIApplicationOpenURLOptionsKey.annotation]
+        let facebookHandler = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: sourceApplication, annotation: annotation)
         
-        return handled
+        guard facebookHandler == true else {
+            return false
+        }
+        
+        //Other URL handling goes here
+        
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

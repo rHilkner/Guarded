@@ -191,6 +191,7 @@
 		C647A8031F8C29A9006E53FA /* infos admin.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "infos admin.strings"; sourceTree = "<group>"; };
 		C65358271FB22D1E00301A3E /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C65F55831FD5E7EF0065CC04 /* AuthenticationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServices.swift; sourceTree = "<group>"; };
+		C67634D81FE48916004FFAF4 /* Guarded WatchKit App Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Guarded WatchKit App Extension.entitlements"; sourceTree = "<group>"; };
 		C67B4D361F87C58F006415CF /* Guarded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guarded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67B4D401F87C58F006415CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -304,6 +305,7 @@
 		89A6DC701FD971690067B426 /* Guarded WatchKit App Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C67634D81FE48916004FFAF4 /* Guarded WatchKit App Extension.entitlements */,
 				89A6DC711FD971690067B426 /* InterfaceController.swift */,
 				89A6DC731FD971690067B426 /* ExtensionDelegate.swift */,
 				89A6DC751FD971690067B426 /* NotificationController.swift */,
@@ -616,6 +618,11 @@
 					89A6DC6B1FD971690067B426 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					C67B4D351F87C58F006415CF = {
 						CreatedOnToolsVersion = 9.0;
@@ -897,11 +904,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Guarded WatchKit App Extension/Guarded WatchKit App Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				INFOPLIST_FILE = "Guarded WatchKit App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.org.aspis.bepid.Guarded;
+				PRODUCT_BUNDLE_IDENTIFIER = br.org.aspis.bepid.Guarded.watchkitapp;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -915,11 +923,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Guarded WatchKit App Extension/Guarded WatchKit App Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HMM2SSNKR5;
 				INFOPLIST_FILE = "Guarded WatchKit App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.org.aspis.bepid.Guarded;
+				PRODUCT_BUNDLE_IDENTIFIER = br.org.aspis.bepid.Guarded.watchkitapp;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
