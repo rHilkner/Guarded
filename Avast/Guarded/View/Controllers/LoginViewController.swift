@@ -98,19 +98,8 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
                 return
             }
             
-            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-            
-            Auth.auth().signIn(with: credential) {
-                (user, error) in
-                
-                guard (error == nil) else {
-                    print("Error on signing user into firebase.")
-                    return
-                }
-                
-                print("Login successful")
-                self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
-            }
+            print("Login successful")
+            self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
         }
     }
 }
