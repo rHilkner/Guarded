@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Phone Table View Controller-->
+        <!--Useful Phones-->
         <scene sceneID="eS4-8w-vcF">
             <objects>
                 <tableViewController id="tJ4-ZO-c8K" customClass="PhoneTableViewController" customModule="Guarded" sceneMemberID="viewController">
@@ -49,6 +49,7 @@
                             <outlet property="delegate" destination="tJ4-ZO-c8K" id="QWz-ti-KiI"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Useful Phones" id="kcc-2g-Yln"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nr9-vr-pqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
