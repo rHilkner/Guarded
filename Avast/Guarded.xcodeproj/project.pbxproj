@@ -27,7 +27,7 @@
 		89A6DC7A1FD971690067B426 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89A6DC791FD971690067B426 /* Assets.xcassets */; };
 		89A6DC7F1FD971690067B426 /* Guarded WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 89A6DC601FD971680067B426 /* Guarded WatchKit App.app */; };
 		89B00E321FCDB5550030DC2C /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E311FCDB5550030DC2C /* PlaceAnnotation.swift */; };
-		89B00E341FCDB5680030DC2C /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E331FCDB5680030DC2C /* UserAnnotation.swift */; };
+		89B00E341FCDB5680030DC2C /* ProtetedAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E331FCDB5680030DC2C /* ProtetedAnnotation.swift */; };
 		89B00E371FCDB5890030DC2C /* HelpAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */; };
 		89DE136D1FCF2DD6003D009C /* ArrivalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */; };
 		C21BF8C71FDF070D006418BE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C21BF8C61FDF070D006418BE /* Settings.storyboard */; };
@@ -53,6 +53,7 @@
 		C65F55841FD5E7EF0065CC04 /* AuthenticationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65F55831FD5E7EF0065CC04 /* AuthenticationServices.swift */; };
 		C67B4D3A1F87C58F006415CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4D391F87C58F006415CF /* AppDelegate.swift */; };
 		C67B4D411F87C58F006415CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C67B4D401F87C58F006415CF /* Assets.xcassets */; };
+		C67D80971FE5DDB8005F3A89 /* AnnotationIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67D80961FE5DDB8005F3A89 /* AnnotationIdentifiers.swift */; };
 		C69153D81FA82B77004BAFE4 /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D61FA82B77004BAFE4 /* LocationServices.swift */; };
 		C69153D91FA82B77004BAFE4 /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69153D71FA82B77004BAFE4 /* TimerObject.swift */; };
 		C69153DE1FA82B86004BAFE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C69153DA1FA82B86004BAFE4 /* Main.storyboard */; };
@@ -157,7 +158,7 @@
 		89A6DC7B1FD971690067B426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89A6DC7C1FD971690067B426 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		89B00E311FCDB5550030DC2C /* PlaceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
-		89B00E331FCDB5680030DC2C /* UserAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
+		89B00E331FCDB5680030DC2C /* ProtetedAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtetedAnnotation.swift; sourceTree = "<group>"; };
 		89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAnnotation.swift; sourceTree = "<group>"; };
 		89B00E3A1FCF21E30030DC2C /* ArrivalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInformation.swift; sourceTree = "<group>"; };
 		89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalInformation.swift; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		C67B4D391F87C58F006415CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C67B4D401F87C58F006415CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C67B4D451F87C58F006415CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C67D80961FE5DDB8005F3A89 /* AnnotationIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationIdentifiers.swift; sourceTree = "<group>"; };
 		C69153D61FA82B77004BAFE4 /* LocationServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		C69153D71FA82B77004BAFE4 /* TimerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerObject.swift; sourceTree = "<group>"; };
 		C69153DB1FA82B86004BAFE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -329,7 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				89B00E311FCDB5550030DC2C /* PlaceAnnotation.swift */,
-				89B00E331FCDB5680030DC2C /* UserAnnotation.swift */,
+				89B00E331FCDB5680030DC2C /* ProtetedAnnotation.swift */,
 				89B00E361FCDB5890030DC2C /* HelpAnnotation.swift */,
 			);
 			path = AnnotaionSubClasses;
@@ -357,6 +359,7 @@
 				89B00E301FCDB5220030DC2C /* AnnotaionSubClasses */,
 				89DE136C1FCF2DD6003D009C /* ArrivalInformation.swift */,
 				893A2EA31FD6B9B60061114E /* HelpOccurrence.swift */,
+				C67D80961FE5DDB8005F3A89 /* AnnotationIdentifiers.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -843,11 +846,12 @@
 				C69153F11FA82C21004BAFE4 /* MapViewController.swift in Sources */,
 				C69153EF1FA82C21004BAFE4 /* PlacesTableViewController.swift in Sources */,
 				C69153ED1FA82C21004BAFE4 /* TimerViewController.swift in Sources */,
-				89B00E341FCDB5680030DC2C /* UserAnnotation.swift in Sources */,
+				89B00E341FCDB5680030DC2C /* ProtetedAnnotation.swift in Sources */,
 				C69153F51FA82C21004BAFE4 /* TimerDetailsViewController.swift in Sources */,
 				C69153D81FA82B77004BAFE4 /* LocationServices.swift in Sources */,
 				8946E7371FB0E11B0066D1B3 /* LoginViewController.swift in Sources */,
 				8946E7391FB121FA0066D1B3 /* NotificationServices.swift in Sources */,
+				C67D80971FE5DDB8005F3A89 /* AnnotationIdentifiers.swift in Sources */,
 				C65F55841FD5E7EF0065CC04 /* AuthenticationServices.swift in Sources */,
 				891934861FBB6D87004AFD4E /* Annotation.swift in Sources */,
 				D45A5BD11FC7D0B200FACE2E /* PersonStatusCalloutView.swift in Sources */,

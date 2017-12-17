@@ -13,9 +13,12 @@ class PlacePinView: MKAnnotationView {
     
     weak var customCalloutView: PlaceCalloutView?
     override var annotation: MKAnnotation? {
-        willSet { customCalloutView?.removeFromSuperview() }
+        willSet {
+            customCalloutView?.removeFromSuperview()
+            
+        }
     }
-    var placeDelegate:PlaceCalloutDelegate!
+    var placeCalloutDelegate: PlaceCalloutDelegate!
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -71,10 +74,10 @@ class PlacePinView: MKAnnotationView {
     func loadPlaceDetails() -> PlaceCalloutView? {
         if let views = Bundle.main.loadNibNamed("PlaceCalloutView", owner: self, options: nil) as? [PlaceCalloutView], views.count > 0 {
             let placeDetailMapView = views.first!
-            placeDetailMapView.delegate = self.placeDelegate
+            placeDetailMapView.delegate = self.placeCalloutDelegate
             
-            guard let place = annotation as? PlaceAnnotation else { return nil }
-            placeDetailMapView.configure(withInfo: place.locationInfo!)
+            guard let placeAnnotation = annotation as? PlaceAnnotation else { return nil }
+            placeDetailMapView.configure(withInfo: placeAnnotation.locationInfo!)
             return placeDetailMapView
         }
         return nil
