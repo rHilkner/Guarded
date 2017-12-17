@@ -657,7 +657,6 @@ extension MapViewController: ProtectedLocationDelegate {
     func setProtectedLocation(protected: Protected) {
         if (protected.allowedToFollow == true) || (protected.status == userStatus.danger) {
             self.displayLocation(protected: protected, showCallout: false)
-            print("Aoo piao")
         }
     }
     
