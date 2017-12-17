@@ -271,5 +271,13 @@ extension ProtectCollectionViewController: ProtectedsDelegateProtocol {
             self.reloadData()
         }
     }
+    
+    func protectorRemoved(protected: Protected) {
+        let reuseIndex = segmentedControl.selectedSegmentIndex
+        
+        if reuseIndex == 1 {
+            self.reloadData()
+        }
+    }
 }
 

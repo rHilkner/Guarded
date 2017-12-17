@@ -472,9 +472,12 @@ extension MapViewController: LocationUpdateProtocol {
     }
     
     func removeAnnotationFrom(protected: Protected) {
-        for protectedAnnotation in protectedsAnnotationArray {
+        for i in 0 ..< protectedsAnnotationArray.count {
+            let protectedAnnotation = protectedsAnnotationArray[i]
+            
             if protected.id == protectedAnnotation.protected.id {
                 self.map.removeAnnotation(protectedAnnotation)
+                self.protectedsAnnotationArray.remove(at: i)
                 return
             }
         }

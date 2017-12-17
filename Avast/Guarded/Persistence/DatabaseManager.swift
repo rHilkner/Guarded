@@ -956,15 +956,15 @@ class DatabaseManager {
         userProtectedsRef.observe(.childAdded) {
             (snapshot) in
             
-            let protectorID = snapshot.key as String
+            let protectedID = snapshot.key as String
             
-            guard let protectorValue = snapshot.value as? Bool else {
-                print("--> Warning: Protector value returned non-boolean value from DB.")
+            guard let protectedValue = snapshot.value as? Bool else {
+                print("--> Warning: Protected value returned non-boolean value from DB.")
                 return
             }
             
-            if protectorValue == true {
-                AppSettings.mainUser!.addProtected(protectedID: protectorID)
+            if protectedValue == true {
+                AppSettings.mainUser!.addProtected(protectedID: protectedID)
             }
         }
         

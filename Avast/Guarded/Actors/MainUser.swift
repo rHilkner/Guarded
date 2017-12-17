@@ -10,6 +10,7 @@ import Foundation
 
 protocol ProtectedsDelegateProtocol {
     func protectedAdded(protected: Protected)
+    func protectorRemoved(protected: Protected)
 }
 
 class MainUser: User {
@@ -90,6 +91,13 @@ class MainUser: User {
     
     ///Adds protector to user's protectors on DB
     func addProtector(_ protector: Protector) {
+        for p in self.protectors {
+            if p.id == protector.id {
+                print("User \(protector.name) has already been added as user's protectors.")
+                return
+            }
+        }
+        
         DatabaseManager.addProtector(protector) {
             (error) in
             
@@ -123,6 +131,13 @@ class MainUser: User {
     }
     
     func addProtected(protectedID: String) {
+        for protected in self.protecteds {
+            if protected.id == protectedID {
+                print("User with id (\(protectedID)) has already been added as user's protecteds.")
+                return
+            }
+        }
+        
         DatabaseManager.fetchProtected(protectedID: protectedID) {
             (protected) in
             
@@ -136,15 +151,23 @@ class MainUser: User {
             if let protectedsDelegate = self.protectedsDelegate {
                 protectedsDelegate.protectedAdded(protected: protected)
             }
+            
+            print("Protected \(protected.name) added to user's protecteds.")
         }
     }
     
     func removeProtected(protectedID: String) {
+        
         for i in 0 ..< protecteds.count {
             if protecteds[i].id == protectedID {
                 print("Protected \(protecteds[i].name) has removed user \(AppSettings.mainUser!.name) as protector.")
+                
+                let deletedProtected = protecteds[i]
                 protecteds.remove(at: i)
-                return
+                
+                if self.protectedsDelegate != nil {
+                    self.protectedsDelegate?.protectorRemoved(protected: deletedProtected)
+                }
             }
         }
     }
