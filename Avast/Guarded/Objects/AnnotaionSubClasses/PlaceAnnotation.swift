@@ -18,7 +18,7 @@ class PlaceAnnotation: Annotation {
 
 		self.name = name
 		self.locationInfo = locationInfo
-
-		super.init(title: name, identifier: identifier, coordinate: coordinate)
+        
+		super.init(identifier: identifier, coordinate: coordinate)
 	}
 }

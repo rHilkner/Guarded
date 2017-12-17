@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -54,28 +55,17 @@ class LoginViewController: UIViewController {
         //TODO: substituir por constraints
         loginButton.frame = CGRect(x: 16, y: logoTypo.frame.maxY + 116, width: view.frame.width - 32, height: 42)
     }
-
-    func handleFacebookStatus() {
-        //checking if user is already logged in
-        if (FBSDKAccessToken.current() != nil) {
-            
-            LoginServices.handleUserLoggedIn {
-                (successful) in
-                
-                guard (successful == true) else {
-                    print("Couldn't fetch user's facebook or database information.")
-                    return
-                }
-                
-                print("Login successful")
-                self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
-            }
-        }
-    }
 }
 
 
 extension LoginViewController: FBSDKLoginButtonDelegate {
+    
+    func handleFacebookStatus() {
+        //checking if user is already logged in
+        if (FBSDKAccessToken.current() != nil) {
+            self.userDidLogIn()
+        }
+    }
     
     //method called after user logs in to facebook
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -90,23 +80,27 @@ extension LoginViewController: FBSDKLoginButtonDelegate {
             return
         }
         
-        LoginServices.handleUserLoggedIn {
-            (successful) in
-            
-            if (successful == false) {
-                print("Couldn't fetch user's facebook or database information.")
-                return
-            }
-            
-            print("Login successful1.")
-            self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
-        }
+        self.userDidLogIn()
     }
     
     //method called after user logs out of facebook
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("App did log out of facebook.")
         LoginServices.handleUserLoggedOut()
+    }
+    
+    func userDidLogIn() {
+        LoginServices.handleUserLoggedIn {
+            (successful) in
+            
+            guard (successful == true) else {
+                print("Couldn't fetch user's facebook or database information.")
+                return
+            }
+            
+            print("Login successful")
+            self.performSegue(withIdentifier: "NavigateViewController", sender: nil)
+        }
     }
 }
 

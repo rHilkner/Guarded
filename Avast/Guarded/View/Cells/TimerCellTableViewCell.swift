@@ -34,9 +34,4 @@ class TimerCellTableViewCell: UITableViewCell, DestinationArrivalTimeDataSource 
         // Configure the view for the selected state
     }
     
-//    @objc func pickerTapped(gesture:UITapGestureRecognizer)
-//    {
-//        didChangeValue(self.timer)
-//    }
-    
 }

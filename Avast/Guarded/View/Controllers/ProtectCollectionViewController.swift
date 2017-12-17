@@ -30,7 +30,16 @@ class ProtectCollectionViewController: UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadActors()
+        AppSettings.mainUser?.protectedsDelegate = self
+        self.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AppSettings.mainUser?.protectedsDelegate = nil
+    }
+    
+    func reloadData() {
+        self.loadActors()
         self.collectionView?.reloadData()
     }
     
@@ -251,6 +260,16 @@ extension ProtectCollectionViewController: LockProtocol {
         let dateString = dateFormatter.string(from: date)
 
         return dateString
+    }
+}
+
+extension ProtectCollectionViewController: ProtectedsDelegateProtocol {
+    func protectedAdded(protected: Protected) {
+        let reuseIndex = segmentedControl.selectedSegmentIndex
+        
+        if reuseIndex == 1 {
+            self.reloadData()
+        }
     }
 }
 

@@ -23,7 +23,7 @@ class HelpAnnotation: Annotation {
 
 		let location2D = CLLocationCoordinate2D(latitude: helpOccurrence.coordinate.latitude, longitude: helpOccurrence.coordinate.longitude)
 
-		super.init(title: "", identifier: annotationIdentifiers.help, coordinate: location2D)
+		super.init(identifier: "Help Button Occurrence", coordinate: location2D)
 	}
 }
 

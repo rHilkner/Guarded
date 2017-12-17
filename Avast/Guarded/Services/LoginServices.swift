@@ -8,6 +8,7 @@
 
 import Foundation
 import FBSDKLoginKit
+import FirebaseAuth
 
 class LoginServices {
     
@@ -25,34 +26,49 @@ class LoginServices {
                 return
             }
             
-            //fetching user's database information
-            DatabaseManager.fetchUser(userID: userID!) {
-                (user) in
+            //Login into Firebase DB
+            let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            
+            Auth.auth().signIn(with: credential) {
+                (_, error) in
                 
-                if (user != nil) {
-                    AppSettings.mainUser = user
-                    completionHandler(true)
+                guard (error == nil) else {
+                    print("Error on signing user into firebase.")
                     return
                 }
-
-                //creating main user object
-				let mainUser = MainUser(id: userID!, name: userName!, email: userEmail, phoneNumber: nil, status: userStatus.safe)
                 
-                //adding new main user object to database
-                DatabaseManager.addUser(mainUser) {
-                    (error) in
+                //fetching user's database information
+                DatabaseManager.fetchUser(userID: userID!) {
+                    (user) in
                     
-                    guard (error == nil) else {
-                        print("Couldn't add user to database")
-                        FBSDKLoginManager().logOut()
-                        completionHandler(false)
+                    if (user != nil) {
+                        AppSettings.mainUser = user
+                        completionHandler(true)
                         return
                     }
                     
-                    print("DONE---------------------------------------------------------")
-                    AppSettings.mainUser = mainUser
-                    completionHandler(true)
-                    return
+                    //If user doesn't exists yet, create a user credential and sign in to database
+                    
+                    
+                    //creating main user object
+                    let mainUser = MainUser(id: userID!, name: userName!, email: userEmail, phoneNumber: nil, status: userStatus.safe)
+                    
+                    //adding new main user object to database
+                    DatabaseManager.addUser(mainUser) {
+                        (error) in
+                        
+                        guard (error == nil) else {
+                            print("Couldn't add user to database")
+                            FBSDKLoginManager().logOut()
+                            completionHandler(false)
+                            return
+                        }
+                        
+                        print("DONE---------------------------------------------------------")
+                        AppSettings.mainUser = mainUser
+                        completionHandler(true)
+                        return
+                    }
                 }
             }
         }
