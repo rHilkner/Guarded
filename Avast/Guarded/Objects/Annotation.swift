@@ -10,15 +10,11 @@ import UIKit
 import MapKit
 
 class Annotation: NSObject, MKAnnotation {
-
-	let title: String?
+    
 	let identifier : String
 	let coordinate: CLLocationCoordinate2D    
 
-	init(title: String, identifier: String, coordinate: CLLocationCoordinate2D) {
-
-		/// TODO: define wich title will appear in each type of annotation
-		self.title = title
+	init(identifier: String, coordinate: CLLocationCoordinate2D) {
 		self.identifier = identifier
 		self.coordinate = coordinate
 		super.init()

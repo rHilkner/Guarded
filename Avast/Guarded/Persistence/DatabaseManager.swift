@@ -54,7 +54,7 @@ class DatabaseManager {
                 "helpButtonOccurrences": "" as AnyObject,
                 "places": "" as AnyObject,
                 "protectors": "" as AnyObject,
-                "protected": "" as AnyObject
+                "protecteds": "" as AnyObject
             ]
             
             userRef.setValue(userDict) {
@@ -119,7 +119,7 @@ class DatabaseManager {
         
         dispatchGroup.enter()
         
-        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(true) {
+        usersRef.child(protector.id).child("protecteds").child(AppSettings.mainUser!.id).setValue(true) {
             (error, _) in
             
             guard (error == nil) else {
@@ -153,7 +153,7 @@ class DatabaseManager {
             completionHandler(nil)
         }
         
-        usersRef.child(protector.id).child("protected").child(AppSettings.mainUser!.id).setValue(false) {
+        usersRef.child(protector.id).child("protecteds").child(AppSettings.mainUser!.id).setValue(false) {
             (error, _) in
             
             guard (error == nil) else {
@@ -168,7 +168,7 @@ class DatabaseManager {
     ///Removes protector to user's protectors list and also removes user as protector's protected list
     static func removeProtector(_ protector: Protector, completionHandler: @escaping (Bool) -> Void) {
         
-        let mainUserRef = ref.child("users/\(protector.id)/protected/\(AppSettings.mainUser!.id)")
+        let mainUserRef = ref.child("users/\(protector.id)/protecteds/\(AppSettings.mainUser!.id)")
         let protectorRef = ref.child("users/\(AppSettings.mainUser!.id)/protectors/\(protector.id)")
         
         let dispatchGroup = DispatchGroup()
@@ -336,7 +336,7 @@ class DatabaseManager {
         
         //Reading user's protecteds
         
-        let protectedsDict = userDictionary["protected"] as? [String : AnyObject] ?? [:]
+        let protectedsDict = userDictionary["protecteds"] as? [String : AnyObject] ?? [:]
         
         var userProtecteds: [Protected] = []
         
@@ -363,8 +363,7 @@ class DatabaseManager {
                 protected.allowedToFollow = protectedStatus
                 
                 userProtecteds.append(protected)
-
-				
+                
                 dispatchGroup.leave()
             }
         }
@@ -745,7 +744,7 @@ class DatabaseManager {
 		for protected in AppSettings.mainUser!.protecteds {
 			let protectedHelpButtonOccurrencesRef = ref.child("users/\(protected.id)/helpButtonOccurrences")
 
-			protectedHelpButtonOccurrencesRef.observe(.childAdded){
+			protectedHelpButtonOccurrencesRef.observe(.childAdded) {
 				(helpButtonOccurrencesSnap) in
 
 				guard let helpOccurrenceDict = helpButtonOccurrencesSnap.value as? [String:Double] else {
@@ -950,8 +949,35 @@ class DatabaseManager {
 
 		}
 	}
+    
+    static func addObserverToUserProtecteds() {
+        let userProtectedsRef = self.ref.child("users/\(AppSettings.mainUser!.id)/protecteds")
+        
+        userProtectedsRef.observe(.childAdded) {
+            (snapshot) in
+            
+            let protectorID = snapshot.key as String
+            
+            guard let protectorValue = snapshot.value as? Bool else {
+                print("--> Warning: Protector value returned non-boolean value from DB.")
+                return
+            }
+            
+            if protectorValue == true {
+                AppSettings.mainUser!.addProtected(protectedID: protectorID)
+            }
+        }
+        
+        userProtectedsRef.observe(.childRemoved) {
+            (snapshot) in
+            
+            let protectorID = snapshot.key as String
+            
+            AppSettings.mainUser!.removeProtected(protectedID: protectorID)
+        }
+    }
 
-	static func addObserverToProtectedsStatus(completionHandler: @escaping (String?, String?) -> Void){
+    static func addObserverToProtectedsStatus(completionHandler: @escaping (String?, String?) -> Void){
 
 		for protected in AppSettings.mainUser!.protecteds {
 

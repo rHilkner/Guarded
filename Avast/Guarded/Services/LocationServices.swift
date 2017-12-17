@@ -12,14 +12,12 @@ import CoreLocation
 protocol LocationUpdateProtocol {
 	func centerInLocation(location: Coordinate)
     func displayCurrentLocation()
-	func displayLocation(location: Coordinate, name: String, identifier: String, protectedId: String, showCallout: Bool)
 }
 
 class LocationServices: NSObject {
 
     var manager = CLLocationManager()
     var geocoder = CLGeocoder()
-    var delegate: LocationUpdateProtocol!
 	let ratio: Double = 30
 
 	public var authorizationStatus: CLAuthorizationStatus?
@@ -146,7 +144,7 @@ extension LocationServices {
         }
     }
     
-    static func coordinateToAddress(coordinate: Coordinate, completionHandler: @escaping (LocationInfo?) -> Void) {
+    static func coordinateToPlaceInfo(coordinate: Coordinate, completionHandler: @escaping (Place?) -> Void) {
         let geocoder = CLGeocoder()
         
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -171,7 +169,7 @@ extension LocationServices {
             let placemark: CLPlacemark = placemarks[0]
             
             guard let placeName = placemark.name else {
-                print("Problem receiving name from geocoder.")
+                print("Problem receiving address from geocoder.")
                 completionHandler(nil)
                 return
             }
@@ -200,7 +198,7 @@ extension LocationServices {
                 return
             }
             
-            let placeInfo = LocationInfo(name: placeName, address: placeAddress, city: placeCity, state: placeState, country: placeCountry, coordinate: coordinate)
+            let placeInfo = Place(name: placeName, address: placeAddress, city: placeCity, state: placeState, country: placeCountry, coordinate: coordinate)
             
             completionHandler(placeInfo)
         }

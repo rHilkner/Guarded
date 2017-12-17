@@ -24,9 +24,9 @@ class PersonPinView: MKAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
         
-        let person = annotation as? UserAnnotation
-        let pArray = AppSettings.mainUser?.protecteds
-        protected = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: pArray!) as! Protected
+        let protectedAnnotation = annotation as? ProtectedAnnotation
+        let protectedArray = AppSettings.mainUser!.protecteds
+        self.protected = AppSettings.mainUser!.getUser(byId: protectedAnnotation!.protected.id, fromList: protectedArray) as! Protected
         
         self.protected.statusDelegate = self
         
@@ -36,9 +36,12 @@ class PersonPinView: MKAnnotationView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false
-        let person = annotation as? UserAnnotation
-        let pArray = AppSettings.mainUser?.protecteds
-        protected = AppSettings.mainUser?.getUser(byId: (person?.protectedId)!, fromList: pArray!) as! Protected
+        
+        let protectedAnnotation = annotation as? ProtectedAnnotation
+        let protectedArray = AppSettings.mainUser!.protecteds
+        self.protected = AppSettings.mainUser!.getUser(byId: protectedAnnotation!.protected.id, fromList: protectedArray) as! Protected
+        
+        self.protected.statusDelegate = self
         
         setPinImage()
 

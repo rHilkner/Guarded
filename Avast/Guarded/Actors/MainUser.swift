@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol ProtectedsDelegateProtocol {
+    func protectedAdded(protected: Protected)
+}
+
 class MainUser: User {
     
     var lastLocation: Coordinate?
@@ -16,33 +20,10 @@ class MainUser: User {
     var protecteds: [Protected] = []
     var arrivalInformation: ArrivalInformation?
     
+    var protectedsDelegate: ProtectedsDelegateProtocol?
+    
     //_updateMapContinuously: true if AppSettings.mainUser is on MapViewController
     private var _updateMapContinuously: Bool = false
-   /* var updateMapContinuously: Bool {
-        get {
-            return _updateMapContinuously
-        }
-        set {
-            if (newValue == _updateMapContinuously) {
-                return
-            }
-            
-            _updateMapContinuously = newValue
-            
-            if (newValue == true) {
-                DatabaseManager.addObserverToProtectedsLocations() {
-                    (success) in
-                    
-                    guard success == true else {
-                        print("An error has occured when trying to remove observers from all of main user's protecteds' last location.")
-                        return
-                    }
-                }
-            } else {
-                DatabaseManager.removeObserverFromProtectedsLocations()
-            }
-        }
-    }*/
     
     ///Updates user's last location on DB
     func updateLastLocation(_ coordinate: Coordinate) {
@@ -137,6 +118,33 @@ class MainUser: User {
                     self.protectors.remove(at: i)
                     return
                 }
+            }
+        }
+    }
+    
+    func addProtected(protectedID: String) {
+        DatabaseManager.fetchProtected(protectedID: protectedID) {
+            (protected) in
+            
+            guard let protected = protected else {
+                print("Error on fetching protector with id: \(protectedID).")
+                return
+            }
+            
+            self.protecteds.append(protected)
+            
+            if let protectedsDelegate = self.protectedsDelegate {
+                protectedsDelegate.protectedAdded(protected: protected)
+            }
+        }
+    }
+    
+    func removeProtected(protectedID: String) {
+        for i in 0 ..< protecteds.count {
+            if protecteds[i].id == protectedID {
+                print("Protected \(protecteds[i].name) has removed user \(AppSettings.mainUser!.name) as protector.")
+                protecteds.remove(at: i)
+                return
             }
         }
     }
