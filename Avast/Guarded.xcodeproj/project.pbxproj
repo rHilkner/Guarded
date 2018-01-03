@@ -910,7 +910,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Guarded WatchKit App Extension/Guarded WatchKit App Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				INFOPLIST_FILE = "Guarded WatchKit App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.org.aspis.bepid.Guarded.watchkitapp.watchkitextension;
@@ -929,7 +929,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "Guarded WatchKit App Extension/Guarded WatchKit App Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				INFOPLIST_FILE = "Guarded WatchKit App Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.org.aspis.bepid.Guarded.watchkitapp.watchkitextension;
@@ -950,7 +950,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				IBSC_MODULE = Guarded_WatchKit_App_Extension;
 				INFOPLIST_FILE = "Guarded WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -974,7 +974,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				IBSC_MODULE = Guarded_WatchKit_App_Extension;
 				INFOPLIST_FILE = "Guarded WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -1106,7 +1106,7 @@
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
@@ -1145,7 +1145,7 @@
 				CODE_SIGN_ENTITLEMENTS = Guarded/Guarded.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMM2SSNKR5;
+				DEVELOPMENT_TEAM = 8522V23J27;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",

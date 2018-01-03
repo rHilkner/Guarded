@@ -615,14 +615,67 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith gmsPlace: GMSPlace) {
 
         let coordinate = Coordinate(latitude: gmsPlace.coordinate.latitude, longitude: gmsPlace.coordinate.longitude)
-        
-        let place = Place(name: gmsPlace.name, address: "", city: "", state: "", country: "", coordinate: coordinate)
 
-		self.displayLocation(place: place, showCallout: true)
+		LocationServices.coordinateToPlaceInfo(coordinate: coordinate) {
+			(_place) in
 
-        self.centerInLocation(location: coordinate)
+			var place: Place?
 
-        dismiss(animated: true, completion: nil)
+			// if location services doesn't return an address, catch information from gmsPlace components
+			if _place != nil {
+				place = _place!
+			} else {
+
+				var country: String?
+				var state: String?
+				var city: String?
+
+				for i in gmsPlace.addressComponents! {
+
+					if i.type == "country" {
+						country = i.name
+					}
+
+					if i.type == "administrative_area_level_1" {
+						state = i.name
+					}
+
+					if i.type == "administrative_area_level_2" {
+						city = i.name
+					}
+				}
+
+				guard (country != nil) else {
+					print("Error on catching searched place country.")
+					return
+				}
+
+				guard (state != nil) else {
+					print("Error on catching searched place state.")
+					return
+				}
+
+				guard (city != nil) else {
+					print("Error on catching searched place city.")
+					return
+				}
+
+				place = Place(name: gmsPlace.name, address: gmsPlace.name, city: city!, state: state!, country: country!, coordinate: coordinate)
+			}
+
+			guard (place != nil) else {
+				print("Error on creating searched place.")
+				return
+			}
+
+			self.displayLocation(newPlace: place!, showCallout: true)
+
+			self.centerInLocation(location: coordinate)
+
+			self.dismiss(animated: true, completion: nil)
+
+		}
+
     }
 
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
